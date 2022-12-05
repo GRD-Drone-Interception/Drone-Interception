@@ -5,8 +5,9 @@ namespace Drone
 {
     public class AttachmentPoint : MonoBehaviour
     {
+        public bool HasAttachment => _hasAttachment;
         private bool _hasAttachment = false;
-        
+
         [Range(0.15f, 0.5f)] [SerializeField] private float pointSize = 0.25f;  
         [SerializeField] private GameObject _attachment;
         private MeshRenderer _meshRenderer;

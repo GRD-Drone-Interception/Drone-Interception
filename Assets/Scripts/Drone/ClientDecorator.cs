@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace Drone
@@ -10,8 +8,6 @@ namespace Drone
         [SerializeField] private GameObject prefabToSpawn;
         private GameObject _objectInHand;
         private AttachmentPoint _attachmentPoint;
-        //private List<AttachmentPoint> _attachmentPoints;
-        private bool _isDecorated = false;
 
         public void OnPointerDown(PointerEventData eventData)
         {
@@ -20,10 +16,9 @@ namespace Drone
         
         public void OnPointerUp(PointerEventData eventData)
         {
-            if (_attachmentPoint != null && !_isDecorated)
+            if (_attachmentPoint != null && !_attachmentPoint.HasAttachment)
             {
                 _attachmentPoint.AddAttachment(_objectInHand);
-                _isDecorated = true;
             }
             else
             {
