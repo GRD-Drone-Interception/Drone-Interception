@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 
 public class PodiumMovement : MonoBehaviour
 {
+    [SerializeField] private float rotationSpeed = 100.0f;
     private DronePodiumInputActions _inputActions;
     private bool _rotateLeftIsPressed = false;
     private bool _rotateRightIsPressed = false;
@@ -35,11 +36,11 @@ public class PodiumMovement : MonoBehaviour
     {
         if (_rotateLeftIsPressed)
         {
-            transform.Rotate(new Vector3(0,-1,0));
+            transform.Rotate(new Vector3(0,-rotationSpeed * Time.deltaTime,0));
         }
         if (_rotateRightIsPressed)
         {
-            transform.Rotate(new Vector3(0,1,0));
+            transform.Rotate(new Vector3(0,rotationSpeed * Time.deltaTime,0));
         }
     }
 

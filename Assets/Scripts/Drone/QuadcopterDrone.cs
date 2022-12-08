@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Drone
@@ -10,6 +11,7 @@ namespace Drone
         public DroneAttachment secondaryAttachment; // SO data
 
         [SerializeField] private AttachmentPoint attachmentPoint;
+        //private List<AttachmentPoint> attachmentPoints;
 
         private IDrone _drone;
         private bool _isDecorated;

@@ -13,7 +13,7 @@ namespace Drone
         private MeshRenderer _meshRenderer;
 
         private void Awake() => _meshRenderer = GetComponent<MeshRenderer>();
-        private void Start() => _meshRenderer.enabled = false;
+        /*private void Start() => _meshRenderer.enabled = false;*/
 
         private void OnDrawGizmos()
         {
@@ -24,14 +24,19 @@ namespace Drone
 
         private void OnMouseOver()
         {
-            _meshRenderer.enabled = true;
-            _meshRenderer.material.color = new Color(0,1,0,0.8f);
+            //_meshRenderer.enabled = true;
+            //_meshRenderer.material.color = new Color(0,1,0,0.8f);
         }
 
         private void OnMouseExit()
         {
-            _meshRenderer.enabled = false;
-            _meshRenderer.material.color = Color.white;
+            //_meshRenderer.enabled = false;
+            //_meshRenderer.material.color = Color.white;
+        }
+
+        private void Update()
+        {
+            _meshRenderer.material.color = new Color(0,1,0,0.8f);
         }
 
         public void AddAttachment(GameObject attachment)
@@ -40,6 +45,7 @@ namespace Drone
             {
                 attachment.transform.parent = transform;
                 _attachment = attachment;
+                _meshRenderer.enabled = false;
                 _hasAttachment = true;
             }
             else
