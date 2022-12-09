@@ -17,9 +17,15 @@ namespace Drone
             if(Physics.Raycast(podiumPos + Vector3.up, Vector3.down, out RaycastHit hitInfo))
             {
                 var hitPodium = hitInfo.transform.GetComponent<Podium>();
+
+                if (hitPodium.IsOccupied)
+                {
+                    hitPodium.RemoveDroneFromPodium();
+                    hitPodium.IsOccupied = false;
+                }
                 
-                // Spawn a drone if the raycast hits a gameobject that has a Podium component and is not already occupied
-                if (hitPodium != null && !hitPodium.IsOccupied)
+                // Spawn a drone if the raycast hits a gameobject that has a Podium component
+                if (hitPodium != null)
                 {
                     var drone = Instantiate(prefabToSpawn);
                     var droneSize = drone.transform.GetComponent<Renderer>().bounds.size.y;

@@ -22,6 +22,7 @@ namespace Drone
 
         public void RemoveDroneFromPodium()
         {
+            Destroy(_quadcopterDrone.gameObject);
             _quadcopterDrone = null;
         }
     }
