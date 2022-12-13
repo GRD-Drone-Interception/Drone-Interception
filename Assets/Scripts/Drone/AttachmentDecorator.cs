@@ -42,11 +42,13 @@ namespace Drone
                     Debug.Log("Collider: " + hitInfo.collider.name);
                     
                     _objectInHand.transform.position = hitInfo.point;
+                    //_objectInHand.transform.rotation = hitInfo.transform.rotation;
 
                     if (hitInfo.transform.GetComponent<AttachmentPoint>() != null)
                     {
                         Debug.Log("ATTACHMENT COMPONENT");
                         _objectInHand.transform.position = hitInfo.transform.position;
+                        //_objectInHand.transform.rotation = hitInfo.transform.rotation;
                         _attachmentPoint = hitInfo.transform.GetComponent<AttachmentPoint>();
                         //var drone = hitInfo.transform.GetComponentInParent<QuadcopterDrone>();
                     }

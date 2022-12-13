@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Drone
 {
@@ -24,6 +25,14 @@ namespace Drone
         {
             Destroy(_quadcopterDrone.gameObject);
             _quadcopterDrone = null;
+        }
+
+        private void OnCollisionEnter(Collision other)
+        {
+            if (other.transform.GetComponent<QuadcopterDrone>() != null)
+            {
+                Destroy(other.transform.GetComponent<Rigidbody>());
+            }
         }
     }
 }
