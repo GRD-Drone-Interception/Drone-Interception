@@ -44,7 +44,7 @@ namespace Drone
 
                     // Positions the drone flat atop the active podium
                     //drone.transform.position = new Vector3(podiumPos.x, podiumTop + droneSize/2, podiumPos.z);
-                    var drone = Instantiate(prefabToSpawn, podiumPos + Vector3.up, Quaternion.identity);
+                    var drone = Instantiate(prefabToSpawn, podiumPos + Vector3.up*3, Quaternion.identity);
                     drone.transform.SetParent(PodiumDetector.ActivePodium.transform); // BREAKS ATTACHMENT DETECTION??
 
                     hitPodium.SetPodiumDrone(drone.GetComponent<QuadcopterDrone>());
