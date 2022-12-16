@@ -389,8 +389,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294949771
-  m_fontColor: {r: 0.54509807, g: 0.73333335, b: 1, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -3439,6 +3439,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 306295783}
   m_Mesh: {fileID: 7008480284113779587, guid: 2ffdfda0a0f709949a9b5b8b21ffd6e3, type: 3}
+--- !u!4 &308501097 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7353116139060468132, guid: bb6fe1f3925a556419efce6633ae33ca, type: 3}
+  m_PrefabInstance: {fileID: 783961030}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &308711851
 GameObject:
   m_ObjectHideFlags: 0
@@ -4303,7 +4308,7 @@ GameObject:
   - component: {fileID: 366005636}
   - component: {fileID: 366005635}
   m_Layer: 5
-  m_Name: DroneTypeText
+  m_Name: DroneClassText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4326,7 +4331,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 5.1781006, y: -9.999989}
+  m_AnchoredPosition: {x: 5.1782227, y: -10.000027}
   m_SizeDelta: {x: 510.9, y: 50}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &366005635
@@ -4349,7 +4354,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'DRONE TYPE:'
+  m_text: 'DRONE CLASS: <color=white>QUADCOPTER</color>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5381,27 +5386,31 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 2
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 862460682}
     m_Modifications:
     - target: {fileID: 7353116139060210380, guid: bb6fe1f3925a556419efce6633ae33ca, type: 3}
       propertyPath: m_Name
       value: QuadcopterDrone (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 7353116139060210380, guid: bb6fe1f3925a556419efce6633ae33ca, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7353116139060468132, guid: bb6fe1f3925a556419efce6633ae33ca, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 7353116139060468132, guid: bb6fe1f3925a556419efce6633ae33ca, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5
+      value: 5.083345
       objectReference: {fileID: 0}
     - target: {fileID: 7353116139060468132, guid: bb6fe1f3925a556419efce6633ae33ca, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.308075
+      value: 4.6366034
       objectReference: {fileID: 0}
     - target: {fileID: 7353116139060468132, guid: bb6fe1f3925a556419efce6633ae33ca, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.2750003
+      value: -1.2290275
       objectReference: {fileID: 0}
     - target: {fileID: 7353116139060468132, guid: bb6fe1f3925a556419efce6633ae33ca, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5902,6 +5911,11 @@ Transform:
   m_Father: {fileID: 1036172341}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &484856400 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7353116139060468132, guid: bb6fe1f3925a556419efce6633ae33ca, type: 3}
+  m_PrefabInstance: {fileID: 454108102}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &488129162
 GameObject:
   m_ObjectHideFlags: 0
@@ -6068,6 +6082,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 506244458}
   m_Mesh: {fileID: -4950219319222482743, guid: 2ffdfda0a0f709949a9b5b8b21ffd6e3, type: 3}
+--- !u!4 &519574300 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7353116139060468132, guid: bb6fe1f3925a556419efce6633ae33ca, type: 3}
+  m_PrefabInstance: {fileID: 1102639363}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &524489530
 GameObject:
   m_ObjectHideFlags: 0
@@ -7668,7 +7687,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 644348583}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b8bf047791d042a788d2964645f236dd, type: 3}
   m_Name: 
@@ -8062,15 +8081,15 @@ RectTransform:
   - {fileID: 1133311447}
   - {fileID: 1800338467}
   - {fileID: 921015170}
-  - {fileID: 1825852417}
   - {fileID: 1692392143}
+  - {fileID: 1825852417}
   m_Father: {fileID: 390663272}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -25, y: -25}
-  m_SizeDelta: {x: 100, y: 77.58}
+  m_SizeDelta: {x: 100, y: 64.13}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &668193553
 MonoBehaviour:
@@ -9466,27 +9485,31 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 2
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 862460682}
     m_Modifications:
     - target: {fileID: 7353116139060210380, guid: bb6fe1f3925a556419efce6633ae33ca, type: 3}
       propertyPath: m_Name
       value: QuadcopterDrone (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 7353116139060210380, guid: bb6fe1f3925a556419efce6633ae33ca, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7353116139060468132, guid: bb6fe1f3925a556419efce6633ae33ca, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 7353116139060468132, guid: bb6fe1f3925a556419efce6633ae33ca, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10
+      value: 10.083345
       objectReference: {fileID: 0}
     - target: {fileID: 7353116139060468132, guid: bb6fe1f3925a556419efce6633ae33ca, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.308075
+      value: 4.6366034
       objectReference: {fileID: 0}
     - target: {fileID: 7353116139060468132, guid: bb6fe1f3925a556419efce6633ae33ca, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.2750003
+      value: -1.2290275
       objectReference: {fileID: 0}
     - target: {fileID: 7353116139060468132, guid: bb6fe1f3925a556419efce6633ae33ca, type: 3}
       propertyPath: m_LocalRotation.w
@@ -10249,19 +10272,30 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 455000940}
+  - {fileID: 980194004}
   - {fileID: 802554494}
   - {fileID: 1533234971}
   - {fileID: 1195765793}
+  - {fileID: 1724626351}
+  - {fileID: 864934634}
+  - {fileID: 519574300}
+  - {fileID: 484856400}
+  - {fileID: 308501097}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &864934634 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7353116139060468132, guid: bb6fe1f3925a556419efce6633ae33ca, type: 3}
+  m_PrefabInstance: {fileID: 2071993150}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &865274419
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 2
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 862460682}
     m_Modifications:
     - target: {fileID: 7353116139060210380, guid: bb6fe1f3925a556419efce6633ae33ca, type: 3}
       propertyPath: m_Name
@@ -10273,19 +10307,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7353116139060468132, guid: bb6fe1f3925a556419efce6633ae33ca, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 7353116139060468132, guid: bb6fe1f3925a556419efce6633ae33ca, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.00000006147975
+      value: 0.08334489
       objectReference: {fileID: 0}
     - target: {fileID: 7353116139060468132, guid: bb6fe1f3925a556419efce6633ae33ca, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.308075
+      value: 4.6366034
       objectReference: {fileID: 0}
     - target: {fileID: 7353116139060468132, guid: bb6fe1f3925a556419efce6633ae33ca, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.2750003
+      value: -1.2290275
       objectReference: {fileID: 0}
     - target: {fileID: 7353116139060468132, guid: bb6fe1f3925a556419efce6633ae33ca, type: 3}
       propertyPath: m_LocalRotation.w
@@ -10750,8 +10784,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294949771
-  m_fontColor: {r: 0.54509807, g: 0.73333335, b: 1, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -11412,7 +11446,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 5.1781006, y: -39.999985}
+  m_AnchoredPosition: {x: 5.1782227, y: -40.000046}
   m_SizeDelta: {x: 510.9, y: 50}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &921015171
@@ -11435,7 +11469,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'SPEED:'
+  m_text: 'SPEED: <color=white>150mph</color>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -12039,8 +12073,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294949771
-  m_fontColor: {r: 0.54509807, g: 0.73333335, b: 1, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -12107,6 +12141,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 978009517}
   m_CullTransparentMesh: 1
+--- !u!1 &980194003
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 980194004}
+  m_Layer: 0
+  m_Name: DroneCarousel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &980194004
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 980194003}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.08334495, y: 4.6366034, z: -1.2290275}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 862460682}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &984044586
 GameObject:
   m_ObjectHideFlags: 0
@@ -13287,27 +13352,31 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 2
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 862460682}
     m_Modifications:
     - target: {fileID: 7353116139060210380, guid: bb6fe1f3925a556419efce6633ae33ca, type: 3}
       propertyPath: m_Name
       value: QuadcopterDrone (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 7353116139060210380, guid: bb6fe1f3925a556419efce6633ae33ca, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7353116139060468132, guid: bb6fe1f3925a556419efce6633ae33ca, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 7353116139060468132, guid: bb6fe1f3925a556419efce6633ae33ca, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10
+      value: -9.916655
       objectReference: {fileID: 0}
     - target: {fileID: 7353116139060468132, guid: bb6fe1f3925a556419efce6633ae33ca, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.308075
+      value: 4.6366034
       objectReference: {fileID: 0}
     - target: {fileID: 7353116139060468132, guid: bb6fe1f3925a556419efce6633ae33ca, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.2750003
+      value: -1.2290275
       objectReference: {fileID: 0}
     - target: {fileID: 7353116139060468132, guid: bb6fe1f3925a556419efce6633ae33ca, type: 3}
       propertyPath: m_LocalRotation.w
@@ -13624,7 +13693,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 5.1781006, y: -20}
+  m_AnchoredPosition: {x: 5.1782227, y: -20.000023}
   m_SizeDelta: {x: 510.9, y: 50}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1133311448
@@ -13647,7 +13716,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'MODS:'
+  m_text: 'MODS: <color=white>2</color>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -16076,8 +16145,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294949771
-  m_fontColor: {r: 0.54509807, g: 0.73333335, b: 1, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -17978,6 +18047,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   droneSpawnpoint: {fileID: 906708427}
+  _drones: []
 --- !u!1 &1564889825
 GameObject:
   m_ObjectHideFlags: 0
@@ -18699,7 +18769,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 5.1781006, y: -60}
+  m_AnchoredPosition: {x: 5.1782227, y: -50.00003}
   m_SizeDelta: {x: 510.9, y: 50}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1692392144
@@ -18722,7 +18792,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'WEIGHT:'
+  m_text: 'WEIGHT: <color=white>15kg</color>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -19360,6 +19430,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1707729534}
   m_Mesh: {fileID: -7337762863852646229, guid: 2ffdfda0a0f709949a9b5b8b21ffd6e3, type: 3}
+--- !u!4 &1724626351 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7353116139060468132, guid: bb6fe1f3925a556419efce6633ae33ca, type: 3}
+  m_PrefabInstance: {fileID: 865274419}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1728146567
 GameObject:
   m_ObjectHideFlags: 0
@@ -19880,7 +19955,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 5.1781006, y: -30}
+  m_AnchoredPosition: {x: 5.1782227, y: -30.000023}
   m_SizeDelta: {x: 510.9, y: 50}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1800338468
@@ -19903,7 +19978,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'RANGE:'
+  m_text: 'RANGE: <color=white>5km</color>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -20114,7 +20189,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1825852417
 RectTransform:
   m_ObjectHideFlags: 0
@@ -20132,7 +20207,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 5.1781006, y: -49.99997}
+  m_AnchoredPosition: {x: 5.1782227, y: -60}
   m_SizeDelta: {x: 510.9, y: 50}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1825852418
@@ -20903,7 +20978,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294949771
-  m_fontColor: {r: 0.54509807, g: 0.73333335, b: 1, a: 1}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -21236,8 +21311,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294949771
-  m_fontColor: {r: 0.54509807, g: 0.73333335, b: 1, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -21437,9 +21512,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Hold A to rotate podium left
+  m_text: 'Hold A to rotate drone left
 
-    Hold D to rotate podium right'
+    Hold D to rotate drone right'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -21448,8 +21523,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294949771
-  m_fontColor: {r: 0.54509807, g: 0.73333335, b: 1, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -22136,27 +22211,31 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 2
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 862460682}
     m_Modifications:
     - target: {fileID: 7353116139060210380, guid: bb6fe1f3925a556419efce6633ae33ca, type: 3}
       propertyPath: m_Name
       value: QuadcopterDrone (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7353116139060210380, guid: bb6fe1f3925a556419efce6633ae33ca, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7353116139060468132, guid: bb6fe1f3925a556419efce6633ae33ca, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 7353116139060468132, guid: bb6fe1f3925a556419efce6633ae33ca, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5
+      value: -4.916655
       objectReference: {fileID: 0}
     - target: {fileID: 7353116139060468132, guid: bb6fe1f3925a556419efce6633ae33ca, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.308075
+      value: 4.6366034
       objectReference: {fileID: 0}
     - target: {fileID: 7353116139060468132, guid: bb6fe1f3925a556419efce6633ae33ca, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.2750003
+      value: -1.2290275
       objectReference: {fileID: 0}
     - target: {fileID: 7353116139060468132, guid: bb6fe1f3925a556419efce6633ae33ca, type: 3}
       propertyPath: m_LocalRotation.w
@@ -22891,8 +22970,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294949771
-  m_fontColor: {r: 0.54509807, g: 0.73333335, b: 1, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

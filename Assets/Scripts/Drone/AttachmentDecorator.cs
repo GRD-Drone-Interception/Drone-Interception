@@ -23,7 +23,7 @@ namespace Drone
             {
                 _attachmentPoint.AddAttachment(_objectInHand);
                 var drone = _attachmentPoint.GetComponentInParent<FixedWingDrone>();
-                drone.DecorateCustom(_objectInHand, _attachmentPoint, _objectInHand.GetComponent<EMPAttachment>().Attachment);
+                drone.DecorateCustom(_objectInHand, _attachmentPoint, _objectInHand.GetComponent<AttachmentMonobehaviour>().Attachment);
                 ;
             }
             else
