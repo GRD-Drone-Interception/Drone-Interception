@@ -2349,7 +2349,7 @@ MonoBehaviour:
     m_NormalColor: {r: 0.34109113, g: 0.6098393, b: 0.990566, a: 0.03529412}
     m_HighlightedColor: {r: 0.35702205, g: 0.48645207, b: 0.6698113, a: 1}
     m_PressedColor: {r: 0, g: 0.25764474, b: 0.6226415, a: 1}
-    m_SelectedColor: {r: 0.54509807, g: 0.73333335, b: 1, a: 1}
+    m_SelectedColor: {r: 0.34117648, g: 0.6117647, b: 0.99215686, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -6375,7 +6375,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ec1d957aebf4cfdb819a5093719488e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabToSpawn: {fileID: 7353116139060210380, guid: bb6fe1f3925a556419efce6633ae33ca, type: 3}
+  prefabToSpawn: {fileID: 1040653230026491075, guid: 87bd8d9b4272c764abfd26c8c16ffffa, type: 3}
 --- !u!1 &546713878
 GameObject:
   m_ObjectHideFlags: 0
@@ -7791,7 +7791,7 @@ MonoBehaviour:
     m_NormalColor: {r: 0.34109113, g: 0.6098393, b: 0.990566, a: 0.03529412}
     m_HighlightedColor: {r: 0.35702205, g: 0.48645207, b: 0.6698113, a: 1}
     m_PressedColor: {r: 0, g: 0.25764474, b: 0.6226415, a: 1}
-    m_SelectedColor: {r: 0.54509807, g: 0.73333335, b: 1, a: 1}
+    m_SelectedColor: {r: 0.34117648, g: 0.6117647, b: 0.99215686, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -8306,7 +8306,6 @@ GameObject:
   - component: {fileID: 674846544}
   - component: {fileID: 674846546}
   - component: {fileID: 674846545}
-  - component: {fileID: 674846547}
   m_Layer: 5
   m_Name: DroneClass4Panel
   m_TagString: Untagged
@@ -8373,19 +8372,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 674846543}
   m_CullTransparentMesh: 1
---- !u!114 &674846547
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 674846543}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ec1d957aebf4cfdb819a5093719488e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefabToSpawn: {fileID: 7353116139060210380, guid: bb6fe1f3925a556419efce6633ae33ca, type: 3}
 --- !u!1 &697157786
 GameObject:
   m_ObjectHideFlags: 0
@@ -9191,7 +9177,6 @@ GameObject:
   - component: {fileID: 756224023}
   - component: {fileID: 756224025}
   - component: {fileID: 756224024}
-  - component: {fileID: 756224026}
   m_Layer: 5
   m_Name: DroneClass3Panel
   m_TagString: Untagged
@@ -9258,19 +9243,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 756224022}
   m_CullTransparentMesh: 1
---- !u!114 &756224026
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 756224022}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ec1d957aebf4cfdb819a5093719488e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefabToSpawn: {fileID: 7353116139060210380, guid: bb6fe1f3925a556419efce6633ae33ca, type: 3}
 --- !u!1 &764992820
 GameObject:
   m_ObjectHideFlags: 0
@@ -10185,7 +10157,7 @@ MonoBehaviour:
     m_NormalColor: {r: 0.34109113, g: 0.6098393, b: 0.990566, a: 0.03529412}
     m_HighlightedColor: {r: 0.35702205, g: 0.48645207, b: 0.6698113, a: 1}
     m_PressedColor: {r: 0, g: 0.25764474, b: 0.6226415, a: 1}
-    m_SelectedColor: {r: 0.54509807, g: 0.73333335, b: 1, a: 1}
+    m_SelectedColor: {r: 0.34117648, g: 0.6117647, b: 0.99215686, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -15905,7 +15877,7 @@ MonoBehaviour:
     m_NormalColor: {r: 0.34109113, g: 0.6098393, b: 0.990566, a: 0.03529412}
     m_HighlightedColor: {r: 0.35702205, g: 0.48645207, b: 0.6698113, a: 1}
     m_PressedColor: {r: 0, g: 0.25764474, b: 0.6226415, a: 1}
-    m_SelectedColor: {r: 0.54509807, g: 0.73333335, b: 1, a: 1}
+    m_SelectedColor: {r: 0.34117648, g: 0.6117647, b: 0.99215686, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -17520,7 +17492,7 @@ MonoBehaviour:
     m_NormalColor: {r: 0.34109113, g: 0.6098393, b: 0.990566, a: 0.03529412}
     m_HighlightedColor: {r: 0.35702205, g: 0.48645207, b: 0.6698113, a: 1}
     m_PressedColor: {r: 0, g: 0.25764474, b: 0.6226415, a: 1}
-    m_SelectedColor: {r: 0.54509807, g: 0.73333335, b: 1, a: 1}
+    m_SelectedColor: {r: 0.34117648, g: 0.6117647, b: 0.99215686, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -18195,7 +18167,7 @@ MonoBehaviour:
     m_NormalColor: {r: 0.34109113, g: 0.6098393, b: 0.990566, a: 0.03529412}
     m_HighlightedColor: {r: 0.35702205, g: 0.48645207, b: 0.6698113, a: 1}
     m_PressedColor: {r: 0, g: 0.25764474, b: 0.6226415, a: 1}
-    m_SelectedColor: {r: 0.54509807, g: 0.73333335, b: 1, a: 1}
+    m_SelectedColor: {r: 0.34117648, g: 0.6117647, b: 0.99215686, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -19265,7 +19237,7 @@ MonoBehaviour:
     m_NormalColor: {r: 0.34109113, g: 0.6098393, b: 0.990566, a: 0.03529412}
     m_HighlightedColor: {r: 0.35702205, g: 0.48645207, b: 0.6698113, a: 1}
     m_PressedColor: {r: 0, g: 0.25764474, b: 0.6226415, a: 1}
-    m_SelectedColor: {r: 0.54509807, g: 0.73333335, b: 1, a: 1}
+    m_SelectedColor: {r: 0.34117648, g: 0.6117647, b: 0.99215686, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -20537,7 +20509,7 @@ MonoBehaviour:
     m_NormalColor: {r: 0.34109113, g: 0.6098393, b: 0.990566, a: 0.03529412}
     m_HighlightedColor: {r: 0.35702205, g: 0.48645207, b: 0.6698113, a: 1}
     m_PressedColor: {r: 0, g: 0.25764474, b: 0.6226415, a: 1}
-    m_SelectedColor: {r: 0.54509807, g: 0.73333335, b: 1, a: 1}
+    m_SelectedColor: {r: 0.34117648, g: 0.6117647, b: 0.99215686, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1

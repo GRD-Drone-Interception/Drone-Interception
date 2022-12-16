@@ -1,4 +1,5 @@
 using Drone;
+using Drone.Decorators;
 using UnityEngine;
 
 public class AttachmentMonobehaviour : MonoBehaviour

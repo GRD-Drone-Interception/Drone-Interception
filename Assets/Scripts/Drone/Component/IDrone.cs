@@ -1,4 +1,4 @@
-namespace Drone
+namespace Drone.Component
 {
     public interface IDrone
     {

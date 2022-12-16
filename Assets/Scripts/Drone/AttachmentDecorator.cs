@@ -15,16 +15,22 @@ namespace Drone
         public void OnPointerDown(PointerEventData eventData)
         {
             _objectInHand = Instantiate(prefabToSpawn, Input.mousePosition, Quaternion.identity);
+            foreach (var ap in FindObjectsOfType<AttachmentPoint>())
+            {
+                ap.SetVisibility(true);
+            }
         }
         
         public void OnPointerUp(PointerEventData eventData)
         {
             if (_attachmentPoint != null && !_attachmentPoint.HasAttachment)
             {
-                _attachmentPoint.AddAttachment(_objectInHand);
-                var drone = _attachmentPoint.GetComponentInParent<FixedWingDrone>();
-                drone.DecorateCustom(_objectInHand, _attachmentPoint, _objectInHand.GetComponent<AttachmentMonobehaviour>().Attachment);
-                ;
+                var drone = _attachmentPoint.GetComponentInParent<InterceptorDrone>();
+                drone.Decorate(_objectInHand, _attachmentPoint, _objectInHand.GetComponent<AttachmentMonobehaviour>().Attachment);
+                foreach (var ap in FindObjectsOfType<AttachmentPoint>())
+                {
+                    ap.SetVisibility(false);
+                }
             }
             else
             {

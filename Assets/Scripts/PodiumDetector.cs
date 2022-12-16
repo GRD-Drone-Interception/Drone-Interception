@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PodiumDetector : MonoBehaviour
 {
-    public static Podium ActivePodium { get; private set; }
+    /*public static Podium ActivePodium { get; private set; }
     
     private void OnTriggerEnter(Collider other)
     { 
@@ -13,5 +13,5 @@ public class PodiumDetector : MonoBehaviour
             ActivePodium = other.GetComponent<Podium>();
             Debug.Log($"Active Podium: {ActivePodium.name}");
         }
-    }
+    }*/
 }

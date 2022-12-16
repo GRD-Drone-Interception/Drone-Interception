@@ -11,9 +11,10 @@ namespace Drone
         [Range(0.15f, 0.5f)] [SerializeField] private float pointSize = 0.25f;  
         [SerializeField] private GameObject _attachment;
         private MeshRenderer _meshRenderer;
+        private bool _isVisible;
 
         private void Awake() => _meshRenderer = GetComponent<MeshRenderer>();
-        /*private void Start() => _meshRenderer.enabled = false;*/
+        private void Start() => _meshRenderer.enabled = false;
 
         private void OnDrawGizmos()
         {
@@ -21,22 +22,18 @@ namespace Drone
             //Gizmos.DrawWireCube(transform.position, transform.localScale * pointSize);
             transform.localScale = new Vector3(pointSize, pointSize, pointSize);
         }
-
-        private void OnMouseOver()
-        {
-            //_meshRenderer.enabled = true;
-            //_meshRenderer.material.color = new Color(0,1,0,0.8f);
-        }
-
-        private void OnMouseExit()
-        {
-            //_meshRenderer.enabled = false;
-            //_meshRenderer.material.color = Color.white;
-        }
-
+        
         private void Update()
         {
-            _meshRenderer.material.color = new Color(0,1,0,0.8f);
+            if (!_hasAttachment && IsVisible())
+            {
+                _meshRenderer.enabled = true;
+                _meshRenderer.material.color = new Color(0, 1, 0, 0.8f);
+            }
+            else
+            {
+                _meshRenderer.enabled = false;
+            }
         }
 
         public void AddAttachment(GameObject attachment)
@@ -45,13 +42,29 @@ namespace Drone
             {
                 attachment.transform.parent = transform;
                 _attachment = attachment;
-                _meshRenderer.enabled = false;
                 _hasAttachment = true;
             }
             else
             {
                 Debug.Log("Attachment slot already occupied");
             }
+        }
+
+        public void RemoveAttachment()
+        {
+            Destroy(_attachment);
+            _attachment = null;
+            _hasAttachment = false;
+        }
+
+        public void SetVisibility(bool visibility)
+        {
+            _isVisible = visibility;
+        }
+
+        public bool IsVisible()
+        {
+            return _isVisible;
         }
     }
 }

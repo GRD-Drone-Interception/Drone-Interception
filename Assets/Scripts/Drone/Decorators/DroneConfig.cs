@@ -1,10 +1,13 @@
+using Drone.Component;
 using UnityEngine;
 
-namespace Drone
+namespace Drone.Decorators
 {
     [CreateAssetMenu(fileName = "NewDroneConfig", menuName = "Drone/Config", order = 1)]
     public class DroneConfig : ScriptableObject, IDrone
     {
+        public DroneType droneType;
+        
         [SerializeField] private float range;
         [SerializeField] private float speed;
         [SerializeField] private float acceleration;

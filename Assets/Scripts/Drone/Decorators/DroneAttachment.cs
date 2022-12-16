@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using Drone.Component;
+using UnityEngine;
 
-namespace Drone
+namespace Drone.Decorators
 {
     [CreateAssetMenu(fileName = "NewDroneAttachment", menuName = "Drone/Attachment", order = 1)]
     public class DroneAttachment : ScriptableObject, IDrone

@@ -1,4 +1,6 @@
-﻿namespace Drone
+﻿using Drone.Component;
+
+namespace Drone.Decorators
 {
     public class DroneDecorator : IDrone
     {

@@ -1,10 +1,13 @@
-namespace Drone
+using Drone.Component;
+using Drone.Decorators;
+
+namespace Drone.Concrete
 {
-    public class Drone : IDrone
+    public class QuadcopterDrone : IDrone 
     {
         private readonly DroneConfig _droneConfig;
     
-        public Drone(DroneConfig droneConfig)
+        public QuadcopterDrone(DroneConfig droneConfig)
         {
             _droneConfig = droneConfig;
         }
