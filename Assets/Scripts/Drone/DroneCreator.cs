@@ -1,26 +1,31 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace Drone
 {
-    /// <summary>
-    /// Responsible for spawning a drone of a given type onto the drone podium
-    /// </summary>
     public class DroneCreator : MonoBehaviour, IPointerDownHandler
     {
         [SerializeField] private GameObject prefabToSpawn;
 
         public void OnPointerDown(PointerEventData eventData)
         {
-            Debug.Log("On pointer down");
+            var drone = Instantiate(prefabToSpawn);
+            //drone.transform.position = FindObjectOfType<Workbench>().transform.position + Vector3.up*6;
+            drone.transform.position = FindObjectOfType<Workbench>().DroneSpawnpoint.position;
+          
+            
+            //OnDroneCreated?.Invoke(drone);
+
+            /*Debug.Log("On pointer down");
             
             var podiumPos = PodiumDetector.ActivePodium.transform.position;
             
             Debug.Log("Podium Detector: " + PodiumDetector.ActivePodium);
             
-            if(Physics.Raycast(podiumPos + Vector3.up/2, Vector3.down, out RaycastHit hitInfo))
+            if(Physics.Raycast(podiumPos + Vector3.up*4, Vector3.down, out RaycastHit hitInfo))
             {
-                Debug.DrawLine(podiumPos + Vector3.up/2, podiumPos, Color.green, 5.0f, false);
+                Debug.DrawLine(podiumPos + Vector3.up*4, podiumPos, Color.green, 5.0f, false);
 
                 var hitPodium = hitInfo.transform.GetComponent<Podium>();
                 
@@ -44,13 +49,13 @@ namespace Drone
 
                     // Positions the drone flat atop the active podium
                     //drone.transform.position = new Vector3(podiumPos.x, podiumTop + droneSize/2, podiumPos.z);
-                    var drone = Instantiate(prefabToSpawn, podiumPos + Vector3.up*3, Quaternion.identity);
+                    var drone = Instantiate(prefabToSpawn, podiumPos + Vector3.up*4, Quaternion.identity);
                     drone.transform.SetParent(PodiumDetector.ActivePodium.transform); // BREAKS ATTACHMENT DETECTION??
 
                     hitPodium.SetPodiumDrone(drone.GetComponent<QuadcopterDrone>());
                     hitPodium.IsOccupied = true;
                 }
-            }
+            }*/
         }
     }
 }

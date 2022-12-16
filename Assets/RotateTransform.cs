@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PodiumMovement : MonoBehaviour
+public class RotateTransform : MonoBehaviour
 {
     [SerializeField] private float rotationSpeed = 100.0f;
     private DronePodiumInputActions _inputActions;
