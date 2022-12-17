@@ -7,18 +7,22 @@ namespace Drone
     public class DroneCarousel : MonoBehaviour
     {
         public static DroneCarousel Instance; 
+        public InterceptorDrone DroneToBeEdited { get; set; }
         
         [SerializeField] private float moveSpeed = 1f;
         [Range(1, 10)][SerializeField] private float distanceToMove = 5.0f;
         [SerializeField] private Button carouselMoveLeftButton;
         [SerializeField] private Button carouselMoveRightButton;
-        //[SerializeField] private PodiumNodeManager podiumNodeManager;
+        [SerializeField] private PodiumNodeManager podiumNodeManager;
         private Vector3 _endPosition;
+        private int _currentNodeIndex;
         private bool _isMoving = false;
 
         private void Start()
         {
-            _endPosition = transform.position;
+            _currentNodeIndex = 3;
+            _endPosition = podiumNodeManager.PodiumNodes[_currentNodeIndex].transform.position;
+            StartCoroutine(MoveCarouselCoroutine(_endPosition, moveSpeed));
         }
 
         private void Awake()
@@ -43,15 +47,15 @@ namespace Drone
 
         private void MoveCarouselLeftOnButtonPress()
         {
-            if(Vector3.Distance(transform.position, _endPosition) >= 0.05f) { return;}
-            _endPosition = transform.position - Vector3.left*distanceToMove;
+            if(Vector3.Distance(transform.position, _endPosition) >= 0.05f) { return; }
+            _endPosition = podiumNodeManager.PodiumNodes[--_currentNodeIndex].transform.position;
             StartCoroutine(MoveCarouselCoroutine(_endPosition, moveSpeed));
         }
     
         private void MoveCarouselRightOnButtonPress()
         {
-            if(Vector3.Distance(transform.position, _endPosition) >= 0.05f) { return;}
-            _endPosition = transform.position - Vector3.right*distanceToMove;
+            if(Vector3.Distance(transform.position, _endPosition) >= 0.05f) { return; }
+            _endPosition = podiumNodeManager.PodiumNodes[++_currentNodeIndex].transform.position;
             StartCoroutine(MoveCarouselCoroutine(_endPosition, moveSpeed));
         }
 

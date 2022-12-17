@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: QuadcopterConfig
   m_EditorClassIdentifier: 
   droneType: 0
-  range: 5
-  speed: 6
-  acceleration: 7
-  weight: 8
+  range: 75
+  speed: 35
+  acceleration: 30
+  weight: 30
   droneName: Quadcopter
   dronePrefab: {fileID: 0}
   droneDescription: 

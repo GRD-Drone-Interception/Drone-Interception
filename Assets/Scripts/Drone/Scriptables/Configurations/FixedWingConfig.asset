@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: FixedWingConfig
   m_EditorClassIdentifier: 
   droneType: 1
-  range: 1
-  speed: 2
-  acceleration: 3
-  weight: 4
+  range: 50
+  speed: 40
+  acceleration: 20
+  weight: 20
   droneName: Fixed Wing
   dronePrefab: {fileID: 0}
   droneDescription: 

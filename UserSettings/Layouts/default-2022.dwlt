@@ -190,8 +190,8 @@ MonoBehaviour:
     y: 0
     width: 733
     height: 948
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
@@ -241,8 +241,8 @@ MonoBehaviour:
     y: 0
     width: 946
     height: 574
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}
@@ -293,8 +293,8 @@ MonoBehaviour:
     y: 0
     width: 337
     height: 948
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
@@ -709,9 +709,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -11.2213955, y: 5.7342396, z: -0.21323514}
+    m_Target: {x: 0.021388829, y: 3.7145233, z: 0.12563145}
     speed: 2
-    m_Value: {x: -11.2213955, y: 5.7342396, z: -0.21323514}
+    m_Value: {x: 0.021388829, y: 3.7145233, z: 0.12563145}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -757,13 +757,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.1744256, y: -0.044293996, z: 0.007857029, w: 0.9836534}
+    m_Target: {x: 0.07493079, y: 0.004486624, z: -0.00033499073, w: 0.9972006}
     speed: 2
-    m_Value: {x: 0.1744237, y: -0.04429351, z: 0.007856943, w: 0.98364264}
+    m_Value: {x: 0.07492914, y: 0.004486526, z: -0.0003349834, w: 0.99717873}
   m_Size:
-    m_Target: 15.529694
+    m_Target: 4.196918
     speed: 2
-    m_Value: 15.529694
+    m_Value: 4.196918
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -847,23 +847,23 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: c8600000
-      m_LastClickedID: 24776
-      m_ExpandedIDs: 9831fdff2afbffff1a600000c86000009e61000024620000
+      m_SelectedIDs: 28660000
+      m_LastClickedID: 0
+      m_ExpandedIDs: 2afbffff045e0000545f00002c600000d6600000aa610000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: DroneCarousel
-        m_OriginalName: DroneCarousel
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 24776
+        m_UserData: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 0
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 12}
       m_SearchString: 
@@ -914,22 +914,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts
+    - Assets/Scripts/Drone/Scriptables/Configurations
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts
+  - Assets/Scripts/Drone/Scriptables/Configurations
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\MyProjects\Unity_Projects\Drone-Interception
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 946d0000
-    m_LastClickedID: 28052
-    m_ExpandedIDs: 00000000906d0000926d0000946d0000966d0000986d00009a6d0000
+    scrollPos: {x: 0, y: 82}
+    m_SelectedIDs: dce80300
+    m_LastClickedID: 256220
+    m_ExpandedIDs: 00000000aa6d0000ac6d0000ae6d0000b06d0000b26d0000b46d0000026e0000d6e80300
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -957,7 +957,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000906d0000926d0000946d0000966d0000986d00009a6d0000
+    m_ExpandedIDs: 00000000aa6d0000ac6d0000ae6d0000b06d0000b26d0000b46d0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36e937aa35ae4681bb2516d4feee691f, type: 3}
   m_Name: EMP
   m_EditorClassIdentifier: 
-  range: 20
-  speed: -5
-  acceleration: -1
+  range: 1
+  speed: 1
+  acceleration: 1
   weight: 25
   attachmentName: Electromagnetic Pulse
   attachmentPrefab: {fileID: 9052186331285526093, guid: 11c67cb53d6a64e4fa3bb211549081fe, type: 3}

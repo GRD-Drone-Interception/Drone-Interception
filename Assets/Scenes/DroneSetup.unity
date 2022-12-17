@@ -2198,6 +2198,81 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 194828317}
   m_Mesh: {fileID: 7993178285622955849, guid: 2ffdfda0a0f709949a9b5b8b21ffd6e3, type: 3}
+--- !u!1 &197155250
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 197155251}
+  - component: {fileID: 197155254}
+  - component: {fileID: 197155252}
+  - component: {fileID: 197155253}
+  m_Layer: 0
+  m_Name: DroneDetector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &197155251
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 197155250}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.08334495, y: 4.6366034, z: -1.2290275}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 862460682}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &197155252
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 197155250}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 0.03905019, z: 2}
+  m_Center: {x: 0, y: -0.2054749, z: -0.100000024}
+--- !u!114 &197155253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 197155250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03884b99f2b146d09adfe9dc714cffbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!54 &197155254
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 197155250}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!1 &205571183
 GameObject:
   m_ObjectHideFlags: 0
@@ -8239,6 +8314,7 @@ GameObject:
   - component: {fileID: 668193552}
   - component: {fileID: 668193554}
   - component: {fileID: 668193553}
+  - component: {fileID: 668193555}
   m_Layer: 5
   m_Name: DroneConfigInfoPanel
   m_TagString: Untagged
@@ -8310,6 +8386,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 668193551}
   m_CullTransparentMesh: 1
+--- !u!114 &668193555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 668193551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 995af64ea94a92643a969997bd6dd7e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  droneClassText: {fileID: 366005635}
+  droneModsText: {fileID: 1133311448}
+  droneRangeText: {fileID: 1800338468}
+  droneSpeedText: {fileID: 921015171}
+  droneWeightText: {fileID: 1692392144}
 --- !u!1 &672386125
 GameObject:
   m_ObjectHideFlags: 0
@@ -10450,6 +10543,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 455000940}
+  - {fileID: 197155251}
   - {fileID: 980194004}
   - {fileID: 1550382611}
   - {fileID: 802554494}
@@ -13867,7 +13961,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'MODS: <color=white>2</color>'
+  m_text: 'MODS: <color=white>0</color>'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -18292,14 +18386,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d096d5104cd64c7888347c2acafcb876, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  podiumNodes:
-  - {fileID: 1752460387}
-  - {fileID: 737461337}
-  - {fileID: 683658782}
-  - {fileID: 1693903317}
-  - {fileID: 34641828}
-  - {fileID: 585321435}
-  - {fileID: 1521665777}
 --- !u!1 &1564889825
 GameObject:
   m_ObjectHideFlags: 0
@@ -21336,7 +21422,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294949771
+    rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
