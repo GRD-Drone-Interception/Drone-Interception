@@ -27,16 +27,16 @@ namespace Drone
             {
                 var drone = _attachmentPoint.GetComponentInParent<InterceptorDrone>();
                 drone.Decorate(_objectInHand, _attachmentPoint, _objectInHand.GetComponent<AttachmentMonobehaviour>().Attachment);
-                foreach (var ap in FindObjectsOfType<AttachmentPoint>())
-                {
-                    ap.SetVisibility(false);
-                }
             }
             else
             {
                 Destroy(_objectInHand);
             }
             _objectInHand = null;
+            foreach (var ap in FindObjectsOfType<AttachmentPoint>())
+            {
+                ap.SetVisibility(false);
+            }
         }
 
         private void Update()

@@ -4,7 +4,7 @@ using Drone.Decorators;
 
 namespace Drone
 {
-    public class DroneFactory
+    public static class DroneFactory
     {
         public static IDrone CreateDrone(DroneType droneType, DroneConfig droneConfig)
         {

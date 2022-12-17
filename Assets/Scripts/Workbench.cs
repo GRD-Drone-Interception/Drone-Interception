@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Drone;
 using UnityEngine;
@@ -5,31 +6,38 @@ using UnityEngine;
 public class Workbench : MonoBehaviour
 {
     public Transform DroneSpawnpoint => droneSpawnpoint;
-
     [SerializeField] private Transform droneSpawnpoint;
-    [SerializeField] private List<InterceptorDrone> _drones = new();
-    private bool _isEditing;
+    private List<InterceptorDrone> _drones = new();
+    private InterceptorDrone _editedDrone;
+    private int _editedDroneIndex;
 
-    public void AddToBench(InterceptorDrone drone)
+    private void Update()
     {
-        _drones.Add(drone);
-        //_drone = drone;
-        //_isOccupied = true;
+        if (_editedDrone != null)
+        {
+            _editedDrone = _drones[_editedDroneIndex];
+        }
     }
-
-    public void RemoveFromBench(InterceptorDrone drone)
-    {
-        _drones.Remove(drone);
-        //_drone = null;
-        //_isOccupied = false;
-    }
-
+    
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.transform.GetComponent<InterceptorDrone>() != null)
         {
+            var drone = collision.transform.GetComponent<InterceptorDrone>();
             Destroy(collision.transform.GetComponent<Rigidbody>());
-            AddToBench(collision.transform.GetComponent<InterceptorDrone>());
+            AddToBench(drone);
         }
+    }
+
+    private void AddToBench(InterceptorDrone drone)
+    {
+        drone.transform.SetParent(DroneCarousel.Instance.transform); // TODO: Cleaner method preferred
+        _drones.Add(drone);
+    }
+
+    private void RemoveFromBench(InterceptorDrone drone)
+    {
+        drone.transform.SetParent(null);
+        _drones.Remove(drone);
     }
 }
