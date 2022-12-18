@@ -1,13 +1,17 @@
-﻿using Drone;
+﻿using System;
+using Drone;
 using UnityEngine;
 
 public class DroneDetector : MonoBehaviour
 {
+    public static event Action<InterceptorDrone> OnDroneDetected; 
+    public static event Action OnDroneDetectionExit; 
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.GetComponent<InterceptorDrone>() != null)
         {
-            DroneCarousel.Instance.DroneToBeEdited = other.GetComponent<InterceptorDrone>(); // TODO: Clean
+            OnDroneDetected?.Invoke(other.GetComponent<InterceptorDrone>());
         }
     }
 
@@ -15,7 +19,7 @@ public class DroneDetector : MonoBehaviour
     {
         if (other.GetComponent<InterceptorDrone>() != null)
         {
-            DroneCarousel.Instance.DroneToBeEdited = null;
+            OnDroneDetectionExit?.Invoke();
         }
     }
 }

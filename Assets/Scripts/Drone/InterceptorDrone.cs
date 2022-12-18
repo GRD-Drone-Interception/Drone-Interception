@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Drone.Component;
 using Drone.Decorators;
 using UnityEngine;
@@ -7,6 +8,7 @@ namespace Drone
 {
     public class InterceptorDrone : MonoBehaviour // rename to Drone?
     {
+        public event Action<InterceptorDrone> OnDroneDecorated;
         public DroneConfig DroneConfig => droneConfig;
         [SerializeField] private DroneConfig droneConfig; // SO data
         [SerializeField] private List<AttachmentPoint> attachmentPoints; // handle in a different class?
@@ -19,11 +21,6 @@ namespace Drone
         {
             _drone = DroneFactory.CreateDrone(droneConfig.droneType, droneConfig);
         }
-        
-        private void Update()
-        {
-            print($"Drone: {_drone}, Range: {_drone.Range}");
-        }
 
         // TODO: Tidy method arguments
         public void Decorate(GameObject attachment, AttachmentPoint attachmentPoint, DroneAttachment droneAttachment)
@@ -32,9 +29,9 @@ namespace Drone
             attachment.transform.SetParent(attachmentPoint.transform);
             attachmentPoint.AddAttachment(attachment);
             _numOfAttachments++;
+            OnDroneDecorated?.Invoke(this);
         }
-
-        [ContextMenu("ResetConfig")]
+        
         public void ResetConfiguration()
         {
             _drone = DroneFactory.CreateDrone(droneConfig.droneType, droneConfig);

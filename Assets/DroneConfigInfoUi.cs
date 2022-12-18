@@ -1,3 +1,4 @@
+using System;
 using Drone;
 using TMPro;
 using UnityEngine;
@@ -9,26 +10,58 @@ public class DroneConfigInfoUi : MonoBehaviour
     [SerializeField] private TMP_Text droneRangeText;
     [SerializeField] private TMP_Text droneSpeedText;
     [SerializeField] private TMP_Text droneWeightText;
+    
+    private void OnEnable()
+    {
+        //DroneDetector.OnDroneDetected += UpdateDroneInfoUi;
+        //DroneDetector.OnDroneDetectionExit += ResetDroneInfoUiToDefault;
+        //FindObjectOfType<Workbench>().DroneBeingEdited.OnDroneDecorated += UpdateDroneInfoUi;
+        /*foreach (var drone in FindObjectOfType<Workbench>().Drones)
+        {
+            drone.OnDroneDecorated += UpdateDroneInfoUi;
+        }*/
+    }
 
-    private void Start()
+    private void OnDisable()
+    {
+        //DroneDetector.OnDroneDetected -= UpdateDroneInfoUi;
+        //DroneDetector.OnDroneDetectionExit -= ResetDroneInfoUiToDefault;
+        //FindObjectOfType<Workbench>().DroneBeingEdited.OnDroneDecorated -= UpdateDroneInfoUi;
+        /*foreach (var drone in FindObjectOfType<Workbench>().Drones)
+        {
+            drone.OnDroneDecorated -= UpdateDroneInfoUi;
+        }*/
+    }
+
+    private void Start() => ResetDroneInfoUiToDefault();
+
+    private void Update()
+    {
+        if (FindObjectOfType<Workbench>().DroneBeingEdited != null)
+        {
+            UpdateDroneInfoUi(FindObjectOfType<Workbench>().DroneBeingEdited);
+        }
+        else
+        { 
+            ResetDroneInfoUiToDefault();
+        }
+    }
+
+    private void UpdateDroneInfoUi(InterceptorDrone drone)
+    {
+        droneClassText.text = $"DRONE CLASS: <color=white>{drone.DroneConfig.droneName}</color>";
+        droneModsText.text = $"MODS: <color=white>{drone.NumOfAttachments}</color>";
+        droneRangeText.text = $"RANGE: <color=white>{drone.Drone.Range}km</color>";
+        droneSpeedText.text = $"SPEED: <color=white>{drone.Drone.Speed}mph</color>";
+        droneWeightText.text = $"WEIGHT: <color=white>{drone.Drone.Weight}kg</color>";
+    }
+
+    private void ResetDroneInfoUiToDefault()
     {
         droneClassText.text = "DRONE CLASS: <color=white>NONE</color>";
         droneModsText.text = "MODS: <color=white>0</color>";
         droneRangeText.text = "RANGE: <color=white>0km</color>";
         droneSpeedText.text = "SPEED: <color=white>0mph</color>";
         droneWeightText.text = "WEIGHT: <color=white>0kg</color>";
-    }
-
-    private void Update()
-    {
-        // TODO: Clean
-        if (DroneCarousel.Instance.DroneToBeEdited != null)
-        {
-            droneClassText.text = $"DRONE CLASS: <color=white>{DroneCarousel.Instance.DroneToBeEdited.DroneConfig.droneName}</color>";
-            droneModsText.text = $"MODS: <color=white>{DroneCarousel.Instance.DroneToBeEdited.NumOfAttachments}</color>";
-            droneRangeText.text = $"RANGE: <color=white>{DroneCarousel.Instance.DroneToBeEdited.Drone.Range}km</color>";
-            droneSpeedText.text = $"SPEED: <color=white>{DroneCarousel.Instance.DroneToBeEdited.Drone.Speed}mph</color>";
-            droneWeightText.text = $"WEIGHT: <color=white>{DroneCarousel.Instance.DroneToBeEdited.Drone.Weight}kg</color>";
-        }
     }
 }

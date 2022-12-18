@@ -4,13 +4,9 @@ using UnityEngine.UI;
 
 namespace Drone
 {
-    public class DroneCarousel : MonoBehaviour
+    public class WorkbenchCarousel : MonoBehaviour
     {
-        public static DroneCarousel Instance; 
-        public InterceptorDrone DroneToBeEdited { get; set; }
-        
         [SerializeField] private float moveSpeed = 1f;
-        [Range(1, 10)][SerializeField] private float distanceToMove = 5.0f;
         [SerializeField] private Button carouselMoveLeftButton;
         [SerializeField] private Button carouselMoveRightButton;
         [SerializeField] private PodiumNodeManager podiumNodeManager;
@@ -23,14 +19,6 @@ namespace Drone
             _currentNodeIndex = 3;
             _endPosition = podiumNodeManager.PodiumNodes[_currentNodeIndex].transform.position;
             StartCoroutine(MoveCarouselCoroutine(_endPosition, moveSpeed));
-        }
-
-        private void Awake()
-        {
-            if (Instance == null)
-            {
-                Instance = this;
-            }
         }
 
         private void OnEnable()
@@ -48,14 +36,14 @@ namespace Drone
         private void MoveCarouselLeftOnButtonPress()
         {
             if(Vector3.Distance(transform.position, _endPosition) >= 0.05f) { return; }
-            _endPosition = podiumNodeManager.PodiumNodes[--_currentNodeIndex].transform.position;
+            _endPosition = podiumNodeManager.PodiumNodes[++_currentNodeIndex].transform.position;
             StartCoroutine(MoveCarouselCoroutine(_endPosition, moveSpeed));
         }
     
         private void MoveCarouselRightOnButtonPress()
         {
             if(Vector3.Distance(transform.position, _endPosition) >= 0.05f) { return; }
-            _endPosition = podiumNodeManager.PodiumNodes[++_currentNodeIndex].transform.position;
+            _endPosition = podiumNodeManager.PodiumNodes[--_currentNodeIndex].transform.position;
             StartCoroutine(MoveCarouselCoroutine(_endPosition, moveSpeed));
         }
 
