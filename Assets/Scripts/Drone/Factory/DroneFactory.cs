@@ -6,17 +6,17 @@ namespace Drone
 {
     public static class DroneFactory
     {
-        public static IDrone CreateDrone(DroneType droneType, DroneConfig droneConfig)
+        public static IDrone CreateDrone(DroneType droneType, DroneConfigSO droneConfigSo)
         {
             IDrone drone = null;
 
             switch (droneType)
             {
                 case DroneType.Quadcopter:
-                    drone = new QuadcopterDrone(droneConfig);
+                    drone = new QuadcopterDrone(droneConfigSo);
                     break;
                 case DroneType.FixedWing:
-                    drone = new FixedWingDrone(droneConfig);
+                    drone = new FixedWingDrone(droneConfigSo);
                     break;
             }
             

@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Drone.Decorators
 {
     [CreateAssetMenu(fileName = "NewDroneAttachment", menuName = "Drone/Attachment", order = 1)]
-    public class DroneAttachment : ScriptableObject, IDrone
+    public class DroneAttachmentSO : ScriptableObject, IDrone
     {
         [SerializeField] private float range;
         [SerializeField] private float speed;

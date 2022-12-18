@@ -1814,7 +1814,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2aec0d760be48b49783c9a913d1c9bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  droneConfig: {fileID: 11400000, guid: 134dceaba17c2594abd3b984251c8eb0, type: 2}
+  droneConfigSo: {fileID: 11400000, guid: 134dceaba17c2594abd3b984251c8eb0, type: 2}
   attachmentPoints:
   - {fileID: 7403640104569790447}
   - {fileID: 8935980504856548767}

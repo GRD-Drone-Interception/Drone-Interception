@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Drone.Decorators
 {
     [CreateAssetMenu(fileName = "NewDroneConfig", menuName = "Drone/Config", order = 1)]
-    public class DroneConfig : ScriptableObject, IDrone
+    public class DroneConfigSO : ScriptableObject, IDrone
     {
         public DroneType droneType;
         

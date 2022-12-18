@@ -1,4 +1,3 @@
-using System;
 using Drone;
 using TMPro;
 using UnityEngine;
@@ -37,7 +36,7 @@ public class DroneConfigInfoUi : MonoBehaviour
 
     private void Update()
     {
-        if (FindObjectOfType<Workbench>().DroneBeingEdited != null)
+        if (FindObjectOfType<Workbench>().DroneBeingEdited != null) // TODO: Clean-up needed
         {
             UpdateDroneInfoUi(FindObjectOfType<Workbench>().DroneBeingEdited);
         }
@@ -49,7 +48,7 @@ public class DroneConfigInfoUi : MonoBehaviour
 
     private void UpdateDroneInfoUi(InterceptorDrone drone)
     {
-        droneClassText.text = $"DRONE CLASS: <color=white>{drone.DroneConfig.droneName}</color>";
+        droneClassText.text = $"DRONE CLASS: <color=white>{drone.DroneConfigSo.droneName}</color>";
         droneModsText.text = $"MODS: <color=white>{drone.NumOfAttachments}</color>";
         droneRangeText.text = $"RANGE: <color=white>{drone.Drone.Range}km</color>";
         droneSpeedText.text = $"SPEED: <color=white>{drone.Drone.Speed}mph</color>";

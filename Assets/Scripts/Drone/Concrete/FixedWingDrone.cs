@@ -5,16 +5,16 @@ namespace Drone.Concrete
 {
     public class FixedWingDrone : IDrone 
     {
-        private readonly DroneConfig _droneConfig;
+        private readonly DroneConfigSO _droneConfigSo;
     
-        public FixedWingDrone(DroneConfig droneConfig)
+        public FixedWingDrone(DroneConfigSO droneConfigSo)
         {
-            _droneConfig = droneConfig;
+            _droneConfigSo = droneConfigSo;
         }
 
-        public float Range => _droneConfig.Range;
-        public float Speed => _droneConfig.Speed;
-        public float Acceleration => _droneConfig.Acceleration;
-        public float Weight => _droneConfig.Weight;
+        public float Range => _droneConfigSo.Range;
+        public float Speed => _droneConfigSo.Speed;
+        public float Acceleration => _droneConfigSo.Acceleration;
+        public float Weight => _droneConfigSo.Weight;
     }
 }

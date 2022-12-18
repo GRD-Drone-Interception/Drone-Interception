@@ -26,7 +26,7 @@ namespace Drone
             if (_attachmentPoint != null && !_attachmentPoint.HasAttachment)
             {
                 var drone = _attachmentPoint.GetComponentInParent<InterceptorDrone>();
-                drone.Decorate(_objectInHand, _attachmentPoint, _objectInHand.GetComponent<AttachmentMonobehaviour>().Attachment);
+                drone.Decorate(_objectInHand, _attachmentPoint, _objectInHand.GetComponent<AttachmentMonobehaviour>().AttachmentSo);
             }
             else
             {
