@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Drone;
 using UnityEngine;
@@ -16,6 +17,8 @@ public class Workbench : MonoBehaviour
     [SerializeField] private Button deleteDroneButton;
     private InterceptorDrone _droneBeingEdited;
     private Dictionary<InterceptorDrone, PodiumNode> _dronesOnPodiumDict = new();
+
+    private void Start() => resetDroneConfigButton.gameObject.SetActive(false);
 
     private void OnEnable()
     {
