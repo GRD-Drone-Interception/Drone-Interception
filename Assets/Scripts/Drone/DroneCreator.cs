@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace Drone
@@ -7,55 +6,35 @@ namespace Drone
     public class DroneCreator : MonoBehaviour, IPointerDownHandler
     {
         [SerializeField] private GameObject prefabToSpawn;
+        private Workbench _workbench; // Unnecessary dependency
+
+        private void Awake() => _workbench = FindObjectOfType<Workbench>();
 
         public void OnPointerDown(PointerEventData eventData)
         {
-            var drone = Instantiate(prefabToSpawn);
-            //drone.transform.position = FindObjectOfType<Workbench>().transform.position + Vector3.up*6;
-            drone.transform.position = FindObjectOfType<Workbench>().DroneSpawnpoint.position;
-          
-            
-            //OnDroneCreated?.Invoke(drone);
-
-            /*Debug.Log("On pointer down");
-            
-            var podiumPos = PodiumDetector.ActivePodium.transform.position;
-            
-            Debug.Log("Podium Detector: " + PodiumDetector.ActivePodium);
-            
-            if(Physics.Raycast(podiumPos + Vector3.up*4, Vector3.down, out RaycastHit hitInfo))
+            var carousel = _workbench.Carousel;
+            if (carousel.IsMoving)
             {
-                Debug.DrawLine(podiumPos + Vector3.up*4, podiumPos, Color.green, 5.0f, false);
+                Debug.LogWarning("Carousel is in motion, drone cannot be spawned!");
+                return;
+            }
 
-                var hitPodium = hitInfo.transform.GetComponent<Podium>();
-                
-                // FIX: Added a IgnoreRaycast layer to Drone parent object and it's attachment points
-                // ISSUE: Now the attachment points won't work as they rely on raycasting to attach components
+            var currentNode = carousel.PodiumNodes[carousel.CurrentPodiumNodeIndex];
+            if (_workbench.DronesOnPodiumDict.ContainsValue(currentNode))
+            {
+                Debug.LogWarning("A drone already occupies this node!");
+                return;
+            }
+            
+            // Check if the drone spawn button has been called again whilst a drone is still falling to bench
 
-                if (hitPodium.IsOccupied)
-                {
-                    Debug.Log("Podium is occupied, attempting to remove existing drone");
-                    hitPodium.RemoveDroneFromPodium();
-                    hitPodium.IsOccupied = false;
-                }
-                
-                if (hitPodium != null)
-                {
-                    //var drone = Instantiate(prefabToSpawn);
-                    //var droneSize = drone.transform.GetComponent<Collider>().bounds.size.y;
+            SpawnDrone();
+        }
 
-                    //var podiumSize = PodiumDetector.ActivePodium.transform.GetComponent<Collider>().bounds.size.y;
-                    //var podiumTop = podiumPos.y + podiumSize / 2;
-
-                    // Positions the drone flat atop the active podium
-                    //drone.transform.position = new Vector3(podiumPos.x, podiumTop + droneSize/2, podiumPos.z);
-                    var drone = Instantiate(prefabToSpawn, podiumPos + Vector3.up*4, Quaternion.identity);
-                    drone.transform.SetParent(PodiumDetector.ActivePodium.transform); // BREAKS ATTACHMENT DETECTION??
-
-                    hitPodium.SetPodiumDrone(drone.GetComponent<QuadcopterDrone>());
-                    hitPodium.IsOccupied = true;
-                }
-            }*/
+        private void SpawnDrone()
+        {
+            var drone = Instantiate(prefabToSpawn);
+            drone.transform.position = _workbench.DroneSpawnpoint.position;
         }
     }
 }

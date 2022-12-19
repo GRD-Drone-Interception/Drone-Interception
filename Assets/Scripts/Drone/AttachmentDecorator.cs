@@ -62,7 +62,7 @@ namespace Drone
                         _attachmentPoint = null;
                     }
                 }
-                else // if no colliders detected, lock z position of selected prefab
+                else // if no colliders detected, lock z position of selected prefab in hand
                 {
                     var v3 = Input.mousePosition; 
                     v3.z = 4.0f; 
