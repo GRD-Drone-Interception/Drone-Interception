@@ -37,16 +37,14 @@ public class CameraLerpTransition : MonoBehaviour
     private IEnumerator LerpCameraToPosition(Vector3 endPosition, float speed, Button button1, Button button2)
     {
         button1.gameObject.SetActive(false);
-        button2.gameObject.SetActive(false);
-        
+        button2.gameObject.SetActive(true);
+        button2.interactable = false;
         while (Vector3.Distance(displayCamera.transform.position,endPosition) > speed * Time.deltaTime)
         {
             displayCamera.transform.position = Vector3.Lerp(displayCamera.transform.position, endPosition, speed * Time.deltaTime);
             yield return 0;
         }
-        
-        button1.gameObject.SetActive(false);
-        button2.gameObject.SetActive(true);
+        button2.interactable = true;
         //displayCamera.transform.position = endPosition;
     }
 }

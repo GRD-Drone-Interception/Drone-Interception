@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace Drone
@@ -15,10 +16,7 @@ namespace Drone
         public void OnPointerDown(PointerEventData eventData)
         {
             _objectInHand = Instantiate(prefabToSpawn, Input.mousePosition, Quaternion.identity);
-            foreach (var ap in FindObjectsOfType<AttachmentPoint>())
-            {
-                ap.SetVisibility(true);
-            }
+            FindObjectsOfType<AttachmentPoint>().ToList().ForEach(ctx => ctx.SetVisibility(true));
         }
         
         public void OnPointerUp(PointerEventData eventData)
@@ -26,17 +24,15 @@ namespace Drone
             if (_attachmentPoint != null && !_attachmentPoint.HasAttachment)
             {
                 var drone = _attachmentPoint.GetComponentInParent<InterceptorDrone>();
-                drone.Decorate(_objectInHand, _attachmentPoint, _objectInHand.GetComponent<AttachmentMonobehaviour>().AttachmentSo);
+                var droneAttachment = _objectInHand.GetComponent<AttachmentMonobehaviour>().AttachmentSo;
+                drone.Decorate(_objectInHand, _attachmentPoint, droneAttachment);
             }
             else
             {
                 Destroy(_objectInHand);
             }
             _objectInHand = null;
-            foreach (var ap in FindObjectsOfType<AttachmentPoint>())
-            {
-                ap.SetVisibility(false);
-            }
+            FindObjectsOfType<AttachmentPoint>().ToList().ForEach(ctx => ctx.SetVisibility(false));
         }
 
         private void Update()

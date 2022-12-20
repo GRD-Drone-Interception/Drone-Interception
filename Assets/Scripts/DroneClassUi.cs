@@ -1,13 +1,24 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using Drone;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DroneClassUi : MonoBehaviour // Combine this class with DroneAttachmentUi?
 {
     [SerializeField] private List<DroneCreator> droneCreators;
 
-    private void OnEnable() => DroneLoadoutCameraMode.OnModeChange += OnCameraModeChange;
-    private void OnDisable() => DroneLoadoutCameraMode.OnModeChange -= OnCameraModeChange;
+    private void OnEnable()
+    {
+        DroneLoadoutCameraMode.OnModeChange += OnCameraModeChange;
+        droneCreators.ForEach(ctx => ctx.OnDroneSpawned += HideDroneSpawnButton);
+    }
+
+    private void OnDisable()
+    {
+        DroneLoadoutCameraMode.OnModeChange -= OnCameraModeChange;
+        droneCreators.ForEach(ctx => ctx.OnDroneSpawned -= HideDroneSpawnButton);
+    }
 
     private void OnCameraModeChange(DroneLoadoutCameraMode.CameraMode mode)
     {
@@ -24,5 +35,19 @@ public class DroneClassUi : MonoBehaviour // Combine this class with DroneAttach
                 break;
             }
         }
+    }
+    
+    private void HideDroneSpawnButton()
+    {
+        StartCoroutine(HideDroneSpawnButtonCoroutine());
+    }
+
+    private IEnumerator HideDroneSpawnButtonCoroutine()
+    {
+        droneCreators.ForEach(ctx => ctx.GetComponent<Image>().color = new Color(0.2f,0f,0f,0.8f));
+        droneCreators.ForEach(ctx => ctx.SetActive(false));
+        yield return new WaitForSeconds(1.0f);
+        droneCreators.ForEach(ctx => ctx.GetComponent<Image>().color = new Color(0,0,0,0.8f));
+        droneCreators.ForEach(ctx => ctx.SetActive(true));
     }
 }

@@ -60,8 +60,8 @@ namespace Drone
         private IEnumerator MoveCarouselCoroutine(Vector3 endPosition, float speed)
         {
             _isMoving = true;
-            carouselMoveLeftButton.gameObject.SetActive(false);
-            carouselMoveRightButton.gameObject.SetActive(false);
+            carouselMoveLeftButton.interactable = false;
+            carouselMoveRightButton.interactable = false;
             float scale = (transform.localScale.x + transform.localScale.y + transform.localScale.z)/3;
             float speedAtScale = scale * speed;
             while (Vector3.Distance(transform.position,endPosition) > speedAtScale * Time.deltaTime)
@@ -72,6 +72,8 @@ namespace Drone
             var nodeCount = podiumNodeManager.PodiumNodes.Count;
             carouselMoveLeftButton.gameObject.SetActive(_currentNodeIndex > 0);
             carouselMoveRightButton.gameObject.SetActive(_currentNodeIndex < nodeCount-1);
+            carouselMoveLeftButton.interactable = true;
+            carouselMoveRightButton.interactable = true;
             transform.position = endPosition;
             _isMoving = false;
         }
