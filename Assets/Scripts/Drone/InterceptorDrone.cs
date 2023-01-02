@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Drone.Component;
 using Drone.Decorators;
+using Drone.Strategies;
 using UnityEngine;
 
 namespace Drone
@@ -17,6 +18,11 @@ namespace Drone
         private int _numOfAttachments;
 
         private void Start() => _drone = DroneFactory.CreateDrone(droneConfigSo.droneType, droneConfigSo);
+
+        public void ApplyStrategy(IDroneManeuverBehaviour strategy)
+        {
+            strategy.Maneuver(this);
+        }
 
         public void Decorate(DroneAttachment droneAttachment, AttachmentPoint attachmentPoint)
         {
