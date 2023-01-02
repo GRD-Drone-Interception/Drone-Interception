@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DroneAttachmentUi : MonoBehaviour
 {
-    [SerializeField] private List<AttachmentDecorator> attachmentDecorators;
+    [SerializeField] private List<DroneOutfitter> attachmentDecorators;
 
     private void OnEnable() => DroneLoadoutCameraMode.OnModeChange += OnCameraModeChange;
     private void OnDisable() => DroneLoadoutCameraMode.OnModeChange -= OnCameraModeChange;

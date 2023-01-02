@@ -4,10 +4,7 @@ using UnityEngine.EventSystems;
 
 namespace Drone
 {
-    /// <summary>
-    /// Responsible for outfitting drones with different components
-    /// </summary>
-    public class AttachmentDecorator : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
+    public class DroneOutfitter : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
     {
         [SerializeField] private GameObject prefabToSpawn;
         private GameObject _objectInHand;
@@ -24,8 +21,8 @@ namespace Drone
             if (_attachmentPoint != null && !_attachmentPoint.HasAttachment)
             {
                 var drone = _attachmentPoint.GetComponentInParent<InterceptorDrone>();
-                var droneAttachment = _objectInHand.GetComponent<AttachmentMonobehaviour>().AttachmentSo;
-                drone.Decorate(_objectInHand, _attachmentPoint, droneAttachment);
+                var droneAttachment = _objectInHand.GetComponent<DroneAttachment>();
+                drone.Decorate(droneAttachment, _attachmentPoint);
             }
             else
             {
@@ -41,7 +38,7 @@ namespace Drone
             {
                 if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out RaycastHit hitInfo))
                 {
-                    // Ignore the collider on the object in hand
+                    // Ignore the collider on the drone component in hand
                     if(hitInfo.collider == _objectInHand.GetComponent<Collider>()) { return; }
 
                     _objectInHand.transform.position = hitInfo.point;
@@ -58,7 +55,7 @@ namespace Drone
                         _attachmentPoint = null;
                     }
                 }
-                else // if no colliders detected, lock z position of selected prefab in hand
+                else // if no colliders detected, lock z position of selected drone component in hand
                 {
                     var v3 = Input.mousePosition; 
                     v3.z = 4.0f; 

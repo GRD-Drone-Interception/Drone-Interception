@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Drone
+namespace PodiumNodes
 {
     public class PodiumNode : MonoBehaviour
     {

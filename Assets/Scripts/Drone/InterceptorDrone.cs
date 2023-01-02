@@ -1,44 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Drone.Component;
 using Drone.Decorators;
 using UnityEngine;
 
 namespace Drone
 {
-    public class InterceptorDrone : MonoBehaviour // rename to Drone?
+    public class InterceptorDrone : MonoBehaviour
     {
-        public event Action<InterceptorDrone> OnDroneDecorated;
-        public DroneConfigSO DroneConfigSo => droneConfigSo;
-        [SerializeField] private DroneConfigSO droneConfigSo; // SO data
-        [SerializeField] private List<AttachmentPoint> attachmentPoints; // handle in a different class?
         public IDrone Drone => _drone;
-        private IDrone _drone;
+        public DroneConfigSO DroneConfigSo => droneConfigSo;
         public int NumOfAttachments => _numOfAttachments;
+        
+        [SerializeField] private DroneConfigSO droneConfigSo; 
+        [SerializeField] private List<AttachmentPoint> attachmentPoints;
+        private IDrone _drone;
         private int _numOfAttachments;
 
-        private void Start()
-        {
-            _drone = DroneFactory.CreateDrone(droneConfigSo.droneType, droneConfigSo);
-        }
+        private void Start() => _drone = DroneFactory.CreateDrone(droneConfigSo.droneType, droneConfigSo);
 
-        // TODO: Tidy method arguments
-        public void Decorate(GameObject attachment, AttachmentPoint attachmentPoint, DroneAttachmentSO droneAttachmentSo)
+        public void Decorate(DroneAttachment droneAttachment, AttachmentPoint attachmentPoint)
         {
-            _drone = new DroneDecorator(_drone, droneAttachmentSo);
-            attachment.transform.SetParent(attachmentPoint.transform);
-            attachmentPoint.AddAttachment(attachment);
+            _drone = new DroneDecorator(_drone, droneAttachment.AttachmentSo);
+            droneAttachment.transform.SetParent(attachmentPoint.transform);
+            attachmentPoint.AddAttachment(droneAttachment);
             _numOfAttachments++;
-            OnDroneDecorated?.Invoke(this);
         }
         
         public void ResetConfiguration()
         {
             _drone = DroneFactory.CreateDrone(droneConfigSo.droneType, droneConfigSo);
-            foreach (var point in attachmentPoints)
-            {
-                point.RemoveAttachment();
-            }
+            attachmentPoints.ForEach(point => point.RemoveAttachment());
             _numOfAttachments = 0;
         }
     }

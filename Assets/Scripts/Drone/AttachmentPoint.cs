@@ -5,23 +5,18 @@ namespace Drone
     public class AttachmentPoint : MonoBehaviour
     {
         public bool HasAttachment => _hasAttachment;
-        private bool _hasAttachment = false;
 
-        [Range(0.15f, 0.5f)] [SerializeField] private float pointSize = 0.25f;  
-        [SerializeField] private GameObject _attachment;
+        [Range(0.15f, 0.5f)] [SerializeField] private float pointSize = 0.25f;
+        [SerializeField] private DroneAttachment droneAttachment;
         private MeshRenderer _meshRenderer;
         private bool _isVisible;
+        private bool _hasAttachment = false;
 
         private void Awake() => _meshRenderer = GetComponent<MeshRenderer>();
         private void Start() => _meshRenderer.enabled = false;
 
-        private void OnDrawGizmos()
-        {
-            //Gizmos.color = Color.green;
-            //Gizmos.DrawWireCube(transform.position, transform.localScale * pointSize);
-            transform.localScale = new Vector3(pointSize, pointSize, pointSize);
-        }
-        
+        private void OnDrawGizmos() => transform.localScale = new Vector3(pointSize, pointSize, pointSize);
+
         private void Update()
         {
             if (!_hasAttachment && IsVisible())
@@ -35,12 +30,12 @@ namespace Drone
             }
         }
 
-        public void AddAttachment(GameObject attachment)
+        public void AddAttachment(DroneAttachment newDroneAttachment)
         {
             if (!_hasAttachment)
             {
-                attachment.transform.parent = transform;
-                _attachment = attachment;
+                newDroneAttachment.transform.parent = transform;
+                droneAttachment = newDroneAttachment;
                 _hasAttachment = true;
             }
             else
@@ -51,19 +46,14 @@ namespace Drone
 
         public void RemoveAttachment()
         {
-            Destroy(_attachment);
-            _attachment = null;
+            if(droneAttachment == null) { return; }
+            Destroy(droneAttachment.gameObject);
+            droneAttachment = null;
             _hasAttachment = false;
         }
 
-        public void SetVisibility(bool visibility)
-        {
-            _isVisible = visibility;
-        }
+        public void SetVisibility(bool visibility) => _isVisible = visibility;
 
-        public bool IsVisible()
-        {
-            return _isVisible;
-        }
+        public bool IsVisible() => _isVisible;
     }
 }

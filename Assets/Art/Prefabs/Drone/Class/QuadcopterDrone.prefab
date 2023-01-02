@@ -1744,7 +1744,6 @@ GameObject:
   - component: {fileID: 2034865260658429260}
   - component: {fileID: 1040653230032696363}
   - component: {fileID: 1040653230026491074}
-  - component: {fileID: 1040653230026491077}
   m_Layer: 0
   m_Name: QuadcopterDrone
   m_TagString: Untagged
@@ -1821,19 +1820,6 @@ MonoBehaviour:
   - {fileID: 8935980504369336987}
   - {fileID: 8935980505412609511}
   - {fileID: 8935980506196668363}
---- !u!114 &1040653230026491077
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1040653230026491075}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b961527764af48545b4c4003c4152f96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotationSpeed: 100
 --- !u!1 &1040653230026493143
 GameObject:
   m_ObjectHideFlags: 0
@@ -3040,7 +3026,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointSize: 0.2
-  _attachment: {fileID: 0}
+  droneAttachment: {fileID: 0}
 --- !u!1 &8935980504369336933
 GameObject:
   m_ObjectHideFlags: 0
@@ -3152,7 +3138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointSize: 0.25
-  _attachment: {fileID: 0}
+  droneAttachment: {fileID: 0}
 --- !u!1 &8935980504856548761
 GameObject:
   m_ObjectHideFlags: 0
@@ -3264,7 +3250,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointSize: 0.25
-  _attachment: {fileID: 0}
+  droneAttachment: {fileID: 0}
 --- !u!1 &8935980505412609505
 GameObject:
   m_ObjectHideFlags: 0
@@ -3376,7 +3362,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointSize: 0.25
-  _attachment: {fileID: 0}
+  droneAttachment: {fileID: 0}
 --- !u!1 &8935980506196668373
 GameObject:
   m_ObjectHideFlags: 0
@@ -3488,4 +3474,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointSize: 0.25
-  _attachment: {fileID: 0}
+  droneAttachment: {fileID: 0}

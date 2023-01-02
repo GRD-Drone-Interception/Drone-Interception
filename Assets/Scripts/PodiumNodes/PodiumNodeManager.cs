@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Drone
+namespace PodiumNodes
 {
     public class PodiumNodeManager : MonoBehaviour
     {

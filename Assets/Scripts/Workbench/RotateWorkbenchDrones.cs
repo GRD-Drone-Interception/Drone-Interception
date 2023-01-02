@@ -1,10 +1,11 @@
-using System;
+using Drone;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class RotateTransform : MonoBehaviour
+public class RotateWorkbenchDrones : MonoBehaviour
 {
     [SerializeField] private float rotationSpeed = 100.0f;
+    private Workbench _workbench;
     private DronePodiumInputActions _inputActions;
     private bool _rotateLeftIsPressed = false;
     private bool _rotateRightIsPressed = false;
@@ -12,6 +13,7 @@ public class RotateTransform : MonoBehaviour
     private void Awake()
     {
         _inputActions = new DronePodiumInputActions();
+        _workbench = GetComponent<Workbench>();
     }
 
     private void OnEnable()
@@ -34,13 +36,15 @@ public class RotateTransform : MonoBehaviour
 
     private void Update()
     {
+        if(_workbench.DroneBeingEdited == null) { return; }
+        
         if (_rotateLeftIsPressed)
         {
-            transform.Rotate(new Vector3(0,-rotationSpeed * Time.deltaTime,0));
+            _workbench.DroneBeingEdited.transform.Rotate(new Vector3(0,-rotationSpeed * Time.deltaTime,0));
         }
         if (_rotateRightIsPressed)
         {
-            transform.Rotate(new Vector3(0,rotationSpeed * Time.deltaTime,0));
+            _workbench.DroneBeingEdited.transform.Rotate(new Vector3(0,rotationSpeed * Time.deltaTime,0));
         }
     }
 
