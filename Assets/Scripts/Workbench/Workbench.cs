@@ -50,12 +50,14 @@ public class Workbench : MonoBehaviour
     {
         drone.transform.SetParent(workbenchCarousel.transform);
         _dronesOnPodiumDict.Add(drone, node);
+        FindObjectOfType<Player>().DroneSwarm.AddToSwarm(drone); // hm
     }
 
     private void RemoveFromBench(InterceptorDrone drone)
     {
         drone.transform.SetParent(null);
         _dronesOnPodiumDict.Remove(_droneBeingEdited);
+        FindObjectOfType<Player>().DroneSwarm.RemoveFromSwarm(drone); // hm
     }
     
     private void ResetCurrentDroneConfig()
