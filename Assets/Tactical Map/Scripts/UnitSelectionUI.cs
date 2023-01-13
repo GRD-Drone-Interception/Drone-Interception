@@ -7,18 +7,12 @@ public class UnitSelectionUI : MonoBehaviour
     [SerializeField] private GameObject panel;
     [SerializeField] private GameObject unitButtonPrefab;
 
-    [SerializeField] private int unitCount = 3;
-
     void Start()
     {
-        for (int i = 0; i < unitCount; i++)
+        for (int i = 0; i < TacticalMap.Instance.units.Count; i++)
         {
-            Instantiate(unitButtonPrefab, panel.transform);
+            GameObject button = Instantiate(unitButtonPrefab, panel.transform);
+            button.GetComponent<UnitButton>().SetID(i);
         }
-    }
-
-    void Update()
-    {
-        
     }
 }

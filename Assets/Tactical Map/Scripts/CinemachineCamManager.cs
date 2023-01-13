@@ -3,20 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-public enum CamState
-{
-    DEFAULT,
-    OVERVIEW,
-    CLOSEUP
-}
-
 public class CinemachineCamManager : MonoBehaviour
 {
     public static CinemachineCamManager Instance { get; private set; }
 
     [SerializeField] private List<CinemachineVirtualCamera> cameraList = new List<CinemachineVirtualCamera>();
-
-    public CamState camState;
 
     private void Awake()
     {
@@ -64,8 +55,8 @@ public class CinemachineCamManager : MonoBehaviour
     }
 
 
-    void SetCamera()
+    public void SetCameraState(GameState state)
     {
-        SetActiveCamera(cameraList[(int)camState]);
+        SetActiveCamera(cameraList[(int)state]);
     }
 }
