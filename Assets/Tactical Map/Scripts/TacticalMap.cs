@@ -64,7 +64,7 @@ public class TacticalMap : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, groundLayer))
         {
-            Debug.Log($"Raycast hit {hit.point}");
+            //Debug.Log($"Raycast hit {hit.point}");
             Instantiate(units[currentlySelectedUnitID], hit.point, Quaternion.identity, hit.transform);
         }
     }
