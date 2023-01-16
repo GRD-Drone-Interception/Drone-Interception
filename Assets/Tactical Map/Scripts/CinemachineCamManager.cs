@@ -7,6 +7,7 @@ public class CinemachineCamManager : MonoBehaviour
 {
     public static CinemachineCamManager Instance { get; private set; }
 
+    [Tooltip("A list of virtual cameras in the scene. Element 0 will take the highest priority. Should be in the same order as Gamemanager.Gamestate")]
     [SerializeField] private List<CinemachineVirtualCamera> cameraList = new List<CinemachineVirtualCamera>();
 
     private void Awake()
@@ -54,7 +55,10 @@ public class CinemachineCamManager : MonoBehaviour
         activeCam.Priority = 1;
     }
 
-
+    /// <summary>
+    /// Prioritises the virtual camera with same index as the state parameter
+    /// </summary>
+    /// <param name="state"> The state to activate the associated camera </param>
     public void SetCameraState(GameState state)
     {
         SetActiveCamera(cameraList[(int)state]);

@@ -15,9 +15,11 @@ public class GameManager : MonoBehaviour
 
     public GameState gamesate;
 
+    [Header("UI Containers")]
     [SerializeField] private GameObject deploymentContainer;
     [SerializeField] private GameObject mapContainer;
 
+    [Header("Camera Rigs")]
     [SerializeField] private CameraRigController deploymentCameraRig;
     [SerializeField] private CameraRigController mapCameraRig;
 
