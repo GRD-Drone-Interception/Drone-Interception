@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class cameraController : MonoBehaviour
+public class CameraRigController : MonoBehaviour
 {
     [Header("Components")]
     [SerializeField] private Transform cameraTransform;
+    [SerializeField] public  Transform followTransform;
 
     [Header("Movement")]
     [SerializeField] private float normalSpeed  = 1f;
@@ -19,10 +20,12 @@ public class cameraController : MonoBehaviour
     [Header("Zoom")]
     [SerializeField] private Vector3 zoomSpeed = new Vector3(0, -10, 10);
 
+    // transform variables
     private Vector3    newPostion;
     private Quaternion newRotation;
     private Vector3    newZoom;
 
+    // mouse members
     private Vector3 dragStartPosition;
     private Vector3 dragCurrentPosition;
 
@@ -33,6 +36,16 @@ public class cameraController : MonoBehaviour
     [SerializeField] private bool mouse    = true;
     [SerializeField] private bool keyboard = true;
 
+    [Header("Camera Functionality")]
+    [SerializeField] private bool movement = true;
+    [SerializeField] private bool rotation = true;
+    [SerializeField] private bool zoom     = true;
+
+    private void Awake()
+    {
+
+    }
+
     void Start()
     {
         newPostion  = this.transform.position;
@@ -42,11 +55,30 @@ public class cameraController : MonoBehaviour
 
     void Update()
     {
-        if(mouse)
+        if (followTransform != null)
+        {
+            this.transform.position = Vector3.Lerp(this.transform.position, followTransform.position, Time.deltaTime * movementTime);
+        }
+        else
+        {
+            ManualCameraControl();
+        }
+
+        if(Input.GetKeyDown(KeyCode.Escape) && followTransform != null)
+        {
+            Vector3 pos = followTransform.position;
+            followTransform = null;
+            newPostion = pos;
+        }
+    }
+
+    private void ManualCameraControl()
+    {
+        if (mouse)
         {
             HandleMouseInput();
         }
-        if(keyboard)
+        if (keyboard)
         {
             HandleKeyboardInput();
         }
@@ -54,6 +86,9 @@ public class cameraController : MonoBehaviour
         TransformCamera();
     }
 
+    /// <summary>
+    /// Handles mouse input using the Old Input Sytem to control camera
+    /// </summary>
     private void HandleMouseInput()
     {
         // MOVEMENT
@@ -102,10 +137,13 @@ public class cameraController : MonoBehaviour
         // ZOOM
         if (Input.mouseScrollDelta.y != 0)
         {
-            newZoom += Input.mouseScrollDelta.y * zoomSpeed * 10f;
+            newZoom += 10f * Input.mouseScrollDelta.y * zoomSpeed;
         }
     }
 
+    /// <summary>
+    /// Handles keyboard input using the Old Input Sytem to control camera
+    /// </summary>
     private void HandleKeyboardInput()
     {
         // SPEED
@@ -159,11 +197,23 @@ public class cameraController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Uses the data from the HandleInput funcitons to transform the camera rig
+    /// </summary>
     private void TransformCamera()
     {
         // TRANSFORM
-        this.transform.position = Vector3.Lerp(this.transform.position, newPostion, Time.deltaTime * movementTime);
-        this.transform.rotation = Quaternion.Lerp(this.transform.rotation, newRotation, Time.deltaTime * movementTime);
-        cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, newZoom, Time.deltaTime * movementTime);
+        if(movement)
+        {
+            this.transform.position = Vector3.Lerp(this.transform.position, newPostion, Time.deltaTime * movementTime);
+        }
+        if(rotation)
+        {
+            this.transform.rotation = Quaternion.Lerp(this.transform.rotation, newRotation, Time.deltaTime * movementTime);
+        }
+        if(zoom)
+        {
+            cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, newZoom, Time.deltaTime * movementTime);
+        }
     }
 }

@@ -33,7 +33,7 @@ public class TacticalMap : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetMouseButtonDown(0) && GameManager.Instance.gamesate == GameState.MAP)
+        if(Input.GetMouseButtonDown(0) && GameManager.Instance.gamesate == GameState.UnitDeployment)
         {
             PlaceUnit();
         }

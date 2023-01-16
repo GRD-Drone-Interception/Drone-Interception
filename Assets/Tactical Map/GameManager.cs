@@ -4,8 +4,9 @@ using UnityEngine;
 
 public enum GameState
 {
-    PLAY,
-    MAP,
+    UnitDeployment,
+    Play,
+    MatchAnalysis,
 }
 
 public class GameManager : MonoBehaviour
@@ -14,7 +15,11 @@ public class GameManager : MonoBehaviour
 
     public GameState gamesate;
 
-    [SerializeField] private GameObject MapContainer;
+    [SerializeField] private GameObject deploymentContainer;
+    [SerializeField] private GameObject mapContainer;
+
+    [SerializeField] private CameraRigController deploymentCameraRig;
+    [SerializeField] private CameraRigController mapCameraRig;
 
     private void Awake()
     {
@@ -40,11 +45,25 @@ public class GameManager : MonoBehaviour
 
         switch (gamesate)
         {
-            case GameState.PLAY:
-                MapContainer.SetActive(false);
+            case GameState.UnitDeployment:
+                mapContainer.SetActive(false);
+                mapCameraRig.enabled = false;
+
+                deploymentCameraRig.enabled = true;
+                deploymentContainer.SetActive(true);
                 break;
-            case GameState.MAP:
-                MapContainer.SetActive(true);
+            case GameState.Play:
+                deploymentContainer.SetActive(false);
+                deploymentCameraRig.enabled = false;
+
+                mapCameraRig.enabled = true;
+                mapContainer.SetActive(true);
+                break;
+            case GameState.MatchAnalysis:
+                deploymentContainer.SetActive(false);
+                mapContainer.SetActive(false);
+
+
                 break;
             default:
                 break;
