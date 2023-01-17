@@ -4,6 +4,10 @@ using UnityEngine;
 
 namespace Drones.Decorators
 {
+    /// <summary>
+    /// Used to define the default configuration of drone units, which can be
+    /// extended with decorators 
+    /// </summary>
     [CreateAssetMenu(fileName = "NewDroneConfig", menuName = "Drone/Config", order = 1)]
     public class DroneConfigSO : ScriptableObject, IDrone
     {

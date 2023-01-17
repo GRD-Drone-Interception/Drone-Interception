@@ -4,6 +4,9 @@ using UnityEngine.EventSystems;
 
 namespace Drones
 {
+    /// <summary>
+    /// Used to spawn, click, and drag attachment components from drone attachment buttons
+    /// </summary>
     public class DroneOutfitter : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
     {
         [SerializeField] private GameObject prefabToSpawn;

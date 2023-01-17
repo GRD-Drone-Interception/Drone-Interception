@@ -6,6 +6,12 @@ namespace Drones.Factory
 {
     public static class DroneFactory
     {
+        /// <summary>
+        /// Creates a drone of a given type and configuration
+        /// </summary>
+        /// <param name="droneType">The concrete drone class i.e. Quadcopter</param>
+        /// <param name="droneConfigSo">The default drone configuration properties</param>
+        /// <returns></returns>
         public static IDrone CreateDrone(DroneType droneType, DroneConfigSO droneConfigSo)
         {
             IDrone drone = null;

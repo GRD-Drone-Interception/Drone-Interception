@@ -3,6 +3,10 @@ using UnityEngine;
 
 namespace Drones.Decorators
 {
+    /// <summary>
+    /// Used to configure the properties of an attachment through the
+    /// inspector. 
+    /// </summary>
     [CreateAssetMenu(fileName = "NewDroneAttachment", menuName = "Drone/Attachment", order = 1)]
     public class DroneAttachmentSO : ScriptableObject, IDrone
     {

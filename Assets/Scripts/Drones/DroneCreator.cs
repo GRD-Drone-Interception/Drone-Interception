@@ -4,6 +4,10 @@ using UnityEngine.EventSystems;
 
 namespace Drones
 {
+    /// <summary>
+    /// Used to instantiate a drone on the workbench when a drone spawn
+    /// button is pressed. 
+    /// </summary>
     public class DroneCreator : MonoBehaviour, IPointerDownHandler
     {
         public event Action OnDroneSpawned;

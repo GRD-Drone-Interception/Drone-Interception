@@ -8,7 +8,7 @@ using UnityEngine;
 namespace Drones
 {
     /// <summary>
-    /// The core drone class component that is attached to every drone object.
+    /// The core drone class component that should be attached to every drone class prefab object.
     /// </summary>
     public class Drone : MonoBehaviour
     {
@@ -24,9 +24,10 @@ namespace Drones
         private void Start() => _decorableDrone = DroneFactory.CreateDrone(droneConfigSo.droneType, droneConfigSo);
         
         /// <summary>
-        /// Applies a given strategy for handling the drones movement behaviour.
+        /// Applies a given strategy for handling the drones movement behaviour so that it can be changed
+        /// dynamically at runtime.
         /// </summary>
-        /// <param name="strategy">Movement algorithm</param>
+        /// <param name="strategy">Movement algorithm i.e. Seek, Flee, Wander, Flock?</param>
         public void ApplyStrategy(IDroneManeuverBehaviour strategy)
         {
             strategy.Maneuver(this);
@@ -37,8 +38,7 @@ namespace Drones
         /// </summary>
         /// <param name="droneAttachment">A component attached to every drone attachment object (i.e. emp), containing
         /// Scriptable Object data on said drone attachment.</param>
-        /// <param name="attachmentPoint">The attachment point to which an attachment should be mounted.</param>
-
+        /// <param name="attachmentPoint">The attachment point to which an attachment should be mounted to.</param>
         public void Decorate(DroneAttachment droneAttachment, AttachmentPoint attachmentPoint)
         {
             _decorableDrone = new DroneDecorator(_decorableDrone, droneAttachment.AttachmentSo);

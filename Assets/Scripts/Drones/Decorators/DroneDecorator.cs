@@ -2,14 +2,16 @@
 
 namespace Drones.Decorators
 {
+    /// <summary>
+    /// Used for decorating drones with attachments
+    /// </summary>
     public class DroneDecorator : IDrone
     {
         private readonly IDrone _decoratedDrone;
         private readonly DroneAttachmentSO _attachmentSo;
 
         /// <summary>
-        /// Decorates a given drone by modifying it's attributes
-        /// based on the newly supplied attachment.
+        /// Decorates a given drone by modifying it's attributes based on the newly supplied attachment.
         /// </summary>
         /// <param name="drone">The decorable drone</param>
         /// <param name="droneAttachmentSo">The default attribute values for a drone attachment</param>
