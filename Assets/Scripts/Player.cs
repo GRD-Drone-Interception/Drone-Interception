@@ -11,7 +11,6 @@ public class Player : MonoBehaviour
 
 public enum PlayerTeam 
 {
-    Null,
     Offensive, 
     Defensive 
 }

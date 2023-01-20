@@ -7,7 +7,9 @@ public class CaptureArea : MonoBehaviour
     private List<CaptureZoneCollider> captureZoneList = new List<CaptureZoneCollider>();
 
     private float progress;
-    private float captureRate = 1f;
+    private float captureRate = 0.1f;
+
+    [SerializeField] private ObjetiveCaptureState objectiveState;
 
     private void Awake()
     {
@@ -29,14 +31,44 @@ public class CaptureArea : MonoBehaviour
 
     void Update()
     {
-        int playersInArea = 0;
-        foreach (CaptureZoneCollider zone in captureZoneList)
+        switch (objectiveState)
         {
-            playersInArea += zone.GetUnitsInArea().Count;
+            case ObjetiveCaptureState.Neutral:
+                List<DroneUnit> unitsInArea = new List<DroneUnit>();
+
+                foreach (CaptureZoneCollider zone in captureZoneList)
+                {
+                    foreach (DroneUnit unit in zone.GetUnitsInArea())
+                    {
+                        if (!unitsInArea.Contains(unit))
+                        {
+                            unitsInArea.Add(unit);
+                        }
+                    }
+                }
+
+                progress += unitsInArea.Count * captureRate * Time.deltaTime;
+
+                if(progress >= 1f)
+                {
+                    objectiveState = ObjetiveCaptureState.Captured;
+                    Debug.Log("Objective Captured");
+                }
+
+                Debug.Log($"players in area: {unitsInArea.Count}; progress: {progress}");
+                break;
+
+            case ObjetiveCaptureState.Capturing:
+                break;
+
+            case ObjetiveCaptureState.Contested:
+                break;
+
+            case ObjetiveCaptureState.Captured:
+                break;
+
+            default:
+                break;
         }
-
-        progress += playersInArea * captureRate * Time.deltaTime;
-
-        Debug.Log($"players in area: {playersInArea}; progress: {progress}");
     }
 }

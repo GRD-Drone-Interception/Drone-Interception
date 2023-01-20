@@ -12,7 +12,6 @@ public class DestructableObjective : MonoBehaviour, IDestructable
     public float CurrentHealth => currentHealth;
 
 
-
     void Start()
     {
         currentHealth = maxHealth;
