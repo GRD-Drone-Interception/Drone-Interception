@@ -11,9 +11,11 @@ public class CaptureArea : MonoBehaviour
 
     [SerializeField] private ObjetiveCaptureState objectiveState;
 
+    [SerializeField] private GameObject captureZoneColliderContainer;
+
     private void Awake()
     {
-        foreach (Transform child in transform)
+        foreach (Transform child in captureZoneColliderContainer.transform)
         {
             CaptureZoneCollider captureZone = child.GetComponent<CaptureZoneCollider>();
             if(captureZone != null)
