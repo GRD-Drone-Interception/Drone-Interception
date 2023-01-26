@@ -120,17 +120,17 @@ public class CapturableObjective : MonoBehaviour, ICapturable
         progress += (0 - team1InArea.Count + team2InArea.Count) * captureRate * Time.deltaTime;
         progress = Mathf.Clamp(progress, -1f, 1f);
 
-        Debug.Log($"progress: {progress}");
+        //Debug.Log($"progress: {progress}");
 
         if (progress <= -1f)
         {
             Capture(PlayerTeam.Offensive);
-            Debug.Log("Offence captured objective");
+            //Debug.Log("Offence captured objective");
         }
         if(progress >= 1f)
         {
             Capture(PlayerTeam.Defensive);
-            Debug.Log("Defence captured objective");
+            //Debug.Log("Defence captured objective");
         }
     }
 }

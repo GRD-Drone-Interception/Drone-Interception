@@ -1,0 +1,90 @@
+{
+    "name": "InputActions",
+    "maps": [
+        {
+            "name": "UnitDeployment",
+            "id": "74f18e1e-ad9e-4530-b684-b35eb735f2b9",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "6a1bef8a-df11-4236-bfb8-21c8265eca6f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "39e581ff-f8d1-4d57-ad49-88099a2746e0",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Game",
+            "id": "2171b908-c26e-472a-9b6c-f7d1eb020c44",
+            "actions": [
+                {
+                    "name": "GameSpace",
+                    "type": "Button",
+                    "id": "6e4dec0f-33e3-4318-bc8a-5006f127bfaf",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "5d8c791f-e452-49bf-b87b-5d2b807dab7f",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GameSpace",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Map",
+            "id": "79f004b4-2719-449b-b8a9-a86ae4c67f4f",
+            "actions": [
+                {
+                    "name": "MapSpace",
+                    "type": "Button",
+                    "id": "8d42a070-5d30-4bdb-8f07-b4f3523171af",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "1036eb43-1d37-4933-ae82-7ca096d519de",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MapSpace",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

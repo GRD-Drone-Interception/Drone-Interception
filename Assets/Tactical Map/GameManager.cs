@@ -6,6 +6,7 @@ public enum GameState
 {
     UnitDeployment,
     Play,
+    Map,
     MatchAnalysis,
 }
 
@@ -15,13 +16,10 @@ public class GameManager : MonoBehaviour
 
     public GameState gamesate;
 
-    [Header("UI Containers")]
-    [SerializeField] private GameObject deploymentContainer;
-    [SerializeField] private GameObject mapContainer;
-
-    [Header("Camera Rigs")]
-    [SerializeField] private CameraRigController deploymentCameraRig;
-    [SerializeField] private CameraRigController mapCameraRig;
+    // Managers
+    InputManager inputManager;
+    UIManager    uiManager;
+    CamManager   camManager;
 
     private void Awake()
     {
@@ -38,43 +36,45 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        
+        inputManager = InputManager.Instance;
+        uiManager = UIManager.Instance;
+        camManager = CamManager.Instance;
     }
 
     void Update()
     {
         SetGameState(gamesate);
-
-        switch (gamesate)
-        {
-            case GameState.UnitDeployment:
-                mapContainer.SetActive(false);
-                mapCameraRig.enabled = false;
-
-                deploymentCameraRig.enabled = true;
-                deploymentContainer.SetActive(true);
-                break;
-            case GameState.Play:
-                deploymentContainer.SetActive(false);
-                deploymentCameraRig.enabled = false;
-
-                mapCameraRig.enabled = true;
-                mapContainer.SetActive(true);
-                break;
-            case GameState.MatchAnalysis:
-                deploymentContainer.SetActive(false);
-                mapContainer.SetActive(false);
-
-
-                break;
-            default:
-                break;
-        }
     }
 
     public void SetGameState(GameState state)
     {
         gamesate = state;
-        CinemachineCamManager.Instance.SetCameraState(state);
+
+        switch (gamesate)
+        {
+            case GameState.UnitDeployment:
+                inputManager.SetActiveActionMap(inputManager.inputActions.UnitDeployment);
+                uiManager.SetActiveUI(UIManager.Instance.DeploymentUI);
+                break;
+
+            case GameState.Play:
+                inputManager.SetActiveActionMap(inputManager.inputActions.Game);
+                uiManager.SetActiveUI(UIManager.Instance.GameUI);
+                camManager.EnableGameCam();
+                break;
+
+            case GameState.Map:
+                inputManager.SetActiveActionMap(inputManager.inputActions.Map);
+                uiManager.SetActiveUI(UIManager.Instance.MapUI);
+                camManager.EnableMapCam();
+                break;
+
+            case GameState.MatchAnalysis:
+
+                break;
+
+            default:
+                break;
+        }
     }
 }
