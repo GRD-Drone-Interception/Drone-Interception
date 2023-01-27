@@ -19,10 +19,13 @@ public class CapturableObjective : MonoBehaviour, ICapturable
 
     private List<CaptureZoneCollider> captureZoneList = new List<CaptureZoneCollider>();
 
-    private float progress;
+    [SerializeField] private float progress;
     private float captureRate = 0.1f;
 
     [SerializeField] private GameObject captureArea;
+
+    public delegate void CaptureObjective(PlayerTeam team);
+    public static event CaptureObjective OnCaptured;
 
     private void Awake()
     {
@@ -56,46 +59,6 @@ public class CapturableObjective : MonoBehaviour, ICapturable
 
     void Update()
     {
-        /*switch (captureState)
-        {
-            case ObjetiveCaptureState.Neutral:
-                List<DroneUnit> unitsInArea = new List<DroneUnit>();
-
-                foreach (CaptureZoneCollider zone in captureZoneList)
-                {
-                    foreach (DroneUnit unit in zone.GetUnitsInArea())
-                    {
-                        if (!unitsInArea.Contains(unit))
-                        {
-                            unitsInArea.Add(unit);
-                        }
-                    }
-                }
-
-                progress += unitsInArea.Count * captureRate * Time.deltaTime;
-
-                if (progress <= 0f || progress >= 1f)
-                {
-                    captureState = ObjetiveCaptureState.Captured;
-                    Debug.Log("Objective Captured");
-                }
-
-                Debug.Log($"players in area: {unitsInArea.Count}; progress: {progress}");
-                break;
-
-            case ObjetiveCaptureState.Capturing:
-                break;
-
-            case ObjetiveCaptureState.Contested:
-                break;
-
-            case ObjetiveCaptureState.Captured:
-                break;
-
-            default:
-                break;
-        }*/
-
         List<DroneUnit> team1InArea = new List<DroneUnit>();
         List<DroneUnit> team2InArea = new List<DroneUnit>();
 
@@ -122,14 +85,16 @@ public class CapturableObjective : MonoBehaviour, ICapturable
 
         //Debug.Log($"progress: {progress}");
 
-        if (progress <= -1f)
+        if (controllingTeam == PlayerTeam.Defensive && progress <= -1f)
         {
             Capture(PlayerTeam.Offensive);
+            OnCaptured?.Invoke(PlayerTeam.Offensive);
             //Debug.Log("Offence captured objective");
         }
-        if(progress >= 1f)
+        if(controllingTeam == PlayerTeam.Offensive && progress >= 1f)
         {
             Capture(PlayerTeam.Defensive);
+            OnCaptured?.Invoke(PlayerTeam.Defensive);
             //Debug.Log("Defence captured objective");
         }
     }
