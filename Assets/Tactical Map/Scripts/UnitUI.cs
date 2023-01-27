@@ -5,27 +5,57 @@ using UnityEngine.UI;
 
 public class UnitUI : MonoBehaviour
 {
-    [SerializeField] private Image  unitImage;
-    [SerializeField] private Slider unitHealthBar;
-    [SerializeField] private Image  unitDeadIcon;
+    public Image  icon;
+    public Slider healthBar;
+    [SerializeField] private Image deathIcon;
+    public DroneUnit unit;
 
     private void Start()
     {
-        unitHealthBar.minValue = 0;
-        unitHealthBar.maxValue = 100;
 
-        unitHealthBar.value = unitHealthBar.maxValue;
+    }
 
-        unitDeadIcon.enabled = false;
+    public void SetUnit(DroneUnit unit)
+    {
+        this.unit = unit;
+        SetData();
+    }
+
+    private void SetData()
+    {
+        healthBar.minValue = 0;
+        healthBar.maxValue = unit.MaxHealth;
+
+        healthBar.value = unit.CurrentHealth;
+
+        switch (unit.droneClass)
+        {
+            case UnitType.Suicider:
+                icon.color = Color.red;
+                break;
+            case UnitType.Recon:
+                icon.color = Color.grey;
+                break;
+            case UnitType.Swarmer:
+                icon.color = Color.green;
+                break;
+            case UnitType.Assault:
+                icon.color = Color.blue;
+                break;
+            default:
+                break;
+        }
+
+        deathIcon.enabled = false;
     }
 
     public void OnHealthValueChanged(float value)
     {
-        unitHealthBar.value = value;
+        healthBar.value = value;
+    }
 
-        if(unitHealthBar.value == unitHealthBar.minValue)
-        {
-            unitDeadIcon.enabled = true;
-        }
+    public void EnableDeathIcon()
+    {
+        deathIcon.enabled = true;
     }
 }
