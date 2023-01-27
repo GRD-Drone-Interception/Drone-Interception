@@ -32,6 +32,7 @@ public class DroneUnit : MonoBehaviour, IDestructable
 
     [Header("Misc")]
     public UnitUI ui;
+    public GameObject selectedIcon;
 
     private void Awake()
     {
@@ -40,7 +41,7 @@ public class DroneUnit : MonoBehaviour, IDestructable
 
     void Start()
     {
-
+        UnitManager.Instance.units.Add(this);
     }
 
     void Update()
@@ -64,5 +65,10 @@ public class DroneUnit : MonoBehaviour, IDestructable
     {
         Debug.Log("Unit has been destroyed");
         ui.EnableDeathIcon();
+    }
+
+    private void OnDestroy()
+    {
+        UnitManager.Instance.units.Remove(this);
     }
 }
