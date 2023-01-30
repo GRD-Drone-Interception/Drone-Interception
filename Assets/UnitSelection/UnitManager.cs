@@ -22,27 +22,36 @@ public class UnitManager : MonoBehaviour
         }
     }
 
-    public void ClickSelect(DroneUnit unitToAdd)
+    /// <summary>
+    /// Selects unit on click
+    /// </summary>
+    /// <param name="unitClicked">The droneUnit component of the hit collider</param>
+    public void ClickSelect(DroneUnit unitClicked)
     {
         DeselectAll();
-        unitsSelected.Add(unitToAdd);
-        unitToAdd.selectedIcon.SetActive(true);
+        Select(unitClicked);
     }
 
-    public void ShiftClickSelect(DroneUnit unitToAdd)
+    /// <summary>
+    /// Selects or deselects unit when shift clicked on
+    /// </summary>
+    /// <param name="unitClicked">The droneUnit component of the hit collider</param>
+    public void ShiftClickSelect(DroneUnit unitClicked)
     {
-        if(!unitsSelected.Contains(unitToAdd))
+        if(!unitsSelected.Contains(unitClicked))
         {
-            unitsSelected.Add(unitToAdd);
-            unitToAdd.selectedIcon.SetActive(true);
+            Select(unitClicked);
         }
         else
         {
-            unitsSelected.Remove(unitToAdd);
-            unitToAdd.selectedIcon.SetActive(false);
+            Deselect(unitClicked);
         }
     }
 
+    /// <summary>
+    /// Selects units when screen dragged
+    /// </summary>
+    /// <param name="unitToAdd">The droneUnit component of the hit collider</param>
     public void DragSelect(DroneUnit unitToAdd)
     {
         if(!unitsSelected.Contains(unitToAdd))
@@ -52,6 +61,9 @@ public class UnitManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Deselects all currently selected units
+    /// </summary>
     public void DeselectAll()
     {
         foreach (DroneUnit unit in unitsSelected)
@@ -61,8 +73,23 @@ public class UnitManager : MonoBehaviour
         unitsSelected.Clear();
     }
 
-    public void Deselect(DroneUnit unitToAdd)
+    /// <summary>
+    /// Select an individual unit
+    /// </summary>
+    /// <param name="unitToAdd">The droneUnit component of the hit collider</param>
+    public void Select(DroneUnit unitToAdd)
     {
+        unitsSelected.Add(unitToAdd);
+        unitToAdd.selectedIcon.SetActive(true);
+    }
 
+    /// <summary>
+    /// Deselects an individual unit
+    /// </summary>
+    /// <param name="unitToRemove">The droneUnit component of the hit collider</param>
+    public void Deselect(DroneUnit unitToRemove)
+    {
+        unitsSelected.Remove(unitToRemove);
+        unitToRemove.selectedIcon.SetActive(false);
     }
 }

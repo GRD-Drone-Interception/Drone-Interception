@@ -66,7 +66,10 @@ public class UnitSelection : MonoBehaviour
         }
     }
 
-    void SelectUnits()
+    /// <summary>
+    /// Selects multiple units based on the selection box UI
+    /// </summary>
+    private void SelectUnits()
     {
         foreach (DroneUnit unit in UnitManager.Instance.units)
         {
@@ -76,8 +79,11 @@ public class UnitSelection : MonoBehaviour
             }
         }
     }
-    
-    void DrawSelection()
+
+    /// <summary>
+    /// Ssets the box's vertex positions
+    /// </summary>
+    private void DrawSelection()
     {
         if(Input.mousePosition.x < startPosition.x)
         {
@@ -102,7 +108,10 @@ public class UnitSelection : MonoBehaviour
         }
     }
 
-    void DrawVisual()
+    /// <summary>
+    /// Sets the image's values based on created box
+    /// </summary>
+    private void DrawVisual()
     {
         Vector2 boxStart = startPosition;
         Vector2 boxEnd   = endPosition;

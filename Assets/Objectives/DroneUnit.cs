@@ -49,6 +49,10 @@ public class DroneUnit : MonoBehaviour, IDestructable
 
     }
 
+    /// <summary>
+    /// Reduces the health of this unit by damage
+    /// </summary>
+    /// <param name="damage">The amount of health to be removed</param>
     public void Damage(float damage)
     {
         health -= damage;
@@ -61,6 +65,9 @@ public class DroneUnit : MonoBehaviour, IDestructable
         ui.OnHealthValueChanged(health);
     }
 
+    /// <summary>
+    /// Called when the unit has no remaining health
+    /// </summary>
     public void Destory()
     {
         Debug.Log("Unit has been destroyed");

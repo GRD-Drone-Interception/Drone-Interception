@@ -17,6 +17,10 @@ public class UnitsUI : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Creates a unit UI from a given droneUnit
+    /// </summary>
+    /// <param name="unit">The data of the given unit</param>
     public void AddDroneToUnits(DroneUnit unit)
     {
         GameObject ui = Instantiate(unitUIPrefab, unitsContainer.transform);
