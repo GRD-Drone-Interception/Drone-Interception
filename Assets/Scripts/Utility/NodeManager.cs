@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace PodiumNodes
+namespace Utility
 {
-    public class PodiumNodeManager : MonoBehaviour
+    public class NodeManager : MonoBehaviour
     {
-        public List<PodiumNode> PodiumNodes => _podiumNodes;
-        private readonly List<PodiumNode> _podiumNodes = new();
+        public List<Node> PodiumNodes => _podiumNodes;
+        private readonly List<Node> _podiumNodes = new();
 
-        private void Awake() => _podiumNodes.AddRange(GetComponentsInChildren<PodiumNode>());
+        private void Awake() => _podiumNodes.AddRange(GetComponentsInChildren<Node>());
 
         private void OnDrawGizmos()
         {

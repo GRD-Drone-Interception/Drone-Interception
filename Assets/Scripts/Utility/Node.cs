@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-namespace PodiumNodes
+namespace Utility
 {
-    public class PodiumNode : MonoBehaviour
+    public class Node : MonoBehaviour
     {
         private void OnDrawGizmos()
         {
