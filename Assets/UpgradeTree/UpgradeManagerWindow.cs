@@ -37,6 +37,21 @@ public class UpgradeManagerWindow : EditorWindow
         {
             CreateUpgrade();
         }
+        if(Selection.activeGameObject != null && Selection.activeGameObject.GetComponent<Upgrade>())
+        {
+            if (GUILayout.Button("Create Previous Upgrade"))
+            {
+                CreatePreviousUpgrade();
+            }
+            if (GUILayout.Button("Create Next Upgrade"))
+            {
+                CreateNextUpgrade();
+            }
+            if (GUILayout.Button("Remove Upgrade"))
+            {
+                RemoveUpgrade();
+            }
+        }
     }
 
     void CreateUpgrade()
@@ -53,5 +68,70 @@ public class UpgradeManagerWindow : EditorWindow
         }
 
         Selection.activeGameObject = upgrade.gameObject;
+    }
+
+    void CreatePreviousUpgrade()
+    {
+        GameObject upgradeObject = new GameObject("Upgrade " + upgradeRoot.childCount, typeof(Upgrade));
+        upgradeObject.transform.SetParent(upgradeRoot, false);
+
+        Upgrade newUpgrade = upgradeObject.GetComponent<Upgrade>();
+
+        Upgrade selectedUpgrade = Selection.activeGameObject.GetComponent<Upgrade>();
+
+        if(selectedUpgrade.previousUpgrade != null)
+        {
+            newUpgrade.previousUpgrade = selectedUpgrade.previousUpgrade;
+            selectedUpgrade.previousUpgrade.nextUpgrade = newUpgrade;
+        }
+
+        newUpgrade.nextUpgrade = selectedUpgrade;
+
+        selectedUpgrade.previousUpgrade = newUpgrade;
+
+        newUpgrade.transform.SetSiblingIndex(selectedUpgrade.transform.GetSiblingIndex());
+
+        Selection.activeGameObject = newUpgrade.gameObject;
+    }
+
+    void CreateNextUpgrade()
+    {
+        GameObject upgradeObject = new GameObject("Upgrade " + upgradeRoot.childCount, typeof(Upgrade));
+        upgradeObject.transform.SetParent(upgradeRoot, false);
+
+        Upgrade newUpgrade = upgradeObject.GetComponent<Upgrade>();
+
+        Upgrade selectedUpgrade = Selection.activeGameObject.GetComponent<Upgrade>();
+
+        newUpgrade.previousUpgrade = selectedUpgrade;
+
+        if(selectedUpgrade.nextUpgrade != null)
+        {
+            selectedUpgrade.nextUpgrade.previousUpgrade = newUpgrade;
+            newUpgrade.nextUpgrade = selectedUpgrade.nextUpgrade;
+        }
+
+        selectedUpgrade.nextUpgrade = newUpgrade;
+
+        newUpgrade.transform.SetSiblingIndex(selectedUpgrade.transform.GetSiblingIndex() + 1);
+
+        Selection.activeGameObject = newUpgrade.gameObject;
+    }
+
+    void RemoveUpgrade()
+    {
+        Upgrade selectedUpgrade = Selection.activeGameObject.GetComponent<Upgrade>();
+
+        if(selectedUpgrade.nextUpgrade != null)
+        {
+            selectedUpgrade.nextUpgrade.previousUpgrade = selectedUpgrade.previousUpgrade;
+        }
+        if (selectedUpgrade.previousUpgrade != null)
+        {
+            selectedUpgrade.previousUpgrade.nextUpgrade = selectedUpgrade.nextUpgrade;
+            Selection.activeGameObject = selectedUpgrade.previousUpgrade.gameObject;
+        }
+
+        DestroyImmediate(selectedUpgrade.gameObject);
     }
 }
