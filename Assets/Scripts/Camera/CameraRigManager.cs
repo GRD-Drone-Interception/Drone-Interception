@@ -3,15 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-public class CamManager : MonoBehaviour
+public class CameraRigManager : MonoBehaviour
 {
-    public static CamManager Instance { get; private set; }
+    public static CameraRigManager Instance { get; private set; }
 
-    public GameObject gameCamRig;
-    public GameObject mapCamRig;
+    [SerializeField] private GameObject gameCamRig;
+    [SerializeField] private GameObject mapCamRig;
 
-    /*[Tooltip("A list of virtual cameras in the scene. Element 0 will take the highest priority. Should be in the same order as Gamemanager.Gamestate")]
-    [SerializeField] private List<CinemachineVirtualCamera> cameraList = new List<CinemachineVirtualCamera>();*/
+    public Camera activeCamera;
 
     private void Awake()
     {
@@ -28,18 +27,25 @@ public class CamManager : MonoBehaviour
 
     void Start()
     {
-
+        EnableGameCam();
     }
 
     public void EnableGameCam()
     {
         mapCamRig.SetActive(false);
         gameCamRig.SetActive(true);
+        SetActiveCam(gameCamRig);
     }
 
     public void EnableMapCam()
     {
         gameCamRig.SetActive(false);
         mapCamRig.SetActive(true);
+        SetActiveCam(mapCamRig);
+    }
+
+    private void SetActiveCam(GameObject rig)
+    {
+        activeCamera = rig.transform.GetChild(0).GetComponent<Camera>();
     }
 }

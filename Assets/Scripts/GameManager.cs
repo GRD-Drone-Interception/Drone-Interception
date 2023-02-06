@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     // Managers
     InputManager inputManager;
     UIManager    uiManager;
-    CamManager   camManager;
+    CameraRigManager   camManager;
 
     private void Awake()
     {
@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
     {
         inputManager = InputManager.Instance;
         uiManager = UIManager.Instance;
-        camManager = CamManager.Instance;
+        camManager = CameraRigManager.Instance;
     }
 
     void Update()

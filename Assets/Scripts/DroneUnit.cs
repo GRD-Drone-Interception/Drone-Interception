@@ -10,6 +10,14 @@ public enum UnitType
     Assault
 }
 
+public enum UnitOrder
+{
+    Move,
+    Recon,
+    Attack,
+    Defend,
+}
+
 [RequireComponent(typeof(Collider))]
 public class DroneUnit : MonoBehaviour, IDestructable
 {
@@ -78,4 +86,25 @@ public class DroneUnit : MonoBehaviour, IDestructable
     {
         UnitManager.Instance.units.Remove(this);
     }
+
+    public void Move()
+    {
+        Debug.Log($"{this.gameObject.name} is moving");
+    }
+
+    public void Attack()
+    {
+        Debug.Log($"{this.gameObject.name} is attacking");
+    }
+
+    public void Defend()
+    {
+        Debug.Log($"{this.gameObject.name} is defending");
+    }
+
+    public void Recon()
+    {
+        Debug.Log($"{this.gameObject.name} is surveying");
+    }
+
 }
