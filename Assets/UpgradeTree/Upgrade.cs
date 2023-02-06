@@ -12,25 +12,21 @@ public class Upgrade : MonoBehaviour
 
     void Start()
     {
-        /*for (int i = 0; i < nextUpgrade.Count; i++)
-        {
-            GameObject childPos = new GameObject("Upgrade Connector");
-            childPos.transform.parent = this.transform;
-            childPos.transform.position = nextUpgrade[i].transform.position;
-            childPos.AddComponent<LineRenderer>();
-            
-            LineRenderer lr = childPos.GetComponent<LineRenderer>();
+        this.gameObject.AddComponent<LineRenderer>();
+        LineRenderer lr = this.GetComponent<LineRenderer>();
 
-            lr.material = lineMaterial;
+        lr.material = lineMaterial;
 
-            lr.startWidth = lineWidth;
-            lr.endWidth = lineWidth;
+        lr.startWidth = lineWidth;
+        lr.endWidth = lineWidth;
 
-            lr.SetPosition(0, this.transform.position);
-            lr.SetPosition(1, nextUpgrade[i].transform.position);
+        if (previousUpgrade == null)
+            return;
 
-            lr.sortingOrder = -1;
-        }*/
+        lr.SetPosition(0, this.transform.position);
+        lr.SetPosition(1, previousUpgrade.transform.position);
+
+        lr.sortingOrder = -1;
     }
 
     void Update()
