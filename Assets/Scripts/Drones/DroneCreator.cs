@@ -30,7 +30,7 @@ namespace Drones
                     return;
                 }
 
-                var currentNode = carousel.PodiumNodes[carousel.CurrentPodiumNodeIndex];
+                var currentNode = carousel.Nodes[carousel.CurrentPodiumNodeIndex];
                 if (_workbench.DronesOnPodiumDict.ContainsValue(currentNode))
                 {
                     Debug.LogWarning("A drone already occupies this node!");
@@ -44,7 +44,7 @@ namespace Drones
         private void SpawnDrone()
         {
             var drone = Instantiate(prefabToSpawn);
-            drone.transform.position = _workbench.DroneSpawnpoint.position;
+            //drone.transform.position = _workbench.DroneSpawnpoint.position;
             OnDroneSpawned?.Invoke();
         }
 

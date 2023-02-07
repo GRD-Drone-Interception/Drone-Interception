@@ -9,7 +9,7 @@ namespace DroneWorkbench
 {
     public class WorkbenchCarousel : MonoBehaviour
     {
-        public List<Node> PodiumNodes => nodeManager.PodiumNodes;
+        public List<Node> Nodes => nodeManager.PodiumNodes;
         public int CurrentPodiumNodeIndex => _currentNodeIndex;
         public bool IsMoving => _isMoving;
     
@@ -78,5 +78,8 @@ namespace DroneWorkbench
             transform.position = endPosition;
             _isMoving = false;
         }
+
+        public int GetCurrentNodeIndex() => CurrentPodiumNodeIndex;
+        public Node GetActiveNode() => Nodes[_currentNodeIndex];
     }
 }
