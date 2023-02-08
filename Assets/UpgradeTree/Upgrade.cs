@@ -6,8 +6,7 @@ using UnityEngine.UI;
 public class Upgrade : MonoBehaviour
 {
     public Upgrade previousUpgrade;
-    public Upgrade nextUpgrade;
-    public List<Upgrade> branchUpgrades = new List<Upgrade>();
+    public List<Upgrade> upgradeBranches = new List<Upgrade>();
 
     [SerializeField] private float lineWidth = 0.01f;
     [SerializeField] private Material lineMaterial;
@@ -56,11 +55,7 @@ public class Upgrade : MonoBehaviour
 
         Debug.Log(this.gameObject.name + " puchased");
 
-        if (nextUpgrade != null)
-        {
-            nextUpgrade.Unlock();
-        }
-        foreach (Upgrade branchedUpgrade in branchUpgrades)
+        foreach (Upgrade branchedUpgrade in upgradeBranches)
         {
             branchedUpgrade.Unlock();
         }

@@ -45,27 +45,30 @@ public class UpgradeManagerWindow : EditorWindow
     /// </summary>
     void DrawButtons()
     {
-        if (GUILayout.Button("Create New Upgrade"))
-        {
-            CreateNewUpgrade();
-        }
         if(Selection.activeGameObject != null && Selection.activeGameObject.GetComponent<Upgrade>())
         {
-            if(GUILayout.Button("Create Branched Upgrade"))
+            if(GUILayout.Button("Create Upgrade Branch"))
             {
                 CreateBranch();
             }
-            if (GUILayout.Button("Create Upgrade Before"))
+            /*if (GUILayout.Button("Create Upgrade Before"))
             {
                 CreatePreviousUpgrade();
             }
             if (GUILayout.Button("Create Upgrade After"))
             {
                 CreateNextUpgrade();
-            }
+            }*/
             if (GUILayout.Button("Remove Upgrade"))
             {
                 RemoveUpgrade();
+            }
+        }
+        else
+        {
+            if (GUILayout.Button("Create New Base Upgrade"))
+            {
+                CreateBaseUpgrade();
             }
         }
 
@@ -75,7 +78,7 @@ public class UpgradeManagerWindow : EditorWindow
     /// <summary>
     /// Creates a new upgrade at newest level of the root
     /// </summary>
-    void CreateNewUpgrade()
+    void CreateBaseUpgrade()
     {
         //GameObject upgradeObject = new GameObject("Upgrade " + (upgradeRoot.childCount + 1), typeof(Upgrade));
         GameObject upgradeObject = Instantiate(upgradePrefab, upgradeRoot, false);
@@ -87,7 +90,7 @@ public class UpgradeManagerWindow : EditorWindow
         if(upgradeRoot.childCount > 1)
         {
             upgrade.previousUpgrade = upgradeRoot.GetChild(upgradeRoot.childCount - 2).GetComponent<Upgrade>();
-            upgrade.previousUpgrade.nextUpgrade = upgrade;
+            //upgrade.previousUpgrade.nextUpgrade = upgrade;
         }
 
         Selection.activeGameObject = upgrade.gameObject;
@@ -96,7 +99,7 @@ public class UpgradeManagerWindow : EditorWindow
     /// <summary>
     /// Creates a new upgrade before the selected upgrade object
     /// </summary>
-    void CreatePreviousUpgrade()
+    /*void CreatePreviousUpgrade()
     {
         GameObject upgradeObject = Instantiate(upgradePrefab, upgradeRoot, false);
         upgradeObject.name = "Upgrade " + (upgradeRoot.childCount);
@@ -119,12 +122,12 @@ public class UpgradeManagerWindow : EditorWindow
         newUpgrade.transform.SetSiblingIndex(selectedUpgrade.transform.GetSiblingIndex());
 
         Selection.activeGameObject = newUpgrade.gameObject;
-    }
+    }*/
 
     /// <summary>
     /// Creates a new upgrade after the selected upgrade object
     /// </summary>
-    void CreateNextUpgrade()
+    /*void CreateNextUpgrade()
     {
         GameObject upgradeObject = Instantiate(upgradePrefab, upgradeRoot, false);
 
@@ -147,34 +150,7 @@ public class UpgradeManagerWindow : EditorWindow
         newUpgrade.transform.SetSiblingIndex(selectedUpgrade.transform.GetSiblingIndex() + 1);
 
         Selection.activeGameObject = newUpgrade.gameObject;
-    }
-
-    /// <summary>
-    /// Deletes the currently seleceted upgrade
-    /// </summary>
-    void RemoveUpgrade()
-    {
-        Upgrade selectedUpgrade = Selection.activeGameObject.GetComponent<Upgrade>();
-
-        if(selectedUpgrade.nextUpgrade != null)
-        {
-            selectedUpgrade.nextUpgrade.previousUpgrade = selectedUpgrade.previousUpgrade;
-        }
-        if (selectedUpgrade.previousUpgrade != null)
-        {
-            if (selectedUpgrade.previousUpgrade.branchUpgrades.Contains(selectedUpgrade))
-            {
-                selectedUpgrade.previousUpgrade.branchUpgrades.Remove(selectedUpgrade);
-            }
-            else
-            {
-                selectedUpgrade.previousUpgrade.nextUpgrade = selectedUpgrade.nextUpgrade;
-                Selection.activeGameObject = selectedUpgrade.previousUpgrade.gameObject;
-            }
-        }
-
-        DestroyImmediate(selectedUpgrade.gameObject);
-    }
+    }*/
 
     void CreateBranch()
     {
@@ -185,11 +161,41 @@ public class UpgradeManagerWindow : EditorWindow
         upgradeObject.transform.GetChild(0).GetComponent<TMP_Text>().text = upgradeRoot.childCount.ToString();
 
         Upgrade branchedFrom = Selection.activeGameObject.GetComponent<Upgrade>();
-        branchedFrom.branchUpgrades.Add(upgrade);
+        branchedFrom.upgradeBranches.Add(upgrade);
 
         upgrade.previousUpgrade = branchedFrom;
         upgrade.transform.SetSiblingIndex(branchedFrom.transform.GetSiblingIndex() + 1);
 
-        Selection.activeGameObject = upgrade.gameObject;
+        Selection.activeGameObject = branchedFrom.gameObject;
+    }
+
+    /// <summary>
+    /// Deletes the currently seleceted upgrade
+    /// </summary>
+    void RemoveUpgrade()
+    {
+        Upgrade selectedUpgrade = Selection.activeGameObject.GetComponent<Upgrade>();
+
+        if(selectedUpgrade.upgradeBranches != null)
+        {
+            foreach (Upgrade branch in selectedUpgrade.upgradeBranches)
+            {
+                branch.previousUpgrade = selectedUpgrade.previousUpgrade;
+            }
+        }
+        if (selectedUpgrade.previousUpgrade != null)
+        {
+
+            if (selectedUpgrade.previousUpgrade.upgradeBranches.Contains(selectedUpgrade))
+            {
+                selectedUpgrade.previousUpgrade.upgradeBranches.Remove(selectedUpgrade);
+                foreach (Upgrade branch in selectedUpgrade.upgradeBranches)
+                {
+                    selectedUpgrade.previousUpgrade.upgradeBranches.Add(branch);
+                }
+            }
+        }
+
+        DestroyImmediate(selectedUpgrade.gameObject);
     }
 }
