@@ -7,11 +7,9 @@ public class UnitsUI : MonoBehaviour
     [SerializeField] private GameObject unitsContainer;
     [SerializeField] private GameObject unitUIPrefab;
 
-    [SerializeField] private List<DroneUnit> units = new List<DroneUnit>();
-
     void Start()
     {
-        foreach (DroneUnit unit in units)
+        foreach (DroneUnit unit in UnitManager.Instance.units)
         {
             AddDroneToUnits(unit);
         }

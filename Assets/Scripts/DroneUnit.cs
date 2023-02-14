@@ -12,6 +12,7 @@ public enum UnitType
 
 public enum UnitOrder
 {
+    Idle,
     Move,
     Recon,
     Attack,
@@ -25,10 +26,8 @@ public class DroneUnit : MonoBehaviour, IDestructable
     [SerializeField] private PlayerTeam team;
     public PlayerTeam Team => team;
 
-
     [Header("Class")]
     public UnitType droneClass;
-
 
     [Header("Health")]
     [SerializeField] private float maxHealth = 100;
@@ -40,7 +39,10 @@ public class DroneUnit : MonoBehaviour, IDestructable
 
     [Header("Misc")]
     public UnitUI ui;
-    public GameObject selectedIcon;
+    public GameObject worldSelectedIcon;
+    public GameObject mapSelectedIcon;
+
+    [SerializeField] private UnitOrder currentOrder = UnitOrder.Idle;
 
     private void Awake()
     {
@@ -87,24 +89,59 @@ public class DroneUnit : MonoBehaviour, IDestructable
         UnitManager.Instance.units.Remove(this);
     }
 
-    public void Move()
+    public void Command(UnitOrder command)
+    {
+        currentOrder = command;
+
+        switch (command)
+        {
+            case UnitOrder.Move:
+                Move();
+                break;
+            case UnitOrder.Recon:
+                Recon();
+                break;
+            case UnitOrder.Attack:
+                Attack();
+                break;
+            case UnitOrder.Defend:
+                Defend();
+                break;
+            default:
+                Idle();
+                break;
+        }
+    }
+
+    private void Idle()
+    {
+        Debug.Log($"{this.gameObject.name} is idling");
+    }
+
+    private void Move()
     {
         Debug.Log($"{this.gameObject.name} is moving");
     }
 
-    public void Attack()
+    private void Attack()
     {
         Debug.Log($"{this.gameObject.name} is attacking");
     }
 
-    public void Defend()
+    private void Defend()
     {
         Debug.Log($"{this.gameObject.name} is defending");
     }
 
-    public void Recon()
+    private void Recon()
     {
         Debug.Log($"{this.gameObject.name} is surveying");
     }
 
+
+    public void SetSelectionIcon(bool active)
+    {
+        worldSelectedIcon.SetActive(active);
+        mapSelectedIcon.SetActive(active);
+    }
 }
