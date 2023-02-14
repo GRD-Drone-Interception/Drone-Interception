@@ -206,6 +206,13 @@ public class CameraRig : MonoBehaviour
         if(movement)
         {
             this.transform.position = Vector3.Lerp(this.transform.position, newPostion, Time.deltaTime * movementTime);
+            Vector3 clampPos = this.transform.position;
+
+            clampPos.x = Mathf.Clamp(clampPos.x, -2000.0f, 2000.0f);
+            clampPos.z = Mathf.Clamp(clampPos.z, -2000.0f, 2000.0f);
+
+            this.transform.position = clampPos;
+
         }
         if(rotation)
         {

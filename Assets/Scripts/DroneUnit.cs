@@ -37,11 +37,12 @@ public class DroneUnit : MonoBehaviour, IDestructable
     public float CurrentHealth => health;
 
 
-    [Header("Misc")]
-    public UnitUI ui;
+    [Header("UI")]
+    public UnitUI unitUI;
     public GameObject worldSelectedIcon;
     public GameObject mapSelectedIcon;
 
+    [Header("Misc")]
     [SerializeField] private UnitOrder currentOrder = UnitOrder.Idle;
 
     private void Awake()
@@ -72,7 +73,7 @@ public class DroneUnit : MonoBehaviour, IDestructable
             Destory();
         }
 
-        ui.OnHealthValueChanged(health);
+        unitUI.OnHealthValueChanged(health);
     }
 
     /// <summary>
@@ -81,7 +82,7 @@ public class DroneUnit : MonoBehaviour, IDestructable
     public void Destory()
     {
         Debug.Log("Unit has been destroyed");
-        ui.EnableDeathIcon();
+        unitUI.EnableDeathIcon();
     }
 
     private void OnDestroy()

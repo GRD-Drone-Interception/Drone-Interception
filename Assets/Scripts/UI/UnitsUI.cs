@@ -25,7 +25,7 @@ public class UnitsUI : MonoBehaviour
 
         UnitUI unitUI = ui.GetComponent<UnitUI>();
         unitUI.SetUnit(unit);
-        unit.ui = unitUI;
+        unit.unitUI = unitUI;
     }
 
     void Update()

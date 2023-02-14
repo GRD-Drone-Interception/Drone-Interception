@@ -56,6 +56,9 @@ public class UnitCommands : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1))
         {
+            if (selectedCommand == UnitOrder.Idle)
+                return;
+
             SendOrder(selectedCommand);
         }
     }

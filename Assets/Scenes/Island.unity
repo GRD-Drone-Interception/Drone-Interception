@@ -559,7 +559,8 @@ MonoBehaviour:
   droneClass: 3
   maxHealth: 100
   ui: {fileID: 0}
-  selectedIcon: {fileID: 1608173081}
+  worldSelectedIcon: {fileID: 0}
+  mapSelectedIcon: {fileID: 0}
   currentOrder: 0
 --- !u!136 &164893506
 CapsuleCollider:
@@ -1638,16 +1639,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitsContainer: {fileID: 2043243296}
   unitUIPrefab: {fileID: 8808769875626738734, guid: 68418938f7affdb4a99afaa5db6c07e5, type: 3}
-  units:
-  - {fileID: 1458180669}
-  - {fileID: 532195825}
-  - {fileID: 2087527517}
-  - {fileID: 1583497342}
-  - {fileID: 438013465}
-  - {fileID: 1629854762}
-  - {fileID: 1550409987}
-  - {fileID: 2132182536}
-  - {fileID: 164893505}
 --- !u!1 &275058309
 GameObject:
   m_ObjectHideFlags: 0
@@ -2787,7 +2778,8 @@ MonoBehaviour:
   droneClass: 2
   maxHealth: 100
   ui: {fileID: 0}
-  selectedIcon: {fileID: 410463364}
+  worldSelectedIcon: {fileID: 0}
+  mapSelectedIcon: {fileID: 0}
   currentOrder: 0
 --- !u!136 &438013466
 CapsuleCollider:
@@ -3690,7 +3682,8 @@ MonoBehaviour:
   droneClass: 0
   maxHealth: 100
   ui: {fileID: 0}
-  selectedIcon: {fileID: 275058309}
+  worldSelectedIcon: {fileID: 0}
+  mapSelectedIcon: {fileID: 0}
   currentOrder: 0
 --- !u!136 &532195826
 CapsuleCollider:
@@ -4597,7 +4590,8 @@ MonoBehaviour:
   droneClass: 0
   maxHealth: 100
   ui: {fileID: 0}
-  selectedIcon: {fileID: 636112149}
+  worldSelectedIcon: {fileID: 0}
+  mapSelectedIcon: {fileID: 0}
   currentOrder: 0
 --- !u!136 &707722274
 CapsuleCollider:
@@ -5369,7 +5363,8 @@ MonoBehaviour:
   droneClass: 0
   maxHealth: 100
   ui: {fileID: 0}
-  selectedIcon: {fileID: 1574674090}
+  worldSelectedIcon: {fileID: 0}
+  mapSelectedIcon: {fileID: 0}
   currentOrder: 0
 --- !u!136 &843975177
 CapsuleCollider:
@@ -8393,7 +8388,8 @@ MonoBehaviour:
   droneClass: 0
   maxHealth: 100
   ui: {fileID: 0}
-  selectedIcon: {fileID: 511002523}
+  worldSelectedIcon: {fileID: 0}
+  mapSelectedIcon: {fileID: 0}
   currentOrder: 0
 --- !u!136 &1458180670
 CapsuleCollider:
@@ -9536,7 +9532,8 @@ MonoBehaviour:
   droneClass: 3
   maxHealth: 100
   ui: {fileID: 0}
-  selectedIcon: {fileID: 19828112}
+  worldSelectedIcon: {fileID: 0}
+  mapSelectedIcon: {fileID: 0}
   currentOrder: 0
 --- !u!136 &1550409988
 CapsuleCollider:
@@ -9966,7 +9963,8 @@ MonoBehaviour:
   droneClass: 1
   maxHealth: 100
   ui: {fileID: 0}
-  selectedIcon: {fileID: 2135966777}
+  worldSelectedIcon: {fileID: 0}
+  mapSelectedIcon: {fileID: 0}
   currentOrder: 0
 --- !u!136 &1583497343
 CapsuleCollider:
@@ -10371,7 +10369,8 @@ MonoBehaviour:
   droneClass: 2
   maxHealth: 100
   ui: {fileID: 0}
-  selectedIcon: {fileID: 345165712}
+  worldSelectedIcon: {fileID: 0}
+  mapSelectedIcon: {fileID: 0}
   currentOrder: 0
 --- !u!136 &1629854763
 CapsuleCollider:
@@ -13206,7 +13205,8 @@ MonoBehaviour:
   droneClass: 0
   maxHealth: 100
   ui: {fileID: 0}
-  selectedIcon: {fileID: 23184996}
+  worldSelectedIcon: {fileID: 0}
+  mapSelectedIcon: {fileID: 0}
   currentOrder: 0
 --- !u!136 &2087527518
 CapsuleCollider:
@@ -13668,7 +13668,8 @@ MonoBehaviour:
   droneClass: 3
   maxHealth: 100
   ui: {fileID: 0}
-  selectedIcon: {fileID: 1995800050}
+  worldSelectedIcon: {fileID: 0}
+  mapSelectedIcon: {fileID: 0}
   currentOrder: 0
 --- !u!136 &2132182537
 CapsuleCollider:
