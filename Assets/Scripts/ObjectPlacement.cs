@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -10,14 +8,9 @@ public class ObjectPlacement : MonoBehaviour
 
     [SerializeField] private LayerMask groundLayer;
 
-    void Start()
-    {
-
-    }
-
     void Update()
     {
-        if(prefabInstance != null)
+        if (prefabInstance != null)
         {
             Ray ray = CameraRigManager.Instance.activeCamera.ScreenPointToRay(Input.mousePosition);
 
@@ -44,7 +37,7 @@ public class ObjectPlacement : MonoBehaviour
 
         Ray ray = CameraRigManager.Instance.activeCamera.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity))
+        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, groundLayer))
         {
            prefabInstance.transform.position = hit.point;
         }
