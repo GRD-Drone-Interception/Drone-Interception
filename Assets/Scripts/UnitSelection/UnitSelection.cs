@@ -26,10 +26,9 @@ public class UnitSelection : MonoBehaviour
             startPosition = Input.mousePosition;
             selectionBox = new Rect();
 
-            RaycastHit hit;
             Ray ray = CameraRigManager.Instance.activeCamera.ScreenPointToRay(Input.mousePosition);
 
-            if(Physics.Raycast(ray, out hit, Mathf.Infinity, clickableLayer))
+            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, clickableLayer))
             {
                 if(Input.GetKey(KeyCode.LeftShift))
                 {

@@ -23,11 +23,12 @@ public class CameraRigManager : MonoBehaviour
             Destroy(this);
             Debug.LogWarning($"There should only be one instance of {Instance.GetType()}");
         }
+        EnableGameCam();
     }
 
     void Start()
     {
-        EnableGameCam();
+        
     }
 
     public void EnableGameCam()
