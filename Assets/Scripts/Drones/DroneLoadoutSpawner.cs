@@ -11,26 +11,22 @@ namespace Drones
         
         [SerializeField] private List<GameObject> droneClassPrefabs;
         [SerializeField] private Workbench workbench;
-        private int _currentDronePrefabIndex;
 
         private void Start() => SpawnDroneClasses();
 
         private void SpawnDroneClasses()
         {
-            foreach (var droneClass in droneClassPrefabs)
+            var drone = Instantiate(droneClassPrefabs[0]);
+            drone.transform.position = workbench.DroneSpawnPoint.position;
+            OnDroneSpawned?.Invoke();
+            
+            /*foreach (var droneClass in droneClassPrefabs)
             {
-                var carousel = workbench.Carousel;
-                if (_currentDronePrefabIndex >= carousel.Nodes.Count)
-                {
-                    Debug.LogWarning("Drone loadout prefabs exceeds the number of nodes in the scene. Excess drone classes will not be spawned.", this);
-                    return;
-                }
                 var drone = Instantiate(droneClass);
-                drone.transform.position = carousel.Nodes[_currentDronePrefabIndex].transform.position;
-                workbench.AddToBench(drone.GetComponent<Drone>(), carousel.Nodes[_currentDronePrefabIndex]);
-                _currentDronePrefabIndex++;
+                drone.transform.position = workbench.DroneSpawnPoint.position;
+                //workbench.AddToBench(drone.GetComponent<Drone>(), carousel.Nodes[_currentDronePrefabIndex]);
                 OnDroneSpawned?.Invoke();
-            }
+            }*/
         }
     }
 }
