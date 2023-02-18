@@ -57,7 +57,7 @@ public class UnitManager : MonoBehaviour
         if(!unitsSelected.Contains(unitToAdd))
         {
             unitsSelected.Add(unitToAdd);
-            unitToAdd.selectedIcon.SetActive(true);
+            unitToAdd.SetSelectionIcon(true);
         }
     }
 
@@ -68,7 +68,7 @@ public class UnitManager : MonoBehaviour
     {
         foreach (DroneUnit unit in unitsSelected)
         {
-            unit.selectedIcon.SetActive(false);
+            unit.SetSelectionIcon(false);
         }
         unitsSelected.Clear();
     }
@@ -80,7 +80,7 @@ public class UnitManager : MonoBehaviour
     public void Select(DroneUnit unitToAdd)
     {
         unitsSelected.Add(unitToAdd);
-        unitToAdd.selectedIcon.SetActive(true);
+        unitToAdd.SetSelectionIcon(true);
     }
 
     /// <summary>
@@ -90,6 +90,6 @@ public class UnitManager : MonoBehaviour
     public void Deselect(DroneUnit unitToRemove)
     {
         unitsSelected.Remove(unitToRemove);
-        unitToRemove.selectedIcon.SetActive(false);
+        unitToRemove.SetSelectionIcon(false);
     }
 }

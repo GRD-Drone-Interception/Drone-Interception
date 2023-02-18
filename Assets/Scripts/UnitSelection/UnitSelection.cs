@@ -1,11 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class UnitSelection : MonoBehaviour
 {
-    [SerializeField] private Camera cam;
-
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask clickableLayer;
 
@@ -22,15 +21,14 @@ public class UnitSelection : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
             startPosition = Input.mousePosition;
             selectionBox = new Rect();
 
-            RaycastHit hit;
-            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            Ray ray = CameraRigManager.Instance.activeCamera.ScreenPointToRay(Input.mousePosition);
 
-            if(Physics.Raycast(ray, out hit, Mathf.Infinity, clickableLayer))
+            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, clickableLayer))
             {
                 if(Input.GetKey(KeyCode.LeftShift))
                 {
@@ -73,7 +71,7 @@ public class UnitSelection : MonoBehaviour
     {
         foreach (DroneUnit unit in UnitManager.Instance.units)
         {
-            if (selectionBox.Contains(cam.WorldToScreenPoint(unit.gameObject.transform.position)))
+            if (selectionBox.Contains(CameraRigManager.Instance.activeCamera.WorldToScreenPoint(unit.gameObject.transform.position)))
             {
                 UnitManager.Instance.DragSelect(unit);
             }

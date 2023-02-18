@@ -206,6 +206,13 @@ public class CameraRig : MonoBehaviour
         if(movement)
         {
             this.transform.position = Vector3.Lerp(this.transform.position, newPostion, Time.deltaTime * movementTime);
+            Vector3 clampPos = this.transform.position;
+
+            clampPos.x = Mathf.Clamp(clampPos.x, -2000.0f, 2000.0f);
+            clampPos.z = Mathf.Clamp(clampPos.z, -2000.0f, 2000.0f);
+
+            this.transform.position = clampPos;
+
         }
         if(rotation)
         {
@@ -214,6 +221,28 @@ public class CameraRig : MonoBehaviour
         if(zoom)
         {
             cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, newZoom, Time.deltaTime * movementTime);
+
+            // Clamp with set values
+            /*Vector3 clampPos = cameraTransform.localPosition;
+
+            clampPos.y = Mathf.Clamp(clampPos.y, 100.0f, 1000.0f);
+            clampPos.z = Mathf.Clamp(clampPos.z, -1000.0f, -100.0f);
+
+            cameraTransform.localPosition = clampPos;*/
+
+            // Clamp with raycast value
+            Ray ray = CameraRigManager.Instance.activeCamera.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity))
+            {
+                Vector3 hitPos = hit.point;
+                Vector3 clampPos = cameraTransform.localPosition;
+
+                clampPos.y = Mathf.Clamp(clampPos.y, hitPos.y, 1500.0f);
+                clampPos.z = Mathf.Clamp(clampPos.z, -1500.0f, -hitPos.y);
+
+                cameraTransform.localPosition = clampPos;
+            }
         }
     }
 }
