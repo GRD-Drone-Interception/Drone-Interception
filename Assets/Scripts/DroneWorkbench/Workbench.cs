@@ -1,7 +1,6 @@
 using Drones;
 using UnityEngine;
 using UnityEngine.UI;
-using Utility;
 
 namespace DroneWorkbench
 {
@@ -32,9 +31,10 @@ namespace DroneWorkbench
             resetDroneConfigButton.gameObject.SetActive(false);
         }
 
-        public void AddToBench(Drone drone, Node node)
+        public void AddToBench(Drone drone)
         {
             drone.transform.SetParent(transform);
+            _droneBeingEdited = drone;
             //_dronesOnPodiumDict.Add(drone, node);
             //FindObjectOfType<Player>().DroneSwarm.AddToSwarm(drone); // hm
         }

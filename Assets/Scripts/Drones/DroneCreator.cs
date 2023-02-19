@@ -13,19 +13,19 @@ namespace Drones
     {
         public event Action OnDroneSpawned;
         
-        [SerializeField] private GameObject prefabToSpawn;
-        private Workbench _workbench; // Unnecessary dependency
+        [SerializeField] private GameObject droneTypePrefab;
+        private Workbench _workbench; 
 
         private void Awake() => _workbench = FindObjectOfType<Workbench>();
 
         public void OnPointerDown(PointerEventData eventData)
         { 
-            SpawnDrone();
+            SpawnDroneClass();
         }
 
-        private void SpawnDrone()
+        private void SpawnDroneClass()
         {
-            var drone = Instantiate(prefabToSpawn);
+            var drone = Instantiate(droneTypePrefab);
             drone.transform.position = _workbench.DroneSpawnPoint.position;
             OnDroneSpawned?.Invoke();
         }
