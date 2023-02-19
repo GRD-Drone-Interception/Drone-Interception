@@ -21,7 +21,7 @@ namespace Drones
         private IDrone _decorableDrone;
         private int _numOfAttachments;
 
-        private void Start() => _decorableDrone = DroneFactory.CreateDrone(droneConfigSo.droneType, droneConfigSo);
+        private void Awake() => _decorableDrone = DroneFactory.CreateDrone(droneConfigSo.droneType, droneConfigSo);
         
         /// <summary>
         /// Applies a given strategy for handling the drones movement behaviour so that it can be changed

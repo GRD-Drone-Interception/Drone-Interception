@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Drones;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,13 +8,20 @@ namespace DroneWorkbench
 {
     public class Workbench : MonoBehaviour
     {
+        public event Action<Drone> OnDroneSpawned;
         public Drone DroneBeingEdited => _droneBeingEdited;
-        public Transform DroneSpawnPoint => droneSpawnPosition;
 
+        [SerializeField] private List<GameObject> droneClassPrefabs;
         [SerializeField] private Transform droneSpawnPosition;
         [SerializeField] private Button resetDroneConfigButton;
         [SerializeField] private Button deleteDroneButton;
+        //private Dictionary<GameObject, bool> _dronePrefabsDictionary = new();
         private Drone _droneBeingEdited;
+
+        private void Awake()
+        {
+            SpawnDroneClassesOnStart();
+        }
 
         private void OnEnable()
         {
@@ -35,15 +44,11 @@ namespace DroneWorkbench
         {
             drone.transform.SetParent(transform);
             _droneBeingEdited = drone;
-            //_dronesOnPodiumDict.Add(drone, node);
-            //FindObjectOfType<Player>().DroneSwarm.AddToSwarm(drone); // hm
         }
 
         private void RemoveFromBench(Drone drone)
         {
             drone.transform.SetParent(null);
-            //_dronesOnPodiumDict.Remove(_droneBeingEdited);
-            //FindObjectOfType<Player>().DroneSwarm.RemoveFromSwarm(drone); // hm
         }
     
         private void ResetCurrentDroneConfig()
@@ -59,5 +64,50 @@ namespace DroneWorkbench
             RemoveFromBench(_droneBeingEdited);
             Destroy(_droneBeingEdited.gameObject);
         }
+        
+        private void SpawnDroneClassesOnStart()
+        {
+            var droneGameObject = Instantiate(droneClassPrefabs[0]);
+            droneGameObject.transform.position = droneSpawnPosition.position;
+            
+            var drone = droneGameObject.GetComponent<Drone>();
+            AddToBench(drone);
+            OnDroneSpawned?.Invoke(drone);
+            /*_dronePrefabsDictionary.Add(drone, false);
+            foreach (var dronePrefab in _dronePrefabsDictionary.Keys)
+            {
+                dronePrefab.gameObject.SetActive(_dronePrefabsDictionary[dronePrefab]);
+            }*/
+        }
+
+        public void SpawnDronePrefab(GameObject prefab)
+        {
+            DeleteCurrentDrone();
+            
+            var droneGameObject = Instantiate(prefab);
+            droneGameObject.transform.position = droneSpawnPosition.position;
+            
+            var drone = droneGameObject.GetComponent<Drone>();
+            AddToBench(drone);
+            OnDroneSpawned?.Invoke(drone);
+        }
+
+        /*public void SpawnDronePrefab(GameObject prefab)
+        {
+            _dronePrefabsDictionary[prefab] = true;
+            foreach (var drone in _dronePrefabsDictionary.Keys)
+            {
+                drone.gameObject.SetActive(_dronePrefabsDictionary[drone]);
+            }
+        }
+
+        public void DespawnDronePrefab(GameObject prefab)
+        {
+            _dronePrefabsDictionary[prefab] = false;
+            foreach (var drone in _dronePrefabsDictionary.Keys)
+            {
+                drone.gameObject.SetActive(_dronePrefabsDictionary[drone]);
+            }
+        }*/
     }
 }

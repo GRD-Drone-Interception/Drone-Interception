@@ -1,3 +1,4 @@
+using System;
 using DroneWorkbench;
 using TMPro;
 using UnityEngine;
@@ -11,45 +12,14 @@ namespace Drones
         [SerializeField] private TMP_Text droneRangeText;
         [SerializeField] private TMP_Text droneSpeedText;
         [SerializeField] private TMP_Text droneWeightText;
-    
-        private void OnEnable()
-        {
-            //DroneDetector.OnDroneDetected += UpdateDroneInfoUi;
-            //DroneDetector.OnDroneDetectionExit += ResetDroneInfoUiToDefault;
-            //FindObjectOfType<Workbench>().DroneBeingEdited.OnDroneDecorated += UpdateDroneInfoUi;
-            /*foreach (var drone in FindObjectOfType<Workbench>().Drones)
-        {
-            drone.OnDroneDecorated += UpdateDroneInfoUi;
-        }*/
-        }
+        [SerializeField] private Workbench _workbench;
 
-        private void OnDisable()
-        {
-            //DroneDetector.OnDroneDetected -= UpdateDroneInfoUi;
-            //DroneDetector.OnDroneDetectionExit -= ResetDroneInfoUiToDefault;
-            //FindObjectOfType<Workbench>().DroneBeingEdited.OnDroneDecorated -= UpdateDroneInfoUi;
-            /*foreach (var drone in FindObjectOfType<Workbench>().Drones)
-        {
-            drone.OnDroneDecorated -= UpdateDroneInfoUi;
-        }*/
-        }
-
-        private void Start() => ResetDroneInfoUiToDefault();
-
-        private void Update()
-        {
-            if (FindObjectOfType<Workbench>().DroneBeingEdited != null) // TODO: Clean-up needed
-            {
-                UpdateDroneInfoUi(FindObjectOfType<Workbench>().DroneBeingEdited);
-            }
-            else
-            { 
-                ResetDroneInfoUiToDefault();
-            }
-        }
+        private void OnEnable() => _workbench.OnDroneSpawned += UpdateDroneInfoUi;
+        private void OnDisable() => _workbench.OnDroneSpawned -= UpdateDroneInfoUi;
 
         private void UpdateDroneInfoUi(Drone drone)
         {
+            Debug.Log(drone);
             droneClassText.text = $"DRONE CLASS: <color=white>{drone.DroneConfigSo.droneName}</color>";
             droneModsText.text = $"MODS: <color=white>{drone.NumOfAttachments}</color>";
             droneRangeText.text = $"RANGE: <color=white>{drone.DecorableDrone.Range}km</color>";
