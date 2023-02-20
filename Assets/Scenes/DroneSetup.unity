@@ -491,8 +491,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
-  m_fontSizeBase: 14
+  m_fontSize: 12
+  m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1089,7 +1089,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 7.5}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 105, y: 55.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &166606815
 MonoBehaviour:
@@ -1111,7 +1111,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c1882f0df9e75ac44b41ed0a0ccbb57a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 940b13b6987c0074089624b704c23230, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3967,7 +3967,7 @@ RectTransform:
   m_GameObject: {fileID: 474529455}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.25, y: 1.2475, z: 1.2475}
+  m_LocalScale: {x: 0.6096962, y: 0.60847676, z: 0.60847676}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1684025893}
@@ -3976,7 +3976,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 7.5}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 253, y: 126}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &474529457
 MonoBehaviour:
@@ -3998,7 +3998,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c1882f0df9e75ac44b41ed0a0ccbb57a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: edcbf24c591d61545b5e7a30b317983f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4642,7 +4642,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 7.5}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 105, y: 55.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &586717559
 MonoBehaviour:
@@ -4664,7 +4664,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c1882f0df9e75ac44b41ed0a0ccbb57a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d05e159933c323c45b525f73931268a0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6677,8 +6677,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
-  m_fontSizeBase: 14
+  m_fontSize: 12
+  m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -9053,8 +9053,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
-  m_fontSizeBase: 14
+  m_fontSize: 12
+  m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -12372,7 +12372,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: LARGE
+  m_text: MATRICE 300 RTK
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -12399,8 +12399,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
-  m_fontSizeBase: 14
+  m_fontSize: 12
+  m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -13016,7 +13016,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: MEDIUM
+  m_text: DJI Mavic 3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -13043,8 +13043,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
-  m_fontSizeBase: 14
+  m_fontSize: 12
+  m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -13628,7 +13628,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ec1d957aebf4cfdb819a5093719488e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  droneTypePrefab: {fileID: 8802988842539748667, guid: 2b9bdfbe10b4e5e4f823e2bcd6a95ec7, type: 3}
+  droneTypePrefab: {fileID: 1584461683750109928, guid: 2b9bdfbe10b4e5e4f823e2bcd6a95ec7, type: 3}
   droneTypeButton: {fileID: 2056007925}
 --- !u!1 &1686228882
 GameObject:
@@ -15264,7 +15264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ec1d957aebf4cfdb819a5093719488e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  droneTypePrefab: {fileID: 1040653230026491075, guid: 87bd8d9b4272c764abfd26c8c16ffffa, type: 3}
+  droneTypePrefab: {fileID: 4059031464683983483, guid: 943c7193d8d860e4b8cc3f12a770c8bb, type: 3}
   droneTypeButton: {fileID: 2056007925}
 --- !u!1 &1884032204
 GameObject:
@@ -15557,7 +15557,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ec1d957aebf4cfdb819a5093719488e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  droneTypePrefab: {fileID: 3699542262866513863, guid: aeb7b7a3eec8113439c3874534184785, type: 3}
+  droneTypePrefab: {fileID: 981586584029786591, guid: 5e66e715a23c97d4290e39820d3187b5, type: 3}
   droneTypeButton: {fileID: 2056007925}
 --- !u!1 &1907694279
 GameObject:
@@ -15644,8 +15644,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
-  m_fontSizeBase: 14
+  m_fontSize: 12
+  m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -15856,8 +15856,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
-  m_fontSizeBase: 14
+  m_fontSize: 12
+  m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -16086,7 +16086,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: SMALL
+  m_text: BLACK HORNET NANO
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -16113,8 +16113,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
-  m_fontSizeBase: 14
+  m_fontSize: 12
+  m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

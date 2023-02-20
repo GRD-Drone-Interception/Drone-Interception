@@ -7,7 +7,7 @@ namespace Drones
     {
         public bool HasAttachment => _hasAttachment;
 
-        [Range(0.15f, 5f)] [SerializeField] private float pointSize = 0.25f;
+        [Range(0.15f, 2f)] [SerializeField] private float pointSize = 0.25f;
         [SerializeField] private DroneAttachment droneAttachment;
         private MeshRenderer _meshRenderer;
         private bool _isVisible;
