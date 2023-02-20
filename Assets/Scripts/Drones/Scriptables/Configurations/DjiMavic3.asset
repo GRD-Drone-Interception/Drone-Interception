@@ -15,7 +15,7 @@ MonoBehaviour:
   droneType: 0
   range: 60
   speed: 35
-  acceleration: 10
+  acceleration: 0
   weight: 75
   droneName: Dji Mavic 3
   dronePrefab: {fileID: 0}

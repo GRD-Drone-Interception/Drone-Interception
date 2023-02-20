@@ -15,7 +15,7 @@ MonoBehaviour:
   droneType: 0
   range: 5
   speed: 15
-  acceleration: 10
+  acceleration: 0
   weight: 100
   droneName: Matrice 300 RTK
   dronePrefab: {fileID: 0}

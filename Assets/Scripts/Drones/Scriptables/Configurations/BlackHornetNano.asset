@@ -15,7 +15,7 @@ MonoBehaviour:
   droneType: 0
   range: 30
   speed: 200
-  acceleration: 40
+  acceleration: 0
   weight: 5
   droneName: Black Hornet Nano
   dronePrefab: {fileID: 0}

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Drones.Component;
 using Drones.Decorators;
 using Drones.Factory;
@@ -12,6 +13,7 @@ namespace Drones
     /// </summary>
     public class Drone : MonoBehaviour
     {
+        public event Action<Drone> OnDroneDecorated;
         public IDrone DecorableDrone => _decorableDrone;
         public DroneConfigSO DroneConfigSo => droneConfigSo;
         public int NumOfAttachments => _numOfAttachments;
@@ -45,6 +47,7 @@ namespace Drones
             droneAttachment.transform.SetParent(attachmentPoint.transform);
             attachmentPoint.AddAttachment(droneAttachment);
             _numOfAttachments++;
+            OnDroneDecorated?.Invoke(this);
         }
 
         /// <summary>
@@ -55,6 +58,7 @@ namespace Drones
             _decorableDrone = DroneFactory.CreateDrone(droneConfigSo.droneType, droneConfigSo);
             attachmentPoints.ForEach(point => point.RemoveAttachment());
             _numOfAttachments = 0;
+            OnDroneDecorated?.Invoke(this);
         }
     }
 }

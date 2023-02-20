@@ -15,7 +15,7 @@ MonoBehaviour:
   droneType: 1
   range: 200
   speed: 125
-  acceleration: 50
+  acceleration: 0
   weight: 150
   droneName: Shahed 136
   dronePrefab: {fileID: 0}

@@ -15,7 +15,7 @@ MonoBehaviour:
   droneType: 1
   range: 300
   speed: 150
-  acceleration: 60
+  acceleration: 0
   weight: 200
   droneName: MQ9 Ripper
   dronePrefab: {fileID: 0}

@@ -1,4 +1,3 @@
-using System;
 using DroneWorkbench;
 using TMPro;
 using UnityEngine;
@@ -7,32 +6,50 @@ namespace Drones
 {
     public class DroneConfigInfoUi : MonoBehaviour
     {
-        [SerializeField] private TMP_Text droneClassText;
+        [SerializeField] private TMP_Text droneTypeText;
+        [SerializeField] private TMP_Text droneModelText;
         [SerializeField] private TMP_Text droneModsText;
         [SerializeField] private TMP_Text droneRangeText;
         [SerializeField] private TMP_Text droneSpeedText;
+        [SerializeField] private TMP_Text droneAccelerationText;
         [SerializeField] private TMP_Text droneWeightText;
-        [SerializeField] private Workbench _workbench;
+        [SerializeField] private Workbench workbench;
 
-        private void OnEnable() => _workbench.OnDroneSpawned += UpdateDroneInfoUi;
-        private void OnDisable() => _workbench.OnDroneSpawned -= UpdateDroneInfoUi;
+        private void OnEnable() => workbench.OnDroneBeingEditedChanged += SubscribeToNewDronesDecoratedEvents;
+
+        private void OnDisable() => workbench.OnDroneBeingEditedChanged -= SubscribeToNewDronesDecoratedEvents;
+
+        private void SubscribeToNewDronesDecoratedEvents(Drone drone)
+        {
+            UpdateDroneInfoUi(drone);
+            workbench.DroneBeingEdited.OnDroneDecorated += UpdateDroneInfoUi;
+        }
 
         private void UpdateDroneInfoUi(Drone drone)
         {
-            Debug.Log(drone);
-            droneClassText.text = $"DRONE CLASS: <color=white>{drone.DroneConfigSo.droneName}</color>";
+            if (drone == null)
+            {
+                ClearDroneInfoFromUI();
+                return;
+            }
+            
+            droneTypeText.text = $"DRONE TYPE: <color=white>{drone.DroneConfigSo.droneType}</color>";
+            droneModelText.text = $"DRONE MODEL: <color=white>{drone.DroneConfigSo.droneName}</color>";
             droneModsText.text = $"MODS: <color=white>{drone.NumOfAttachments}</color>";
             droneRangeText.text = $"RANGE: <color=white>{drone.DecorableDrone.Range}km</color>";
             droneSpeedText.text = $"SPEED: <color=white>{drone.DecorableDrone.Speed}mph</color>";
+            droneAccelerationText.text = $"ACCELERATION: <color=white>{drone.DecorableDrone.Acceleration}km/h in ?s</color>";
             droneWeightText.text = $"WEIGHT: <color=white>{drone.DecorableDrone.Weight}kg</color>";
         }
 
-        private void ResetDroneInfoUiToDefault()
+        private void ClearDroneInfoFromUI()
         {
-            droneClassText.text = "DRONE CLASS: <color=white>NONE</color>";
+            droneTypeText.text = "DRONE TYPE: <color=white>NONE</color>";
+            droneModelText.text = "DRONE MODEL: <color=white>NONE</color>";
             droneModsText.text = "MODS: <color=white>0</color>";
             droneRangeText.text = "RANGE: <color=white>0km</color>";
             droneSpeedText.text = "SPEED: <color=white>0mph</color>";
+            droneAccelerationText.text = "ACCELERATION: <color=white>km/h in ?s</color>";
             droneWeightText.text = "WEIGHT: <color=white>0kg</color>";
         }
     }

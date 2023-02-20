@@ -15,7 +15,7 @@ MonoBehaviour:
   droneType: 1
   range: 50
   speed: 40
-  acceleration: 20
+  acceleration: 0
   weight: 20
   droneName: Fixed Wing
   dronePrefab: {fileID: 0}

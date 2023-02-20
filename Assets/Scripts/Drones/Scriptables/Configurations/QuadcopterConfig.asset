@@ -15,7 +15,7 @@ MonoBehaviour:
   droneType: 0
   range: 75
   speed: 35
-  acceleration: 30
+  acceleration: 0
   weight: 30
   droneName: Quadcopter
   dronePrefab: {fileID: 0}

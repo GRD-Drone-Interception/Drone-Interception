@@ -15,7 +15,7 @@ MonoBehaviour:
   droneType: 1
   range: 120
   speed: 45
-  acceleration: 30
+  acceleration: 0
   weight: 85
   droneName: Bairaktar NW3
   dronePrefab: {fileID: 0}
