@@ -1,3 +1,4 @@
+using Drones;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -38,14 +39,22 @@ namespace DroneWorkbench
         private void Update()
         {
             if(_workbench.DroneBeingEdited == null) { return; }
-        
-            if (_rotateLeftIsPressed)
+
+            if (DroneLoadoutCameraMode.CurrentCameraMode == DroneLoadoutCameraMode.CameraMode.Edit)
             {
-                _workbench.DroneBeingEdited.transform.Rotate(new Vector3(0,-rotationSpeed * Time.deltaTime,0));
+                if (_rotateLeftIsPressed)
+                {
+                    _workbench.DroneBeingEdited.transform.Rotate(new Vector3(0, -rotationSpeed * Time.deltaTime, 0));
+                }
+
+                if (_rotateRightIsPressed)
+                {
+                    _workbench.DroneBeingEdited.transform.Rotate(new Vector3(0, rotationSpeed * Time.deltaTime, 0));
+                }
             }
-            if (_rotateRightIsPressed)
+            else
             {
-                _workbench.DroneBeingEdited.transform.Rotate(new Vector3(0,rotationSpeed * Time.deltaTime,0));
+                _workbench.DroneBeingEdited.transform.Rotate(new Vector3(0,25.0f * Time.deltaTime,0));
             }
         }
 

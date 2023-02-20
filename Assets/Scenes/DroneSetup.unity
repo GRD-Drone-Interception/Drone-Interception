@@ -464,7 +464,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: LARGE
+  m_text: SHAHED 136
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1671,7 +1671,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 7.5}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 65.25483, y: 65.11707}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &216247723
 MonoBehaviour:
@@ -1693,7 +1693,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c1882f0df9e75ac44b41ed0a0ccbb57a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cf8383724f3351d449f4452669d5950c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5759,9 +5759,9 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0, g: 0, b: 0, a: 0.8}
-    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.011764706}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.101960786}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 0.011764706}
-    m_SelectedColor: {r: 0.5411765, g: 0.7294118, b: 1, a: 0.019607844}
+    m_SelectedColor: {r: 0, g: 0.4392157, b: 0.81960785, a: 0.105882354}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0
@@ -5831,7 +5831,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ec1d957aebf4cfdb819a5093719488e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  droneTypePrefab: {fileID: 988927854013226046, guid: 2864f69bf793ae5428006c092bbebbc0, type: 3}
+  droneTypePrefab: {fileID: 3256152547102212621, guid: 47b1a6de1e4290547bbe9be4641d4d00, type: 3}
   droneTypeButton: {fileID: 1394791131}
 --- !u!1 &672534740
 GameObject:
@@ -6112,7 +6112,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 7.5}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 108.5, y: 22}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &719393205
 MonoBehaviour:
@@ -6134,7 +6134,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 76c5697052b647741b5aae260d40eb66, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fefc38b567d54f9438541e8139304ffa, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6441,7 +6441,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 7.5}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 114.62, y: 32.45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &738712393
 MonoBehaviour:
@@ -6463,7 +6463,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 76c5697052b647741b5aae260d40eb66, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 51c21a852df7dfe48bd6a6ff937eae8d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7570,7 +7570,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 7.5}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 87.912, y: 58.564}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &876052589
 MonoBehaviour:
@@ -7592,7 +7592,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 76c5697052b647741b5aae260d40eb66, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 43bd8ac4b7273c8468e4adbfabfd8f8f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8676,9 +8676,9 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0, g: 0, b: 0, a: 0.8}
-    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.011764706}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.101960786}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 0.011764706}
-    m_SelectedColor: {r: 0.5411765, g: 0.7294118, b: 1, a: 0.019607844}
+    m_SelectedColor: {r: 0, g: 0.4392157, b: 0.81960785, a: 0.105882354}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0
@@ -8748,7 +8748,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ec1d957aebf4cfdb819a5093719488e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  droneTypePrefab: {fileID: 2343901499129963974, guid: 8087ea97d6985364a9c33b15edaf888a, type: 3}
+  droneTypePrefab: {fileID: 320832999007351119, guid: 177d1449e4893de4c93244364f6023c1, type: 3}
   droneTypeButton: {fileID: 1394791131}
 --- !u!1 &965138127
 GameObject:
@@ -11873,7 +11873,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1388885017
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11961,9 +11961,9 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0, g: 0, b: 0, a: 0.8}
-    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.011764706}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.101960786}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 0.011764706}
-    m_SelectedColor: {r: 0.5411765, g: 0.7294118, b: 1, a: 0.019607844}
+    m_SelectedColor: {r: 0, g: 0.4392157, b: 0.81960785, a: 0.105882354}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0
@@ -13315,7 +13315,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   droneClassPrefabs:
-  - {fileID: 7353116139060210380, guid: bb6fe1f3925a556419efce6633ae33ca, type: 3}
+  - {fileID: 2029668205358169183, guid: 17bb3786a8f99c645ade96ae8c864a0c, type: 3}
   - {fileID: 1040653230026491075, guid: 87bd8d9b4272c764abfd26c8c16ffffa, type: 3}
   droneSpawnPosition: {fileID: 1833482727}
   resetDroneConfigButton: {fileID: 209568998}
@@ -13369,7 +13369,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 7.5}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 97.30909, y: 52.21818}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1592910851
 MonoBehaviour:
@@ -13391,7 +13391,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 76c5697052b647741b5aae260d40eb66, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 02d68852ee4da1340a3e6e6e4f8be80f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -13556,9 +13556,9 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0, g: 0, b: 0, a: 0.8}
-    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.011764706}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.101960786}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 0.011764706}
-    m_SelectedColor: {r: 0.5411765, g: 0.7294118, b: 1, a: 0.019607844}
+    m_SelectedColor: {r: 0, g: 0.4392157, b: 0.81960785, a: 0.105882354}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0
@@ -15192,9 +15192,9 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0, g: 0, b: 0, a: 0.8}
-    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.011764706}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.101960786}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 0.011764706}
-    m_SelectedColor: {r: 0.5411765, g: 0.7294118, b: 1, a: 0.019607844}
+    m_SelectedColor: {r: 0, g: 0.4392157, b: 0.81960785, a: 0.105882354}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0
@@ -15485,9 +15485,9 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0, g: 0, b: 0, a: 0.8}
-    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.011764706}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.101960786}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 0.011764706}
-    m_SelectedColor: {r: 0.5411765, g: 0.7294118, b: 1, a: 0.019607844}
+    m_SelectedColor: {r: 0, g: 0.4392157, b: 0.81960785, a: 0.105882354}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0
@@ -15617,7 +15617,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: MEDIUM
+  m_text: MQ9 RIPPER
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -15829,7 +15829,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: SMALL
+  m_text: BAIRAKTAR NW1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -17068,9 +17068,9 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0, g: 0, b: 0, a: 0.8}
-    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.011764706}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.101960786}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 0.011764706}
-    m_SelectedColor: {r: 0.5411765, g: 0.7294118, b: 1, a: 0.019607844}
+    m_SelectedColor: {r: 0, g: 0.4392157, b: 0.81960785, a: 0.105882354}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0
@@ -17622,9 +17622,9 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0, g: 0, b: 0, a: 0.8}
-    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.011764706}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0.101960786}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 0.011764706}
-    m_SelectedColor: {r: 0.5411765, g: 0.7294118, b: 1, a: 0.019607844}
+    m_SelectedColor: {r: 0, g: 0.4392157, b: 0.81960785, a: 0.105882354}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0
@@ -17694,7 +17694,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ec1d957aebf4cfdb819a5093719488e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  droneTypePrefab: {fileID: 7353116139060210380, guid: bb6fe1f3925a556419efce6633ae33ca, type: 3}
+  droneTypePrefab: {fileID: 2029668205358169183, guid: 17bb3786a8f99c645ade96ae8c864a0c, type: 3}
   droneTypeButton: {fileID: 1394791131}
 --- !u!1 &2125536554
 GameObject:
