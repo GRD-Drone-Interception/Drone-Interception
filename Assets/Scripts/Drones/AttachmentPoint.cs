@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Drones
 {
@@ -11,7 +10,7 @@ namespace Drones
         [SerializeField] private DroneAttachment droneAttachment;
         private MeshRenderer _meshRenderer;
         private bool _isVisible;
-        private bool _hasAttachment = false;
+        private bool _hasAttachment;
 
         private void Awake() => _meshRenderer = GetComponent<MeshRenderer>();
         private void Start() => _meshRenderer.enabled = false;

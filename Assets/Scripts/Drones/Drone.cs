@@ -45,6 +45,7 @@ namespace Drones
         {
             _decorableDrone = new DroneDecorator(_decorableDrone, droneAttachment.AttachmentSo);
             droneAttachment.transform.SetParent(attachmentPoint.transform);
+            droneAttachment.transform.position = attachmentPoint.transform.position; // new
             attachmentPoint.AddAttachment(droneAttachment);
             _numOfAttachments++;
             OnDroneDecorated?.Invoke(this);
@@ -59,6 +60,11 @@ namespace Drones
             attachmentPoints.ForEach(point => point.RemoveAttachment());
             _numOfAttachments = 0;
             OnDroneDecorated?.Invoke(this);
+        }
+
+        public List<AttachmentPoint> GetAttachmentPoints()
+        {
+            return attachmentPoints;
         }
     }
 }
