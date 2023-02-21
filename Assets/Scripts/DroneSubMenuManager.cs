@@ -14,7 +14,7 @@ public class DroneSubMenuManager : MonoBehaviour
     {
         foreach (var button in droneTypeButtons.Where(button => button != buttonSelected))
         {
-            button.HideSubMenu();
+            button.HideModelSubMenu();
         }
     }
 }

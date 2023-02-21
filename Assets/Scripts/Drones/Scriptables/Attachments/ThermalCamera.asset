@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 36e937aa35ae4681bb2516d4feee691f, type: 3}
-  m_Name: Net
+  m_Name: ThermalCamera
   m_EditorClassIdentifier: 
-  droneAttachmentType: 8
-  range: 1
-  speed: 1
-  acceleration: 1
-  weight: 10
-  attachmentName: Drone Net
-  attachmentPrefab: {fileID: 6071254045215579465, guid: f56f9b252e12dfc4f85cbf584e279d72, type: 3}
+  droneAttachmentType: 0
+  range: 0
+  speed: 0
+  acceleration: 0
+  weight: 0
+  attachmentName: Thermal Camera
+  attachmentPrefab: {fileID: 0}
   attachmentDescription: 

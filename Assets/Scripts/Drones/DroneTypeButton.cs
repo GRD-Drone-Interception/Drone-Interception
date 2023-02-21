@@ -8,20 +8,27 @@ namespace Drones
     {
         public event Action<DroneTypeButton> OnDroneTypeSelected;
         
-        [SerializeField] private GameObject droneTypeSubMenuContainer;
+        [SerializeField] private GameObject droneTypeModelSubMenuContainer;
         private Button _button; 
 
-        private void OnEnable() => _button.onClick.AddListener(ShowSubMenu);
-        private void OnDisable() => _button.onClick.RemoveListener(ShowSubMenu);
+        private void OnEnable() => _button.onClick.AddListener(ShowModelSubMenu);
+        private void OnDisable() => _button.onClick.RemoveListener(ShowModelSubMenu);
         private void Awake() => _button = GetComponent<Button>();
-        private void Start() => droneTypeSubMenuContainer.SetActive(false);
+        private void Start() => droneTypeModelSubMenuContainer.SetActive(false);
 
-        private void ShowSubMenu()
+        private void ShowModelSubMenu()
         {
-            droneTypeSubMenuContainer.SetActive(true);
+            // hide drone attachment slot amd component sub menu
+            foreach (var droneAttachmentSlot in FindObjectsOfType<DroneAttachmentSlot>())
+            {
+                droneAttachmentSlot.gameObject.SetActive(false);
+                droneAttachmentSlot.HideComponentSubMenu();
+            }
+            
+            droneTypeModelSubMenuContainer.SetActive(true);
             OnDroneTypeSelected?.Invoke(this);
         }
 
-        public void HideSubMenu() => droneTypeSubMenuContainer.SetActive(false);
+        public void HideModelSubMenu() => droneTypeModelSubMenuContainer.SetActive(false);
     }
 }

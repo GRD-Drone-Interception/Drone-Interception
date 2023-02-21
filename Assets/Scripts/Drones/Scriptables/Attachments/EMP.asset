@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36e937aa35ae4681bb2516d4feee691f, type: 3}
   m_Name: EMP
   m_EditorClassIdentifier: 
+  droneAttachmentType: 7
   range: 1
   speed: 1
   acceleration: 1

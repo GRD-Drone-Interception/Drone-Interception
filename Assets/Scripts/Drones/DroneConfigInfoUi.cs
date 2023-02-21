@@ -1,3 +1,4 @@
+using System;
 using DroneWorkbench;
 using TMPro;
 using UnityEngine;
@@ -13,16 +14,18 @@ namespace Drones
         [SerializeField] private TMP_Text droneSpeedText;
         [SerializeField] private TMP_Text droneAccelerationText;
         [SerializeField] private TMP_Text droneWeightText;
-        [SerializeField] private Workbench workbench;
+        private Workbench _workbench;
 
-        private void OnEnable() => workbench.OnDroneBeingEditedChanged += SubscribeToNewDronesDecoratedEvents;
+        private void Awake() => _workbench = FindObjectOfType<Workbench>();
 
-        private void OnDisable() => workbench.OnDroneBeingEditedChanged -= SubscribeToNewDronesDecoratedEvents;
+        private void OnEnable() => _workbench.OnDroneBeingEditedChanged += SubscribeToNewDronesDecoratedEvents;
+
+        private void OnDisable() => _workbench.OnDroneBeingEditedChanged -= SubscribeToNewDronesDecoratedEvents;
 
         private void SubscribeToNewDronesDecoratedEvents(Drone drone)
         {
             UpdateDroneInfoUi(drone);
-            workbench.DroneBeingEdited.OnDroneDecorated += UpdateDroneInfoUi;
+            _workbench.DroneBeingEdited.OnDroneDecorated += UpdateDroneInfoUi;
         }
 
         private void UpdateDroneInfoUi(Drone drone)

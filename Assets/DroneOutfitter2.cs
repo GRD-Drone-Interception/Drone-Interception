@@ -1,11 +1,12 @@
 using Drones;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class DroneOutfitter2 : MonoBehaviour
 {
     [SerializeField] private GameObject componentPrefab;
-    [SerializeField] private DroneComponentButton droneComponentButton;
+    [FormerlySerializedAs("droneComponentButton")] [SerializeField] private DroneAttachmentSlot droneAttachmentSlot;
     private Button _button; 
 
     private void OnEnable() => _button.onClick.AddListener(DecorateAttachmentPoint);
@@ -14,9 +15,21 @@ public class DroneOutfitter2 : MonoBehaviour
 
     private void DecorateAttachmentPoint()
     {
-        DroneAttachment droneAttachment = Instantiate(componentPrefab).GetComponent<DroneAttachment>();
-        AttachmentPoint attachmentPoint = droneComponentButton.GetAttachmentPoint();
-        droneComponentButton.GetDrone().Decorate(droneAttachment, attachmentPoint);
-        //droneComponentButton.GetAttachmentPoint().AddAttachment();
+        if (!droneAttachmentSlot.GetDrone().GetAttachmentPoints()[0].HasAttachment) // or if attachment is a different component
+        {
+            DroneAttachment droneAttachment = Instantiate(componentPrefab).GetComponent<DroneAttachment>();
+            AttachmentPoint attachmentPoint = droneAttachmentSlot.GetAttachmentPoint();
+            droneAttachmentSlot.GetDrone().Decorate(droneAttachment, attachmentPoint);
+            
+            ColorBlock colorBlock = new ColorBlock();
+            colorBlock.normalColor = new Color(1, 0, 0, 0.02f);
+            colorBlock.highlightedColor = GetComponent<Button>().colors.highlightedColor;
+            colorBlock.pressedColor = GetComponent<Button>().colors.pressedColor;
+            colorBlock.selectedColor = new Color(1, 0, 0, 0.02f);
+            colorBlock.disabledColor = GetComponent<Button>().colors.disabledColor;
+            colorBlock.colorMultiplier = GetComponent<Button>().colors.colorMultiplier;
+            colorBlock.fadeDuration = GetComponent<Button>().colors.fadeDuration;
+            GetComponent<Button>().colors = colorBlock;
+        }
     }
 }

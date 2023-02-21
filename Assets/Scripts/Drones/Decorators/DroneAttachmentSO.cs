@@ -10,6 +10,7 @@ namespace Drones.Decorators
     [CreateAssetMenu(fileName = "NewDroneAttachment", menuName = "Drone/Attachment", order = 1)]
     public class DroneAttachmentSO : ScriptableObject, IDrone
     {
+        [SerializeField] private DroneAttachmentType droneAttachmentType;
         [SerializeField] private float range;
         [SerializeField] private float speed;
         [SerializeField] private float acceleration;
@@ -23,5 +24,18 @@ namespace Drones.Decorators
         public float Speed => speed;
         public float Acceleration => acceleration;
         public float Weight => weight;
+    }
+
+    public enum DroneAttachmentType
+    {
+        Camera,
+        Battery,
+        Motor,
+        Propeller,
+        FlightController, // determine how the drone behaves
+        Radar, // scanners, GPS
+        Sensor, 
+        Payload, // EMP and explosive charges?
+        Weapon // turrets and missile launchers?
     }
 }
