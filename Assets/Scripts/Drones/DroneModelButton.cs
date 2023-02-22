@@ -1,4 +1,5 @@
-﻿using DroneWorkbench;
+﻿using System.Collections.Generic;
+using DroneWorkbench;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +9,7 @@ namespace Drones
     {
         [SerializeField] private GameObject droneTypePrefab;
         [SerializeField] private DroneTypeButton droneTypeButton;
-        [SerializeField] private DroneAttachmentSlot droneComponentSlot;
+        [SerializeField] private List<DroneAttachmentSlot> droneComponentSlots;
         private Button _modelButton;
         private Workbench _workbench;
 
@@ -23,17 +24,17 @@ namespace Drones
 
         private void Start()
         {
-            droneComponentSlot.gameObject.SetActive(false);
-            droneComponentSlot.HideComponentSubMenu();
+            droneComponentSlots.ForEach(slot => slot.gameObject.SetActive(false));
+            droneComponentSlots.ForEach(slot => slot.HideComponentSubMenu());
         }
 
         private void SpawnDroneModel()
         {
             droneTypeButton.HideModelSubMenu();
             _workbench.SpawnDronePrefab(droneTypePrefab);
-            droneComponentSlot.gameObject.SetActive(true);
-            droneComponentSlot.BindToDrone(_workbench.DroneBeingEdited);
-            droneComponentSlot.BindToAttachmentPoint(_workbench.DroneBeingEdited.GetAttachmentPoints()[0]);
+            //droneComponentSlots.ForEach(slot => slot.gameObject.SetActive(true));
+            droneComponentSlots.ForEach(slot => slot.BindToDrone(_workbench.DroneBeingEdited));
+            droneComponentSlots.ForEach(slot => slot.BindToAttachmentPoint(_workbench.DroneBeingEdited.GetAttachmentPoints()[0]));
         }
     }
 }

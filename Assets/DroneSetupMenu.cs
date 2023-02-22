@@ -18,7 +18,7 @@ public class DroneSetupMenu : MonoBehaviour
     private void Start()
     {
         _menuButton = _subMenuButtons.FirstOrDefault(button => button.GetMenuState() == DroneSetupMenuStates.Lobby);
-        _menuButton.SetButtonFontColour(new Color(0.54f, 0.73f, 1));
+        _menuButton.SetButtonFontColour(new Color(0, 1, 0.67f));
         _menuButton.SetButtonFontStyle(FontStyles.Underline | FontStyles.Bold);
 
         var menuStates = Enum.GetValues(typeof(DroneSetupMenuStates));

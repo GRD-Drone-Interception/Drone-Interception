@@ -17,6 +17,9 @@ namespace Drones
     
         [SerializeField] private Button editButton;
         [SerializeField] private Button displayButton;
+        private static Vector3 _cameraDisplayStartRotationEuler;
+
+        private void Start() => _cameraDisplayStartRotationEuler = Camera.main.transform.rotation.eulerAngles;
 
         private void OnEnable()
         {
@@ -39,6 +42,7 @@ namespace Drones
         private static void SetCameraModeToDisplay()
         {
             CurrentCameraMode = CameraMode.Display;
+            Camera.main.transform.eulerAngles = _cameraDisplayStartRotationEuler;
             OnModeChange?.Invoke(CurrentCameraMode);
         }
     }

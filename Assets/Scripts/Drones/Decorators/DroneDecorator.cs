@@ -21,6 +21,7 @@ namespace Drones.Decorators
             _attachmentSo = droneAttachmentSo;
         }
 
+        public float Cost => _decoratedDrone.Cost + _attachmentSo.Cost;
         public float Range => _decoratedDrone.Range + _attachmentSo.Range;
         public float Speed => _decoratedDrone.Speed + _attachmentSo.Speed;
         public float Acceleration => _decoratedDrone.Acceleration + _attachmentSo.Acceleration;

@@ -13,6 +13,7 @@ namespace Drones.Decorators
     {
         public DroneType droneType;
         
+        [SerializeField] private float cost;
         [SerializeField] private float range;
         [SerializeField] private float speed;
         [SerializeField] private float acceleration;
@@ -22,6 +23,7 @@ namespace Drones.Decorators
         public GameObject dronePrefab;
         public string droneDescription;
 
+        public float Cost => cost;
         public float Range => range;
         public float Speed => speed;
         public float Acceleration => acceleration;

@@ -13,7 +13,7 @@ public class DroneSetupMenuButton : MonoBehaviour, IPointerEnterHandler, IPointe
 
     private void Awake() => _text = GetComponent<TMP_Text>();
 
-    public void OnPointerEnter(PointerEventData eventData) => SetButtonFontColour(new Color(0.54f, 0.73f, 1));
+    public void OnPointerEnter(PointerEventData eventData) => SetButtonFontColour(new Color(0, 1, 0.67f));
 
     public void OnPointerExit(PointerEventData eventData)
     {

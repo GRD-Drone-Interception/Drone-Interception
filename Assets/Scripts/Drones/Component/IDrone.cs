@@ -7,6 +7,7 @@ namespace Drones.Component
     /// </summary>
     public interface IDrone
     {
+        public float Cost { get; }
         public float Range { get; }
         public float Speed { get; }
         public float Acceleration { get; }

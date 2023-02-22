@@ -18,15 +18,23 @@ namespace Drones
 
         private void ShowModelSubMenu()
         {
-            // hide drone attachment slot amd component sub menu
+            /*// hide drone attachment slot and component sub-menu
             foreach (var droneAttachmentSlot in FindObjectsOfType<DroneAttachmentSlot>())
             {
                 droneAttachmentSlot.gameObject.SetActive(false);
                 droneAttachmentSlot.HideComponentSubMenu();
-            }
+            }*/
             
-            droneTypeModelSubMenuContainer.SetActive(true);
-            OnDroneTypeSelected?.Invoke(this);
+            // If the drone type sub-menu isn't already displayed, display it
+            if (!droneTypeModelSubMenuContainer.activeSelf)
+            {
+                droneTypeModelSubMenuContainer.SetActive(true);
+                OnDroneTypeSelected?.Invoke(this);
+            }
+            else
+            {
+                HideModelSubMenu();
+            }
         }
 
         public void HideModelSubMenu() => droneTypeModelSubMenuContainer.SetActive(false);

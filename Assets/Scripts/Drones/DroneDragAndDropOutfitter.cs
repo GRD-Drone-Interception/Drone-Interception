@@ -7,7 +7,7 @@ namespace Drones
     /// <summary>
     /// Used to spawn, click, and drag attachment components from drone attachment buttons
     /// </summary>
-    public class DroneOutfitter : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
+    public class DroneDragAndDropOutfitter : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
     {
         [SerializeField] private GameObject prefabToSpawn;
         private GameObject _objectInHand;

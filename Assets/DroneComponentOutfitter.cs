@@ -1,12 +1,11 @@
 using Drones;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class DroneOutfitter2 : MonoBehaviour
+public class DroneComponentOutfitter : MonoBehaviour
 {
     [SerializeField] private GameObject componentPrefab;
-    [FormerlySerializedAs("droneComponentButton")] [SerializeField] private DroneAttachmentSlot droneAttachmentSlot;
+    [SerializeField] private DroneAttachmentSlot droneAttachmentSlot;
     private Button _button; 
 
     private void OnEnable() => _button.onClick.AddListener(DecorateAttachmentPoint);
@@ -21,7 +20,7 @@ public class DroneOutfitter2 : MonoBehaviour
             AttachmentPoint attachmentPoint = droneAttachmentSlot.GetAttachmentPoint();
             droneAttachmentSlot.GetDrone().Decorate(droneAttachment, attachmentPoint);
             
-            ColorBlock colorBlock = new ColorBlock();
+            /*ColorBlock colorBlock = new ColorBlock();
             colorBlock.normalColor = new Color(1, 0, 0, 0.02f);
             colorBlock.highlightedColor = GetComponent<Button>().colors.highlightedColor;
             colorBlock.pressedColor = GetComponent<Button>().colors.pressedColor;
@@ -29,7 +28,7 @@ public class DroneOutfitter2 : MonoBehaviour
             colorBlock.disabledColor = GetComponent<Button>().colors.disabledColor;
             colorBlock.colorMultiplier = GetComponent<Button>().colors.colorMultiplier;
             colorBlock.fadeDuration = GetComponent<Button>().colors.fadeDuration;
-            GetComponent<Button>().colors = colorBlock;
+            GetComponent<Button>().colors = colorBlock;*/
         }
     }
 }

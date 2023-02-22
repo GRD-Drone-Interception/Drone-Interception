@@ -11,6 +11,7 @@ namespace Drones.Decorators
     public class DroneAttachmentSO : ScriptableObject, IDrone
     {
         [SerializeField] private DroneAttachmentType droneAttachmentType;
+        [SerializeField] private float cost;
         [SerializeField] private float range;
         [SerializeField] private float speed;
         [SerializeField] private float acceleration;
@@ -20,6 +21,7 @@ namespace Drones.Decorators
         public GameObject attachmentPrefab;
         public string attachmentDescription;
 
+        public float Cost => cost;
         public float Range => range;
         public float Speed => speed;
         public float Acceleration => acceleration;

@@ -12,6 +12,7 @@ namespace Drones.Concrete
             _droneConfigSo = droneConfigSo;
         }
 
+        public float Cost => _droneConfigSo.Cost;
         public float Range => _droneConfigSo.Range;
         public float Speed => _droneConfigSo.Speed;
         public float Acceleration => _droneConfigSo.Acceleration;
