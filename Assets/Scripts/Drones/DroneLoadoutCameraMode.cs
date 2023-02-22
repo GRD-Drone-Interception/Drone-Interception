@@ -17,9 +17,17 @@ namespace Drones
     
         [SerializeField] private Button editButton;
         [SerializeField] private Button displayButton;
+        private static Camera _focusCamera;
         private static Vector3 _cameraDisplayStartRotationEuler;
+        private static Vector3 _focusCameraStartRotationEuler;
 
-        private void Start() => _cameraDisplayStartRotationEuler = Camera.main.transform.rotation.eulerAngles;
+        private void Awake() => _focusCamera = GameObject.Find("FocusCamera").GetComponent<Camera>(); // TODO: Clean this
+
+        private void Start()
+        {
+            _cameraDisplayStartRotationEuler = Camera.main.transform.rotation.eulerAngles;
+            _focusCameraStartRotationEuler = _focusCamera.transform.rotation.eulerAngles;
+        }
 
         private void OnEnable()
         {
@@ -43,6 +51,7 @@ namespace Drones
         {
             CurrentCameraMode = CameraMode.Display;
             Camera.main.transform.eulerAngles = _cameraDisplayStartRotationEuler;
+            _focusCamera.transform.eulerAngles = _focusCameraStartRotationEuler;
             OnModeChange?.Invoke(CurrentCameraMode);
         }
     }

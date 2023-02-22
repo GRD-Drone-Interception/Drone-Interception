@@ -76,9 +76,20 @@ namespace DroneWorkbench
 
             var droneGameObject = Instantiate(prefab);
             droneGameObject.transform.position = droneSpawnPosition.position;
-            
+            droneGameObject.layer = LayerMask.NameToLayer("Focus");
+            SetLayersRecursively(droneGameObject.transform);
             var drone = droneGameObject.GetComponent<Drone>();
             AddToBench(drone);
+        }
+        
+        void SetLayersRecursively(Transform droneObject)
+        {
+            foreach (Transform child in droneObject)
+            {
+                child.gameObject.layer = LayerMask.NameToLayer("Focus"); 
+                // recursively call SetLayersRecursively for each child
+                SetLayersRecursively(child);
+            }
         }
     }
 }

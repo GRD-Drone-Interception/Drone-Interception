@@ -7,7 +7,8 @@ public class CameraLerpTransition : MonoBehaviour
     [SerializeField] private Button editButton;
     [SerializeField] private Button displayButton;
     [Space]
-    [SerializeField] private Camera displayCamera;
+    [SerializeField] private Camera mainCamera;
+    [SerializeField] private Camera focusCamera;
     [Space]
     [SerializeField] private Transform editCameraPosition;
     [SerializeField] private Transform displayCameraPosition;
@@ -39,9 +40,21 @@ public class CameraLerpTransition : MonoBehaviour
         button1.gameObject.SetActive(false);
         button2.gameObject.SetActive(true);
         button2.interactable = false;
-        while (Vector3.Distance(displayCamera.transform.position,endPosition) > speed * Time.deltaTime)
+        
+        if (mainCamera.gameObject.activeSelf)
         {
-            displayCamera.transform.position = Vector3.Lerp(displayCamera.transform.position, endPosition, speed * Time.deltaTime);
+            mainCamera.gameObject.SetActive(false);
+            focusCamera.gameObject.SetActive(true);
+        }
+        else
+        {
+            mainCamera.gameObject.SetActive(true);
+            focusCamera.gameObject.SetActive(false);
+        }
+        while (Vector3.Distance(focusCamera.transform.position,endPosition) > speed * Time.deltaTime)
+        {
+            mainCamera.transform.position = Vector3.Lerp(mainCamera.transform.position, endPosition, speed * Time.deltaTime);
+            focusCamera.transform.position = Vector3.Lerp(focusCamera.transform.position, endPosition, speed * Time.deltaTime);
             yield return 0;
         }
         button2.interactable = true;
