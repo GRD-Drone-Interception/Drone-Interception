@@ -1,4 +1,4 @@
-﻿using DroneSetup;
+﻿using DroneLoadout;
 using UnityEngine;
 
 public enum PlayerTeam 
