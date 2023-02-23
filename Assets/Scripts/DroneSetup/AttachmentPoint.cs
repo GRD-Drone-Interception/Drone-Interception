@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using DroneSetup.Decorators;
+using UnityEngine;
 
 namespace DroneSetup
 {
@@ -8,6 +9,7 @@ namespace DroneSetup
 
         [Range(0.15f, 2f)] [SerializeField] private float pointSize = 0.25f;
         [SerializeField] private DroneAttachment droneAttachment;
+        [SerializeField] private DroneAttachmentType droneAttachmentType;
         private MeshRenderer _meshRenderer;
         private bool _isVisible;
         private bool _hasAttachment;
@@ -55,5 +57,7 @@ namespace DroneSetup
         public void SetVisibility(bool visibility) => _isVisible = visibility;
 
         public bool IsVisible() => _isVisible;
+        
+        public DroneAttachmentType GetAttachmentType() => droneAttachmentType;
     }
 }

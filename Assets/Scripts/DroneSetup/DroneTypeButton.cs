@@ -22,13 +22,6 @@ namespace DroneSetup
 
         private void ShowModelSubMenu()
         {
-            /*// hide drone attachment slot and component sub-menu
-            foreach (var droneAttachmentSlot in FindObjectsOfType<DroneAttachmentSlot>())
-            {
-                droneAttachmentSlot.gameObject.SetActive(false);
-                droneAttachmentSlot.HideComponentSubMenu();
-            }*/
-            
             // If the drone type sub-menu isn't already displayed, display it
             if (!droneTypeModelSubMenuContainer.activeSelf)
             {

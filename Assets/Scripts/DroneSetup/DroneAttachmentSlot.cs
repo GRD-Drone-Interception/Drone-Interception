@@ -12,7 +12,7 @@ namespace DroneSetup
     {
         public event Action<DroneAttachmentSlot> OnAttachmentSlotSelected;
     
-        [SerializeField] private GameObject attachmentSlotComponentsContainer;
+        [SerializeField] private GameObject componentSubMenuContainer;
         private AttachmentPoint _attachmentPoint;
         private Drone _drone;
         private Button _button;
@@ -20,7 +20,7 @@ namespace DroneSetup
         private void OnEnable() => _button.onClick.AddListener(OnDroneAttachmentSlotSelected);
         private void OnDisable() => _button.onClick.RemoveListener(OnDroneAttachmentSlotSelected);
         private void Awake() => _button = GetComponent<Button>();
-        private void Start() => attachmentSlotComponentsContainer.SetActive(false);
+        private void Start() => componentSubMenuContainer.SetActive(false);
 
         private void Update()
         {
@@ -41,9 +41,9 @@ namespace DroneSetup
         private void OnDroneAttachmentSlotSelected()
         {
             // If the component sub-menu isn't already displayed, display it
-            if (!attachmentSlotComponentsContainer.activeSelf)
+            if (!componentSubMenuContainer.activeSelf)
             {
-                attachmentSlotComponentsContainer.SetActive(true);
+                componentSubMenuContainer.SetActive(true);
                 _attachmentPoint.SetVisibility(true);
                 OnAttachmentSlotSelected?.Invoke(this);
             }
@@ -54,7 +54,7 @@ namespace DroneSetup
         }
         public void HideComponentSubMenu()
         {
-            attachmentSlotComponentsContainer.SetActive(false);
+            componentSubMenuContainer.SetActive(false);
             if (_attachmentPoint != null)
             {
                 _attachmentPoint.SetVisibility(false);

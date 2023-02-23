@@ -112,6 +112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointSize: 2
   droneAttachment: {fileID: 0}
+  droneAttachmentType: 7
 --- !u!1 &610414922
 GameObject:
   m_ObjectHideFlags: 0
@@ -224,6 +225,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointSize: 2
   droneAttachment: {fileID: 0}
+  droneAttachmentType: 5
 --- !u!1 &1475547377
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,6 +338,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointSize: 2
   droneAttachment: {fileID: 0}
+  droneAttachmentType: 5
 --- !u!1 &1850890192
 GameObject:
   m_ObjectHideFlags: 0
@@ -448,6 +451,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointSize: 2
   droneAttachment: {fileID: 0}
+  droneAttachmentType: 7
 --- !u!1 &11403940221483201
 GameObject:
   m_ObjectHideFlags: 0
@@ -12513,6 +12517,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointSize: 2
   droneAttachment: {fileID: 0}
+  droneAttachmentType: 5
 --- !u!1 &6180662408505489752
 GameObject:
   m_ObjectHideFlags: 0

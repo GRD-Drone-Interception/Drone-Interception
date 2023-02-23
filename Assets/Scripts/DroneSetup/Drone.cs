@@ -43,7 +43,7 @@ namespace DroneSetup
         /// <param name="attachmentPoint">The attachment point to which an attachment should be mounted to.</param>
         public void Decorate(DroneAttachment droneAttachment, AttachmentPoint attachmentPoint)
         {
-            _decorableDrone = new DroneDecorator(_decorableDrone, droneAttachment.AttachmentSo);
+            _decorableDrone = new DroneDecorator(_decorableDrone, droneAttachment.Data);
             droneAttachment.transform.SetParent(attachmentPoint.transform);
             droneAttachment.transform.position = attachmentPoint.transform.position; // new
             droneAttachment.gameObject.layer = LayerMask.NameToLayer("Focus");

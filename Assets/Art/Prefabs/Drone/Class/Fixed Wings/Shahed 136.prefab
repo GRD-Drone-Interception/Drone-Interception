@@ -276,7 +276,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3256152547102212621}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -11.029685, y: 4.7610207, z: 0.19058776}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -735,6 +735,10 @@ PrefabInstance:
       propertyPath: pointSize
       value: 0.15
       objectReference: {fileID: 0}
+    - target: {fileID: 1029272526975211107, guid: 678a2c2c2887fe3448c53a0eb65157ea, type: 3}
+      propertyPath: droneAttachmentType
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1029272526975211128, guid: 678a2c2c2887fe3448c53a0eb65157ea, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -826,6 +830,10 @@ PrefabInstance:
       propertyPath: pointSize
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 1029272526975211107, guid: 678a2c2c2887fe3448c53a0eb65157ea, type: 3}
+      propertyPath: droneAttachmentType
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1029272526975211128, guid: 678a2c2c2887fe3448c53a0eb65157ea, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -913,6 +921,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 2773089073864284343}
     m_Modifications:
+    - target: {fileID: 1029272526975211107, guid: 678a2c2c2887fe3448c53a0eb65157ea, type: 3}
+      propertyPath: droneAttachmentType
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 1029272526975211128, guid: 678a2c2c2887fe3448c53a0eb65157ea, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -1003,6 +1015,10 @@ PrefabInstance:
     - target: {fileID: 1029272526975211107, guid: 678a2c2c2887fe3448c53a0eb65157ea, type: 3}
       propertyPath: pointSize
       value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1029272526975211107, guid: 678a2c2c2887fe3448c53a0eb65157ea, type: 3}
+      propertyPath: droneAttachmentType
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1029272526975211128, guid: 678a2c2c2887fe3448c53a0eb65157ea, type: 3}
       propertyPath: m_RootOrder

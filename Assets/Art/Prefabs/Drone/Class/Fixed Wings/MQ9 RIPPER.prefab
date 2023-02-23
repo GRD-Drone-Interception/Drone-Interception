@@ -9944,6 +9944,10 @@ PrefabInstance:
       propertyPath: pointSize
       value: 0.15
       objectReference: {fileID: 0}
+    - target: {fileID: 1029272526975211107, guid: 678a2c2c2887fe3448c53a0eb65157ea, type: 3}
+      propertyPath: droneAttachmentType
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 1029272526975211128, guid: 678a2c2c2887fe3448c53a0eb65157ea, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -10034,6 +10038,10 @@ PrefabInstance:
     - target: {fileID: 1029272526975211107, guid: 678a2c2c2887fe3448c53a0eb65157ea, type: 3}
       propertyPath: pointSize
       value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1029272526975211107, guid: 678a2c2c2887fe3448c53a0eb65157ea, type: 3}
+      propertyPath: droneAttachmentType
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1029272526975211128, guid: 678a2c2c2887fe3448c53a0eb65157ea, type: 3}
       propertyPath: m_RootOrder
@@ -10126,6 +10134,10 @@ PrefabInstance:
       propertyPath: pointSize
       value: 0.15
       objectReference: {fileID: 0}
+    - target: {fileID: 1029272526975211107, guid: 678a2c2c2887fe3448c53a0eb65157ea, type: 3}
+      propertyPath: droneAttachmentType
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1029272526975211128, guid: 678a2c2c2887fe3448c53a0eb65157ea, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -10216,6 +10228,10 @@ PrefabInstance:
     - target: {fileID: 1029272526975211107, guid: 678a2c2c2887fe3448c53a0eb65157ea, type: 3}
       propertyPath: pointSize
       value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1029272526975211107, guid: 678a2c2c2887fe3448c53a0eb65157ea, type: 3}
+      propertyPath: droneAttachmentType
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1029272526975211128, guid: 678a2c2c2887fe3448c53a0eb65157ea, type: 3}
       propertyPath: m_RootOrder
@@ -10308,6 +10324,10 @@ PrefabInstance:
       propertyPath: pointSize
       value: 0.15
       objectReference: {fileID: 0}
+    - target: {fileID: 1029272526975211107, guid: 678a2c2c2887fe3448c53a0eb65157ea, type: 3}
+      propertyPath: droneAttachmentType
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1029272526975211128, guid: 678a2c2c2887fe3448c53a0eb65157ea, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -10398,6 +10418,10 @@ PrefabInstance:
     - target: {fileID: 1029272526975211107, guid: 678a2c2c2887fe3448c53a0eb65157ea, type: 3}
       propertyPath: pointSize
       value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1029272526975211107, guid: 678a2c2c2887fe3448c53a0eb65157ea, type: 3}
+      propertyPath: droneAttachmentType
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1029272526975211128, guid: 678a2c2c2887fe3448c53a0eb65157ea, type: 3}
       propertyPath: m_RootOrder

@@ -1,5 +1,6 @@
 using DroneSetup.Decorators;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace DroneSetup
 {
@@ -8,7 +9,7 @@ namespace DroneSetup
     /// </summary>
     public class DroneAttachment : MonoBehaviour
     {
-        public DroneAttachmentSO AttachmentSo => droneAttachmentSo;
-        [SerializeField] private DroneAttachmentSO droneAttachmentSo;
+        public DroneAttachmentSO Data => droneData;
+        [FormerlySerializedAs("droneAttachmentSo")] [SerializeField] private DroneAttachmentSO droneData;
     }
 }

@@ -17,6 +17,7 @@ namespace DroneSetup.Decorators
         [SerializeField] private float acceleration;
         [SerializeField] private float weight;
 
+        public DroneAttachmentType DroneAttachmentType => droneAttachmentType;
         public string attachmentName;
         public GameObject attachmentPrefab;
         public string attachmentDescription;
