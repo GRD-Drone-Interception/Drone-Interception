@@ -9,7 +9,7 @@ namespace DroneLoadout.Decorators
     /// extended with decorators 
     /// </summary>
     [CreateAssetMenu(fileName = "NewDroneConfig", menuName = "Drone/Config", order = 1)]
-    public class DroneConfigSO : ScriptableObject, IDrone
+    public class DroneConfigData : ScriptableObject, IDrone
     {
         public DroneType droneType;
         

@@ -10,19 +10,19 @@ namespace DroneLoadout.Factory
         /// Creates a drone of a given type and configuration
         /// </summary>
         /// <param name="droneType">The concrete drone class i.e. Quadcopter</param>
-        /// <param name="droneConfigSo">The default drone configuration properties</param>
+        /// <param name="droneConfigData">The default drone configuration properties</param>
         /// <returns></returns>
-        public static IDrone CreateDrone(DroneType droneType, DroneConfigSO droneConfigSo)
+        public static IDrone CreateDrone(DroneType droneType, DroneConfigData droneConfigData)
         {
             IDrone drone = null;
 
             switch (droneType)
             {
                 case DroneType.Quadcopter:
-                    drone = new QuadcopterDrone(droneConfigSo);
+                    drone = new QuadcopterDrone(droneConfigData);
                     break;
                 case DroneType.FixedWing:
-                    drone = new FixedWingDrone(droneConfigSo);
+                    drone = new FixedWingDrone(droneConfigData);
                     break;
             }
             

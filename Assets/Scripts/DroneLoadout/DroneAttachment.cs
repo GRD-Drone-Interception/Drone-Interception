@@ -9,7 +9,7 @@ namespace DroneLoadout
     /// </summary>
     public class DroneAttachment : MonoBehaviour
     {
-        public DroneAttachmentSO Data => droneData;
-        [FormerlySerializedAs("droneAttachmentSo")] [SerializeField] private DroneAttachmentSO droneData;
+        public DroneAttachmentData Data => droneData;
+        [FormerlySerializedAs("droneAttachmentSo")] [SerializeField] private DroneAttachmentData droneData;
     }
 }

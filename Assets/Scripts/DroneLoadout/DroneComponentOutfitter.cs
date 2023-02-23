@@ -4,7 +4,7 @@ using UnityEngine.UI;
 namespace DroneLoadout
 {
     /// <summary>
-    /// Responsible for decorating an attachment point with a drone attachment.
+    /// Responsible for decorating an attachment point with a drone attachment through a button.
     /// </summary>
     public class DroneComponentOutfitter : MonoBehaviour
     {
@@ -15,19 +15,23 @@ namespace DroneLoadout
         private void OnEnable() => _button.onClick.AddListener(DecorateAttachmentPoint);
         private void OnDisable() => _button.onClick.RemoveListener(DecorateAttachmentPoint);
         private void Awake() => _button = GetComponent<Button>();
-        
-        /*private void Start()
-        {
-            pooledDroneAttachment = Instantiate(componentPrefab).GetComponent<DroneAttachment>();
-        }*/
 
-        private void DecorateAttachmentPoint()
+        private void DecorateAttachmentPoint() // TODO: Clean this
         {
-            DroneAttachment droneAttachment = Instantiate(componentPrefab).GetComponent<DroneAttachment>();
-            AttachmentPoint attachmentPoint = droneAttachmentSlot.GetAttachmentPoint();
-            
-            // TODO: Clean this
-            // If attachment point empty, decorate it. Else, destroy the newly spawned component.
+            if (componentPrefab == null)
+            {
+                if (droneAttachmentSlot.GetAttachmentPoint().HasAttachment)
+                {
+                    var currentAttachment = droneAttachmentSlot.GetAttachmentPoint().GetDroneAttachment();
+                    var currentAttachmentPoint = droneAttachmentSlot.GetAttachmentPoint();
+                    droneAttachmentSlot.GetDrone().RemoveAttachment(currentAttachment, currentAttachmentPoint);
+                }
+                return;
+            }
+
+            // If attachment point is empty, decorate it. Else, destroy the newly spawned component. 
+            var droneAttachment = Instantiate(componentPrefab).GetComponent<DroneAttachment>();
+            var attachmentPoint = droneAttachmentSlot.GetAttachmentPoint();
             if (!droneAttachmentSlot.GetAttachmentPoint().HasAttachment)
             {
                 droneAttachmentSlot.GetDrone().Decorate(droneAttachment, attachmentPoint);

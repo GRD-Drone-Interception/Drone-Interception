@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Radar
   m_EditorClassIdentifier: 
   droneAttachmentType: 5
-  cost: 0
-  range: 0
+  cost: 250
+  range: 1250
   speed: 0
   acceleration: 0
-  weight: 0
+  weight: 100
   attachmentName: Radar
   attachmentPrefab: {fileID: 0}
   attachmentDescription: 

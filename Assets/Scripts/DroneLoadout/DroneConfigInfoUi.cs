@@ -35,9 +35,9 @@ namespace DroneLoadout
                 return;
             }
             
-            droneTypeText.text = $"DRONE TYPE: <color=white>{drone.DroneConfigSo.droneType}</color>";
-            droneModelText.text = $"DRONE MODEL: <color=white>{drone.DroneConfigSo.droneName}</color>";
-            droneModsText.text = $"MODS: <color=white>{drone.NumOfAttachments}</color>";
+            droneTypeText.text = $"DRONE TYPE: <color=white>{drone.DroneConfigData.droneType}</color>";
+            droneModelText.text = $"DRONE MODEL: <color=white>{drone.DroneConfigData.droneName}</color>";
+            droneModsText.text = $"MODS: <color=white>{drone.NumOfMountedAttachments}</color>";
             droneRangeText.text = $"RANGE: <color=white>{drone.DecorableDrone.Range}km</color>";
             droneSpeedText.text = $"SPEED: <color=white>{drone.DecorableDrone.Speed}mph</color>";
             droneAccelerationText.text = $"ACCELERATION: <color=white>{drone.DecorableDrone.Acceleration}km/h in ?s</color>";

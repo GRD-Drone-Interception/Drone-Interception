@@ -8,7 +8,7 @@ namespace DroneLoadout.Decorators
     /// inspector. 
     /// </summary>
     [CreateAssetMenu(fileName = "NewDroneAttachment", menuName = "Drone/Attachment", order = 1)]
-    public class DroneAttachmentSO : ScriptableObject, IDrone
+    public class DroneAttachmentData : ScriptableObject, IDrone
     {
         [SerializeField] private DroneAttachmentType droneAttachmentType;
         [SerializeField] private float cost;

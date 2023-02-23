@@ -5,6 +5,7 @@ using DroneLoadout.Decorators;
 using DroneLoadout.Factory;
 using DroneLoadout.Strategies;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace DroneLoadout
 {
@@ -15,15 +16,16 @@ namespace DroneLoadout
     {
         public event Action<Drone> OnDroneDecorated;
         public IDrone DecorableDrone => _decorableDrone;
-        public DroneConfigSO DroneConfigSo => droneConfigSo;
-        public int NumOfAttachments => _numOfAttachments;
+        public DroneConfigData DroneConfigData => droneConfigData;
+        public int NumOfMountedAttachments => _numOfMountedAttachments;
     
-        [SerializeField] private DroneConfigSO droneConfigSo; 
+        [FormerlySerializedAs("droneConfigSo")] [SerializeField] private DroneConfigData droneConfigData; 
         [SerializeField] private List<AttachmentPoint> attachmentPoints;
         private IDrone _decorableDrone;
-        private int _numOfAttachments;
+        private Stack<IDrone> _decorableDroneHistory = new();
+        private int _numOfMountedAttachments;
 
-        private void Awake() => _decorableDrone = DroneFactory.CreateDrone(droneConfigSo.droneType, droneConfigSo);
+        private void Awake() => _decorableDrone = DroneFactory.CreateDrone(droneConfigData.droneType, droneConfigData);
         
         /// <summary>
         /// Applies a given strategy for handling the drones movement behaviour so that it can be changed
@@ -43,12 +45,21 @@ namespace DroneLoadout
         /// <param name="attachmentPoint">The attachment point to which an attachment should be mounted to.</param>
         public void Decorate(DroneAttachment droneAttachment, AttachmentPoint attachmentPoint)
         {
+            _decorableDroneHistory.Push(_decorableDrone);
             _decorableDrone = new DroneDecorator(_decorableDrone, droneAttachment.Data);
             droneAttachment.transform.SetParent(attachmentPoint.transform);
             droneAttachment.transform.position = attachmentPoint.transform.position; // new
             droneAttachment.gameObject.layer = LayerMask.NameToLayer("Focus");
             attachmentPoint.AddAttachment(droneAttachment);
-            _numOfAttachments++;
+            _numOfMountedAttachments++;
+            OnDroneDecorated?.Invoke(this);
+        }
+
+        public void RemoveAttachment(DroneAttachment droneAttachment, AttachmentPoint attachmentPoint)
+        {
+            _decorableDrone = _decorableDroneHistory.Pop();
+            attachmentPoint.RemoveAttachment();
+            _numOfMountedAttachments--;
             OnDroneDecorated?.Invoke(this);
         }
 
@@ -57,15 +68,12 @@ namespace DroneLoadout
         /// </summary>
         public void ResetConfiguration()
         {
-            _decorableDrone = DroneFactory.CreateDrone(droneConfigSo.droneType, droneConfigSo);
+            _decorableDrone = DroneFactory.CreateDrone(droneConfigData.droneType, droneConfigData);
             attachmentPoints.ForEach(point => point.RemoveAttachment());
-            _numOfAttachments = 0;
+            _numOfMountedAttachments = 0;
             OnDroneDecorated?.Invoke(this);
         }
 
-        public List<AttachmentPoint> GetAttachmentPoints()
-        {
-            return attachmentPoints;
-        }
+        public List<AttachmentPoint> GetAttachmentPoints() => attachmentPoints;
     }
 }

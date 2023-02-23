@@ -59,5 +59,6 @@ namespace DroneLoadout
         public bool IsVisible() => _isVisible;
         
         public DroneAttachmentType GetAttachmentType() => droneAttachmentType;
+        public DroneAttachment GetDroneAttachment() => droneAttachment;
     }
 }
