@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: BlackHornetNano
   m_EditorClassIdentifier: 
   droneType: 0
+  cost: 400
   range: 30
   speed: 200
   acceleration: 0

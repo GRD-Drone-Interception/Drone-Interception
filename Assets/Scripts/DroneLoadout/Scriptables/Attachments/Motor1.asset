@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Motor1
   m_EditorClassIdentifier: 
   droneAttachmentType: 2
-  cost: 0
-  range: 0
-  speed: 0
-  acceleration: 0
+  cost: 1
+  range: 2
+  speed: 3
+  acceleration: 4
   weight: 0
-  attachmentName: Motor 1
+  attachmentName: 5
   attachmentPrefab: {fileID: 0}
   attachmentDescription: 

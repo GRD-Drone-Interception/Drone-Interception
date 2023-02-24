@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Sensor1
   m_EditorClassIdentifier: 
   droneAttachmentType: 6
-  cost: 0
-  range: 0
-  speed: 0
-  acceleration: 0
-  weight: 0
+  cost: 1
+  range: 2
+  speed: 3
+  acceleration: 4
+  weight: 5
   attachmentName: Sensor 1
   attachmentPrefab: {fileID: 0}
   attachmentDescription: 

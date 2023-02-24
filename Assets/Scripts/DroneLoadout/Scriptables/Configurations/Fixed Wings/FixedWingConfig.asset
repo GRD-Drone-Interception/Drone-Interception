@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: FixedWingConfig
   m_EditorClassIdentifier: 
   droneType: 1
+  cost: 150
   range: 50
   speed: 40
   acceleration: 0

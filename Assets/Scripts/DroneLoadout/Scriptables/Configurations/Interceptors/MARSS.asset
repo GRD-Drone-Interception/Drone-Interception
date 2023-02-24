@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MARSS
   m_EditorClassIdentifier: 
   droneType: 2
-  cost: 1234
+  cost: 800
   range: 500
   speed: 250
   acceleration: 100

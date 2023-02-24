@@ -8,12 +8,12 @@ namespace DroneLoadout
     /// <summary>
     /// Responsible for spawning a drone model onto the workbench.
     /// </summary>
-    public class DroneModelButton : MonoBehaviour
+    public class DroneModelSpawner : MonoBehaviour
     {
-        public event Action<Drone> OnDroneModelSelected;
+        public event Action<Drone> OnDroneModelSpawned;
         
         [SerializeField] private GameObject droneTypePrefab;
-        [SerializeField] private DroneTypeButton droneTypeButton;
+        [SerializeField] private DroneTypeSelector droneTypeSelector;
         private Button _modelButton;
         private Workbench _workbench;
 
@@ -28,9 +28,9 @@ namespace DroneLoadout
 
         private void SpawnDroneModel()
         {
-            droneTypeButton.HideModelSubMenu();
+            droneTypeSelector.HideModelSubMenu();
             _workbench.SpawnDronePrefab(droneTypePrefab);
-            OnDroneModelSelected?.Invoke(_workbench.DroneBeingEdited);
+            OnDroneModelSpawned?.Invoke(_workbench.DroneBeingEdited);
         }
     }
 }

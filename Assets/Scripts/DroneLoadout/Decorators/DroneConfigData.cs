@@ -23,10 +23,10 @@ namespace DroneLoadout.Decorators
         public GameObject dronePrefab;
         public string droneDescription;
 
-        public float Cost => cost;
-        public float Range => range;
-        public float Speed => speed;
-        public float Acceleration => acceleration;
-        public float Weight => weight;
+        public float Cost => cost; // Prefix with 'Start'?
+        public float Range => range; // Prefix with 'Start'?
+        public float Speed => speed; // Prefix with 'Start'?
+        public float Acceleration => acceleration; // Prefix with 'Start'?
+        public float Weight => weight; // Prefix with 'Start'?
     }
 }

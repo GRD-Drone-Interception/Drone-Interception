@@ -16,21 +16,12 @@ namespace DroneLoadout.DroneWorkbench
         [SerializeField] private Transform droneSpawnPosition;
         [SerializeField] private Button editDroneButton;
         [SerializeField] private Button resetDroneConfigButton;
-        [SerializeField] private Button deleteDroneButton;
         private Drone _droneBeingEdited;
+        private Player _player;
 
-        private void OnEnable()
-        {
-            resetDroneConfigButton.onClick.AddListener(ResetCurrentDroneConfig);
-            deleteDroneButton.onClick.AddListener(DeleteCurrentDrone);
-        }
-
-        private void OnDisable()
-        {
-            resetDroneConfigButton.onClick.RemoveListener(ResetCurrentDroneConfig);
-            deleteDroneButton.onClick.RemoveListener(DeleteCurrentDrone);
-        }
-        
+        private void Awake() => _player = FindObjectOfType<Player>();
+        private void OnEnable() => resetDroneConfigButton.onClick.AddListener(ResetCurrentDroneConfig);
+        private void OnDisable() => resetDroneConfigButton.onClick.RemoveListener(ResetCurrentDroneConfig);
         private void Start() => resetDroneConfigButton.gameObject.SetActive(false);
 
         private void Update()
@@ -39,12 +30,13 @@ namespace DroneLoadout.DroneWorkbench
             if (DroneLoadoutCameraMode.CurrentCameraMode == DroneLoadoutCameraMode.CameraMode.Display)
             {
                 editDroneButton.gameObject.SetActive(_droneBeingEdited != null);
-                deleteDroneButton.gameObject.SetActive(_droneBeingEdited != null);
             }
         }
 
-        public void AddToBench(Drone drone)
+        private void AddToBench(Drone drone)
         {
+            //_player.BuildBudget.DecreaseBudget(drone.DroneConfigData.Cost);
+            _player.BuildBudget.DecreaseBudget(drone.DecorableDrone.Cost);
             drone.transform.SetParent(transform);
             _droneBeingEdited = drone;
             OnDroneBeingEditedChanged?.Invoke(drone);
@@ -52,6 +44,8 @@ namespace DroneLoadout.DroneWorkbench
 
         private void RemoveFromBench(Drone drone)
         {
+            //_player.BuildBudget.IncreaseBudget(drone.DroneConfigData.Cost);
+            _player.BuildBudget.IncreaseBudget(drone.DecorableDrone.Cost);
             drone.transform.SetParent(null);
         }
 

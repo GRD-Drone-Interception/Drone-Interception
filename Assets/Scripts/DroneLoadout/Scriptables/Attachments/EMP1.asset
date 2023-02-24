@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: EMP1
   m_EditorClassIdentifier: 
   droneAttachmentType: 7
-  cost: 1000
-  range: 10
-  speed: 0
-  acceleration: 0
-  weight: 25
+  cost: 1
+  range: 2
+  speed: 3
+  acceleration: 4
+  weight: 5
   attachmentName: Electromagnetic Pulse
   attachmentPrefab: {fileID: 9052186331285526093, guid: 11c67cb53d6a64e4fa3bb211549081fe, type: 3}
   attachmentDescription: 

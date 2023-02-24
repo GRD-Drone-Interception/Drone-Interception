@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: MQ9Ripper
   m_EditorClassIdentifier: 
   droneType: 1
+  cost: 200
   range: 300
   speed: 150
   acceleration: 0

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: DjiMavic3
   m_EditorClassIdentifier: 
   droneType: 0
+  cost: 500
   range: 60
   speed: 35
   acceleration: 0

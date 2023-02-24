@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Matrice300Rtk
   m_EditorClassIdentifier: 
   droneType: 0
+  cost: 600
   range: 5
   speed: 15
   acceleration: 0

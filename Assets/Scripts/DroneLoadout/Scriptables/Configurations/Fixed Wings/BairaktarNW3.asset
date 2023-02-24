@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: BairaktarNW3
   m_EditorClassIdentifier: 
   droneType: 1
+  cost: 100
   range: 120
   speed: 45
   acceleration: 0

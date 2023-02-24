@@ -1,6 +1,5 @@
 using DroneLoadout.Decorators;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace DroneLoadout
 {

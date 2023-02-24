@@ -8,9 +8,9 @@ namespace DroneLoadout
     /// Responsible for displaying a list of drone models for the
     /// selected drone type.
     /// </summary>
-    public class DroneTypeButton : MonoBehaviour
+    public class DroneTypeSelector : MonoBehaviour
     {
-        public event Action<DroneTypeButton> OnDroneTypeSelected;
+        public event Action<DroneTypeSelector> OnDroneTypeSelected;
         
         [SerializeField] private GameObject droneTypeModelSubMenuContainer;
         private Button _button; 

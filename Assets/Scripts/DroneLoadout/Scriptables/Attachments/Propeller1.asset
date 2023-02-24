@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Propeller1
   m_EditorClassIdentifier: 
   droneAttachmentType: 3
-  cost: 0
-  range: 0
-  speed: 0
-  acceleration: 0
-  weight: 0
+  cost: 1
+  range: 2
+  speed: 3
+  acceleration: 4
+  weight: 5
   attachmentName: Propeller
   attachmentPrefab: {fileID: 0}
   attachmentDescription: 

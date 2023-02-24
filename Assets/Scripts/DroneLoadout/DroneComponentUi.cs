@@ -13,14 +13,14 @@ namespace DroneLoadout
         [SerializeField] private Transform workshopCanvas;
         [SerializeField] private List<GameObject> droneAttachmentSlotPrefab;
         //private readonly List<DroneAttachmentSlot> _attachmentSlots = new();
-        private readonly List<DroneTypeButton> _droneTypeButtons = new();
-        private readonly List<DroneModelButton> _droneModelButtons = new();
+        private readonly List<DroneTypeSelector> _droneTypeButtons = new();
+        private readonly List<DroneModelSpawner> _droneModelButtons = new();
         private Dictionary<DroneAttachmentType, GameObject> _droneComponentTypePrefabDict;
 
         private void Awake()
         {
-            _droneTypeButtons.AddRange(FindObjectsOfType<DroneTypeButton>());
-            _droneModelButtons.AddRange(FindObjectsOfType<DroneModelButton>());
+            _droneTypeButtons.AddRange(FindObjectsOfType<DroneTypeSelector>());
+            _droneModelButtons.AddRange(FindObjectsOfType<DroneModelSpawner>());
         }
 
         private void Start()
@@ -47,13 +47,13 @@ namespace DroneLoadout
         private void OnEnable()
         {
             DroneLoadoutCameraMode.OnModeChange += OnDroneLoadoutCameraModeChange;
-            _droneModelButtons.ForEach(button => button.OnDroneModelSelected += OnDroneModelSelected);
+            _droneModelButtons.ForEach(button => button.OnDroneModelSpawned += OnDroneModelSelected);
         }
 
         private void OnDisable()
         {
             DroneLoadoutCameraMode.OnModeChange -= OnDroneLoadoutCameraModeChange;
-            _droneModelButtons.ForEach(button => button.OnDroneModelSelected -= OnDroneModelSelected);
+            _droneModelButtons.ForEach(button => button.OnDroneModelSpawned -= OnDroneModelSelected);
         }
 
         private void OnDroneLoadoutCameraModeChange(DroneLoadoutCameraMode.CameraMode mode)

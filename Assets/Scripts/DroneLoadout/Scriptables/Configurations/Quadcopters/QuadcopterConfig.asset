@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: QuadcopterConfig
   m_EditorClassIdentifier: 
   droneType: 0
+  cost: 700
   range: 75
   speed: 35
   acceleration: 0

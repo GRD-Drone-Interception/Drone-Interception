@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: FlightController1
   m_EditorClassIdentifier: 
   droneAttachmentType: 4
-  cost: 0
-  range: 0
-  speed: 0
-  acceleration: 0
-  weight: 0
+  cost: 6
+  range: 7
+  speed: 8
+  acceleration: 9
+  weight: 10
   attachmentName: Flight Controller 1
   attachmentPrefab: {fileID: 0}
   attachmentDescription: 

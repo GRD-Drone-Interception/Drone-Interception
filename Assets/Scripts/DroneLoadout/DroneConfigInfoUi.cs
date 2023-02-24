@@ -9,6 +9,7 @@ namespace DroneLoadout
         [SerializeField] private TMP_Text droneTypeText;
         [SerializeField] private TMP_Text droneModelText;
         [SerializeField] private TMP_Text droneModsText;
+        [SerializeField] private TMP_Text droneCostText;
         [SerializeField] private TMP_Text droneRangeText;
         [SerializeField] private TMP_Text droneSpeedText;
         [SerializeField] private TMP_Text droneAccelerationText;
@@ -16,18 +17,17 @@ namespace DroneLoadout
         private Workbench _workbench;
 
         private void Awake() => _workbench = FindObjectOfType<Workbench>();
-
         private void OnEnable() => _workbench.OnDroneBeingEditedChanged += SubscribeToNewDronesDecoratedEvents;
-
         private void OnDisable() => _workbench.OnDroneBeingEditedChanged -= SubscribeToNewDronesDecoratedEvents;
 
         private void SubscribeToNewDronesDecoratedEvents(Drone drone)
         {
-            UpdateDroneInfoUi(drone);
-            _workbench.DroneBeingEdited.OnDroneDecorated += UpdateDroneInfoUi;
+            UpdateDroneInfoUi(drone, null);
+            _workbench.DroneBeingEdited.OnDroneDecorationAdded += UpdateDroneInfoUi;
+            _workbench.DroneBeingEdited.OnDroneDecorationRemoved += UpdateDroneInfoUi;
         }
 
-        private void UpdateDroneInfoUi(Drone drone)
+        private void UpdateDroneInfoUi(Drone drone, DroneAttachment droneAttachment)
         {
             if (drone == null)
             {
@@ -38,6 +38,7 @@ namespace DroneLoadout
             droneTypeText.text = $"DRONE TYPE: <color=white>{drone.DroneConfigData.droneType}</color>";
             droneModelText.text = $"DRONE MODEL: <color=white>{drone.DroneConfigData.droneName}</color>";
             droneModsText.text = $"MODS: <color=white>{drone.NumOfMountedAttachments}</color>";
+            droneCostText.text = $"COST: <color=white>{drone.DecorableDrone.Cost:C0}</color>";
             droneRangeText.text = $"RANGE: <color=white>{drone.DecorableDrone.Range}km</color>";
             droneSpeedText.text = $"SPEED: <color=white>{drone.DecorableDrone.Speed}mph</color>";
             droneAccelerationText.text = $"ACCELERATION: <color=white>{drone.DecorableDrone.Acceleration}km/h in ?s</color>";
@@ -49,6 +50,7 @@ namespace DroneLoadout
             droneTypeText.text = "DRONE TYPE: <color=white>NONE</color>";
             droneModelText.text = "DRONE MODEL: <color=white>NONE</color>";
             droneModsText.text = "MODS: <color=white>0</color>";
+            droneCostText.text = "COST: <color=white>£0</color>";
             droneRangeText.text = "RANGE: <color=white>0km</color>";
             droneSpeedText.text = "SPEED: <color=white>0mph</color>";
             droneAccelerationText.text = "ACCELERATION: <color=white>km/h in ?s</color>";

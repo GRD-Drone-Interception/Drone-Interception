@@ -6,15 +6,15 @@ namespace DroneLoadout
 {
     public class DroneSubMenuManager : MonoBehaviour
     {
-        private readonly List<DroneTypeButton> _droneTypeButtons = new();
+        private readonly List<DroneTypeSelector> _droneTypeButtons = new();
 
-        private void Awake() => _droneTypeButtons.AddRange(FindObjectsOfType<DroneTypeButton>());
+        private void Awake() => _droneTypeButtons.AddRange(FindObjectsOfType<DroneTypeSelector>());
         private void OnEnable() => _droneTypeButtons.ForEach(button => button.OnDroneTypeSelected += OnDroneTypeSelected);
         private void OnDisable() => _droneTypeButtons.ForEach(button => button.OnDroneTypeSelected -= OnDroneTypeSelected);
 
-        private void OnDroneTypeSelected(DroneTypeButton buttonSelected)
+        private void OnDroneTypeSelected(DroneTypeSelector selectorSelected)
         {
-            foreach (var button in _droneTypeButtons.Where(button => button != buttonSelected))
+            foreach (var button in _droneTypeButtons.Where(button => button != selectorSelected))
             {
                 button.HideModelSubMenu();
             }

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Shahed136
   m_EditorClassIdentifier: 
   droneType: 1
+  cost: 300
   range: 200
   speed: 125
   acceleration: 0

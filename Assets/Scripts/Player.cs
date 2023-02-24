@@ -11,6 +11,13 @@ public class Player : MonoBehaviour
 {
     public PlayerTeam Team { get; set; }
     public DroneSwarm DroneSwarm { get; set; }
-
-    private void Awake() => DroneSwarm = new DroneSwarm();
+    public BuildBudget BuildBudget { get; private set; }
+    
+    [SerializeField] private float startingBuildBudget = 10000;
+    
+    private void Awake()
+    {
+        DroneSwarm = new DroneSwarm();
+        BuildBudget = new BuildBudget(startingBuildBudget);
+    }
 }
