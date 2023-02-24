@@ -110,4 +110,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 154e951e78a2ef24bbd01e5ccd3a4690, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  droneAttachmentSo: {fileID: 11400000, guid: d797ddf11567c524cb0194f693b72df5, type: 2}
+  droneData: {fileID: 11400000, guid: d797ddf11567c524cb0194f693b72df5, type: 2}

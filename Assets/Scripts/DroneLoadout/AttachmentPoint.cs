@@ -7,9 +7,9 @@ namespace DroneLoadout
     {
         public bool HasAttachment => _hasAttachment;
 
-        [Range(0.15f, 2f)] [SerializeField] private float pointSize = 0.25f;
-        [SerializeField] private DroneAttachment droneAttachment;
+        [Range(0.025f, 2f)] [SerializeField] private float pointSize = 0.25f;
         [SerializeField] private DroneAttachmentType droneAttachmentType;
+        private DroneAttachment _droneAttachment;
         private MeshRenderer _meshRenderer;
         private bool _isVisible;
         private bool _hasAttachment;
@@ -37,7 +37,7 @@ namespace DroneLoadout
             if (!_hasAttachment)
             {
                 newDroneAttachment.transform.parent = transform;
-                droneAttachment = newDroneAttachment;
+                _droneAttachment = newDroneAttachment;
                 _hasAttachment = true;
             }
             else
@@ -48,9 +48,9 @@ namespace DroneLoadout
 
         public void RemoveAttachment()
         {
-            if(droneAttachment == null) { return; }
-            Destroy(droneAttachment.gameObject);
-            droneAttachment = null;
+            if(_droneAttachment == null) { return; }
+            Destroy(_droneAttachment.gameObject);
+            _droneAttachment = null;
             _hasAttachment = false;
         }
 
@@ -59,6 +59,6 @@ namespace DroneLoadout
         public bool IsVisible() => _isVisible;
         
         public DroneAttachmentType GetAttachmentType() => droneAttachmentType;
-        public DroneAttachment GetDroneAttachment() => droneAttachment;
+        public DroneAttachment GetDroneAttachment() => _droneAttachment;
     }
 }

@@ -1,4 +1,5 @@
-﻿using DroneLoadout.Component;
+﻿using System;
+using DroneLoadout.Component;
 using DroneLoadout.Concrete;
 using DroneLoadout.Decorators;
 
@@ -24,6 +25,9 @@ namespace DroneLoadout.Factory
                 case DroneType.FixedWing:
                     drone = new FixedWingDrone(droneConfigData);
                     break;
+                case DroneType.Interceptor:
+                    drone = new InterceptorDrone(droneConfigData);
+                    break;
             }
             
             return drone;
@@ -33,6 +37,7 @@ namespace DroneLoadout.Factory
     public enum DroneType // Type Object pattern? Use scriptable objects to allow users to define their own types?
     {
         Quadcopter,
-        FixedWing
+        FixedWing,
+        Interceptor
     }
 }

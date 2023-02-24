@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 36e937aa35ae4681bb2516d4feee691f, type: 3}
-  m_Name: Net
+  m_Name: Net1
   m_EditorClassIdentifier: 
-  droneAttachmentType: 5
+  droneAttachmentType: 8
   cost: 500
-  range: 0
+  range: 20
   speed: 0
   acceleration: 0
   weight: 50

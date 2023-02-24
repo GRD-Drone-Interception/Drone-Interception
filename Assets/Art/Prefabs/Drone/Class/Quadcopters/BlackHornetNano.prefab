@@ -63,7 +63,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2aec0d760be48b49783c9a913d1c9bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  droneConfigSo: {fileID: 11400000, guid: 7c6cf5e779347824d8000f254eccf2c8, type: 2}
+  droneConfigData: {fileID: 11400000, guid: 7c6cf5e779347824d8000f254eccf2c8, type: 2}
   attachmentPoints:
   - {fileID: 3787130586078680233}
   - {fileID: 3787130585828038555}
@@ -179,8 +179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointSize: 0.15
-  droneAttachment: {fileID: 0}
-  droneAttachmentType: 7
+  droneAttachmentType: 8
 --- !u!1 &3787130585828038553
 GameObject:
   m_ObjectHideFlags: 0
@@ -292,8 +291,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointSize: 0.15
-  droneAttachment: {fileID: 0}
-  droneAttachmentType: 5
+  droneAttachmentType: 7
 --- !u!1 &3787130586078680243
 GameObject:
   m_ObjectHideFlags: 0
@@ -405,8 +403,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointSize: 0.15
-  droneAttachment: {fileID: 0}
-  droneAttachmentType: 7
+  droneAttachmentType: 6
 --- !u!1 &6832229595063799357
 GameObject:
   m_ObjectHideFlags: 0

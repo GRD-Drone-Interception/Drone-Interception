@@ -315,7 +315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2aec0d760be48b49783c9a913d1c9bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  droneConfigSo: {fileID: 11400000, guid: f0d24a127551ead41817b60888357c96, type: 2}
+  droneConfigData: {fileID: 11400000, guid: f0d24a127551ead41817b60888357c96, type: 2}
   attachmentPoints:
   - {fileID: 3439045066192821393}
   - {fileID: 3439045065096149079}
@@ -737,7 +737,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1029272526975211107, guid: 678a2c2c2887fe3448c53a0eb65157ea, type: 3}
       propertyPath: droneAttachmentType
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1029272526975211128, guid: 678a2c2c2887fe3448c53a0eb65157ea, type: 3}
       propertyPath: m_RootOrder
@@ -832,7 +832,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1029272526975211107, guid: 678a2c2c2887fe3448c53a0eb65157ea, type: 3}
       propertyPath: droneAttachmentType
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1029272526975211128, guid: 678a2c2c2887fe3448c53a0eb65157ea, type: 3}
       propertyPath: m_RootOrder
@@ -923,7 +923,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1029272526975211107, guid: 678a2c2c2887fe3448c53a0eb65157ea, type: 3}
       propertyPath: droneAttachmentType
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1029272526975211128, guid: 678a2c2c2887fe3448c53a0eb65157ea, type: 3}
       propertyPath: m_RootOrder
@@ -1018,7 +1018,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1029272526975211107, guid: 678a2c2c2887fe3448c53a0eb65157ea, type: 3}
       propertyPath: droneAttachmentType
-      value: 7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1029272526975211128, guid: 678a2c2c2887fe3448c53a0eb65157ea, type: 3}
       propertyPath: m_RootOrder

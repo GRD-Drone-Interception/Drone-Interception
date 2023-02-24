@@ -55,7 +55,7 @@ namespace DroneLoadout
             OnDroneDecorated?.Invoke(this);
         }
 
-        public void RemoveAttachment(DroneAttachment droneAttachment, AttachmentPoint attachmentPoint)
+        public void RemoveAttachment(AttachmentPoint attachmentPoint)
         {
             _decorableDrone = _decorableDroneHistory.Pop();
             attachmentPoint.RemoveAttachment();

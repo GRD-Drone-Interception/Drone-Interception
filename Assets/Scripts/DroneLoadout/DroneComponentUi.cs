@@ -11,27 +11,37 @@ namespace DroneLoadout
     public class DroneComponentUi : MonoBehaviour
     {
         [SerializeField] private Transform workshopCanvas;
-        [SerializeField] private GameObject droneRadarAttachmentSlotPrefab;
-        [SerializeField] private GameObject dronePayloadAttachmentSlotPrefab;
-        private List<DroneAttachmentSlot> _attachmentSlots = new();
-        private List<DroneTypeButton> _droneTypeButtons = new();
-        private List<DroneModelButton> _droneModelButtons = new();
+        [SerializeField] private List<GameObject> droneAttachmentSlotPrefab;
+        //private readonly List<DroneAttachmentSlot> _attachmentSlots = new();
+        private readonly List<DroneTypeButton> _droneTypeButtons = new();
+        private readonly List<DroneModelButton> _droneModelButtons = new();
         private Dictionary<DroneAttachmentType, GameObject> _droneComponentTypePrefabDict;
 
         private void Awake()
         {
-            _attachmentSlots.AddRange(FindObjectsOfType<DroneAttachmentSlot>());
             _droneTypeButtons.AddRange(FindObjectsOfType<DroneTypeButton>());
             _droneModelButtons.AddRange(FindObjectsOfType<DroneModelButton>());
         }
 
         private void Start()
         {
-            _droneComponentTypePrefabDict = new Dictionary<DroneAttachmentType, GameObject>()
+            /*_droneComponentTypePrefabDict = new Dictionary<DroneAttachmentType, GameObject>
             {
-                {DroneAttachmentType.Radar, droneRadarAttachmentSlotPrefab},
-                {DroneAttachmentType.Payload, dronePayloadAttachmentSlotPrefab}
-            };
+                {DroneAttachmentType.Camera, droneAttachmentSlotPrefab[0]},
+                {DroneAttachmentType.Battery, droneAttachmentSlotPrefab[1]},
+                {DroneAttachmentType.Motor, droneAttachmentSlotPrefab[2]},
+                {DroneAttachmentType.Propeller, droneAttachmentSlotPrefab[3]},
+                {DroneAttachmentType.FlightController, droneAttachmentSlotPrefab[4]},
+                {DroneAttachmentType.Radar, droneAttachmentSlotPrefab[5]},
+                {DroneAttachmentType.Sensor, droneAttachmentSlotPrefab[6]},
+                {DroneAttachmentType.Payload, droneAttachmentSlotPrefab[7]},
+                {DroneAttachmentType.Weapon, droneAttachmentSlotPrefab[8]}
+            };*/
+            _droneComponentTypePrefabDict = new Dictionary<DroneAttachmentType, GameObject>();
+            for (var i = 0; i < droneAttachmentSlotPrefab.Count; i++)
+            {
+                _droneComponentTypePrefabDict.Add((DroneAttachmentType)i, droneAttachmentSlotPrefab[i]);
+            }
         }
 
         private void OnEnable()
@@ -51,12 +61,12 @@ namespace DroneLoadout
             switch (mode)
             {
                 case DroneLoadoutCameraMode.CameraMode.Edit:
-                    _attachmentSlots.ForEach(slot => slot.gameObject.SetActive(true));
+                   //_attachmentSlots.ForEach(slot => slot.gameObject.SetActive(true));
                     _droneTypeButtons.ForEach(slot => slot.gameObject.SetActive(false));
                     break;
                 case DroneLoadoutCameraMode.CameraMode.Display:
-                    _attachmentSlots.ForEach(slot => slot.gameObject.SetActive(false));
-                    _attachmentSlots.ForEach(slot => slot.HideComponentSubMenu());
+                    //_attachmentSlots.ForEach(slot => slot.gameObject.SetActive(false));
+                    //_attachmentSlots.ForEach(slot => slot.HideComponentSubMenu());
                     _droneTypeButtons.ForEach(slot => slot.gameObject.SetActive(true));
                     break;
             }
