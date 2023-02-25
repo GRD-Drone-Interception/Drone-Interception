@@ -11,20 +11,20 @@ namespace DroneLoadout
         private Transform _target;
 
         private void Awake() => _droneModelSpawners.AddRange(FindObjectsOfType<DroneModelSpawner>());
-        private void OnEnable() => _droneModelSpawners.ForEach(ctx => ctx.OnDroneModelSpawned += OnDroneModelSpawned);
-        private void OnDisable() => _droneModelSpawners.ForEach(ctx => ctx.OnDroneModelSpawned -= OnDroneModelSpawned);
+        private void OnEnable() => _droneModelSpawners.ForEach(ctx => ctx.OnDroneModelSpawned += FindAttachmentSlotsOnModelSpawned);
+        private void OnDisable() => _droneModelSpawners.ForEach(ctx => ctx.OnDroneModelSpawned -= FindAttachmentSlotsOnModelSpawned);
 
-        private void OnDroneModelSpawned(Drone drone) => StartCoroutine(SetAttachmentSlots());
+        private void FindAttachmentSlotsOnModelSpawned(Drone drone) => StartCoroutine(FindAttachmentSlotsCoroutine());
         
-        private IEnumerator SetAttachmentSlots()
+        private IEnumerator FindAttachmentSlotsCoroutine()
         {
             _droneAttachmentSlots.Clear();
             yield return new WaitForSeconds(0.25f);
             _droneAttachmentSlots.AddRange(FindObjectsOfType<DroneAttachmentSlot>());
-            _droneAttachmentSlots.ForEach(slot => slot.OnAttachmentSlotSelected += OnAttachmentSlotSelected);
+            _droneAttachmentSlots.ForEach(slot => slot.OnAttachmentSlotSelected += SetCameraTargetOnAttachmentSlotSelected);
         }
 
-        private void OnAttachmentSlotSelected(DroneAttachmentSlot slot)
+        private void SetCameraTargetOnAttachmentSlotSelected(DroneAttachmentSlot slot)
         {
             if (slot.GetAttachmentPoint().IsVisible())
             {

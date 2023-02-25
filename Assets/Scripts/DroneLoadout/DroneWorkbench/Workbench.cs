@@ -1,4 +1,7 @@
 using System;
+using System.IO;
+using Testing;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,14 +13,14 @@ namespace DroneLoadout.DroneWorkbench
     /// </summary>
     public class Workbench : MonoBehaviour
     {
-        public event Action<Drone> OnDroneBeingEditedChanged; 
-        public Drone DroneBeingEdited => _droneBeingEdited;
+        public event Action<Drone> OnDroneOnBenchChanged; 
+        public Drone DroneOnBench => _droneOnBench;
         
         [SerializeField] private Transform droneSpawnPosition;
         [SerializeField] private Button addToFleetButton;
         [SerializeField] private Button editDroneButton;
         [SerializeField] private Button resetDroneConfigButton;
-        private Drone _droneBeingEdited;
+        private Drone _droneOnBench;
         private Player _player;
 
         private void Awake() => _player = FindObjectOfType<Player>();
@@ -40,8 +43,8 @@ namespace DroneLoadout.DroneWorkbench
             // TODO: Call this on an event trigger. This shouldn't be in Update
             if (DroneLoadoutCameraMode.CurrentCameraMode == DroneLoadoutCameraMode.CameraMode.Display)
             {
-                addToFleetButton.gameObject.SetActive(_droneBeingEdited != null);
-                editDroneButton.gameObject.SetActive(_droneBeingEdited != null);
+                addToFleetButton.gameObject.SetActive(_droneOnBench != null);
+                editDroneButton.gameObject.SetActive(_droneOnBench != null);
             }
         }
 
@@ -50,8 +53,8 @@ namespace DroneLoadout.DroneWorkbench
             //_player.BuildBudget.DecreaseBudget(drone.DroneConfigData.Cost);
             _player.BuildBudget.DecreaseBudget(drone.DecorableDrone.Cost);
             drone.transform.SetParent(transform);
-            _droneBeingEdited = drone;
-            OnDroneBeingEditedChanged?.Invoke(drone);
+            _droneOnBench = drone;
+            OnDroneOnBenchChanged?.Invoke(drone);
         }
 
         private void RemoveFromBench(Drone drone)
@@ -63,22 +66,22 @@ namespace DroneLoadout.DroneWorkbench
 
         private void ResetCurrentDroneConfig()
         {
-            if (_droneBeingEdited != null)
+            if (_droneOnBench != null)
             {
-                _droneBeingEdited.ResetConfiguration();
+                _droneOnBench.ResetConfiguration();
             }
         }
     
         private void DeleteCurrentDrone()
         {
-            RemoveFromBench(_droneBeingEdited);
-            Destroy(_droneBeingEdited.gameObject);
-            OnDroneBeingEditedChanged?.Invoke(null);
+            RemoveFromBench(_droneOnBench);
+            Destroy(_droneOnBench.gameObject);
+            OnDroneOnBenchChanged?.Invoke(null);
         }
 
         public void SpawnDronePrefab(GameObject prefab)
         {
-            if (_droneBeingEdited != null)
+            if (_droneOnBench != null)
             {
                 DeleteCurrentDrone();
             }
@@ -86,36 +89,36 @@ namespace DroneLoadout.DroneWorkbench
             var droneGameObject = Instantiate(prefab);
             droneGameObject.transform.position = droneSpawnPosition.position;
             droneGameObject.layer = LayerMask.NameToLayer("Focus");
-            SetLayersRecursively(droneGameObject.transform);
+            SetChildLayersRecursively(droneGameObject.transform, "Focus");
             var drone = droneGameObject.GetComponent<Drone>();
             AddToBench(drone);
         }
 
-        private void AddDroneToFleet()
+        private void AddDroneToFleet() // Separate save method?
         {
-            Debug.Log($"{_droneBeingEdited.DroneConfigData.droneName} <color=green>added to fleet</color>");
-            _player.DroneSwarm.AddToSwarm(_droneBeingEdited); 
-            DeleteCurrentDrone();
+            Debug.Log($"{_droneOnBench.DroneConfigData.droneName} <color=green>added to fleet</color>");
+            SetChildLayersRecursively(_droneOnBench.transform, "Default");
+            _player.DroneSwarm.AddToSwarm(_droneOnBench);
+            
+            // Save the customised drone as a prefab
+            string droneName = "TestDrone";
+            string path = $"Assets/Art/Prefabs/Drone/Class/Custom/{droneName}.prefab";
+            _droneOnBench.transform.SetParent(null);
+            PrefabUtility.SaveAsPrefabAsset(_droneOnBench.gameObject, path); // Overwrites if prefab already exists
 
-            /*if (!_player.DroneSwarm.Drones.Contains(_droneBeingEdited))
-            {
-                Debug.Log($"{_droneBeingEdited.DroneConfigData.droneName} <color=green>added to fleet</color>");
-                _player.DroneSwarm.AddToSwarm(_droneBeingEdited);
-                DeleteCurrentDrone();
-            }
-            else
-            {
-                Debug.Log($"{_droneBeingEdited.DroneConfigData.droneName} <color=red>already in fleet</color>");
-            }*/
+            DeleteCurrentDrone();
+            
+            //SaveToFile();
+            //DroneSaveSystem.SaveToFile(_droneOnBench.DecorableDrone);
         }
 
-        private void SetLayersRecursively(Transform droneObject)
+        private void SetChildLayersRecursively(Transform droneObject, string layer)
         {
             foreach (Transform child in droneObject)
             {
-                child.gameObject.layer = LayerMask.NameToLayer("Focus"); 
+                child.gameObject.layer = LayerMask.NameToLayer(layer); 
                 // recursively call SetLayersRecursively for each child
-                SetLayersRecursively(child);
+                SetChildLayersRecursively(child, layer);
             }
         }
     }

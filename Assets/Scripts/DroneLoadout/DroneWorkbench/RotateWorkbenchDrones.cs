@@ -37,23 +37,23 @@ namespace DroneLoadout.DroneWorkbench
 
         private void Update()
         {
-            if(_workbench.DroneBeingEdited == null) { return; }
+            if(_workbench.DroneOnBench == null) { return; }
 
             if (DroneLoadoutCameraMode.CurrentCameraMode == DroneLoadoutCameraMode.CameraMode.Edit)
             {
                 if (_rotateLeftIsPressed)
                 {
-                    _workbench.DroneBeingEdited.transform.Rotate(new Vector3(0, -rotationSpeed * Time.deltaTime, 0));
+                    _workbench.DroneOnBench.transform.Rotate(new Vector3(0, -rotationSpeed * Time.deltaTime, 0));
                 }
 
                 if (_rotateRightIsPressed)
                 {
-                    _workbench.DroneBeingEdited.transform.Rotate(new Vector3(0, rotationSpeed * Time.deltaTime, 0));
+                    _workbench.DroneOnBench.transform.Rotate(new Vector3(0, rotationSpeed * Time.deltaTime, 0));
                 }
             }
             else
             {
-                _workbench.DroneBeingEdited.transform.Rotate(new Vector3(0,25.0f * Time.deltaTime,0));
+                _workbench.DroneOnBench.transform.Rotate(new Vector3(0,25.0f * Time.deltaTime,0));
             }
         }
 

@@ -17,14 +17,14 @@ namespace DroneLoadout
         private Workbench _workbench;
 
         private void Awake() => _workbench = FindObjectOfType<Workbench>();
-        private void OnEnable() => _workbench.OnDroneBeingEditedChanged += SubscribeToNewDronesDecoratedEvents;
-        private void OnDisable() => _workbench.OnDroneBeingEditedChanged -= SubscribeToNewDronesDecoratedEvents;
+        private void OnEnable() => _workbench.OnDroneOnBenchChanged += SubscribeToNewDronesDecoratedEvents;
+        private void OnDisable() => _workbench.OnDroneOnBenchChanged -= SubscribeToNewDronesDecoratedEvents;
 
         private void SubscribeToNewDronesDecoratedEvents(Drone drone)
         {
             UpdateDroneInfoUi(drone, null);
-            _workbench.DroneBeingEdited.OnDroneDecorationAdded += UpdateDroneInfoUi;
-            _workbench.DroneBeingEdited.OnDroneDecorationRemoved += UpdateDroneInfoUi;
+            _workbench.DroneOnBench.OnDroneDecorationAdded += UpdateDroneInfoUi;
+            _workbench.DroneOnBench.OnDroneDecorationRemoved += UpdateDroneInfoUi;
         }
 
         private void UpdateDroneInfoUi(Drone drone, DroneAttachment droneAttachment)

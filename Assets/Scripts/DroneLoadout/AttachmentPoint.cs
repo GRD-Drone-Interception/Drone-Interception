@@ -32,7 +32,7 @@ namespace DroneLoadout
             }
         }
 
-        public void AddAttachment(DroneAttachment newDroneAttachment)
+        public void AddDroneAttachment(DroneAttachment newDroneAttachment)
         {
             if (!_hasAttachment)
             {
@@ -46,7 +46,7 @@ namespace DroneLoadout
             }
         }
 
-        public void RemoveAttachment()
+        public void RemoveDroneAttachment()
         {
             if(_droneAttachment == null) { return; }
             Destroy(_droneAttachment.gameObject);

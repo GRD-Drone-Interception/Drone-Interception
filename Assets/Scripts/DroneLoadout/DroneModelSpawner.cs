@@ -30,7 +30,7 @@ namespace DroneLoadout
         {
             droneTypeSelector.HideModelSubMenu();
             _workbench.SpawnDronePrefab(droneTypePrefab);
-            OnDroneModelSpawned?.Invoke(_workbench.DroneBeingEdited);
+            OnDroneModelSpawned?.Invoke(_workbench.DroneOnBench);
         }
     }
 }

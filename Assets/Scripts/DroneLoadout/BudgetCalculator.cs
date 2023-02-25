@@ -14,13 +14,13 @@ namespace DroneLoadout
             _workbench = FindObjectOfType<Workbench>();
         }
 
-        private void OnEnable() => _workbench.OnDroneBeingEditedChanged += SubscribeToNewDronesDecoratedEvents;
-        private void OnDisable() => _workbench.OnDroneBeingEditedChanged -= SubscribeToNewDronesDecoratedEvents;
+        private void OnEnable() => _workbench.OnDroneOnBenchChanged += SubscribeToNewDronesDecoratedEvents;
+        private void OnDisable() => _workbench.OnDroneOnBenchChanged -= SubscribeToNewDronesDecoratedEvents;
         
         private void SubscribeToNewDronesDecoratedEvents(Drone drone)
         {
-            _workbench.DroneBeingEdited.OnDroneDecorationAdded += DecreaseBuildBudgetText;
-            _workbench.DroneBeingEdited.OnDroneDecorationRemoved += IncreaseBuildBudgetText;
+            _workbench.DroneOnBench.OnDroneDecorationAdded += DecreaseBuildBudgetText;
+            _workbench.DroneOnBench.OnDroneDecorationRemoved += IncreaseBuildBudgetText;
         }
         
         private void IncreaseBuildBudgetText(Drone drone, DroneAttachment droneAttachment)

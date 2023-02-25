@@ -20,12 +20,12 @@ namespace DroneLoadout
         private Drone _drone;
         private Button _button;
 
-        private void OnEnable() => _button.onClick.AddListener(OnDroneAttachmentSlotSelected);
-        private void OnDisable() => _button.onClick.RemoveListener(OnDroneAttachmentSlotSelected);
+        private void OnEnable() => _button.onClick.AddListener(ToggleAttachmentSlotVisibilityOnSlotSelected);
+        private void OnDisable() => _button.onClick.RemoveListener(ToggleAttachmentSlotVisibilityOnSlotSelected);
         private void Awake() => _button = GetComponent<Button>();
         private void Start() => componentSubMenuContainer.SetActive(false);
 
-        private void OnDroneAttachmentSlotSelected()
+        private void ToggleAttachmentSlotVisibilityOnSlotSelected()
         {
             // If the component sub-menu isn't already displayed, display it
             if (!componentSubMenuContainer.activeSelf)

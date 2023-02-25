@@ -1,15 +1,13 @@
 using System.Collections.Generic;
 using DroneLoadout.Decorators;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace DroneLoadout
 {
     /// <summary>
-    /// Responsible for hiding and displaying attachment slots and drone type
-    /// buttons based on the drone loadout camera mode.
+    /// Responsible for spawning and setting the visibility of drone attachment slots
     /// </summary>
-    public class DroneComponentUi : MonoBehaviour
+    public class DroneAttachmentSlotSpawner : MonoBehaviour
     {
         [SerializeField] private Transform workshopCanvas;
         [SerializeField] private List<GameObject> droneAttachmentSlotTypePrefabs;

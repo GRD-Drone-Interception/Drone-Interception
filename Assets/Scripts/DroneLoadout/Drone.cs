@@ -9,7 +9,7 @@ using UnityEngine;
 namespace DroneLoadout
 {
     /// <summary>
-    /// The core drone class component that should be attached to every drone class prefab object.
+    /// The core drone class component that should be attached to every drone class prefab.
     /// </summary>
     public class Drone : MonoBehaviour
     {
@@ -21,6 +21,7 @@ namespace DroneLoadout
     
         [SerializeField] private DroneConfigData droneConfigData; 
         private List<AttachmentPoint> _attachmentPoints = new();
+        private Dictionary<AttachmentPoint, DroneAttachment> _droneAttachmentDictionary = new();
         private Stack<IDrone> _decorableDroneHistory = new();
         private IDrone _decorableDrone;
         private int _numOfMountedAttachments;
@@ -50,11 +51,12 @@ namespace DroneLoadout
         public void Decorate(DroneAttachment droneAttachment, AttachmentPoint attachmentPoint)
         {
             _decorableDroneHistory.Push(_decorableDrone);
+            _droneAttachmentDictionary.Add(attachmentPoint, droneAttachment);
             _decorableDrone = new DroneDecorator(_decorableDrone, droneAttachment.Data);
             droneAttachment.transform.SetParent(attachmentPoint.transform);
             droneAttachment.transform.position = attachmentPoint.transform.position; // new
             droneAttachment.gameObject.layer = LayerMask.NameToLayer("Focus");
-            attachmentPoint.AddAttachment(droneAttachment);
+            attachmentPoint.AddDroneAttachment(droneAttachment);
             _numOfMountedAttachments++;
             OnDroneDecorationAdded?.Invoke(this, attachmentPoint.GetDroneAttachment());
         }
@@ -62,9 +64,10 @@ namespace DroneLoadout
         public void RemoveAttachment(AttachmentPoint attachmentPoint)
         {
             _decorableDrone = _decorableDroneHistory.Pop();
+            _droneAttachmentDictionary.Remove(attachmentPoint);
             _numOfMountedAttachments--;
             OnDroneDecorationRemoved?.Invoke(this, attachmentPoint.GetDroneAttachment());
-            attachmentPoint.RemoveAttachment();
+            attachmentPoint.RemoveDroneAttachment();
         }
 
         /// <summary>
@@ -73,11 +76,13 @@ namespace DroneLoadout
         public void ResetConfiguration()
         {
             _decorableDrone = DroneFactory.CreateDrone(droneConfigData.droneType, droneConfigData);
+            _decorableDroneHistory.Clear();
+            _droneAttachmentDictionary.Clear();
             _numOfMountedAttachments = 0;
             foreach (var point in _attachmentPoints)
             {
                 OnDroneDecorationRemoved?.Invoke(this, point.GetDroneAttachment());
-                point.RemoveAttachment();
+                point.RemoveDroneAttachment();
             }
         }
 

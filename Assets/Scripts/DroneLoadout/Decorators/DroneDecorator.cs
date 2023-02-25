@@ -3,7 +3,7 @@
 namespace DroneLoadout.Decorators
 {
     /// <summary>
-    /// Used for decorating drones with attachments
+    /// Used for decorating drones with attachments.
     /// </summary>
     public class DroneDecorator : IDrone
     {
@@ -14,7 +14,7 @@ namespace DroneLoadout.Decorators
         /// Decorates a given drone by modifying it's attributes based on the newly supplied attachment.
         /// </summary>
         /// <param name="drone">The decorable drone</param>
-        /// <param name="droneAttachmentData">The default attribute values for a drone attachment</param>
+        /// <param name="droneAttachmentData">The default attribute values for a drone attachment.</param>
         public DroneDecorator(IDrone drone, DroneAttachmentData droneAttachmentData)
         {
             _decoratedDrone = drone;
