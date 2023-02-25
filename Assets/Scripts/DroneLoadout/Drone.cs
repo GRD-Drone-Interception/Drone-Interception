@@ -81,8 +81,11 @@ namespace DroneLoadout
             _numOfMountedAttachments = 0;
             foreach (var point in _attachmentPoints)
             {
-                OnDroneDecorationRemoved?.Invoke(this, point.GetDroneAttachment());
-                point.RemoveDroneAttachment();
+                if (point.GetDroneAttachment())
+                {
+                    OnDroneDecorationRemoved?.Invoke(this, point.GetDroneAttachment());
+                    point.RemoveDroneAttachment();
+                }
             }
         }
 
