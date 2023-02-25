@@ -12,7 +12,7 @@ public class LoadGameScene : MonoBehaviour
 
     private void OnPlayButtonPressed()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("Island");
     }
 }
 

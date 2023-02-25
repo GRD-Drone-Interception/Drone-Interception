@@ -14,14 +14,25 @@ namespace DroneLoadout.DroneWorkbench
         public Drone DroneBeingEdited => _droneBeingEdited;
         
         [SerializeField] private Transform droneSpawnPosition;
+        [SerializeField] private Button addToFleetButton;
         [SerializeField] private Button editDroneButton;
         [SerializeField] private Button resetDroneConfigButton;
         private Drone _droneBeingEdited;
         private Player _player;
 
         private void Awake() => _player = FindObjectOfType<Player>();
-        private void OnEnable() => resetDroneConfigButton.onClick.AddListener(ResetCurrentDroneConfig);
-        private void OnDisable() => resetDroneConfigButton.onClick.RemoveListener(ResetCurrentDroneConfig);
+        private void OnEnable()
+        {
+            addToFleetButton.onClick.AddListener(AddDroneToFleet);
+            resetDroneConfigButton.onClick.AddListener(ResetCurrentDroneConfig);
+        }
+
+        private void OnDisable()
+        {
+            addToFleetButton.onClick.RemoveListener(AddDroneToFleet);
+            resetDroneConfigButton.onClick.RemoveListener(ResetCurrentDroneConfig);
+        }
+
         private void Start() => resetDroneConfigButton.gameObject.SetActive(false);
 
         private void Update()
@@ -29,6 +40,7 @@ namespace DroneLoadout.DroneWorkbench
             // TODO: Call this on an event trigger. This shouldn't be in Update
             if (DroneLoadoutCameraMode.CurrentCameraMode == DroneLoadoutCameraMode.CameraMode.Display)
             {
+                addToFleetButton.gameObject.SetActive(_droneBeingEdited != null);
                 editDroneButton.gameObject.SetActive(_droneBeingEdited != null);
             }
         }
@@ -77,6 +89,24 @@ namespace DroneLoadout.DroneWorkbench
             SetLayersRecursively(droneGameObject.transform);
             var drone = droneGameObject.GetComponent<Drone>();
             AddToBench(drone);
+        }
+
+        private void AddDroneToFleet()
+        {
+            Debug.Log($"{_droneBeingEdited.DroneConfigData.droneName} <color=green>added to fleet</color>");
+            _player.DroneSwarm.AddToSwarm(_droneBeingEdited); 
+            DeleteCurrentDrone();
+
+            /*if (!_player.DroneSwarm.Drones.Contains(_droneBeingEdited))
+            {
+                Debug.Log($"{_droneBeingEdited.DroneConfigData.droneName} <color=green>added to fleet</color>");
+                _player.DroneSwarm.AddToSwarm(_droneBeingEdited);
+                DeleteCurrentDrone();
+            }
+            else
+            {
+                Debug.Log($"{_droneBeingEdited.DroneConfigData.droneName} <color=red>already in fleet</color>");
+            }*/
         }
 
         private void SetLayersRecursively(Transform droneObject)

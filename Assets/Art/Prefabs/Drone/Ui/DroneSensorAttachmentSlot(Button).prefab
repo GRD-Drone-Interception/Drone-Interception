@@ -1084,4 +1084,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ca597abefb14dbf95ddcda47b700498, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  droneAttachmentType: 6
   componentSubMenuContainer: {fileID: 830234162527585630}

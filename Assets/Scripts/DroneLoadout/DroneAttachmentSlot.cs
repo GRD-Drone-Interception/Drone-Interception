@@ -1,4 +1,5 @@
 ﻿using System;
+using DroneLoadout.Decorators;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,7 +12,9 @@ namespace DroneLoadout
     public class DroneAttachmentSlot : MonoBehaviour
     {
         public event Action<DroneAttachmentSlot> OnAttachmentSlotSelected;
-    
+        public DroneAttachmentType AttachmentType => droneAttachmentType;
+
+        [SerializeField] private DroneAttachmentType droneAttachmentType;
         [SerializeField] private GameObject componentSubMenuContainer;
         private AttachmentPoint _attachmentPoint;
         private Drone _drone;
@@ -21,22 +24,6 @@ namespace DroneLoadout
         private void OnDisable() => _button.onClick.RemoveListener(OnDroneAttachmentSlotSelected);
         private void Awake() => _button = GetComponent<Button>();
         private void Start() => componentSubMenuContainer.SetActive(false);
-
-        private void Update()
-        {
-            // TODO: Clean this - Handle in it's own class
-            if (DroneLoadoutCameraMode.CurrentCameraMode == DroneLoadoutCameraMode.CameraMode.Edit)
-            {
-                if (_attachmentPoint != null)
-                {
-                    if (!_attachmentPoint.IsVisible())
-                    {
-                        return;
-                    }
-                    Camera.main.transform.LookAt(_attachmentPoint.transform);
-                }
-            }
-        }
 
         private void OnDroneAttachmentSlotSelected()
         {

@@ -794,6 +794,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ca597abefb14dbf95ddcda47b700498, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  droneAttachmentType: 2
   componentSubMenuContainer: {fileID: 4994863355897650103}
 --- !u!1 &4994863357173612806
 GameObject:

@@ -1,5 +1,4 @@
-﻿using System;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 
 namespace DroneLoadout
@@ -15,8 +14,11 @@ namespace DroneLoadout
             _player = FindObjectOfType<Player>();
         }
 
-        private void Start() => _buildBudgetCounter.text = $"{_player.BuildBudget.StartBudget:C0}";
-        
+        private void Start()
+        {
+            _buildBudgetCounter.text = $"{_player.BuildBudget.StartBudget:C0}";
+        }
+
         private void Update()
         {
             _buildBudgetCounter.text = $"{_player.BuildBudget.BudgetRemaining:C0}";
