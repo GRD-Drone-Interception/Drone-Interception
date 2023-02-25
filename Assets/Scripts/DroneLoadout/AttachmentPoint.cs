@@ -14,7 +14,18 @@ namespace DroneLoadout
         private bool _isVisible;
         private bool _hasAttachment;
 
-        private void Awake() => _meshRenderer = GetComponent<MeshRenderer>();
+        private void Awake()
+        {
+            _meshRenderer = GetComponent<MeshRenderer>();
+
+            // If this attachment point object has a child, add it's drone attachment and decorate the drone
+            if (transform.childCount > 0)
+            {
+                var childDroneAttachment = transform.GetChild(0).GetComponent<DroneAttachment>();
+                GetComponentInParent<Drone>().Decorate(childDroneAttachment, this);
+            }
+        }
+
         private void Start() => _meshRenderer.enabled = false;
 
         private void OnDrawGizmos() => transform.localScale = new Vector3(pointSize, pointSize, pointSize);

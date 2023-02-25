@@ -25,6 +25,8 @@ namespace Testing
             {
                 GameObject customisedDronePrefab = AssetDatabase.LoadAssetAtPath<GameObject>(path);
                 GameObject customisedDrone = Instantiate(customisedDronePrefab, transform.position, Quaternion.identity);
+                Debug.Log($"Drone Cost: {customisedDrone.GetComponent<Drone>().DecorableDrone.Cost}");
+                // TODO: Overwrite/create a new ScriptableObject DroneConfig?
             }
             else
             {

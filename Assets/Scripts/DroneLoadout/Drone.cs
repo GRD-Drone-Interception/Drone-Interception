@@ -21,7 +21,7 @@ namespace DroneLoadout
     
         [SerializeField] private DroneConfigData droneConfigData; 
         private List<AttachmentPoint> _attachmentPoints = new();
-        private Dictionary<AttachmentPoint, DroneAttachment> _droneAttachmentDictionary = new();
+        private Dictionary<AttachmentPoint, DroneAttachment> _attachmentPointDictionary = new();
         private Stack<IDrone> _decorableDroneHistory = new();
         private IDrone _decorableDrone;
         private int _numOfMountedAttachments;
@@ -51,7 +51,7 @@ namespace DroneLoadout
         public void Decorate(DroneAttachment droneAttachment, AttachmentPoint attachmentPoint)
         {
             _decorableDroneHistory.Push(_decorableDrone);
-            _droneAttachmentDictionary.Add(attachmentPoint, droneAttachment);
+            _attachmentPointDictionary.Add(attachmentPoint, droneAttachment);
             _decorableDrone = new DroneDecorator(_decorableDrone, droneAttachment.Data);
             droneAttachment.transform.SetParent(attachmentPoint.transform);
             droneAttachment.transform.position = attachmentPoint.transform.position; // new
@@ -64,7 +64,7 @@ namespace DroneLoadout
         public void RemoveAttachment(AttachmentPoint attachmentPoint)
         {
             _decorableDrone = _decorableDroneHistory.Pop();
-            _droneAttachmentDictionary.Remove(attachmentPoint);
+            _attachmentPointDictionary.Remove(attachmentPoint);
             _numOfMountedAttachments--;
             OnDroneDecorationRemoved?.Invoke(this, attachmentPoint.GetDroneAttachment());
             attachmentPoint.RemoveDroneAttachment();
@@ -77,7 +77,7 @@ namespace DroneLoadout
         {
             _decorableDrone = DroneFactory.CreateDrone(droneConfigData.droneType, droneConfigData);
             _decorableDroneHistory.Clear();
-            _droneAttachmentDictionary.Clear();
+            _attachmentPointDictionary.Clear();
             _numOfMountedAttachments = 0;
             foreach (var point in _attachmentPoints)
             {
