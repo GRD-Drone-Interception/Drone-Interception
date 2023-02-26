@@ -12,7 +12,7 @@ namespace DroneLoadout
     {
         public event Action<Drone> OnDroneModelSpawned;
         
-        [SerializeField] private GameObject droneTypePrefab;
+        [SerializeField] private GameObject droneModelPrefab;
         [SerializeField] private DroneTypeSelector droneTypeSelector;
         private Button _modelButton;
         private Workbench _workbench;
@@ -29,7 +29,7 @@ namespace DroneLoadout
         private void SpawnDroneModel()
         {
             droneTypeSelector.HideModelSubMenu();
-            _workbench.SpawnDronePrefab(droneTypePrefab);
+            _workbench.SpawnDronePrefab(droneModelPrefab);
             OnDroneModelSpawned?.Invoke(_workbench.DroneOnBench);
         }
     }
