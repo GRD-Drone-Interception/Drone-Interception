@@ -19,8 +19,9 @@ namespace DroneLoadout
             _buildBudgetCounter.text = $"{_player.BuildBudget.StartBudget:C0}";
         }
 
-        private void Update()
+        private void Update() 
         {
+            // TODO: Call on an event
             _buildBudgetCounter.text = $"{_player.BuildBudget.BudgetRemaining:C0}";
         }
     }

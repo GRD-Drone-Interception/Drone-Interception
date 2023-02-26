@@ -40,8 +40,8 @@ namespace DroneLoadout.DroneWorkbench
 
         private void Update()
         {
-            // TODO: Call this on an event trigger. This shouldn't be in Update
-            if (DroneLoadoutCameraMode.CurrentCameraMode == DroneLoadoutCameraMode.CameraMode.Display)
+            // TODO: Call this on an event
+            if (WorkshopModeController.currentWorkshopMode == WorkshopMode.Display)
             {
                 addToFleetButton.gameObject.SetActive(_droneOnBench != null);
                 editDroneButton.gameObject.SetActive(_droneOnBench != null);
@@ -50,7 +50,6 @@ namespace DroneLoadout.DroneWorkbench
 
         private void AddToBench(Drone drone)
         {
-            //_player.BuildBudget.DecreaseBudget(drone.DroneConfigData.Cost);
             _player.BuildBudget.DecreaseBudget(drone.DecorableDrone.Cost);
             drone.transform.SetParent(transform);
             _droneOnBench = drone;
@@ -59,7 +58,6 @@ namespace DroneLoadout.DroneWorkbench
 
         private void RemoveFromBench(Drone drone)
         {
-            //_player.BuildBudget.IncreaseBudget(drone.DroneConfigData.Cost);
             _player.BuildBudget.IncreaseBudget(drone.DecorableDrone.Cost);
             drone.transform.SetParent(null);
         }

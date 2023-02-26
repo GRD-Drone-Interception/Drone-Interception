@@ -1,6 +1,9 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using DroneLoadout.Decorators;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace DroneLoadout
 {
@@ -12,14 +15,21 @@ namespace DroneLoadout
         [SerializeField] private Transform workshopCanvas;
         [SerializeField] private List<GameObject> droneAttachmentSlotTypePrefabs;
         private Dictionary<DroneAttachmentType, GameObject> _droneAttachmentTypePrefabDict;
-        private readonly List<DroneTypeSelector> _droneTypeButtons = new();
         private readonly List<DroneModelSpawner> _droneModelButtons = new();
         private readonly List<DroneAttachmentSlot> _droneAttachmentSlots = new();
 
-        private void Awake()
+        private void Awake() => _droneModelButtons.AddRange(FindObjectsOfType<DroneModelSpawner>());
+        
+        private void OnEnable()
         {
-            _droneTypeButtons.AddRange(FindObjectsOfType<DroneTypeSelector>());
-            _droneModelButtons.AddRange(FindObjectsOfType<DroneModelSpawner>());
+            WorkshopModeController.OnModeChange += SetVisibilityOfAttachmentSlots;
+            _droneModelButtons.ForEach(button => button.OnDroneModelSpawned += SpawnAttachmentSlots);
+        }
+
+        private void OnDisable()
+        {
+            WorkshopModeController.OnModeChange -= SetVisibilityOfAttachmentSlots;
+            _droneModelButtons.ForEach(button => button.OnDroneModelSpawned -= SpawnAttachmentSlots);
         }
 
         private void Start()
@@ -61,30 +71,16 @@ namespace DroneLoadout
             }
         }
 
-        private void OnEnable()
-        {
-            DroneLoadoutCameraMode.OnModeChange += SetVisibilityOfDroneTypeButtons;
-            _droneModelButtons.ForEach(button => button.OnDroneModelSpawned += SpawnAttachmentSlots);
-        }
-
-        private void OnDisable()
-        {
-            DroneLoadoutCameraMode.OnModeChange -= SetVisibilityOfDroneTypeButtons;
-            _droneModelButtons.ForEach(button => button.OnDroneModelSpawned -= SpawnAttachmentSlots);
-        }
-
-        private void SetVisibilityOfDroneTypeButtons(DroneLoadoutCameraMode.CameraMode mode)
+        private void SetVisibilityOfAttachmentSlots(WorkshopMode mode)
         {
             switch (mode)
             {
-                case DroneLoadoutCameraMode.CameraMode.Edit:
+                case WorkshopMode.Edit:
                     _droneAttachmentSlots.ForEach(slot => slot.gameObject.SetActive(true));
-                    _droneTypeButtons.ForEach(slot => slot.gameObject.SetActive(false));
                     break;
-                case DroneLoadoutCameraMode.CameraMode.Display:
+                case WorkshopMode.Display:
                     _droneAttachmentSlots.ForEach(slot => slot.gameObject.SetActive(false));
                     _droneAttachmentSlots.ForEach(slot => slot.HideComponentSubMenu());
-                    _droneTypeButtons.ForEach(slot => slot.gameObject.SetActive(true));
                     break;
             }
         }
@@ -94,6 +90,7 @@ namespace DroneLoadout
             // Destroy existing attachment slot ui buttons
             foreach (var slot in _droneAttachmentSlots)
             {
+                slot.OnAttachmentSlotSelected -= HideUnselectedDroneAttachmentSlotSubMenusOnSelected;
                 Destroy(slot.gameObject);
             }
             _droneAttachmentSlots.Clear();
@@ -102,7 +99,7 @@ namespace DroneLoadout
             {
                 var droneAttachmentSlotUiButton = Instantiate(_droneAttachmentTypePrefabDict[drone.GetAttachmentPoints()[i].GetAttachmentType()]); 
                 var uiButton = droneAttachmentSlotUiButton.transform;
-                uiButton.position = new Vector3(uiButton.position.x, uiButton.position.y - (i * 150), uiButton.position.z);
+                uiButton.position = new Vector3(uiButton.position.x, uiButton.position.y - (i * 100), uiButton.position.z);
                 droneAttachmentSlotUiButton.transform.SetParent(workshopCanvas);
 
                 var droneAttachmentSlot = droneAttachmentSlotUiButton.GetComponent<DroneAttachmentSlot>();
@@ -111,7 +108,19 @@ namespace DroneLoadout
                 _droneAttachmentSlots.Add(droneAttachmentSlot);
                 droneAttachmentSlot.gameObject.SetActive(false);
                 droneAttachmentSlot.HideComponentSubMenu();
+                droneAttachmentSlot.OnAttachmentSlotSelected += HideUnselectedDroneAttachmentSlotSubMenusOnSelected;
             }
         }
+
+        private void HideUnselectedDroneAttachmentSlotSubMenusOnSelected(DroneAttachmentSlot slot)
+        {
+            // Hide attachment slot sub-menus besides the one currently selected
+            foreach (var button in _droneAttachmentSlots.Where(button => button != slot))
+            {
+                button.HideComponentSubMenu();
+            }
+        }
+
+        private void OnDestroy() => _droneAttachmentSlots.ForEach(slot => slot.OnAttachmentSlotSelected -= HideUnselectedDroneAttachmentSlotSubMenusOnSelected);
     }
 }

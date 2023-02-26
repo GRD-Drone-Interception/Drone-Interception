@@ -19,10 +19,15 @@ namespace DroneLoadout
         private AttachmentPoint _attachmentPoint;
         private Drone _drone;
         private Button _button;
+        private Image _image;
 
         private void OnEnable() => _button.onClick.AddListener(ToggleAttachmentSlotVisibilityOnSlotSelected);
         private void OnDisable() => _button.onClick.RemoveListener(ToggleAttachmentSlotVisibilityOnSlotSelected);
-        private void Awake() => _button = GetComponent<Button>();
+        private void Awake()
+        {
+            _button = GetComponent<Button>();
+            _image = GetComponent<Image>();
+        }
         private void Start() => componentSubMenuContainer.SetActive(false);
 
         private void ToggleAttachmentSlotVisibilityOnSlotSelected()
@@ -31,6 +36,7 @@ namespace DroneLoadout
             if (!componentSubMenuContainer.activeSelf)
             {
                 componentSubMenuContainer.SetActive(true);
+                _image.fillCenter = false;
                 _attachmentPoint.SetVisibility(true);
                 OnAttachmentSlotSelected?.Invoke(this);
             }
@@ -42,6 +48,7 @@ namespace DroneLoadout
         public void HideComponentSubMenu()
         {
             componentSubMenuContainer.SetActive(false);
+            _image.fillCenter = true;
             if (_attachmentPoint != null)
             {
                 _attachmentPoint.SetVisibility(false);

@@ -39,7 +39,7 @@ namespace DroneLoadout.DroneWorkbench
         {
             if(_workbench.DroneOnBench == null) { return; }
 
-            if (DroneLoadoutCameraMode.CurrentCameraMode == DroneLoadoutCameraMode.CameraMode.Edit)
+            if (WorkshopModeController.currentWorkshopMode == WorkshopMode.Edit)
             {
                 if (_rotateLeftIsPressed)
                 {

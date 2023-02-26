@@ -8,8 +8,6 @@ namespace Testing
     public class DroneSpawner : MonoBehaviour
     {
         //[SerializeField] private DroneType droneType;
-        //[SerializeField] private GameObject dronePrefab;
-        //[SerializeField] private GameObject propellerAttachmentPrefab;
 
         private void Start()
         {
@@ -32,8 +30,6 @@ namespace Testing
             {
                 Debug.LogError("Prefab does not exist!");
             }
-
-
 
             //var droneObject = Instantiate(dronePrefab, transform.position, Quaternion.identity);
             //var drone = droneObject.GetComponent<Drone>();

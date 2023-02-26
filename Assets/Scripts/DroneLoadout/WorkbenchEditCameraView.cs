@@ -36,7 +36,7 @@ namespace DroneLoadout
         {
             if (_target == null) { return; }
             
-            if (DroneLoadoutCameraMode.CurrentCameraMode == DroneLoadoutCameraMode.CameraMode.Edit)
+            if (WorkshopModeController.currentWorkshopMode == WorkshopMode.Edit)
             {
                 Camera.main.transform.LookAt(_target);
             }

@@ -29,7 +29,7 @@ RectTransform:
   m_GameObject: {fileID: 842864759579015553}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7888278206010220369}
@@ -40,7 +40,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 100, y: 1200}
+  m_AnchoredPosition: {x: 100, y: 1000}
   m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &9103668539105520799
@@ -137,6 +137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ca597abefb14dbf95ddcda47b700498, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  droneAttachmentType: 0
   componentSubMenuContainer: {fileID: 8855328044008810757}
 --- !u!1 &2412999214929297217
 GameObject:
