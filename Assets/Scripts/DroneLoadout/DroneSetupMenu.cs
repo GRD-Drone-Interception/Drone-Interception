@@ -29,7 +29,7 @@ namespace DroneLoadout
         private void Start()
         {
             _menuButton = _subMenuButtons.FirstOrDefault(button => button.GetMenuState() == DroneSetupMenuStates.Lobby);
-            _menuButton.SetButtonFontColour(new Color(0, 1, 0.68F, 1));
+            _menuButton.SetButtonFontColour(new Color(0, 0.07f, 0.54f, 1));
             _menuButton.SetButtonFontStyle(FontStyles.Bold);
 
             var menuStates = Enum.GetValues(typeof(DroneSetupMenuStates));

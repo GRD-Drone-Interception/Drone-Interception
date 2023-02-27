@@ -15,7 +15,7 @@ namespace DroneLoadout
 
         private void Awake() => _text = GetComponent<TMP_Text>();
 
-        public void OnPointerEnter(PointerEventData eventData) => SetButtonFontColour(new Color(0, 1, 0.68F, 1));
+        public void OnPointerEnter(PointerEventData eventData) => SetButtonFontColour(new Color(0, 0.07f, 0.54f, 1));
 
         public void OnPointerExit(PointerEventData eventData)
         {

@@ -1,5 +1,3 @@
-using System;
-using DroneLoadout;
 using DroneLoadout.DroneWorkbench;
 using TMPro;
 using UnityEngine;
