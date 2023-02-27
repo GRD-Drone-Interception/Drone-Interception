@@ -28,6 +28,7 @@ namespace DroneLoadout
             {
                 case WorkshopMode.Edit:
                     _droneTypeButtons.ForEach(slot => slot.gameObject.SetActive(false));
+                    _droneTypeButtons.ForEach(slot => slot.HideModelSubMenu());
                     break;
                 case WorkshopMode.Display:
                     _droneTypeButtons.ForEach(slot => slot.gameObject.SetActive(true));
