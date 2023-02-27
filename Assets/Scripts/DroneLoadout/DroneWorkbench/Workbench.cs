@@ -19,6 +19,7 @@ namespace DroneLoadout.DroneWorkbench
         public Drone DroneOnBench => _droneOnBench;
 
         [SerializeField] private GameObject backboard; // TODO: Move this 
+        [SerializeField] private GameObject droneDataInfoBox; // TODO: Move this 
         [SerializeField] private Transform droneSpawnPosition;
         [SerializeField] private Button addToFleetButton;
         [SerializeField] private Button editDroneButton;
@@ -66,6 +67,16 @@ namespace DroneLoadout.DroneWorkbench
             else
             {
                 backboard.SetActive(false);
+            }
+            
+            // Temporary
+            if (WorkshopModeController.currentWorkshopMode == WorkshopMode.Edit)
+            {
+                droneDataInfoBox.SetActive(true);
+            }
+            else
+            {
+                droneDataInfoBox.SetActive(false);
             }
         }
 
