@@ -6,9 +6,18 @@ using UnityEngine;
 
 namespace DroneLoadout
 {
+    public enum DroneSetupMenuStates
+    {
+        Lobby,
+        Workshop,
+        Fleet,
+        TechTree,
+        Stats
+    }
+    
     public class DroneSetupMenu : MonoBehaviour
     {
-        public DroneSetupMenuStates State { get; private set; }
+        public static DroneSetupMenuStates State { get; private set; }
 
         [SerializeField] private List<GameObject> menuUiContainers;
         private Dictionary<DroneSetupMenuStates, GameObject> _droneSetupMenuDictionary = new();
@@ -20,8 +29,8 @@ namespace DroneLoadout
         private void Start()
         {
             _menuButton = _subMenuButtons.FirstOrDefault(button => button.GetMenuState() == DroneSetupMenuStates.Lobby);
-            _menuButton.SetButtonFontColour(new Color(0, 1, 0.67f));
-            _menuButton.SetButtonFontStyle(FontStyles.Underline | FontStyles.Bold);
+            _menuButton.SetButtonFontColour(new Color(0, 1, 0.68F, 1));
+            _menuButton.SetButtonFontStyle(FontStyles.Bold);
 
             var menuStates = Enum.GetValues(typeof(DroneSetupMenuStates));
             for (int i = 0; i < menuStates.Length; i++)
@@ -42,8 +51,8 @@ namespace DroneLoadout
             {
                 // Reset font state and style of previously pressed button
                 _menuButton.SetActive(false);
-                _menuButton.SetButtonFontColour(Color.white);
-                _menuButton.SetButtonFontStyle(FontStyles.Bold);
+                _menuButton.SetButtonFontColour(Color.black);
+                _menuButton.SetButtonFontStyle(FontStyles.Normal);
                 _droneSetupMenuDictionary[State].SetActive(false);
             }
             _menuButton = newActiveMenuButton;

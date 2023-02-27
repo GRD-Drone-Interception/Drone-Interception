@@ -11,10 +11,10 @@ namespace DroneLoadout
         private Transform _target;
 
         private void Awake() => _droneModelSpawners.AddRange(FindObjectsOfType<DroneModelSpawner>());
-        private void OnEnable() => _droneModelSpawners.ForEach(ctx => ctx.OnDroneModelSpawned += FindAttachmentSlotsOnModelSpawned);
-        private void OnDisable() => _droneModelSpawners.ForEach(ctx => ctx.OnDroneModelSpawned -= FindAttachmentSlotsOnModelSpawned);
+        private void OnEnable() => _droneModelSpawners.ForEach(ctx => ctx.OnDroneModelSelected += FindAttachmentSlotsOnModelSpawned);
+        private void OnDisable() => _droneModelSpawners.ForEach(ctx => ctx.OnDroneModelSelected -= FindAttachmentSlotsOnModelSpawned);
 
-        private void FindAttachmentSlotsOnModelSpawned(Drone drone) => StartCoroutine(FindAttachmentSlotsCoroutine());
+        private void FindAttachmentSlotsOnModelSpawned(GameObject dronePrefab) => StartCoroutine(FindAttachmentSlotsCoroutine());
         
         private IEnumerator FindAttachmentSlotsCoroutine()
         {

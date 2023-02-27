@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using Testing;
 using UnityEditor;
@@ -14,26 +15,36 @@ namespace DroneLoadout.DroneWorkbench
     public class Workbench : MonoBehaviour
     {
         public event Action<Drone> OnDroneOnBenchChanged; 
+        public event Action OnDroneOnBenchDestroyed; 
         public Drone DroneOnBench => _droneOnBench;
-        
+
+        [SerializeField] private GameObject backboard; // TODO: Move this 
         [SerializeField] private Transform droneSpawnPosition;
         [SerializeField] private Button addToFleetButton;
         [SerializeField] private Button editDroneButton;
         [SerializeField] private Button resetDroneConfigButton;
+        private readonly List<DroneModelSpawner> _droneModelSpawners = new();
         private Drone _droneOnBench;
         private Player _player;
 
-        private void Awake() => _player = FindObjectOfType<Player>();
+        private void Awake()
+        {
+            _player = FindObjectOfType<Player>();
+            _droneModelSpawners.AddRange(FindObjectsOfType<DroneModelSpawner>());
+        }
+
         private void OnEnable()
         {
             addToFleetButton.onClick.AddListener(AddDroneToFleet);
             resetDroneConfigButton.onClick.AddListener(ResetCurrentDroneConfig);
+            _droneModelSpawners.ForEach(ctx => ctx.OnDroneModelSelected += BuildDrone);
         }
 
         private void OnDisable()
         {
             addToFleetButton.onClick.RemoveListener(AddDroneToFleet);
             resetDroneConfigButton.onClick.RemoveListener(ResetCurrentDroneConfig);
+            _droneModelSpawners.ForEach(ctx => ctx.OnDroneModelSelected -= BuildDrone);
         }
 
         private void Start() => resetDroneConfigButton.gameObject.SetActive(false);
@@ -46,11 +57,21 @@ namespace DroneLoadout.DroneWorkbench
                 addToFleetButton.gameObject.SetActive(_droneOnBench != null);
                 editDroneButton.gameObject.SetActive(_droneOnBench != null);
             }
+            
+            // Temporary
+            if (DroneSetupMenu.State == DroneSetupMenuStates.Workshop)
+            {
+                backboard.SetActive(true);
+            }
+            else
+            {
+                backboard.SetActive(false);
+            }
         }
 
         private void AddToBench(Drone drone)
         {
-            _player.BuildBudget.DecreaseBudget(drone.DecorableDrone.Cost);
+            _player.BuildBudget.Spend(drone.DecorableDrone.Cost);
             drone.transform.SetParent(transform);
             _droneOnBench = drone;
             OnDroneOnBenchChanged?.Invoke(drone);
@@ -58,7 +79,7 @@ namespace DroneLoadout.DroneWorkbench
 
         private void RemoveFromBench(Drone drone)
         {
-            _player.BuildBudget.IncreaseBudget(drone.DecorableDrone.Cost);
+            _player.BuildBudget.Sell(drone.DecorableDrone.Cost);
             drone.transform.SetParent(null);
         }
 
@@ -74,10 +95,10 @@ namespace DroneLoadout.DroneWorkbench
         {
             RemoveFromBench(_droneOnBench);
             Destroy(_droneOnBench.gameObject);
-            OnDroneOnBenchChanged?.Invoke(null);
+            OnDroneOnBenchDestroyed?.Invoke();
         }
 
-        public void SpawnDronePrefab(GameObject prefab)
+        private void BuildDrone(GameObject prefab)
         {
             if (_droneOnBench != null)
             {
@@ -87,7 +108,7 @@ namespace DroneLoadout.DroneWorkbench
             var droneGameObject = Instantiate(prefab);
             droneGameObject.transform.position = droneSpawnPosition.position;
             droneGameObject.layer = LayerMask.NameToLayer("Focus");
-            SetChildLayersRecursively(droneGameObject.transform, "Focus");
+            SetChildLayersIteratively(droneGameObject.transform, "Focus");
             var drone = droneGameObject.GetComponent<Drone>();
             AddToBench(drone);
         }
@@ -95,7 +116,7 @@ namespace DroneLoadout.DroneWorkbench
         private void AddDroneToFleet() // Separate save method?
         {
             Debug.Log($"{_droneOnBench.DroneConfigData.droneName} <color=green>added to fleet</color>");
-            SetChildLayersRecursively(_droneOnBench.transform, "Default");
+            SetChildLayersIteratively(_droneOnBench.transform, "Default");
             _player.DroneSwarm.AddToSwarm(_droneOnBench);
             
             // Save the customised drone as a prefab
@@ -110,13 +131,24 @@ namespace DroneLoadout.DroneWorkbench
             //DroneSaveSystem.SaveToFile(_droneOnBench.DecorableDrone);
         }
 
-        private void SetChildLayersRecursively(Transform droneObject, string layer)
+        /// <summary>
+        /// Performs an iterative depth-first search traversal on a drone object hierarchy
+        /// in order to assign each of it's children with a given layer
+        /// </summary>
+        /// <param name="droneObject"></param>
+        /// <param name="layer"></param>
+        private void SetChildLayersIteratively(Transform droneObject, string layer)
         {
-            foreach (Transform child in droneObject)
+            var stack = new Stack<Transform>();
+            stack.Push(droneObject);
+            while (stack.Count > 0)
             {
-                child.gameObject.layer = LayerMask.NameToLayer(layer); 
-                // recursively call SetLayersRecursively for each child
-                SetChildLayersRecursively(child, layer);
+                var current = stack.Pop();
+                current.gameObject.layer = LayerMask.NameToLayer(layer);
+                for (int i = 0; i < current.childCount; i++)
+                {
+                    stack.Push(current.GetChild(i));
+                }
             }
         }
     }

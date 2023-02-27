@@ -54,7 +54,7 @@ namespace DroneLoadout
             _attachmentPointDictionary.Add(attachmentPoint, droneAttachment);
             _decorableDrone = new DroneDecorator(_decorableDrone, droneAttachment.Data);
             droneAttachment.transform.SetParent(attachmentPoint.transform);
-            droneAttachment.transform.position = attachmentPoint.transform.position; // new
+            droneAttachment.transform.position = attachmentPoint.transform.position;
             droneAttachment.gameObject.layer = LayerMask.NameToLayer("Focus");
             attachmentPoint.AddDroneAttachment(droneAttachment);
             _numOfMountedAttachments++;

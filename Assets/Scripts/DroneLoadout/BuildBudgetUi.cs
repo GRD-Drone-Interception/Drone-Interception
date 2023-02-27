@@ -16,13 +16,13 @@ namespace DroneLoadout
 
         private void Start()
         {
-            _buildBudgetCounter.text = $"{_player.BuildBudget.StartBudget:C0}";
+            _buildBudgetCounter.text = $"BUILD BUDGET: {_player.BuildBudget.StartBudget:C0}";
         }
 
         private void Update() 
         {
             // TODO: Call on an event
-            _buildBudgetCounter.text = $"{_player.BuildBudget.BudgetRemaining:C0}";
+            _buildBudgetCounter.text = $"BUILD BUDGET: {_player.BuildBudget.BudgetRemaining:C0}";
         }
     }
 }

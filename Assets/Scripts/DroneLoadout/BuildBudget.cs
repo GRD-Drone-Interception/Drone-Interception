@@ -16,14 +16,14 @@
             BudgetRemaining = amount;
         }
 
-        public void IncreaseBudget(float amount)
+        public void Spend(float cost)
+        {
+            BudgetRemaining -= cost;
+        }
+        
+        public void Sell(float amount)
         {
             BudgetRemaining += amount;
-        }
-
-        public void DecreaseBudget(float amount)
-        {
-            BudgetRemaining -= amount;
         }
     
         public bool CanAfford(float cost)

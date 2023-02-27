@@ -22,15 +22,15 @@ namespace DroneLoadout
             _workbench.DroneOnBench.OnDroneDecorationAdded += DecreaseBuildBudgetText;
             _workbench.DroneOnBench.OnDroneDecorationRemoved += IncreaseBuildBudgetText;
         }
-        
+
         private void IncreaseBuildBudgetText(Drone drone, DroneAttachment droneAttachment)
         {
-            _player.BuildBudget.IncreaseBudget(droneAttachment.Data.Cost);
+            _player.BuildBudget.Sell(droneAttachment.Data.Cost);
         }
         
         private void DecreaseBuildBudgetText(Drone drone, DroneAttachment droneAttachment)
         {
-            _player.BuildBudget.DecreaseBudget(droneAttachment.Data.Cost);
+            _player.BuildBudget.Spend(droneAttachment.Data.Cost);
         }
     }
 }

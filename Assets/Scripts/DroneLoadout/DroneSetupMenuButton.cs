@@ -15,18 +15,19 @@ namespace DroneLoadout
 
         private void Awake() => _text = GetComponent<TMP_Text>();
 
-        public void OnPointerEnter(PointerEventData eventData) => SetButtonFontColour(new Color(0, 1, 0.67f));
+        public void OnPointerEnter(PointerEventData eventData) => SetButtonFontColour(new Color(0, 1, 0.68F, 1));
 
         public void OnPointerExit(PointerEventData eventData)
         {
             if (_isActive) { return; }
-            SetButtonFontColour(Color.white);
+            SetButtonFontColour(Color.black); 
+            SetButtonFontStyle(FontStyles.Normal);
         }
 
         public void OnPointerDown(PointerEventData eventData)
         {
             _isActive = true;
-            SetButtonFontStyle(FontStyles.Underline | FontStyles.Bold);
+            SetButtonFontStyle(FontStyles.Bold);
             OnButtonPressed?.Invoke(this);
         }
 

@@ -1,5 +1,4 @@
 ﻿using System;
-using DroneLoadout.DroneWorkbench;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,27 +9,24 @@ namespace DroneLoadout
     /// </summary>
     public class DroneModelSpawner : MonoBehaviour
     {
-        public event Action<Drone> OnDroneModelSpawned;
+        public event Action<GameObject> OnDroneModelSelected;
         
         [SerializeField] private GameObject droneModelPrefab;
         [SerializeField] private DroneTypeSelector droneTypeSelector;
         private Button _modelButton;
-        private Workbench _workbench;
 
         private void OnEnable() => _modelButton.onClick.AddListener(SpawnDroneModel);
         private void OnDisable() => _modelButton.onClick.RemoveListener(SpawnDroneModel);
 
         public void Awake()
         {
-            _workbench = FindObjectOfType<Workbench>();
             _modelButton = GetComponent<Button>();
         }
 
         private void SpawnDroneModel()
         {
             droneTypeSelector.HideModelSubMenu();
-            _workbench.SpawnDronePrefab(droneModelPrefab);
-            OnDroneModelSpawned?.Invoke(_workbench.DroneOnBench);
+            OnDroneModelSelected?.Invoke(droneModelPrefab);
         }
     }
 }

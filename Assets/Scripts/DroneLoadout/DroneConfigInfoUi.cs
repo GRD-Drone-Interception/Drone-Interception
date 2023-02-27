@@ -17,8 +17,20 @@ namespace DroneLoadout
         private Workbench _workbench;
 
         private void Awake() => _workbench = FindObjectOfType<Workbench>();
-        private void OnEnable() => _workbench.OnDroneOnBenchChanged += SubscribeToNewDronesDecoratedEvents;
-        private void OnDisable() => _workbench.OnDroneOnBenchChanged -= SubscribeToNewDronesDecoratedEvents;
+
+        private void OnEnable()
+        {
+            _workbench.OnDroneOnBenchChanged += SubscribeToNewDronesDecoratedEvents;
+            _workbench.OnDroneOnBenchDestroyed += ClearDroneInfoFromUI;
+        }
+
+        private void OnDisable()
+        {
+            _workbench.OnDroneOnBenchChanged -= SubscribeToNewDronesDecoratedEvents;
+            _workbench.OnDroneOnBenchDestroyed -= ClearDroneInfoFromUI;
+        }
+        
+        private void Start() => ClearDroneInfoFromUI();
 
         private void SubscribeToNewDronesDecoratedEvents(Drone drone)
         {
@@ -29,32 +41,26 @@ namespace DroneLoadout
 
         private void UpdateDroneInfoUi(Drone drone, DroneAttachment droneAttachment)
         {
-            if (drone == null)
-            {
-                ClearDroneInfoFromUI();
-                return;
-            }
-            
-            droneTypeText.text = $"DRONE TYPE: <color=white>{drone.DroneConfigData.droneType}</color>";
-            droneModelText.text = $"DRONE MODEL: <color=white>{drone.DroneConfigData.droneName}</color>";
-            droneModsText.text = $"MODS: <color=white>{drone.NumOfMountedAttachments}</color>";
-            droneCostText.text = $"COST: <color=white>{drone.DecorableDrone.Cost:C0}</color>";
-            droneRangeText.text = $"RANGE: <color=white>{drone.DecorableDrone.Range}km</color>";
-            droneSpeedText.text = $"SPEED: <color=white>{drone.DecorableDrone.Speed}mph</color>";
-            droneAccelerationText.text = $"ACCELERATION: <color=white>{drone.DecorableDrone.Acceleration}km/h in ?s</color>";
-            droneWeightText.text = $"WEIGHT: <color=white>{drone.DecorableDrone.Weight}kg</color>";
+            droneTypeText.text = $"DRONE TYPE: {drone.DroneConfigData.droneType}";
+            droneModelText.text = $"DRONE MODEL: {drone.DroneConfigData.droneName}";
+            droneModsText.text = $"MODS: {drone.NumOfMountedAttachments}";
+            droneCostText.text = $"COST: {drone.DecorableDrone.Cost:C0}";
+            droneRangeText.text = $"RANGE: {drone.DecorableDrone.Range}km";
+            droneSpeedText.text = $"SPEED: {drone.DecorableDrone.Speed}mph";
+            droneAccelerationText.text = $"ACCELERATION: {drone.DecorableDrone.Acceleration}km/h in ?s";
+            droneWeightText.text = $"WEIGHT: {drone.DecorableDrone.Weight}kg";
         }
 
         private void ClearDroneInfoFromUI()
         {
-            droneTypeText.text = "DRONE TYPE: <color=white>NONE</color>";
-            droneModelText.text = "DRONE MODEL: <color=white>NONE</color>";
-            droneModsText.text = "MODS: <color=white>0</color>";
-            droneCostText.text = "COST: <color=white>£0</color>";
-            droneRangeText.text = "RANGE: <color=white>0km</color>";
-            droneSpeedText.text = "SPEED: <color=white>0mph</color>";
-            droneAccelerationText.text = "ACCELERATION: <color=white>km/h in ?s</color>";
-            droneWeightText.text = "WEIGHT: <color=white>0kg</color>";
+            droneTypeText.text = "DRONE TYPE: NONE";
+            droneModelText.text = "DRONE MODEL: NONE";
+            droneModsText.text = "MODS: 0";
+            droneCostText.text = "COST: £0";
+            droneRangeText.text = "RANGE: 0km";
+            droneSpeedText.text = "SPEED: 0mph";
+            droneAccelerationText.text = "ACCELERATION: 0km/h in ?s";
+            droneWeightText.text = "WEIGHT: 0kg";
         }
     }
 }

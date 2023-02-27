@@ -34,7 +34,7 @@ namespace DroneLoadout.Factory
         }
     }
 
-    public enum DroneType // Type Object pattern? Use scriptable objects to allow users to define their own types?
+    public enum DroneType 
     {
         Quadcopter,
         FixedWing,

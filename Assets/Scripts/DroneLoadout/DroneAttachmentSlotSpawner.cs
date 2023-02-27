@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DroneLoadout.Decorators;
+using DroneLoadout.DroneWorkbench;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,21 +16,21 @@ namespace DroneLoadout
         [SerializeField] private Transform workshopCanvas;
         [SerializeField] private List<GameObject> droneAttachmentSlotTypePrefabs;
         private Dictionary<DroneAttachmentType, GameObject> _droneAttachmentTypePrefabDict;
-        private readonly List<DroneModelSpawner> _droneModelButtons = new();
         private readonly List<DroneAttachmentSlot> _droneAttachmentSlots = new();
+        private Workbench _workbench;
 
-        private void Awake() => _droneModelButtons.AddRange(FindObjectsOfType<DroneModelSpawner>());
-        
+        private void Awake() => _workbench = FindObjectOfType<Workbench>();
+
         private void OnEnable()
         {
             WorkshopModeController.OnModeChange += SetVisibilityOfAttachmentSlots;
-            _droneModelButtons.ForEach(button => button.OnDroneModelSpawned += SpawnAttachmentSlots);
+            _workbench.OnDroneOnBenchChanged += SpawnAttachmentSlots;
         }
 
         private void OnDisable()
         {
             WorkshopModeController.OnModeChange -= SetVisibilityOfAttachmentSlots;
-            _droneModelButtons.ForEach(button => button.OnDroneModelSpawned -= SpawnAttachmentSlots);
+            _workbench.OnDroneOnBenchChanged -= SpawnAttachmentSlots;
         }
 
         private void Start()
