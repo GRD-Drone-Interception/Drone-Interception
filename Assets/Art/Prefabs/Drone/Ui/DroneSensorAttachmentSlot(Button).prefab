@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 830234160665915804}
   - component: {fileID: 830234160665915805}
   m_Layer: 5
-  m_Name: DroneMotorComponentImage
+  m_Name: DroneSensorComponentImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -823,7 +823,7 @@ GameObject:
   - component: {fileID: 830234162710510324}
   - component: {fileID: 830234162710510325}
   m_Layer: 5
-  m_Name: DroneMotor1ComponentButton
+  m_Name: DroneSensor1ComponentButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -974,7 +974,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 830234162764267331}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 0
@@ -983,7 +983,7 @@ RectTransform:
   - {fileID: 830234162179460730}
   - {fileID: 830234162527585625}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
