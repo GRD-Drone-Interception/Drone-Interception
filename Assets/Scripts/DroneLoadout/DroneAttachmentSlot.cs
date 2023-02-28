@@ -1,5 +1,6 @@
 ﻿using System;
 using DroneLoadout.Decorators;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,6 +21,9 @@ namespace DroneLoadout
         private Drone _drone;
         private Button _button;
         private Image _image;
+        private TMP_Text _text;
+        private ColorBlock _highlightColourBlock;
+        private ColorBlock _unhighlightColourBlock;
 
         private void OnEnable() => _button.onClick.AddListener(ToggleAttachmentSlotVisibilityOnSlotSelected);
         private void OnDisable() => _button.onClick.RemoveListener(ToggleAttachmentSlotVisibilityOnSlotSelected);
@@ -27,8 +31,47 @@ namespace DroneLoadout
         {
             _button = GetComponent<Button>();
             _image = GetComponent<Image>();
+            _text = GetComponentInChildren<TMP_Text>();
         }
-        private void Start() => componentSubMenuContainer.SetActive(false);
+        private void Start()
+        {
+            componentSubMenuContainer.SetActive(false);
+            
+            _highlightColourBlock = new ColorBlock
+            {
+                normalColor = new Color(0, 1, 0.6f, 0.75f),
+                highlightedColor = _button.colors.highlightedColor,
+                pressedColor = _button.colors.pressedColor,
+                selectedColor = new Color(0, 1, 0.6f, 0.75f),
+                disabledColor = _button.colors.disabledColor,
+                colorMultiplier = 1,
+                fadeDuration = 0
+            };
+            
+            _unhighlightColourBlock = new ColorBlock
+            {
+                normalColor = new Color(0, 0, 0, 0.8f),
+                highlightedColor = _button.colors.highlightedColor,
+                pressedColor = _button.colors.pressedColor,
+                selectedColor = new Color(0, 0, 0, 0.8f),
+                disabledColor = _button.colors.disabledColor,
+                colorMultiplier = 1,
+                fadeDuration = 0
+            };
+        }
+
+        private void Update()
+        {
+            // TODO: Clean this
+            if (_attachmentPoint.HasAttachment)
+            {
+                Highlight();
+            }
+            else
+            {
+                Unhighlight();
+            }
+        }
 
         private void ToggleAttachmentSlotVisibilityOnSlotSelected()
         {
@@ -60,5 +103,17 @@ namespace DroneLoadout
 
         public void BindToAttachmentPoint(AttachmentPoint point) => _attachmentPoint = point;
         public AttachmentPoint GetAttachmentPoint() => _attachmentPoint;
+        
+        private void Highlight()
+        {
+            _button.colors = _highlightColourBlock;
+            _text.color = Color.black;
+        }
+
+        private void Unhighlight()
+        {
+            _button.colors = _unhighlightColourBlock;
+            _text.color = Color.white;
+        }
     }
 }

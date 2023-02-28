@@ -22,14 +22,15 @@ namespace DroneLoadout
             _droneTypeButtons.ForEach(button => button.OnDroneTypeSelected -= HideDroneTypeButtonsOnTypeSelected);
         }
 
-        private void SetVisibilityOfAttachmentSlotsOnModeChange(WorkshopMode mode)
+        private void SetVisibilityOfAttachmentSlotsOnModeChange(WorkshopModeController.WorkshopMode mode)
         {
             switch (mode)
             {
-                case WorkshopMode.Edit:
+                case WorkshopModeController.WorkshopMode.Edit:
                     _droneTypeButtons.ForEach(slot => slot.gameObject.SetActive(false));
+                    _droneTypeButtons.ForEach(slot => slot.HideModelSubMenu());
                     break;
-                case WorkshopMode.Display:
+                case WorkshopModeController.WorkshopMode.Display:
                     _droneTypeButtons.ForEach(slot => slot.gameObject.SetActive(true));
                     break;
             }
