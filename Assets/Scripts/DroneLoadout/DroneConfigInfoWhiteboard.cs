@@ -20,13 +20,13 @@ namespace DroneLoadout
 
         private void OnEnable()
         {
-            _workbench.OnDroneOnBenchChanged += SubscribeToNewDronesDecoratedEvents;
+            _workbench.OnDroneAdded += SubscribeToNewDronesDecoratedEvents;
             _workbench.OnDroneOnBenchDestroyed += ClearDroneInfoFromUI;
         }
 
         private void OnDisable()
         {
-            _workbench.OnDroneOnBenchChanged -= SubscribeToNewDronesDecoratedEvents;
+            _workbench.OnDroneAdded -= SubscribeToNewDronesDecoratedEvents;
             _workbench.OnDroneOnBenchDestroyed -= ClearDroneInfoFromUI;
         }
         

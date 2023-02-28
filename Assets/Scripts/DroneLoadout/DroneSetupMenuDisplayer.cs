@@ -8,14 +8,14 @@ public class DroneSetupMenuDisplayer : MonoBehaviour
     private void OnEnable() => WorkshopModeController.OnModeChange += SetVisibilityOfMenuNavBarOnModeChange;
     private void OnDisable() => WorkshopModeController.OnModeChange -= SetVisibilityOfMenuNavBarOnModeChange;
 
-    private void SetVisibilityOfMenuNavBarOnModeChange(WorkshopMode mode)
+    private void SetVisibilityOfMenuNavBarOnModeChange(WorkshopModeController.WorkshopMode mode)
     {
         switch (mode)
         {
-            case WorkshopMode.Edit:
+            case WorkshopModeController.WorkshopMode.Edit:
                 menuNavigationBar.SetActive(false);
                 break;
-            case WorkshopMode.Display:
+            case WorkshopModeController.WorkshopMode.Display:
                 menuNavigationBar.SetActive(true);
                 break;
         }

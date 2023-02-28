@@ -31,7 +31,7 @@ namespace DroneLoadout
                 
             }
             
-            _playerBudget.Sell(item.Cost);
+            _playerBudget.Deposit(item.Cost);
             Debug.Log("Item sold!");
             return true;
         }

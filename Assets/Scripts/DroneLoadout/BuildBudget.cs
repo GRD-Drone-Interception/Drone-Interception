@@ -21,7 +21,7 @@
             BudgetRemaining -= cost;
         }
         
-        public void Sell(float amount)
+        public void Deposit(float amount)
         {
             BudgetRemaining += amount;
         }

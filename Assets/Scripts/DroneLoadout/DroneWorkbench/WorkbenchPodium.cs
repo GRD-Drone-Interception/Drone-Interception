@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 namespace DroneLoadout.DroneWorkbench
 {
-    public class RotateWorkbenchDrones : MonoBehaviour
+    public class WorkbenchPodium : MonoBehaviour
     {
         [SerializeField] private float rotationSpeed = 100.0f;
         private Workbench _workbench;
@@ -39,7 +39,7 @@ namespace DroneLoadout.DroneWorkbench
         {
             if(_workbench.DroneOnBench == null) { return; }
 
-            if (WorkshopModeController.currentWorkshopMode == WorkshopMode.Edit)
+            if (WorkshopModeController.currentWorkshopMode == WorkshopModeController.WorkshopMode.Edit)
             {
                 if (_rotateLeftIsPressed)
                 {

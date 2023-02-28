@@ -1,4 +1,5 @@
-﻿using DroneLoadout.DroneWorkbench;
+﻿using System;
+using DroneLoadout.DroneWorkbench;
 using UnityEngine;
 
 namespace DroneLoadout
@@ -14,23 +15,30 @@ namespace DroneLoadout
             _workbench = FindObjectOfType<Workbench>();
         }
 
-        private void OnEnable() => _workbench.OnDroneOnBenchChanged += SubscribeToNewDronesDecoratedEvents;
-        private void OnDisable() => _workbench.OnDroneOnBenchChanged -= SubscribeToNewDronesDecoratedEvents;
-        
-        private void SubscribeToNewDronesDecoratedEvents(Drone drone)
+        private void OnEnable()
         {
-            _workbench.DroneOnBench.OnDroneDecorationAdded += DecreaseBuildBudgetText;
-            _workbench.DroneOnBench.OnDroneDecorationRemoved += IncreaseBuildBudgetText;
+            _workbench.OnDroneAdded += SubscribeToNewDronesDecoratedEvents;
+            _workbench.OnDroneRemoved += UnsubscribeFromCurrentDronesDecoratedEvents;
         }
 
-        private void IncreaseBuildBudgetText(Drone drone, DroneAttachment droneAttachment)
+        private void OnDisable()
         {
-            _player.BuildBudget.Sell(droneAttachment.Data.Cost);
+            _workbench.OnDroneAdded -= SubscribeToNewDronesDecoratedEvents;
+            _workbench.OnDroneRemoved -= UnsubscribeFromCurrentDronesDecoratedEvents;
         }
-        
-        private void DecreaseBuildBudgetText(Drone drone, DroneAttachment droneAttachment)
+
+        private void SubscribeToNewDronesDecoratedEvents(Drone drone)
         {
-            _player.BuildBudget.Spend(droneAttachment.Data.Cost);
+            _player.BuildBudget.Spend(drone.DecorableDrone.Cost);
+            _workbench.DroneOnBench.OnDroneDecorationAdded += (drone1, attachment) => _player.BuildBudget.Spend(attachment.Data.Cost);
+            _workbench.DroneOnBench.OnDroneDecorationRemoved += (drone1, attachment) => _player.BuildBudget.Deposit(attachment.Data.Cost); 
+        }
+
+        private void UnsubscribeFromCurrentDronesDecoratedEvents(Drone drone)
+        {
+            _player.BuildBudget.Deposit(drone.DecorableDrone.Cost);
+            _workbench.DroneOnBench.OnDroneDecorationAdded -= (drone1, attachment) => _player.BuildBudget.Spend(attachment.Data.Cost);
+            _workbench.DroneOnBench.OnDroneDecorationRemoved -= (drone1, attachment) => _player.BuildBudget.Deposit(attachment.Data.Cost); 
         }
     }
 }
