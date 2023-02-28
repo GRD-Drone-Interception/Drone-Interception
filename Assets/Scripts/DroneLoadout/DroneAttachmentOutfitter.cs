@@ -10,7 +10,7 @@ namespace DroneLoadout
     /// </summary>
     public class DroneAttachmentOutfitter : MonoBehaviour
     {
-        public event Action<DroneAttachmentOutfitter> OnAttachmentSelected;
+        //public event Action<DroneAttachmentOutfitter> OnAttachmentSelected;
         
         [SerializeField] private GameObject componentPrefab;
         [SerializeField] private DroneAttachmentSlot droneAttachmentSlot;
@@ -76,19 +76,20 @@ namespace DroneLoadout
                 return;
             }
 
-            // If attachment point is empty, decorate it. Else, destroy the newly spawned component. 
-            var droneAttachment = Instantiate(componentPrefab).GetComponent<DroneAttachment>();
+            // If attachment point is empty, decorate it. Else, destroy the newly spawned component. TODO: Clean this
             var attachmentPoint = droneAttachmentSlot.GetAttachmentPoint();
-            if (!droneAttachmentSlot.GetAttachmentPoint().HasAttachment)
+            if (attachmentPoint.HasAttachment)
             {
-                droneAttachmentSlot.GetDrone().Decorate(droneAttachment, attachmentPoint);
-                Highlight();
-                OnAttachmentSelected?.Invoke(this);
+                //OnAttachmentSelected?.Invoke(this);
+                droneAttachmentSlot.GetDrone().RemoveAttachment(attachmentPoint);
+                Unhighlight();
+                return;
             }
-            else
-            {
-                Destroy(droneAttachment.gameObject);
-            }
+
+            var droneAttachment = Instantiate(componentPrefab).GetComponent<DroneAttachment>();
+            droneAttachmentSlot.GetDrone().Decorate(droneAttachment, attachmentPoint);
+            Highlight();
+            //OnAttachmentSelected?.Invoke(this);
         }
 
         private void Highlight()
