@@ -1,7 +1,7 @@
 ﻿using TMPro;
 using UnityEngine;
 
-namespace DroneLoadout
+namespace DroneLoadout.Budgeting
 {
     public class BuildBudgetUi : MonoBehaviour
     {

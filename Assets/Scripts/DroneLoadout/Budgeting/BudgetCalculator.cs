@@ -1,8 +1,7 @@
-﻿using System;
-using DroneLoadout.DroneWorkbench;
+﻿using DroneLoadout.DroneWorkbench;
 using UnityEngine;
 
-namespace DroneLoadout
+namespace DroneLoadout.Budgeting
 {
     public class BudgetCalculator : MonoBehaviour
     {

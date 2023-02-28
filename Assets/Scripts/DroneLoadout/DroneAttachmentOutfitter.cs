@@ -70,7 +70,7 @@ namespace DroneLoadout
                 if (droneAttachmentSlot.GetAttachmentPoint().HasAttachment)
                 {
                     var currentAttachmentPoint = droneAttachmentSlot.GetAttachmentPoint();
-                    droneAttachmentSlot.GetDrone().RemoveAttachment(currentAttachmentPoint);
+                    droneAttachmentSlot.GetDrone().Undecorate(currentAttachmentPoint);
                     //OnAttachmentSelected?.Invoke(this);
                 }
                 return;
@@ -81,7 +81,7 @@ namespace DroneLoadout
             if (attachmentPoint.HasAttachment)
             {
                 //OnAttachmentSelected?.Invoke(this);
-                droneAttachmentSlot.GetDrone().RemoveAttachment(attachmentPoint);
+                droneAttachmentSlot.GetDrone().Undecorate(attachmentPoint);
                 Unhighlight();
                 return;
             }
