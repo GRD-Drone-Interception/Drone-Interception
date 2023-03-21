@@ -16,40 +16,51 @@ public class FixedWingAircraft : MonoBehaviour
     public float maxAltitude = 500f;
     public float minAltitude = 10f;
     public float altitudeChangeSpeed = 5f;
-    public Transform target;
+    public float collisionForce = 100f;
 
     private Rigidbody rb;
+    private TargetController targetController;
+    private GameObject currentTarget;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        targetController = FindObjectOfType<TargetController>();
+        currentTarget = targetController.CurrentTarget;
     }
 
     private void FixedUpdate()
     {
-        if (target != null)
+        currentTarget = targetController.CurrentTarget;
+
+        // Move towards the current target
+        Vector3 targetDirection = currentTarget.transform.position - transform.position;
+        targetDirection.Normalize();
+
+        float distanceToTarget = Vector3.Distance(transform.position, currentTarget.transform.position);
+
+        if (distanceToTarget <= arrivalDistance)
         {
-            // Move towards the target
-            Vector3 targetDirection = target.position - transform.position;
-            targetDirection.Normalize();
+            // Set the next target
+            targetController.SetCurrentTarget();
+            currentTarget = targetController.CurrentTarget;
+        }
+        else
+        {
+            Vector3 velocity = rb.velocity;
+            Vector3 desiredVelocity = targetDirection * speed;
+            Vector3 steering = desiredVelocity - velocity;
+            steering = Vector3.ClampMagnitude(steering, maxVelocityChange);
+            rb.AddForce(steering, ForceMode.VelocityChange);
 
-            float distanceToTarget = Vector3.Distance(transform.position, target.position);
-
-            if (distanceToTarget > arrivalDistance)
-            {
-                Vector3 velocity = rb.velocity;
-                Vector3 desiredVelocity = targetDirection * speed;
-                Vector3 steering = desiredVelocity - velocity;
-                steering = Vector3.ClampMagnitude(steering, maxVelocityChange);
-                rb.AddForce(steering, ForceMode.VelocityChange);
-
-                // Rotate towards the target
-                transform.LookAt(transform.position - targetDirection, Vector3.up);
-            }
+            // Rotate towards the current target
+            Quaternion TarRotation = Quaternion.LookRotation(-targetDirection, Vector3.up);
+            Quaternion newRotation = Quaternion.RotateTowards(rb.rotation, TarRotation, rotationSpeed);
+            rb.MoveRotation(newRotation);
         }
 
 
-
+        // Control the aircraft's movement
         float roll = Input.GetAxis("Horizontal") * rollSpeed;
         float pitch = Input.GetAxis("Vertical") * pitchSpeed;
         float yaw = Input.GetAxis("Yaw") * yawSpeed;
@@ -73,40 +84,40 @@ public class FixedWingAircraft : MonoBehaviour
         Vector3 liftForceVector = transform.up * calculatedLiftForce;
         rb.AddForce(liftForceVector);
 
-        // Change altitude
-        float altitudeVelocity = altitude * altitudeChangeSpeed;
-        Vector3 altitudeForce = transform.up * altitudeVelocity;
-        rb.AddForce(altitudeForce);
+        // Keep the aircraft within altitude limits
+        float currentAltitude = transform.position.y;
 
-        // Clamp roll angle
-        float rollAngle = transform.eulerAngles.z;
-        if (rollAngle > 180f)
+        if (altitude > 0f && currentAltitude < maxAltitude)
         {
-            rollAngle -= 360f;
+            Vector3 altitudeChange = Vector3.up * altitudeChangeSpeed;
+            rb.AddForce(altitudeChange);
         }
-        rollAngle = Mathf.Clamp(rollAngle, -maxRollAngle, maxRollAngle);
-
-        // Clamp pitch angle
-        float pitchAngle = transform.eulerAngles.x;
-        if (pitchAngle > 180f)
+        else if (altitude < 0f && currentAltitude > minAltitude)
         {
-            pitchAngle -= 360f;
+            Vector3 altitudeChange = Vector3.down * altitudeChangeSpeed;
+            rb.AddForce(altitudeChange);
         }
-        pitchAngle = Mathf.Clamp(pitchAngle, -maxPitchAngle, maxPitchAngle);
 
-        // Clamp yaw angle
-        float yawAngle = transform.eulerAngles.y;
-        if (yawAngle > 180f)
-        {
-            yawAngle -= 360f;
-        }
-        yawAngle = Mathf.Clamp(yawAngle, -maxYawAngle, maxYawAngle);
 
-        // Apply rotations
-        transform.eulerAngles = new Vector3(pitchAngle, yawAngle, rollAngle);
 
-        // Move forward
-        Vector3 forwardVelocity = transform.forward * speed;
-        rb.AddForce(forwardVelocity);
+        // Limit roll, pitch, and yaw angles
+        float rollAngle = Mathf.DeltaAngle(0f, transform.eulerAngles.z);
+        float pitchAngle = Mathf.DeltaAngle(0f, transform.eulerAngles.x);
+        float yawAngle = Mathf.DeltaAngle(0f, transform.eulerAngles.y);
+
+        float clampedRollAngle = Mathf.Clamp(rollAngle, -maxRollAngle, maxRollAngle);
+        float clampedPitchAngle = Mathf.Clamp(pitchAngle, -maxPitchAngle, maxPitchAngle);
+        float clampedYawAngle = Mathf.Clamp(yawAngle, -maxYawAngle, maxYawAngle);
+
+        Quaternion targetRotation = Quaternion.Euler(-clampedPitchAngle, clampedYawAngle, -clampedRollAngle);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        // Apply a collision force to the aircraft
+        Vector3 collisionForceVector = collision.impulse * collisionForce;
+        rb.AddForce(collisionForceVector, ForceMode.Impulse);
     }
 }
