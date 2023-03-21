@@ -1,30 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RightClickMove : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
+    public GameObject target; // the object to move
 
-        if (Input.GetMouseButtonDown(1)) // Right mouse button
+    private void Update()
+    {
+        // Detect right-click
+        if (Input.GetMouseButtonDown(1))
         {
+            Debug.Log("click!");
+            // Raycast to detect ground at clicked position
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
+
             if (Physics.Raycast(ray, out hit))
             {
-                // Move the object instantly to the clicked point
-                transform.position = hit.point;
+                // Move target to clicked position
+                target.transform.position = hit.point;
             }
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }
-
-
