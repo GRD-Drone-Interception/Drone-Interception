@@ -112,7 +112,7 @@ RectTransform:
   - {fileID: 5765922138799720424}
   - {fileID: 5765922138094930967}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -351,7 +351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcced2a69dbae4d4cb3435c766186e07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  componentPrefab: {fileID: 6440074945211368233, guid: 4fa02c5dc5f201544ad65e0cb234c3d0, type: 3}
+  droneAttachmentData: {fileID: 11400000, guid: bd542da7ad18cb7408b7d83252c6cf27, type: 2}
   droneAttachmentSlot: {fileID: 5765922137965516422}
 --- !u!1 &5765922138094930966
 GameObject:

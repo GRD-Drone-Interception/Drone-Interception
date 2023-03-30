@@ -11,8 +11,7 @@ namespace DroneLoadout
     public class DroneAttachmentOutfitter : MonoBehaviour
     {
         //public event Action<DroneAttachmentOutfitter> OnAttachmentSelected;
-        [SerializeField] private GameObject componentPrefab;
-        //[SerializeField] private DroneAttachmentData droneAttachmentData;
+        [SerializeField] private DroneAttachmentData droneAttachmentData;
         [SerializeField] private DroneAttachmentSlot droneAttachmentSlot;
         private Button _button;
         private TMP_Text _text;
@@ -52,7 +51,7 @@ namespace DroneLoadout
                 fadeDuration = 0
             };
 
-            //_text.text = droneAttachmentData.attachmentName;
+            _text.text = droneAttachmentData.attachmentName;
         }
         
         private void Update()
@@ -66,18 +65,6 @@ namespace DroneLoadout
 
         private void DecorateAttachmentPoint()
         {
-            // I.e. Empty button
-            if (componentPrefab == null)
-            {
-                if (droneAttachmentSlot.GetAttachmentPoint().HasAttachment)
-                {
-                    var currentAttachmentPoint = droneAttachmentSlot.GetAttachmentPoint();
-                    droneAttachmentSlot.GetDrone().Undecorate(currentAttachmentPoint);
-                    //OnAttachmentSelected?.Invoke(this);
-                }
-                return;
-            }
-
             // If attachment point is empty, decorate it. Else, destroy the newly spawned component. TODO: Clean this
             var attachmentPoint = droneAttachmentSlot.GetAttachmentPoint();
             if (attachmentPoint.HasAttachment)
@@ -88,7 +75,7 @@ namespace DroneLoadout
                 return;
             }
 
-            var droneAttachment = Instantiate(componentPrefab).GetComponent<DroneAttachment>();
+            var droneAttachment = Instantiate(droneAttachmentData.attachmentPrefab).GetComponent<DroneAttachment>();
             droneAttachmentSlot.GetDrone().Decorate(droneAttachment, attachmentPoint);
             droneAttachment.Pulsate(true);
             Highlight();

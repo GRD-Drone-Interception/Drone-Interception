@@ -56,7 +56,6 @@ namespace DroneLoadout
             droneAttachment.transform.SetParent(attachmentPoint.transform);
             droneAttachment.transform.SetPositionAndRotation(attachmentPoint.transform.position, attachmentPoint.transform.rotation);
             droneAttachment.gameObject.layer = LayerMask.NameToLayer("Focus");
-            //droneAttachment.Pulsate(true);
             attachmentPoint.AddDroneAttachment(droneAttachment);
             _numOfMountedAttachments++;
             OnDroneDecorationAdded?.Invoke(this, attachmentPoint.GetDroneAttachment());

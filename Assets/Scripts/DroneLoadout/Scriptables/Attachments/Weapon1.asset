@@ -19,5 +19,5 @@ MonoBehaviour:
   acceleration: 9
   weight: 10
   attachmentName: Missile 1
-  attachmentPrefab: {fileID: 3834280008764540845, guid: f286da9425a0b61409f12dc53d45df3f, type: 3}
+  attachmentPrefab: {fileID: 6440074945211368233, guid: 4fa02c5dc5f201544ad65e0cb234c3d0, type: 3}
   attachmentDescription: 

@@ -19,5 +19,5 @@ MonoBehaviour:
   acceleration: 0
   weight: 5
   droneName: Black Hornet Nano
-  dronePrefab: {fileID: 0}
+  dronePrefab: {fileID: 1584461683750109928, guid: 2b9bdfbe10b4e5e4f823e2bcd6a95ec7, type: 3}
   droneDescription: 

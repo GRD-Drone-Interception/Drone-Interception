@@ -19,5 +19,5 @@ MonoBehaviour:
   acceleration: 9
   weight: 9
   attachmentName: Camera 1
-  attachmentPrefab: {fileID: 3548149260871086490, guid: da095e212acfdee419a1ee8221f4243e, type: 3}
+  attachmentPrefab: {fileID: 2813402458401724523, guid: e2227b75316c1224583fcd1c7e01d689, type: 3}
   attachmentDescription: 

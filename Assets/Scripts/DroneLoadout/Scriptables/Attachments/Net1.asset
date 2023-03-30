@@ -18,6 +18,6 @@ MonoBehaviour:
   speed: 8
   acceleration: 9
   weight: 10
-  attachmentName: Drone Net
+  attachmentName: Drone Net 1
   attachmentPrefab: {fileID: 6071254045215579465, guid: f56f9b252e12dfc4f85cbf584e279d72, type: 3}
   attachmentDescription: 

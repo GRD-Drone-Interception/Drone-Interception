@@ -117,7 +117,6 @@ namespace DroneLoadout
             foreach (var droneAttachmentSlot in _droneAttachmentSlots.Where(button => button != slot))
             {
                 droneAttachmentSlot.HideComponentSubMenu();
-                //droneAttachmentSlot.GetAttachmentPoint().GetDroneAttachment().Pulsate(false); // TODO: Refactor this
             }
         }
 

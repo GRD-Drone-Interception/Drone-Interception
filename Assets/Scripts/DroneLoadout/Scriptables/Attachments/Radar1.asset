@@ -18,6 +18,6 @@ MonoBehaviour:
   speed: 7
   acceleration: 8
   weight: 9
-  attachmentName: 10
+  attachmentName: Radar 1
   attachmentPrefab: {fileID: 5995092674283698512, guid: 902733fc231c3f1499d505832fd65856, type: 3}
   attachmentDescription: 

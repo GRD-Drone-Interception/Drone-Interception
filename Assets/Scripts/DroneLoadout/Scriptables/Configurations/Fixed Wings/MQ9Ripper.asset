@@ -19,5 +19,5 @@ MonoBehaviour:
   acceleration: 0
   weight: 200
   droneName: MQ9 Ripper
-  dronePrefab: {fileID: 0}
+  dronePrefab: {fileID: 6828620544132597102, guid: 205ecf07f474e8741a8f3d55dafa1479, type: 3}
   droneDescription: 

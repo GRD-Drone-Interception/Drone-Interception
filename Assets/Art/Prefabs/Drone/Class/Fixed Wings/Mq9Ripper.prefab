@@ -4770,7 +4770,7 @@ GameObject:
   - component: {fileID: 6828620544132597100}
   - component: {fileID: 6828620544132597101}
   m_Layer: 0
-  m_Name: Mq9Ripper2
+  m_Name: Mq9Ripper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

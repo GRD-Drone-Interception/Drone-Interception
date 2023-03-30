@@ -1445,7 +1445,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: SHAHED 136
+  m_text: Shahed 136
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1478,7 +1478,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 16
   m_HorizontalAlignment: 4
   m_VerticalAlignment: 1024
   m_textAlignment: 65535
@@ -4249,7 +4249,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 16
   m_HorizontalAlignment: 4
   m_VerticalAlignment: 1024
   m_textAlignment: 65535
@@ -12912,7 +12912,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ec1d957aebf4cfdb819a5093719488e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  droneModelPrefab: {fileID: 3256152547102212621, guid: 47b1a6de1e4290547bbe9be4641d4d00, type: 3}
+  droneConfigData: {fileID: 11400000, guid: f0d24a127551ead41817b60888357c96, type: 2}
   droneTypeSelector: {fileID: 1394791131}
 --- !u!1 &672534740
 GameObject:
@@ -13051,7 +13051,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ec1d957aebf4cfdb819a5093719488e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  droneModelPrefab: {fileID: 457988399069600944, guid: 99ff49f87382e524e91497b7189105f1, type: 3}
+  droneConfigData: {fileID: 11400000, guid: d5d8374e8a94b1041b431ca3453c11df, type: 2}
   droneTypeSelector: {fileID: 939358099}
 --- !u!114 &682223718
 MonoBehaviour:
@@ -18841,7 +18841,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ec1d957aebf4cfdb819a5093719488e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  droneModelPrefab: {fileID: 320832999007351119, guid: 177d1449e4893de4c93244364f6023c1, type: 3}
+  droneConfigData: {fileID: 11400000, guid: a3089a8106f8e6c47a38c9ebf4e9c0a9, type: 2}
   droneTypeSelector: {fileID: 1394791131}
 --- !u!1 &955264845
 GameObject:
@@ -27121,7 +27121,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: MATRICE 300 RTK
+  m_text: Matrice 300 RTK
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -27154,7 +27154,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 16
   m_HorizontalAlignment: 4
   m_VerticalAlignment: 1024
   m_textAlignment: 65535
@@ -28377,7 +28377,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: DJI MAVIC 3
+  m_text: Dji Mavic 3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -28410,7 +28410,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 16
   m_HorizontalAlignment: 4
   m_VerticalAlignment: 1024
   m_textAlignment: 65535
@@ -30737,7 +30737,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ec1d957aebf4cfdb819a5093719488e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  droneModelPrefab: {fileID: 1584461683750109928, guid: 2b9bdfbe10b4e5e4f823e2bcd6a95ec7, type: 3}
+  droneConfigData: {fileID: 11400000, guid: 7c6cf5e779347824d8000f254eccf2c8, type: 2}
   droneTypeSelector: {fileID: 2056007925}
 --- !u!1 &1686228882
 GameObject:
@@ -33891,7 +33891,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ec1d957aebf4cfdb819a5093719488e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  droneModelPrefab: {fileID: 4059031464683983483, guid: 943c7193d8d860e4b8cc3f12a770c8bb, type: 3}
+  droneConfigData: {fileID: 11400000, guid: 92e02c701f61a454c889222154f25ab2, type: 2}
   droneTypeSelector: {fileID: 2056007925}
 --- !u!1 &1868835662
 GameObject:
@@ -34861,7 +34861,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ec1d957aebf4cfdb819a5093719488e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  droneModelPrefab: {fileID: 981586584029786591, guid: 5e66e715a23c97d4290e39820d3187b5, type: 3}
+  droneConfigData: {fileID: 11400000, guid: ac51acb4124cebb4192fd32d3329daa1, type: 2}
   droneTypeSelector: {fileID: 2056007925}
 --- !u!1 &1907694279
 GameObject:
@@ -34921,7 +34921,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: MQ9 RIPPER
+  m_text: MQ9 Ripper
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -34954,7 +34954,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 16
   m_HorizontalAlignment: 4
   m_VerticalAlignment: 1024
   m_textAlignment: 65535
@@ -35372,7 +35372,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 16
   m_HorizontalAlignment: 4
   m_VerticalAlignment: 1024
   m_textAlignment: 65535
@@ -35557,7 +35557,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: BLACK HORNET NANO
+  m_text: Black Hornet Nano
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -35590,7 +35590,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 16
   m_HorizontalAlignment: 4
   m_VerticalAlignment: 1024
   m_textAlignment: 65535
@@ -38899,7 +38899,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ec1d957aebf4cfdb819a5093719488e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  droneModelPrefab: {fileID: 6828620544132597102, guid: 205ecf07f474e8741a8f3d55dafa1479, type: 3}
+  droneConfigData: {fileID: 11400000, guid: 7211252deed062241a878a4dddec34c3, type: 2}
   droneTypeSelector: {fileID: 1394791131}
 --- !u!1 &2117965632
 GameObject:
