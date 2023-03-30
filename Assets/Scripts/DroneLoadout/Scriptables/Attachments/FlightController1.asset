@@ -19,5 +19,5 @@ MonoBehaviour:
   acceleration: 9
   weight: 10
   attachmentName: Flight Controller 1
-  attachmentPrefab: {fileID: 0}
+  attachmentPrefab: {fileID: 3327821782609718862, guid: f7f112cddfb200c40b185c98ad165e36, type: 3}
   attachmentDescription: 

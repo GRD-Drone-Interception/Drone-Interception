@@ -111,4 +111,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointSize: 0.25
-  droneAttachment: {fileID: 0}
+  droneAttachmentType: 0

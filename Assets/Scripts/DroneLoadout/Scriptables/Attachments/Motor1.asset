@@ -19,5 +19,5 @@ MonoBehaviour:
   acceleration: 4
   weight: 0
   attachmentName: 5
-  attachmentPrefab: {fileID: 0}
+  attachmentPrefab: {fileID: 6253644712073533745, guid: 4bfc55849f76e8a418973690ea5d4a91, type: 3}
   attachmentDescription: 

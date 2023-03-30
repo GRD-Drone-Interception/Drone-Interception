@@ -19,5 +19,5 @@ MonoBehaviour:
   acceleration: 4
   weight: 5
   attachmentName: Battery 1
-  attachmentPrefab: {fileID: 0}
+  attachmentPrefab: {fileID: 145924535072466960, guid: 4614eb0f4c6d3b34e9285d8808d2a0c4, type: 3}
   attachmentDescription: 

@@ -19,5 +19,5 @@ MonoBehaviour:
   acceleration: 4
   weight: 5
   attachmentName: Propeller
-  attachmentPrefab: {fileID: 0}
+  attachmentPrefab: {fileID: 1277039312612472434, guid: d83867f5cc118e249b889f54e612170b, type: 3}
   attachmentDescription: 

@@ -81,6 +81,10 @@ namespace DroneLoadout
                 componentSubMenuContainer.SetActive(true);
                 _image.fillCenter = false;
                 _attachmentPoint.SetVisibility(true);
+                if (_attachmentPoint.HasAttachment)
+                {
+                    _attachmentPoint.GetDroneAttachment().Pulsate(true);
+                }
                 OnAttachmentSlotSelected?.Invoke(this);
             }
             else
@@ -95,6 +99,11 @@ namespace DroneLoadout
             if (_attachmentPoint != null)
             {
                 _attachmentPoint.SetVisibility(false);
+                if (_attachmentPoint.HasAttachment)
+                {
+                    _attachmentPoint.GetDroneAttachment().Pulsate(false);
+                    _attachmentPoint.GetDroneAttachment().ResetColour();
+                }
             }
         }
 

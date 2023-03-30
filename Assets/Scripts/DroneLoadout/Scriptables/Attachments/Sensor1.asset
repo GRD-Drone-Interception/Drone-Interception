@@ -19,5 +19,5 @@ MonoBehaviour:
   acceleration: 4
   weight: 5
   attachmentName: Sensor 1
-  attachmentPrefab: {fileID: 0}
+  attachmentPrefab: {fileID: 6703670592246976586, guid: ea7bfaa254290a2439d18df97579b787, type: 3}
   attachmentDescription: 

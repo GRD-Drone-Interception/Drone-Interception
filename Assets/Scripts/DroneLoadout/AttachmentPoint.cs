@@ -11,11 +11,13 @@ namespace DroneLoadout
         [SerializeField] private DroneAttachmentType droneAttachmentType;
         private DroneAttachment _droneAttachment;
         private MeshRenderer _meshRenderer;
+        private MeshFilter _meshFilter;
         private bool _isVisible;
         private bool _hasAttachment;
 
         private void Awake()
         {
+            _meshFilter = GetComponent<MeshFilter>();
             _meshRenderer = GetComponent<MeshRenderer>();
 
             // If this attachment point object has a child, add it's drone attachment and decorate the drone
@@ -71,5 +73,10 @@ namespace DroneLoadout
         
         public DroneAttachmentType GetAttachmentType() => droneAttachmentType;
         public DroneAttachment GetDroneAttachment() => _droneAttachment;
+
+        public void SetMesh(Mesh mesh)
+        {
+            _meshFilter.mesh = mesh;
+        }
     }
 }

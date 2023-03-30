@@ -18,6 +18,6 @@ MonoBehaviour:
   speed: 8
   acceleration: 9
   weight: 10
-  attachmentName: Weapon 1
-  attachmentPrefab: {fileID: 0}
+  attachmentName: Missile 1
+  attachmentPrefab: {fileID: 3834280008764540845, guid: f286da9425a0b61409f12dc53d45df3f, type: 3}
   attachmentDescription: 

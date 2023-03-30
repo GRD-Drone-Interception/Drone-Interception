@@ -1,4 +1,4 @@
-using System;
+using DroneLoadout.Decorators;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,8 +11,8 @@ namespace DroneLoadout
     public class DroneAttachmentOutfitter : MonoBehaviour
     {
         //public event Action<DroneAttachmentOutfitter> OnAttachmentSelected;
-        
         [SerializeField] private GameObject componentPrefab;
+        //[SerializeField] private DroneAttachmentData droneAttachmentData;
         [SerializeField] private DroneAttachmentSlot droneAttachmentSlot;
         private Button _button;
         private TMP_Text _text;
@@ -51,6 +51,8 @@ namespace DroneLoadout
                 colorMultiplier = 1,
                 fadeDuration = 0
             };
+
+            //_text.text = droneAttachmentData.attachmentName;
         }
         
         private void Update()
@@ -88,6 +90,7 @@ namespace DroneLoadout
 
             var droneAttachment = Instantiate(componentPrefab).GetComponent<DroneAttachment>();
             droneAttachmentSlot.GetDrone().Decorate(droneAttachment, attachmentPoint);
+            droneAttachment.Pulsate(true);
             Highlight();
             //OnAttachmentSelected?.Invoke(this);
         }

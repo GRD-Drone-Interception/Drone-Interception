@@ -114,9 +114,10 @@ namespace DroneLoadout
         private void SetVisibilityOfUnselectedDroneAttachmentSlotSubMenus(DroneAttachmentSlot slot)
         {
             // Hide attachment slot sub-menus besides the one currently selected
-            foreach (var button in _droneAttachmentSlots.Where(button => button != slot))
+            foreach (var droneAttachmentSlot in _droneAttachmentSlots.Where(button => button != slot))
             {
-                button.HideComponentSubMenu();
+                droneAttachmentSlot.HideComponentSubMenu();
+                //droneAttachmentSlot.GetAttachmentPoint().GetDroneAttachment().Pulsate(false); // TODO: Refactor this
             }
         }
 
