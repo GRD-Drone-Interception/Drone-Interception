@@ -8,6 +8,7 @@ namespace Testing
     public class DroneSpawner : MonoBehaviour
     {
         //[SerializeField] private DroneType droneType;
+        [SerializeField] private string dronePrefabPath = "Assets/Resources/";
 
         private void Start()
         {
@@ -16,8 +17,8 @@ namespace Testing
 
         private void SpawnDrone()
         {
-            string droneName = "TestDrone";
-            string path = $"Assets/Art/Prefabs/Drone/Class/Custom/{droneName}.prefab";
+            string droneName = "TestDrone.prefab";
+            var path = dronePrefabPath + droneName;
 
             if (File.Exists(path))
             {

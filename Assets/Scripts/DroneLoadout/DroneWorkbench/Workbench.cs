@@ -127,7 +127,7 @@ namespace DroneLoadout.DroneWorkbench
         {
             SetChildLayersIteratively(_droneOnBench.transform, "Default");
             string droneName = "TestDrone";
-            string path = $"Assets/Art/Prefabs/Drone/Class/Custom/{droneName}.prefab";
+            string path = $"Assets/Resources/{droneName}.prefab";
             _droneOnBench.transform.SetParent(null);
             PrefabUtility.SaveAsPrefabAsset(_droneOnBench.gameObject, path); // Overwrites if prefab already exists
             DeleteCurrentDrone();
