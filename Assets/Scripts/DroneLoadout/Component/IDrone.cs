@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace DroneLoadout.Component
 {
     /// <summary>
@@ -12,5 +14,6 @@ namespace DroneLoadout.Component
         public float Speed { get; }
         public float Acceleration { get; }
         public float Weight { get; }
+        //public void Shoot(Vector3 target);
     }
 }

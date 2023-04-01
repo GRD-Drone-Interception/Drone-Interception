@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using DroneLoadout.Component;
-using DroneLoadout.Concrete;
 using DroneLoadout.Decorators;
 using DroneLoadout.Factory;
 using DroneLoadout.Strategies;
@@ -41,6 +40,11 @@ namespace DroneLoadout
         public void ApplyStrategy(IDroneManeuverBehaviour strategy)
         {
             strategy.Maneuver(this);
+        }
+
+        public void Shoot(Vector3 target)
+        {
+            //_decorableDrone.Shoot(target);
         }
 
         /// <summary>

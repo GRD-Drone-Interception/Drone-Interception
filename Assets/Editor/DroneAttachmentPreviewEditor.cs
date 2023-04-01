@@ -3,9 +3,8 @@ using UnityEditor;
 using UnityEngine;
 
 [CustomEditor(typeof(DroneAttachmentData))]
-public class DroneAttachmentEditor : Editor
+public class DroneAttachmentPreviewEditor : Editor
 {
-    //Here we grab a reference to our droneObject SO
     DroneAttachmentData _droneAttachmentData;
     
     private void OnEnable()

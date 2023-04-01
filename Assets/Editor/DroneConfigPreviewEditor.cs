@@ -3,9 +3,8 @@ using UnityEditor;
 using UnityEngine;
 
 [CustomEditor(typeof(DroneConfigData))]
-public class DroneConfigEditor : Editor
+public class DroneConfigPreviewEditor : Editor
 {
-    //Here we grab a reference to our droneObject SO
     DroneConfigData _droneConfigData;
     
     private void OnEnable()
