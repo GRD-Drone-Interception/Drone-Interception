@@ -1,4 +1,3 @@
-using System;
 using DroneLoadout.Decorators;
 using DroneLoadout.Factory;
 using UnityEditor;
@@ -69,7 +68,7 @@ public class DronePrefabEditorWindow : EditorWindow
         EditorGUILayout.LabelField($"Name: {droneClassData.droneName}");
         EditorGUILayout.LabelField($"Type: {droneClassData.droneType}");
         EditorGUILayout.LabelField($"Description: {droneClassData.droneDescription}");
-        EditorGUILayout.LabelField($"Speed: {droneClassData.Speed}");
+        EditorGUILayout.LabelField($"Speed: {droneClassData.TopSpeed}");
         EditorGUILayout.LabelField($"Acceleration: {droneClassData.Acceleration}");
         EditorGUILayout.LabelField($"Range: {droneClassData.Range}");
         EditorGUILayout.LabelField($"Weight: {droneClassData.Weight}");

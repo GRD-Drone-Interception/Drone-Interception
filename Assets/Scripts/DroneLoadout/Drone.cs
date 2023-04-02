@@ -16,20 +16,48 @@ namespace DroneLoadout
     {
         public event Action<Drone, DroneAttachment> OnDroneDecorationAdded;
         public event Action<Drone, DroneAttachment> OnDroneDecorationRemoved;
-        public IDrone DecorableDrone => _decorableDrone;
+        public IDrone DecorableDrone { get; private set; }
         public DroneConfigData DroneConfigData => droneConfigData;
-        public int NumOfMountedAttachments => _numOfMountedAttachments;
-    
+        public Rigidbody Rb { get; private set; }
+        public int NumOfMountedAttachments { get; private set; }
+
         [SerializeField] private DroneConfigData droneConfigData; 
-        private List<AttachmentPoint> _attachmentPoints = new();
-        private Dictionary<AttachmentPoint, DroneAttachment> _attachmentPointDictionary = new();
-        private IDrone _decorableDrone;
-        private int _numOfMountedAttachments;
+        [SerializeField] private List<DroneBehaviour> behaviours = new();
+        private readonly List<AttachmentPoint> _attachmentPoints = new();
+        private readonly Dictionary<AttachmentPoint, DroneAttachment> _attachmentPointDictionary = new();
+        private PlayerTeam _playerTeam;
 
         private void Awake()
         {
-            _decorableDrone = DroneFactory.CreateDrone(droneConfigData.droneType, droneConfigData);
+            Rb = GetComponent<Rigidbody>();
+            DecorableDrone = DroneFactory.CreateDrone(droneConfigData.droneType, droneConfigData);
             _attachmentPoints.AddRange(GetComponentsInChildren<AttachmentPoint>());
+        }
+        
+        private void Update()
+        {
+            foreach (var behaviour in behaviours)
+            {
+                behaviour.UpdateBehaviour(this);
+            }
+        }
+
+        private void FixedUpdate()
+        {
+            foreach (var behaviour in behaviours)
+            {
+                behaviour.FixedUpdateBehaviour(this);
+            }
+        }
+
+        public void AddBehaviour(DroneBehaviour behaviour)
+        {
+            behaviours.Add(behaviour);
+        }
+
+        public void RemoveBehaviour(DroneBehaviour behaviour)
+        {
+            behaviours.Remove(behaviour);
         }
 
         /// <summary>
@@ -42,11 +70,6 @@ namespace DroneLoadout
             strategy.Maneuver(this);
         }
 
-        public void Shoot(Vector3 target)
-        {
-            //_decorableDrone.Shoot(target);
-        }
-
         /// <summary>
         /// Outfits a drone with given attachment at the designated mount point. 
         /// </summary>
@@ -56,12 +79,13 @@ namespace DroneLoadout
         public void Decorate(DroneAttachment droneAttachment, AttachmentPoint attachmentPoint)
         {
             _attachmentPointDictionary.Add(attachmentPoint, droneAttachment);
-            _decorableDrone = new DroneDecorator(_decorableDrone, droneAttachment.Data);
+            DecorableDrone = new DroneDecorator(DecorableDrone, droneAttachment.Data);
             droneAttachment.transform.SetParent(attachmentPoint.transform);
             droneAttachment.transform.SetPositionAndRotation(attachmentPoint.transform.position, attachmentPoint.transform.rotation);
             droneAttachment.gameObject.layer = LayerMask.NameToLayer("Focus");
+            droneAttachment.Data.DroneBehaviours.ForEach(AddBehaviour);
             attachmentPoint.AddDroneAttachment(droneAttachment);
-            _numOfMountedAttachments++;
+            NumOfMountedAttachments++;
             OnDroneDecorationAdded?.Invoke(this, attachmentPoint.GetDroneAttachment());
         }
 
@@ -72,21 +96,23 @@ namespace DroneLoadout
                 Debug.Log("No attachment to remove, or the attachment point is null!");
                 return;
             }
+            
+            attachmentPoint.GetDroneAttachment().Data.DroneBehaviours.ForEach(RemoveBehaviour); // Here?
 
             // Remove ALL decorations
-            _decorableDrone = DroneFactory.CreateDrone(droneConfigData.droneType, droneConfigData);
+            DecorableDrone = DroneFactory.CreateDrone(droneConfigData.droneType, droneConfigData);
             
             //Redecorate ALL other attachments besides the one being queried (not ideal) // TODO: Clean this
             foreach (var ap in _attachmentPoints.Where(ap => ap != attachmentPoint))
             {
                 if (ap.HasAttachment)
                 {
-                    _decorableDrone = new DroneDecorator(_decorableDrone, ap.GetDroneAttachment().Data);
+                    DecorableDrone = new DroneDecorator(DecorableDrone, ap.GetDroneAttachment().Data);
                 }
             }
 
             _attachmentPointDictionary.Remove(attachmentPoint);
-            _numOfMountedAttachments--;
+            NumOfMountedAttachments--;
             OnDroneDecorationRemoved?.Invoke(this, attachmentPoint.GetDroneAttachment());
             attachmentPoint.RemoveDroneAttachment();
         }
@@ -96,17 +122,28 @@ namespace DroneLoadout
         /// </summary>
         public void ResetConfiguration()
         {
-            _decorableDrone = DroneFactory.CreateDrone(droneConfigData.droneType, droneConfigData);
+            DecorableDrone = DroneFactory.CreateDrone(droneConfigData.droneType, droneConfigData);
             _attachmentPointDictionary.Clear();
-            _numOfMountedAttachments = 0;
+            NumOfMountedAttachments = 0;
             foreach (var point in _attachmentPoints)
             {
                 if (point.GetDroneAttachment())
                 {
+                    point.GetDroneAttachment().Data.DroneBehaviours.ForEach(RemoveBehaviour); // Here?
                     OnDroneDecorationRemoved?.Invoke(this, point.GetDroneAttachment());
                     point.RemoveDroneAttachment();
                 }
             }
+        }
+
+        public void SetTeam(PlayerTeam team)
+        {
+            _playerTeam = team;
+        }
+
+        public PlayerTeam GetTeam()
+        {
+            return _playerTeam;
         }
 
         public List<AttachmentPoint> GetAttachmentPoints() => _attachmentPoints;

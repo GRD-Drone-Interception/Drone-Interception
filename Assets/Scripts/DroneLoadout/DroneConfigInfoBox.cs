@@ -27,7 +27,7 @@ namespace DroneLoadout
                 droneModsText.text = $"MODS: {_workbench.DroneOnBench.NumOfMountedAttachments}";
                 droneCostText.text = $"COST: {_workbench.DroneOnBench.DecorableDrone.Cost:C0}";
                 droneRangeText.text = $"RANGE: {_workbench.DroneOnBench.DecorableDrone.Range}km";
-                droneSpeedText.text = $"SPEED: {_workbench.DroneOnBench.DecorableDrone.Speed}mph";
+                droneSpeedText.text = $"SPEED: {_workbench.DroneOnBench.DecorableDrone.TopSpeed}mph";
                 droneAccelerationText.text = $"ACCELERATION: {_workbench.DroneOnBench.DecorableDrone.Acceleration}km/h in ?s";
                 droneWeightText.text = $"WEIGHT: {_workbench.DroneOnBench.DecorableDrone.Weight}kg";
             }

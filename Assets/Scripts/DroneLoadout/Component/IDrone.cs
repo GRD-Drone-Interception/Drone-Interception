@@ -11,7 +11,7 @@ namespace DroneLoadout.Component
     {
         public float Cost { get; }
         public float Range { get; }
-        public float Speed { get; }
+        public float TopSpeed { get; }
         public float Acceleration { get; }
         public float Weight { get; }
         //public void Shoot(Vector3 target);

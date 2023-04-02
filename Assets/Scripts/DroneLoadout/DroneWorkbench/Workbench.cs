@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Testing;
 using UnityEditor;
 using UnityEngine;
@@ -117,7 +118,9 @@ namespace DroneLoadout.DroneWorkbench
             }
             var droneGameObject = Instantiate(prefab);
             var drone = droneGameObject.GetComponent<Drone>();
+            drone.Rb.constraints = RigidbodyConstraints.FreezeAll;
             droneGameObject.transform.position = droneSpawnPosition.position;
+            droneGameObject.transform.rotation = droneSpawnPosition.rotation;
             droneGameObject.layer = LayerMask.NameToLayer("Focus");
             SetChildLayersIteratively(droneGameObject.transform, "Focus");
             AddToBench(drone);
@@ -125,6 +128,28 @@ namespace DroneLoadout.DroneWorkbench
 
         private void AddDroneToFleet() // Separate save method?
         {
+            // BUG: Text
+            // TODO: Clean this, not ideal
+            /*foreach (var point in _droneOnBench.GetAttachmentPoints())
+            {
+                var droneAttachmentData = point.GetDroneAttachment().Data;
+                var droneBehaviours = droneAttachmentData.DroneBehaviours;
+                
+                if (droneBehaviours.Count > 0)
+                {
+                    if (droneAttachmentData.Type == DroneAttachmentType.Weapon)
+                    {
+                        // if attachment type == weapon
+                        //     add ONE shooting behaviour
+                        // if attachment type == radar
+                        //     add ONE radar behaviour
+                        
+                        //_droneOnBench.AddBehaviour();
+                    }
+                }
+            }*/
+            
+            _droneOnBench.Rb.constraints = RigidbodyConstraints.None;
             SetChildLayersIteratively(_droneOnBench.transform, "Default");
             string droneName = "TestDrone";
             string path = $"Assets/Resources/{droneName}.prefab";

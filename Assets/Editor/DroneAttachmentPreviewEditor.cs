@@ -16,12 +16,12 @@ public class DroneAttachmentPreviewEditor : Editor
     {
         base.OnInspectorGUI();
       
-        if (_droneAttachmentData.attachmentPrefab == null)
+        if (_droneAttachmentData.prefab == null)
             return;
         
         GUILayout.Space(10);
         
-        Texture2D texture = AssetPreview.GetAssetPreview(_droneAttachmentData.attachmentPrefab);
+        Texture2D texture = AssetPreview.GetAssetPreview(_droneAttachmentData.prefab);
         GUILayout.Label("", GUILayout.Height(128), GUILayout.Width(128));
         GUI.DrawTexture(GUILayoutUtility.GetLastRect(), texture);
     }

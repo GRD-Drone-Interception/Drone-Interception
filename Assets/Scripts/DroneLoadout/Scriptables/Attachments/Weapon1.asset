@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36e937aa35ae4681bb2516d4feee691f, type: 3}
   m_Name: Weapon1
   m_EditorClassIdentifier: 
-  droneAttachmentType: 8
+  attachmentName: Missile 1
+  description: 
+  type: 8
+  prefab: {fileID: 6440074945211368233, guid: 4fa02c5dc5f201544ad65e0cb234c3d0, type: 3}
   cost: 6
   range: 7
   speed: 8
   acceleration: 9
   weight: 10
-  attachmentName: Missile 1
-  attachmentPrefab: {fileID: 6440074945211368233, guid: 4fa02c5dc5f201544ad65e0cb234c3d0, type: 3}
-  attachmentDescription: 
+  droneBehaviours:
+  - {fileID: 11400000, guid: a6f65163dc5a51b4eb07b9ce505485ce, type: 2}

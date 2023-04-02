@@ -1,5 +1,7 @@
-﻿using DroneLoadout.Component;
+﻿using System.Collections.Generic;
+using DroneLoadout.Component;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace DroneLoadout.Decorators
 {
@@ -10,35 +12,23 @@ namespace DroneLoadout.Decorators
     [CreateAssetMenu(fileName = "NewDroneAttachment", menuName = "Drone/Attachment", order = 1)]
     public class DroneAttachmentData : ScriptableObject, IDrone
     {
-        [SerializeField] private DroneAttachmentType droneAttachmentType;
+        public DroneAttachmentType Type => type;
+        public List<DroneBehaviour> DroneBehaviours => droneBehaviours;
+        public float Cost => cost;
+        public float Range => range;
+        public float TopSpeed => speed;
+        public float Acceleration => acceleration;
+        public float Weight => weight;
+
+        public string attachmentName;
+        [FormerlySerializedAs("attachmentDescription")] public string description;
+        [FormerlySerializedAs("attachmentType")] [FormerlySerializedAs("droneAttachmentType")] [SerializeField] private DroneAttachmentType type;
+        [FormerlySerializedAs("attachmentPrefab")] public GameObject prefab;
         [SerializeField] private float cost;
         [SerializeField] private float range;
         [SerializeField] private float speed;
         [SerializeField] private float acceleration;
         [SerializeField] private float weight;
-
-        public DroneAttachmentType DroneAttachmentType => droneAttachmentType;
-        public string attachmentName;
-        public GameObject attachmentPrefab;
-        public string attachmentDescription;
-
-        public float Cost => cost;
-        public float Range => range;
-        public float Speed => speed;
-        public float Acceleration => acceleration;
-        public float Weight => weight;
-    }
-
-    public enum DroneAttachmentType
-    {
-        Camera,
-        Battery,
-        Motor,
-        Propeller,
-        FlightController, // determine how the drone behaves
-        Radar, // scanners, GPS
-        Sensor, 
-        Payload, // EMP and explosive charges?
-        Weapon // turrets and missile launchers?
+        [SerializeField] private List<DroneBehaviour> droneBehaviours;
     }
 }

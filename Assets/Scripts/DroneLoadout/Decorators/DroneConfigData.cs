@@ -15,7 +15,7 @@ namespace DroneLoadout.Decorators
         
         [SerializeField] private float cost;
         [SerializeField] private float range;
-        [SerializeField] private float speed;
+        [SerializeField] private float topSpeed;
         [SerializeField] private float acceleration;
         [SerializeField] private float weight;
 
@@ -25,7 +25,7 @@ namespace DroneLoadout.Decorators
 
         public float Cost => cost;
         public float Range => range;
-        public float Speed => speed;
+        public float TopSpeed => topSpeed;
         public float Acceleration => acceleration;
         public float Weight => weight;
     }

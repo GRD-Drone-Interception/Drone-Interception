@@ -46,7 +46,7 @@ namespace DroneLoadout
             droneModsText.text = $"MODS: {drone.NumOfMountedAttachments}";
             droneCostText.text = $"COST: {drone.DecorableDrone.Cost:C0}";
             droneRangeText.text = $"RANGE: {drone.DecorableDrone.Range}km";
-            droneSpeedText.text = $"SPEED: {drone.DecorableDrone.Speed}mph";
+            droneSpeedText.text = $"TOP SPEED: {drone.DecorableDrone.TopSpeed}mph";
             droneAccelerationText.text = $"ACCELERATION: {drone.DecorableDrone.Acceleration}km/h in ?s";
             droneWeightText.text = $"WEIGHT: {drone.DecorableDrone.Weight}kg";
         }
@@ -58,7 +58,7 @@ namespace DroneLoadout
             droneModsText.text = "MODS: 0";
             droneCostText.text = "COST: £0";
             droneRangeText.text = "RANGE: 0km";
-            droneSpeedText.text = "SPEED: 0mph";
+            droneSpeedText.text = "TOP SPEED: 0mph";
             droneAccelerationText.text = "ACCELERATION: 0km/h in ?s";
             droneWeightText.text = "WEIGHT: 0kg";
         }

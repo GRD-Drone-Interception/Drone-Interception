@@ -23,7 +23,7 @@ namespace DroneLoadout.Decorators
 
         public float Cost => _decoratedDrone.Cost + _attachmentData.Cost;
         public float Range => _decoratedDrone.Range + _attachmentData.Range;
-        public float Speed => _decoratedDrone.Speed + _attachmentData.Speed;
+        public float TopSpeed => _decoratedDrone.TopSpeed + _attachmentData.TopSpeed;
         public float Acceleration => _decoratedDrone.Acceleration + _attachmentData.Acceleration;
         public float Weight => _decoratedDrone.Weight + _attachmentData.Weight;
     }
