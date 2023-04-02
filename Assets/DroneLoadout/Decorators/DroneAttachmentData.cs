@@ -24,6 +24,7 @@ namespace DroneLoadout.Decorators
         [FormerlySerializedAs("attachmentDescription")] public string description;
         [FormerlySerializedAs("attachmentType")] [FormerlySerializedAs("droneAttachmentType")] [SerializeField] private DroneAttachmentType type;
         [FormerlySerializedAs("attachmentPrefab")] public GameObject prefab;
+        public Sprite prefabSprite;
         [SerializeField] private float cost;
         [SerializeField] private float range;
         [SerializeField] private float speed;

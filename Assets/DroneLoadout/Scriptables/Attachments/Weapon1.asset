@@ -16,6 +16,7 @@ MonoBehaviour:
   description: 
   type: 8
   prefab: {fileID: 6440074945211368233, guid: 4fa02c5dc5f201544ad65e0cb234c3d0, type: 3}
+  prefabSprite: {fileID: 21300000, guid: 63bf9a7a45e1cb44289c0a7a7c762eb9, type: 3}
   cost: 6
   range: 7
   speed: 8

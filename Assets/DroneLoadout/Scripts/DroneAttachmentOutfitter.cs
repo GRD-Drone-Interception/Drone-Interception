@@ -14,6 +14,7 @@ namespace DroneLoadout
         [SerializeField] private DroneAttachmentData droneAttachmentData;
         [SerializeField] private DroneAttachmentSlot droneAttachmentSlot;
         private Button _button;
+        private Image _image;
         private TMP_Text _text;
         private ColorBlock _highlightColourBlock;
         private ColorBlock _unhighlightColourBlock;
@@ -21,6 +22,7 @@ namespace DroneLoadout
         private void Awake()
         {
             _button = GetComponent<Button>();
+            _image = GetComponentsInChildren<Image>()[1];
             _text = GetComponentInChildren<TMP_Text>();
         }
 
@@ -50,8 +52,12 @@ namespace DroneLoadout
                 colorMultiplier = 1,
                 fadeDuration = 0
             };
-
+            
             _text.text = droneAttachmentData.attachmentName;
+            if (droneAttachmentData.prefabSprite != null)
+            {
+                _image.sprite = droneAttachmentData.prefabSprite;
+            }
         }
         
         private void Update()

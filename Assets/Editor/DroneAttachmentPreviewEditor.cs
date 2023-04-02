@@ -2,27 +2,48 @@
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(DroneAttachmentData))]
-public class DroneAttachmentPreviewEditor : Editor
+namespace Editor
 {
-    DroneAttachmentData _droneAttachmentData;
+    [CustomEditor(typeof(DroneAttachmentData))]
+    public class DroneAttachmentPreviewEditor : UnityEditor.Editor
+    {
+        DroneAttachmentData _droneAttachmentData;
     
-    private void OnEnable()
-    {
-        _droneAttachmentData = target as DroneAttachmentData;
-    }
+        private void OnEnable()
+        {
+            _droneAttachmentData = target as DroneAttachmentData;
+        }
 
-    public override void OnInspectorGUI()
-    {
-        base.OnInspectorGUI();
+        public override void OnInspectorGUI()
+        {
+            base.OnInspectorGUI();
       
-        if (_droneAttachmentData.prefab == null)
-            return;
+            if (_droneAttachmentData.prefab == null)
+                return;
         
-        GUILayout.Space(10);
+            GUILayout.BeginHorizontal();
+            GUILayout.Space(10);
+            GUILayout.BeginVertical();
+            GUILayout.Label("Prefab Preview");
+            Texture2D attachmentPrefabTexture = AssetPreview.GetAssetPreview(_droneAttachmentData.prefab);
+            GUILayout.Label("", GUILayout.Height(128), GUILayout.Width(128));
+            GUI.DrawTexture(GUILayoutUtility.GetLastRect(), attachmentPrefabTexture);
+            GUILayout.EndVertical();
+
+            if (_droneAttachmentData.prefabSprite == null)
+            {
+                GUILayout.EndHorizontal();
+                return;
+            }
         
-        Texture2D texture = AssetPreview.GetAssetPreview(_droneAttachmentData.prefab);
-        GUILayout.Label("", GUILayout.Height(128), GUILayout.Width(128));
-        GUI.DrawTexture(GUILayoutUtility.GetLastRect(), texture);
+            GUILayout.Space(10);
+            GUILayout.BeginVertical();
+            GUILayout.Label("Sprite Preview");
+            Texture2D attachmentSpriteTexture = AssetPreview.GetAssetPreview(_droneAttachmentData.prefabSprite);
+            GUILayout.Label("", GUILayout.Height(128), GUILayout.Width(128));
+            GUI.DrawTexture(GUILayoutUtility.GetLastRect(), attachmentSpriteTexture);
+            GUILayout.EndVertical();
+            GUILayout.EndHorizontal();
+        }
     }
 }
