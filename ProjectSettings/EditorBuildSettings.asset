@@ -6,12 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/DroneSetup.unity
+    path: Assets/Scenes/DroneSetup/DroneSetup.unity
     guid: b90f728e64cff7141ac7eb8c5ddeb27b
   - enabled: 1
     path: Assets/Scenes/Island.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/Scenes/DroneSpawnTest.unity
+    path: Assets/Scenes/DroneSpawnTest/DroneSpawnTest.unity
     guid: 91119313a0791b94e92f1f5ef1e3b0dd
   m_configObjects: {}
