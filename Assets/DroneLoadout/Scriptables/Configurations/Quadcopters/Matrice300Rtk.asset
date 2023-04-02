@@ -15,9 +15,9 @@ MonoBehaviour:
   droneType: 0
   cost: 600
   range: 5
-  speed: 15
+  topSpeed: 0
   acceleration: 0
   weight: 100
   droneName: Matrice 300 RTK
-  dronePrefab: {fileID: 981586584029786591, guid: 5e66e715a23c97d4290e39820d3187b5, type: 3}
+  dronePrefab: {fileID: 3938721802332374394, guid: 9e12e00271371c645b747c56fe4847ce, type: 3}
   droneDescription: 

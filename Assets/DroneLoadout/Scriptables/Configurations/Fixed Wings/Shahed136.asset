@@ -15,9 +15,9 @@ MonoBehaviour:
   droneType: 1
   cost: 300
   range: 200
-  speed: 125
+  topSpeed: 0
   acceleration: 0
   weight: 150
   droneName: Shahed 136
-  dronePrefab: {fileID: 3256152547102212621, guid: 47b1a6de1e4290547bbe9be4641d4d00, type: 3}
+  dronePrefab: {fileID: 1057059332579059662, guid: cdc9ce3a8db5ccd499814706e664c445, type: 3}
   droneDescription: 

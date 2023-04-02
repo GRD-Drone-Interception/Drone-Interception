@@ -15,9 +15,9 @@ MonoBehaviour:
   droneType: 1
   cost: 100
   range: 120
-  speed: 45
+  topSpeed: 0
   acceleration: 0
   weight: 85
   droneName: BAIRAKTAR NW1
-  dronePrefab: {fileID: 320832999007351119, guid: 177d1449e4893de4c93244364f6023c1, type: 3}
+  dronePrefab: {fileID: 8809748575978406926, guid: 04291ac52b815c34eb59e790605a8de3, type: 3}
   droneDescription: 
