@@ -8,7 +8,7 @@ namespace DroneBehaviours.Scripts
     {
         public override void UpdateBehaviour(Drone drone)
         {
-            Debug.Log("Shooting behaviour", drone);
+            //Debug.Log("Shooting behaviour", drone);
         }
 
         public override void FixedUpdateBehaviour(Drone drone)

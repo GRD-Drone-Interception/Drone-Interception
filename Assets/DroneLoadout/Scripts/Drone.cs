@@ -26,6 +26,8 @@ namespace DroneLoadout
         [SerializeField] private List<DroneBehaviour> behaviours = new();
         private readonly List<AttachmentPoint> _attachmentPoints = new();
         private readonly Dictionary<AttachmentPoint, DroneAttachment> _attachmentPointDictionary = new();
+        private Dictionary<DroneAttachmentType, int> _attachmentTypeCount = new();
+
         private PlayerTeam _playerTeam;
 
         private void Awake()
@@ -84,7 +86,19 @@ namespace DroneLoadout
             droneAttachment.transform.SetParent(attachmentPoint.transform);
             droneAttachment.transform.SetPositionAndRotation(attachmentPoint.transform.position, attachmentPoint.transform.rotation);
             droneAttachment.gameObject.layer = LayerMask.NameToLayer("Focus");
-            droneAttachment.Data.DroneBehaviours.ForEach(AddBehaviour);
+            
+            if (droneAttachment.Data.DroneBehaviours.Count > 0)
+            {
+                // Check if a behaviour has already been added for the given droneAttachmentType
+                if (!_attachmentTypeCount.ContainsKey(droneAttachment.Data.Type))
+                {
+                    _attachmentTypeCount.Add(droneAttachment.Data.Type, 0);
+                    AddBehaviour(droneAttachment.Data.DroneBehaviours[0]);
+                }
+                // Increment the count for the attachment type
+                _attachmentTypeCount[droneAttachment.Data.Type]++;
+            }
+
             attachmentPoint.AddDroneAttachment(droneAttachment);
             NumOfMountedAttachments++;
             OnDroneDecorationAdded?.Invoke(this, attachmentPoint.GetDroneAttachment());
@@ -97,8 +111,18 @@ namespace DroneLoadout
                 Debug.Log("No attachment to remove, or the attachment point is null!");
                 return;
             }
-            
-            attachmentPoint.GetDroneAttachment().Data.DroneBehaviours.ForEach(RemoveBehaviour); // Here?
+
+            // Decrement the count for the attachment type
+            if (_attachmentTypeCount.ContainsKey(attachmentPoint.GetAttachmentType()))
+            {
+                _attachmentTypeCount[attachmentPoint.GetAttachmentType()]--;
+                if (_attachmentTypeCount[attachmentPoint.GetAttachmentType()] <= 0)
+                {
+                    // If there are no more attachments of this type, remove the associated behaviour
+                    _attachmentTypeCount.Remove(attachmentPoint.GetAttachmentType());
+                    RemoveBehaviour(attachmentPoint.GetDroneAttachment().Data.DroneBehaviours[0]);
+                }
+            }
 
             // Remove ALL decorations
             DecorableDrone = DroneFactory.CreateDrone(droneConfigData.droneType, droneConfigData);
@@ -125,12 +149,14 @@ namespace DroneLoadout
         {
             DecorableDrone = DroneFactory.CreateDrone(droneConfigData.droneType, droneConfigData);
             _attachmentPointDictionary.Clear();
+            _attachmentTypeCount.Clear();
             NumOfMountedAttachments = 0;
+
             foreach (var point in _attachmentPoints)
             {
                 if (point.GetDroneAttachment())
                 {
-                    point.GetDroneAttachment().Data.DroneBehaviours.ForEach(RemoveBehaviour); // Here?
+                    point.GetDroneAttachment().Data.DroneBehaviours.ForEach(RemoveBehaviour); 
                     OnDroneDecorationRemoved?.Invoke(this, point.GetDroneAttachment());
                     point.RemoveDroneAttachment();
                 }
