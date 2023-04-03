@@ -1,4 +1,4 @@
-namespace DroneLoadout
+namespace DroneLoadout.Scripts
 {
     /// <summary>
     /// The decorable drone component that each concrete drone class possesses.

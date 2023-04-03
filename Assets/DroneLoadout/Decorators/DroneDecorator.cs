@@ -1,4 +1,6 @@
-﻿namespace DroneLoadout.Decorators
+﻿using DroneLoadout.Scripts;
+
+namespace DroneLoadout.Decorators
 {
     /// <summary>
     /// Used for decorating drones with attachments.

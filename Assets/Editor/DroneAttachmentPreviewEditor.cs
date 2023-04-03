@@ -18,19 +18,19 @@ namespace Editor
         {
             base.OnInspectorGUI();
       
-            if (_droneAttachmentData.prefab == null)
+            if (_droneAttachmentData.Prefab == null)
                 return;
         
             GUILayout.BeginHorizontal();
             GUILayout.Space(10);
             GUILayout.BeginVertical();
             GUILayout.Label("Prefab Preview");
-            Texture2D attachmentPrefabTexture = AssetPreview.GetAssetPreview(_droneAttachmentData.prefab);
+            Texture2D attachmentPrefabTexture = AssetPreview.GetAssetPreview(_droneAttachmentData.Prefab);
             GUILayout.Label("", GUILayout.Height(128), GUILayout.Width(128));
             GUI.DrawTexture(GUILayoutUtility.GetLastRect(), attachmentPrefabTexture);
             GUILayout.EndVertical();
 
-            if (_droneAttachmentData.prefabSprite == null)
+            if (_droneAttachmentData.PrefabSprite == null)
             {
                 GUILayout.EndHorizontal();
                 return;
@@ -39,7 +39,7 @@ namespace Editor
             GUILayout.Space(10);
             GUILayout.BeginVertical();
             GUILayout.Label("Sprite Preview");
-            Texture2D attachmentSpriteTexture = AssetPreview.GetAssetPreview(_droneAttachmentData.prefabSprite);
+            Texture2D attachmentSpriteTexture = AssetPreview.GetAssetPreview(_droneAttachmentData.PrefabSprite);
             GUILayout.Label("", GUILayout.Height(128), GUILayout.Width(128));
             GUI.DrawTexture(GUILayoutUtility.GetLastRect(), attachmentSpriteTexture);
             GUILayout.EndVertical();

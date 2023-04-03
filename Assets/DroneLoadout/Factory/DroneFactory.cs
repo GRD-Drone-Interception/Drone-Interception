@@ -1,6 +1,7 @@
 ﻿using System;
 using DroneLoadout.Concrete;
 using DroneLoadout.Decorators;
+using DroneLoadout.Scripts;
 
 namespace DroneLoadout.Factory
 {

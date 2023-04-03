@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace DroneLoadout
+namespace DroneLoadout.Scripts
 {
     /// <summary>
     /// Responsible for smoothly lerping the drone loadout camera from display

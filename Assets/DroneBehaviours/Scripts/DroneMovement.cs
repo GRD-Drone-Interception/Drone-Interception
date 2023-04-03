@@ -1,5 +1,5 @@
-using DroneLoadout;
 using DroneLoadout.Decorators;
+using DroneLoadout.Scripts;
 using UnityEngine;
 
 namespace DroneBehaviours.Scripts

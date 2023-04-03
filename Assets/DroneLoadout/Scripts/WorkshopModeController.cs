@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace DroneLoadout
+namespace DroneLoadout.Scripts
 {
     /// <summary>
     /// Responsible for setting the drone loadout camera mode when

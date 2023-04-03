@@ -7,8 +7,9 @@ using DroneLoadout.Decorators;
 using DroneLoadout.Factory;
 using DroneLoadout.Strategies;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
-namespace DroneLoadout
+namespace DroneLoadout.Scripts
 {
     /// <summary>
     /// The core drone class component that should be attached to every drone class prefab.
@@ -24,10 +25,11 @@ namespace DroneLoadout
 
         [SerializeField] private DroneConfigData droneConfigData; 
         [SerializeField] private List<DroneBehaviour> behaviours = new();
+        [SerializeField] private List<MeshRenderer> meshRenderers = new();
         private readonly List<AttachmentPoint> _attachmentPoints = new();
         private readonly Dictionary<AttachmentPoint, DroneAttachment> _attachmentPointDictionary = new();
-        private Dictionary<DroneAttachmentType, int> _attachmentTypeCount = new();
-
+        private readonly Dictionary<DroneAttachmentType, int> _attachmentTypeCount = new();
+        private readonly List<Color> _originalMaterialColours = new();
         private PlayerTeam _playerTeam;
 
         private void Awake()
@@ -35,8 +37,12 @@ namespace DroneLoadout
             Rb = GetComponent<Rigidbody>();
             DecorableDrone = DroneFactory.CreateDrone(droneConfigData.droneType, droneConfigData);
             _attachmentPoints.AddRange(GetComponentsInChildren<AttachmentPoint>());
+            foreach (var meshRenderer in meshRenderers)
+            {
+                _originalMaterialColours.Add(meshRenderer.material.color);
+            }
         }
-        
+
         private void Update()
         {
             foreach (var behaviour in behaviours)
@@ -159,6 +165,25 @@ namespace DroneLoadout
                     point.GetDroneAttachment().Data.DroneBehaviours.ForEach(RemoveBehaviour); 
                     OnDroneDecorationRemoved?.Invoke(this, point.GetDroneAttachment());
                     point.RemoveDroneAttachment();
+                }
+            }
+        }
+
+        public void Paint(Color color)
+        {
+            foreach (var meshRenderer in meshRenderers)
+            {
+                meshRenderer.material.color = color;
+            }
+        }
+
+        public void ResetPaintJob()
+        {
+            foreach (var meshRenderer in meshRenderers)
+            {
+                foreach (var colour in _originalMaterialColours)
+                {
+                    meshRenderer.material.color = colour;
                 }
             }
         }

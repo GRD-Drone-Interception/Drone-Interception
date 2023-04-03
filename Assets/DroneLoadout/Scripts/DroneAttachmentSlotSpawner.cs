@@ -1,10 +1,10 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using DroneLoadout.Decorators;
 using DroneLoadout.DroneWorkbench;
 using UnityEngine;
 
-namespace DroneLoadout
+namespace DroneLoadout.Scripts
 {
     /// <summary>
     /// Responsible for spawning and setting the visibility of drone attachment slots
@@ -65,6 +65,9 @@ namespace DroneLoadout
                         break;
                     case DroneAttachmentType.Weapon:
                         _droneAttachmentTypePrefabDict.Add(DroneAttachmentType.Weapon, prefab);
+                        break;
+                    case DroneAttachmentType.Decal:
+                        _droneAttachmentTypePrefabDict.Add(DroneAttachmentType.Decal, prefab);
                         break;
                 }
             }

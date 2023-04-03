@@ -4,7 +4,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 
-namespace DroneLoadout
+namespace DroneLoadout.Scripts
 {
     public enum DroneSetupMenuStates
     {

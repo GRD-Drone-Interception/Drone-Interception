@@ -2,7 +2,7 @@ using DroneLoadout.DroneWorkbench;
 using TMPro;
 using UnityEngine;
 
-namespace DroneLoadout
+namespace DroneLoadout.Scripts
 {
     public class DroneConfigInfoBox : MonoBehaviour
     {

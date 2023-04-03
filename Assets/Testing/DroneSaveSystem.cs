@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using DroneLoadout;
+using DroneLoadout.Scripts;
 using UnityEngine;
 
 namespace Testing

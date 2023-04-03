@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace DroneLoadout
+namespace DroneLoadout.Scripts
 {
     public class AttachmentPointCameraLookAt : MonoBehaviour
     {

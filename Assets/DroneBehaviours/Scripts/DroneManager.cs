@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using DroneLoadout;
+using DroneLoadout.Scripts;
 using UnityEngine;
 
 namespace DroneBehaviours.Scripts

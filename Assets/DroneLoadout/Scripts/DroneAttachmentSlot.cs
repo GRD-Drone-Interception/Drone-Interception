@@ -1,10 +1,9 @@
 ﻿using System;
-using DroneLoadout.Decorators;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace DroneLoadout
+namespace DroneLoadout.Scripts
 {
     /// <summary>
     /// Responsible for displaying a list of compatible components from a given
@@ -116,7 +115,7 @@ namespace DroneLoadout
         private void Highlight()
         {
             _button.colors = _highlightColourBlock;
-            _text.color = Color.black;
+            _text.color = Color.white;
         }
 
         private void Unhighlight()

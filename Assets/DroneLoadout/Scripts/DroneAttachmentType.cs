@@ -1,4 +1,4 @@
-﻿namespace DroneLoadout
+﻿namespace DroneLoadout.Scripts
 {
     public enum DroneAttachmentType
     {
@@ -10,6 +10,7 @@
         Radar, // scanners, GPS
         Sensor, 
         Payload, // EMP and explosive charges?
-        Weapon // turrets and missile launchers?
+        Weapon, // turrets and missile launchers?
+        Decal
     }
 }

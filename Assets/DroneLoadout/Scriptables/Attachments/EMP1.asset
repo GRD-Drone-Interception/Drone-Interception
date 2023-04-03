@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36e937aa35ae4681bb2516d4feee691f, type: 3}
   m_Name: EMP1
   m_EditorClassIdentifier: 
-  droneAttachmentType: 7
+  attachmentName: EMP 1
+  description: 
+  type: 7
+  prefab: {fileID: 9052186331285526093, guid: 11c67cb53d6a64e4fa3bb211549081fe, type: 3}
+  prefabSprite: {fileID: 0}
   cost: 1
   range: 2
   speed: 3
   acceleration: 4
   weight: 5
-  attachmentName: EMP 1
-  attachmentPrefab: {fileID: 9052186331285526093, guid: 11c67cb53d6a64e4fa3bb211549081fe, type: 3}
-  attachmentDescription: 
+  droneBehaviours: []

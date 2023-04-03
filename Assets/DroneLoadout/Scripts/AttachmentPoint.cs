@@ -1,7 +1,6 @@
-﻿using DroneLoadout.Decorators;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace DroneLoadout
+namespace DroneLoadout.Scripts
 {
     public class AttachmentPoint : MonoBehaviour
     {

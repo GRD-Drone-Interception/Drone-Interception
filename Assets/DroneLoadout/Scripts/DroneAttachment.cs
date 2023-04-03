@@ -1,10 +1,7 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using DroneLoadout.Decorators;
 using UnityEngine;
 
-namespace DroneLoadout
+namespace DroneLoadout.Scripts
 {
     /// <summary>
     /// Attached to every drone attachment prefab, and should be added to any new ones that are made.

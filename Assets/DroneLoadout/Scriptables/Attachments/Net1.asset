@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36e937aa35ae4681bb2516d4feee691f, type: 3}
   m_Name: Net1
   m_EditorClassIdentifier: 
-  droneAttachmentType: 8
+  attachmentName: Drone Net 1
+  description: 
+  type: 7
+  prefab: {fileID: 6071254045215579465, guid: f56f9b252e12dfc4f85cbf584e279d72, type: 3}
+  prefabSprite: {fileID: 0}
   cost: 6
   range: 7
   speed: 8
   acceleration: 9
   weight: 10
-  attachmentName: Drone Net 1
-  attachmentPrefab: {fileID: 6071254045215579465, guid: f56f9b252e12dfc4f85cbf584e279d72, type: 3}
-  attachmentDescription: 
+  droneBehaviours: []

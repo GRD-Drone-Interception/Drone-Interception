@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace DroneLoadout
+namespace DroneLoadout.Scripts
 {
     public class DroneSetupMenuDisplayer : MonoBehaviour
     {

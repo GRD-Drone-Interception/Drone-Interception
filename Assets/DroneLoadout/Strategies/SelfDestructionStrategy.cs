@@ -1,4 +1,6 @@
-﻿namespace DroneLoadout.Strategies
+﻿using DroneLoadout.Scripts;
+
+namespace DroneLoadout.Strategies
 {
     public class SelfDestructionStrategy : IDroneManeuverBehaviour
     {

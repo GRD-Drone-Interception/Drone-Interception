@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace DroneLoadout
+namespace DroneLoadout.Scripts
 {
     /// <summary>
     /// Responsible for decorating an attachment point with a drone attachment via a button.
@@ -18,6 +18,7 @@ namespace DroneLoadout
         private TMP_Text _text;
         private ColorBlock _highlightColourBlock;
         private ColorBlock _unhighlightColourBlock;
+        private bool _isPainted;
 
         private void Awake()
         {
@@ -53,17 +54,17 @@ namespace DroneLoadout
                 fadeDuration = 0
             };
             
-            _text.text = droneAttachmentData.attachmentName;
-            if (droneAttachmentData.prefabSprite != null)
+            _text.text = droneAttachmentData.AttachmentName;
+            if (droneAttachmentData.PrefabSprite != null)
             {
-                _image.sprite = droneAttachmentData.prefabSprite;
+                _image.sprite = droneAttachmentData.PrefabSprite;
             }
         }
         
         private void Update()
         {
             // TODO: Clean this
-            if (!droneAttachmentSlot.GetAttachmentPoint().HasAttachment)
+            if (!droneAttachmentSlot.GetAttachmentPoint().HasAttachment && !_isPainted)
             {
                 Unhighlight();
             }
@@ -81,9 +82,24 @@ namespace DroneLoadout
                 return;
             }
 
-            var droneAttachment = Instantiate(droneAttachmentData.prefab).GetComponent<DroneAttachment>();
-            droneAttachmentSlot.GetDrone().Decorate(droneAttachment, attachmentPoint);
-            droneAttachment.Pulsate(true);
+            if (droneAttachmentData.Prefab != null)
+            {
+                var droneAttachment = Instantiate(droneAttachmentData.Prefab).GetComponent<DroneAttachment>();
+                droneAttachmentSlot.GetDrone().Decorate(droneAttachment, attachmentPoint);
+                droneAttachment.Pulsate(true);
+            }
+            else
+            {
+                _isPainted = !_isPainted;
+                if (_isPainted)
+                {
+                    droneAttachmentSlot.GetDrone().Paint(droneAttachmentData.DecalColour);
+                }
+                else
+                {
+                    droneAttachmentSlot.GetDrone().ResetPaintJob();
+                }
+            }
             Highlight();
             //OnAttachmentSelected?.Invoke(this);
         }
