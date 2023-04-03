@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b427aa6d53b84ac4fa31d644c063e0ee, type: 3}
+  m_Name: MARSS
+  m_EditorClassIdentifier: 
+  droneType: 2
+  cost: 800
+  range: 500
+  speed: 250
+  acceleration: 100
+  weight: 300
+  droneName: MARSS
+  dronePrefab: {fileID: 457988399069600944, guid: 99ff49f87382e524e91497b7189105f1, type: 3}
+  droneDescription: 

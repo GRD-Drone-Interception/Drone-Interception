@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36e937aa35ae4681bb2516d4feee691f, type: 3}
+  m_Name: FlightController1
+  m_EditorClassIdentifier: 
+  droneAttachmentType: 4
+  cost: 6
+  range: 7
+  speed: 8
+  acceleration: 9
+  weight: 10
+  attachmentName: Flight Controller 1
+  attachmentPrefab: {fileID: 3327821782609718862, guid: f7f112cddfb200c40b185c98ad165e36, type: 3}
+  attachmentDescription: 

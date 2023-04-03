@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b427aa6d53b84ac4fa31d644c063e0ee, type: 3}
+  m_Name: DjiMavic3
+  m_EditorClassIdentifier: 
+  droneType: 0
+  cost: 500
+  range: 60
+  speed: 35
+  acceleration: 0
+  weight: 75
+  droneName: Dji Mavic 3
+  dronePrefab: {fileID: 4059031464683983483, guid: 943c7193d8d860e4b8cc3f12a770c8bb, type: 3}
+  droneDescription: 
