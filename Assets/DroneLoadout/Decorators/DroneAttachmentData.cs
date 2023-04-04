@@ -2,6 +2,7 @@
 using DroneBehaviours.Scripts;
 using DroneLoadout.Scripts;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace DroneLoadout.Decorators
 {
@@ -12,27 +13,23 @@ namespace DroneLoadout.Decorators
     [CreateAssetMenu(fileName = "NewDroneAttachment", menuName = "Drone/Attachment", order = 1)]
     public class DroneAttachmentData : ScriptableObject, IDrone
     {
-        public string AttachmentName => attachmentName;
-        public DroneAttachmentType Type => type;
-        public GameObject Prefab => prefab;
-        public Sprite PrefabSprite => prefabSprite;
-        public List<DroneBehaviour> DroneBehaviours => droneBehaviours;
+        [FormerlySerializedAs("attachmentName")] public string AttachmentName;
+        [FormerlySerializedAs("description")] public string Description;
+        [FormerlySerializedAs("attachmentType")] [FormerlySerializedAs("type")] public DroneAttachmentType AttachmentType;
+        [FormerlySerializedAs("Prefab")] [FormerlySerializedAs("prefab")] public GameObject DronePrefab;
+        [FormerlySerializedAs("prefabSprite")] public Sprite PrefabSprite;
+        [FormerlySerializedAs("prefabDataPath")] public string PrefabDataPath;
+        [FormerlySerializedAs("droneBehaviours")] public List<DroneBehaviour> DroneBehaviours;
         public float Cost => cost;
         public float Range => range;
         public float TopSpeed => speed;
         public float Acceleration => acceleration;
         public float Weight => weight;
-
-        [SerializeField] private string attachmentName;
-        [SerializeField] private string description;
-        [SerializeField] private DroneAttachmentType type;
-        [SerializeField] private GameObject prefab;
-        [SerializeField] private Sprite prefabSprite;
+        
         [SerializeField] private float cost;
         [SerializeField] private float range;
         [SerializeField] private float speed;
         [SerializeField] private float acceleration;
         [SerializeField] private float weight;
-        [SerializeField] private List<DroneBehaviour> droneBehaviours;
     }
 }

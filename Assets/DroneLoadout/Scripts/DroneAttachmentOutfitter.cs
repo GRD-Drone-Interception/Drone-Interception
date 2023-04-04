@@ -81,7 +81,7 @@ namespace DroneLoadout.Scripts
                 return;
             }
 
-            var droneAttachment = Instantiate(droneAttachmentData.Prefab).GetComponent<DroneAttachment>();
+            var droneAttachment = Instantiate(droneAttachmentData.DronePrefab).GetComponent<DroneAttachment>();
             droneAttachmentSlot.GetDrone().Decorate(droneAttachment, attachmentPoint);
             droneAttachment.Pulsate(true);
             Highlight();

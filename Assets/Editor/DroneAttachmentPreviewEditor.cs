@@ -19,12 +19,12 @@ namespace Editor
             base.OnInspectorGUI();
 
             GUILayout.BeginHorizontal();
-            if (_droneAttachmentData.Prefab != null)
+            if (_droneAttachmentData.DronePrefab != null)
             {
                 GUILayout.Space(10);
                 GUILayout.BeginVertical();
                 GUILayout.Label("Prefab Preview");
-                Texture2D attachmentPrefabTexture = AssetPreview.GetAssetPreview(_droneAttachmentData.Prefab);
+                Texture2D attachmentPrefabTexture = AssetPreview.GetAssetPreview(_droneAttachmentData.DronePrefab);
                 GUILayout.Label("", GUILayout.Height(128), GUILayout.Width(128));
                 GUI.DrawTexture(GUILayoutUtility.GetLastRect(), attachmentPrefabTexture);
                 GUILayout.EndVertical();

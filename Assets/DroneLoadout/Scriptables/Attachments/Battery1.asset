@@ -17,6 +17,7 @@ MonoBehaviour:
   type: 1
   prefab: {fileID: 145924535072466960, guid: 4614eb0f4c6d3b34e9285d8808d2a0c4, type: 3}
   prefabSprite: {fileID: 0}
+  prefabDataPath: Attachments/Battery1
   cost: 1
   range: 2
   speed: 3

@@ -17,6 +17,7 @@ MonoBehaviour:
   type: 6
   prefab: {fileID: 6703670592246976586, guid: ea7bfaa254290a2439d18df97579b787, type: 3}
   prefabSprite: {fileID: 0}
+  prefabDataPath: Attachments/Sensor1
   cost: 1
   range: 2
   speed: 3

@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b427aa6d53b84ac4fa31d644c063e0ee, type: 3}
   m_Name: BairaktarNW3
   m_EditorClassIdentifier: 
-  droneType: 1
+  DroneName: BAIRAKTAR NW1
+  DronePrefab: {fileID: 8809748575978406926, guid: 04291ac52b815c34eb59e790605a8de3, type: 3}
+  DroneDescription: 
+  DroneType: 1
+  DrefabDataPath: Drones/FixedWings/BAIRAKTAR_NW1
   cost: 100
   range: 120
   topSpeed: 0
   acceleration: 0
   weight: 85
-  droneName: BAIRAKTAR NW1
-  dronePrefab: {fileID: 8809748575978406926, guid: 04291ac52b815c34eb59e790605a8de3, type: 3}
-  droneDescription: 

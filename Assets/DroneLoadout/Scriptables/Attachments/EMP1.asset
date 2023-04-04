@@ -17,6 +17,7 @@ MonoBehaviour:
   type: 7
   prefab: {fileID: 9052186331285526093, guid: 11c67cb53d6a64e4fa3bb211549081fe, type: 3}
   prefabSprite: {fileID: 0}
+  prefabDataPath: Attachments/EMP1
   cost: 1
   range: 2
   speed: 3

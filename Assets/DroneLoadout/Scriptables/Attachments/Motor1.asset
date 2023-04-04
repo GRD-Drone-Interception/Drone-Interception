@@ -17,6 +17,7 @@ MonoBehaviour:
   type: 2
   prefab: {fileID: 6253644712073533745, guid: 4bfc55849f76e8a418973690ea5d4a91, type: 3}
   prefabSprite: {fileID: 0}
+  prefabDataPath: Attachments/Motor1
   cost: 1
   range: 2
   speed: 3

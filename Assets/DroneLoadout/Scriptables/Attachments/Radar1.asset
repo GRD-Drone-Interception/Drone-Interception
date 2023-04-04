@@ -17,6 +17,7 @@ MonoBehaviour:
   type: 5
   prefab: {fileID: 5995092674283698512, guid: 902733fc231c3f1499d505832fd65856, type: 3}
   prefabSprite: {fileID: 0}
+  prefabDataPath: Attachments/Radar1
   cost: 250
   range: 6
   speed: 7

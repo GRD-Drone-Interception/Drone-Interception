@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b427aa6d53b84ac4fa31d644c063e0ee, type: 3}
   m_Name: Matrice300Rtk
   m_EditorClassIdentifier: 
-  droneType: 0
+  DroneName: Matrice 300 RTK
+  DronePrefab: {fileID: 3938721802332374394, guid: 9e12e00271371c645b747c56fe4847ce, type: 3}
+  DroneDescription: 
+  DroneType: 0
+  DrefabDataPath: Drones/Quadcopters/Matrice300Rtk
   cost: 600
   range: 5
   topSpeed: 0
   acceleration: 0
   weight: 100
-  droneName: Matrice 300 RTK
-  dronePrefab: {fileID: 3938721802332374394, guid: 9e12e00271371c645b747c56fe4847ce, type: 3}
-  droneDescription: 
