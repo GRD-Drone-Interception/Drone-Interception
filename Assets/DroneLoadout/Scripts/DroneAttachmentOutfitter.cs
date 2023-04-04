@@ -18,7 +18,6 @@ namespace DroneLoadout.Scripts
         private TMP_Text _text;
         private ColorBlock _highlightColourBlock;
         private ColorBlock _unhighlightColourBlock;
-        private bool _isPainted;
 
         private void Awake()
         {
@@ -64,7 +63,7 @@ namespace DroneLoadout.Scripts
         private void Update()
         {
             // TODO: Clean this
-            if (!droneAttachmentSlot.GetAttachmentPoint().HasAttachment && !_isPainted)
+            if (!droneAttachmentSlot.GetAttachmentPoint().HasAttachment)
             {
                 Unhighlight();
             }
@@ -82,24 +81,9 @@ namespace DroneLoadout.Scripts
                 return;
             }
 
-            if (droneAttachmentData.Prefab != null)
-            {
-                var droneAttachment = Instantiate(droneAttachmentData.Prefab).GetComponent<DroneAttachment>();
-                droneAttachmentSlot.GetDrone().Decorate(droneAttachment, attachmentPoint);
-                droneAttachment.Pulsate(true);
-            }
-            else
-            {
-                _isPainted = !_isPainted;
-                if (_isPainted)
-                {
-                    droneAttachmentSlot.GetDrone().Paint(droneAttachmentData.DecalColour);
-                }
-                else
-                {
-                    droneAttachmentSlot.GetDrone().ResetPaintJob();
-                }
-            }
+            var droneAttachment = Instantiate(droneAttachmentData.Prefab).GetComponent<DroneAttachment>();
+            droneAttachmentSlot.GetDrone().Decorate(droneAttachment, attachmentPoint);
+            droneAttachment.Pulsate(true);
             Highlight();
             //OnAttachmentSelected?.Invoke(this);
         }

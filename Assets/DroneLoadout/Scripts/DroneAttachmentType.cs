@@ -11,6 +11,5 @@
         Sensor, 
         Payload, // EMP and explosive charges?
         Weapon, // turrets and missile launchers?
-        Decal
     }
 }

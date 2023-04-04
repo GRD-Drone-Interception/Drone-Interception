@@ -25,11 +25,9 @@ namespace DroneLoadout.Scripts
 
         [SerializeField] private DroneConfigData droneConfigData; 
         [SerializeField] private List<DroneBehaviour> behaviours = new();
-        [SerializeField] private List<MeshRenderer> meshRenderers = new();
         private readonly List<AttachmentPoint> _attachmentPoints = new();
         private readonly Dictionary<AttachmentPoint, DroneAttachment> _attachmentPointDictionary = new();
         private readonly Dictionary<DroneAttachmentType, int> _attachmentTypeCount = new();
-        private readonly List<Color> _originalMaterialColours = new();
         private PlayerTeam _playerTeam;
 
         private void Awake()
@@ -37,10 +35,6 @@ namespace DroneLoadout.Scripts
             Rb = GetComponent<Rigidbody>();
             DecorableDrone = DroneFactory.CreateDrone(droneConfigData.droneType, droneConfigData);
             _attachmentPoints.AddRange(GetComponentsInChildren<AttachmentPoint>());
-            foreach (var meshRenderer in meshRenderers)
-            {
-                _originalMaterialColours.Add(meshRenderer.material.color);
-            }
         }
 
         private void Update()
@@ -165,25 +159,6 @@ namespace DroneLoadout.Scripts
                     point.GetDroneAttachment().Data.DroneBehaviours.ForEach(RemoveBehaviour); 
                     OnDroneDecorationRemoved?.Invoke(this, point.GetDroneAttachment());
                     point.RemoveDroneAttachment();
-                }
-            }
-        }
-
-        public void Paint(Color color)
-        {
-            foreach (var meshRenderer in meshRenderers)
-            {
-                meshRenderer.material.color = color;
-            }
-        }
-
-        public void ResetPaintJob()
-        {
-            foreach (var meshRenderer in meshRenderers)
-            {
-                foreach (var colour in _originalMaterialColours)
-                {
-                    meshRenderer.material.color = colour;
                 }
             }
         }

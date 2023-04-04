@@ -66,9 +66,6 @@ namespace DroneLoadout.Scripts
                     case DroneAttachmentType.Weapon:
                         _droneAttachmentTypePrefabDict.Add(DroneAttachmentType.Weapon, prefab);
                         break;
-                    case DroneAttachmentType.Decal:
-                        _droneAttachmentTypePrefabDict.Add(DroneAttachmentType.Decal, prefab);
-                        break;
                 }
             }
         }

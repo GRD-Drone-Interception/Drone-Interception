@@ -17,7 +17,6 @@ namespace DroneLoadout.Decorators
         public GameObject Prefab => prefab;
         public Sprite PrefabSprite => prefabSprite;
         public List<DroneBehaviour> DroneBehaviours => droneBehaviours;
-        public Color DecalColour => decalColour;
         public float Cost => cost;
         public float Range => range;
         public float TopSpeed => speed;
@@ -35,6 +34,5 @@ namespace DroneLoadout.Decorators
         [SerializeField] private float acceleration;
         [SerializeField] private float weight;
         [SerializeField] private List<DroneBehaviour> droneBehaviours;
-        [SerializeField] private Color decalColour;
     }
 }
