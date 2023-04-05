@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MQ9Ripper
   m_EditorClassIdentifier: 
   DroneName: MQ9 Ripper
-  DronePrefab: {fileID: 2290178057615028574, guid: 205ecf07f474e8741a8f3d55dafa1479, type: 3}
+  DronePrefab: {fileID: 2290178057615028574, guid: 59ebfa76c4b5c3a4391045dcd176ee66, type: 3}
   DroneDescription: 
   DroneType: 1
   PrefabDataPath: Drones/FixedWings/Mq9Ripper

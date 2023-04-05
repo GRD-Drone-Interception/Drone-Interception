@@ -24,9 +24,12 @@ namespace DroneLoadout.Scripts
 
         [SerializeField] private DroneConfigData droneConfigData; 
         [SerializeField] private List<DroneBehaviour> behaviours = new();
+        [SerializeField] private List<MeshRenderer> meshRenderers;
         private readonly List<AttachmentPoint> _attachmentPoints = new();
         private readonly Dictionary<AttachmentPoint, DroneAttachment> _mountedAttachmentPointsDictionary = new();
         private readonly Dictionary<DroneAttachmentType, int> _attachmentTypeCount = new();
+        private readonly List<Color> _originalMaterialColours = new();
+        private Color _paintJob;
         private PlayerTeam _playerTeam;
 
         private void Awake()
@@ -34,6 +37,8 @@ namespace DroneLoadout.Scripts
             Rb = GetComponent<Rigidbody>();
             DecorableDrone = DroneFactory.CreateDrone(droneConfigData.DroneType, droneConfigData);
             _attachmentPoints.AddRange(GetComponentsInChildren<AttachmentPoint>());
+            meshRenderers.ForEach(ctx => _originalMaterialColours.Add(ctx.material.color));
+            _paintJob = _originalMaterialColours[0];
         }
 
         private void Update()
@@ -150,6 +155,7 @@ namespace DroneLoadout.Scripts
             _mountedAttachmentPointsDictionary.Clear();
             _attachmentTypeCount.Clear();
             NumOfMountedAttachments = 0;
+            ResetPaintJob();
 
             foreach (var point in _attachmentPoints)
             {
@@ -160,6 +166,31 @@ namespace DroneLoadout.Scripts
                     point.RemoveDroneAttachment();
                 }
             }
+        }
+
+        public void Paint(Color colour)
+        {
+            _paintJob = colour;
+            foreach (var meshRenderer in meshRenderers)
+            {
+                meshRenderer.material.color = colour;
+            }
+        }
+
+        public void ResetPaintJob()
+        {
+            foreach (var meshRenderer in meshRenderers)
+            {
+                foreach (var colour in _originalMaterialColours)
+                {
+                    meshRenderer.material.color = colour;
+                }
+            }
+        }
+
+        public Color GetPaintJob()
+        {
+            return _paintJob;
         }
 
         public void SetTeam(PlayerTeam team)

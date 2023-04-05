@@ -15,10 +15,11 @@ MonoBehaviour:
   AttachmentName: Camera Dome 1
   Description: 
   AttachmentType: 0
-  DronePrefab: {fileID: 2813402458401724523, guid: e2227b75316c1224583fcd1c7e01d689, type: 3}
+  DronePrefab: {fileID: 2813402458401724523, guid: 72d4853e97ad0e14e9e197ffe409293a, type: 3}
   PrefabSprite: {fileID: 21300000, guid: 26c475182d4272648a8f9b92c9fb0d68, type: 3}
   PrefabDataPath: Attachments/CameraDome1
   DroneBehaviours: []
+  DecalColour: {r: 0, g: 0, b: 0, a: 0}
   cost: 6
   range: 7
   speed: 8

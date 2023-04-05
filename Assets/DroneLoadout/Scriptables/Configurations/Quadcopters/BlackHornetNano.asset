@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BlackHornetNano
   m_EditorClassIdentifier: 
   DroneName: Black Hornet Nano
-  DronePrefab: {fileID: 5454665289796912532, guid: 2b9bdfbe10b4e5e4f823e2bcd6a95ec7, type: 3}
+  DronePrefab: {fileID: 5454665289796912532, guid: 5cadaddd5f0616b4ab285b836b83e018, type: 3}
   DroneDescription: 
   DroneType: 0
   PrefabDataPath: Drones/Quadcopters/BlackHornetNano

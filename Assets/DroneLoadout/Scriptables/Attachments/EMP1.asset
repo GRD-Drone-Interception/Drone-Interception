@@ -15,10 +15,11 @@ MonoBehaviour:
   AttachmentName: EMP 1
   Description: 
   AttachmentType: 7
-  DronePrefab: {fileID: 9052186331285526093, guid: 11c67cb53d6a64e4fa3bb211549081fe, type: 3}
+  DronePrefab: {fileID: 9052186331285526093, guid: cc87cc674f1ad754f88762a440a33395, type: 3}
   PrefabSprite: {fileID: 0}
   PrefabDataPath: Attachments/EMP1
   DroneBehaviours: []
+  DecalColour: {r: 0, g: 0, b: 0, a: 0}
   cost: 1
   range: 2
   speed: 3

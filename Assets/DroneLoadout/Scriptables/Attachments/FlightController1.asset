@@ -15,10 +15,11 @@ MonoBehaviour:
   AttachmentName: Flight Controller 1
   Description: 
   AttachmentType: 4
-  DronePrefab: {fileID: 3327821782609718862, guid: f7f112cddfb200c40b185c98ad165e36, type: 3}
+  DronePrefab: {fileID: 3327821782609718862, guid: 26d375396866fd848a7e3e52ff45c069, type: 3}
   PrefabSprite: {fileID: 0}
   PrefabDataPath: Attachments/FlightController1
   DroneBehaviours: []
+  DecalColour: {r: 0, g: 0, b: 0, a: 0}
   cost: 6
   range: 7
   speed: 8

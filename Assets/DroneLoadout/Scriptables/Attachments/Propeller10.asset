@@ -15,10 +15,11 @@ MonoBehaviour:
   AttachmentName: Propeller 10
   Description: 
   AttachmentType: 3
-  DronePrefab: {fileID: 4441224192303885175, guid: 8729b402a0218c4489d22f0024ed07bf, type: 3}
+  DronePrefab: {fileID: 4441224192303885175, guid: e82f9f59776cf83468b5467264b75818, type: 3}
   PrefabSprite: {fileID: 21300000, guid: e39cbc13ca53cef4eb8f5eef3127a75d, type: 3}
   PrefabDataPath: Attachments/Propeller10
   DroneBehaviours: []
+  DecalColour: {r: 0, g: 0, b: 0, a: 0}
   cost: 1
   range: 2
   speed: 3

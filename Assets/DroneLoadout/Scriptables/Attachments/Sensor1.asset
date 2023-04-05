@@ -15,10 +15,11 @@ MonoBehaviour:
   AttachmentName: Sensor 1
   Description: 
   AttachmentType: 6
-  DronePrefab: {fileID: 6703670592246976586, guid: ea7bfaa254290a2439d18df97579b787, type: 3}
+  DronePrefab: {fileID: 6703670592246976586, guid: 0388b07dd58d9e2448d1da4acfdecd44, type: 3}
   PrefabSprite: {fileID: 0}
   PrefabDataPath: Attachments/Sensor1
   DroneBehaviours: []
+  DecalColour: {r: 0, g: 0, b: 0, a: 0}
   cost: 1
   range: 2
   speed: 3

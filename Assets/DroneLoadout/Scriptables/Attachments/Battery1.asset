@@ -15,10 +15,11 @@ MonoBehaviour:
   AttachmentName: Battery 1
   Description: 
   AttachmentType: 1
-  DronePrefab: {fileID: 145924535072466960, guid: 4614eb0f4c6d3b34e9285d8808d2a0c4, type: 3}
+  DronePrefab: {fileID: 145924535072466960, guid: 99758b0dc6d7edc4d9b65e417298dc22, type: 3}
   PrefabSprite: {fileID: 0}
   PrefabDataPath: Attachments/Battery1
   DroneBehaviours: []
+  DecalColour: {r: 0, g: 0, b: 0, a: 0}
   cost: 1
   range: 2
   speed: 3

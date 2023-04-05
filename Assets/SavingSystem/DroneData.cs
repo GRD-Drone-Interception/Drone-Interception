@@ -1,6 +1,7 @@
 ﻿using System;
 using DroneLoadout.Factory;
 using DroneLoadout.Scripts;
+using UnityEngine;
 
 namespace SavingSystem
 {
@@ -11,5 +12,6 @@ namespace SavingSystem
         public int numAttachments;
         public string[] attachmentDataPaths;
         public DroneAttachmentType[] attachmentTypes;
+        public Color decalColour;
     }
 }

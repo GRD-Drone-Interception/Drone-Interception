@@ -38,6 +38,8 @@ namespace DroneLoadout.Scripts
                 DroneAttachment droneAttachment = spawnedDroneAttachment.GetComponent<DroneAttachment>();
                 drone.Decorate(droneAttachment, drone.GetAttachmentPoints()[droneData.mountedAttachmentPointIndex[i]]);
             }
+            
+            drone.Paint(droneData.decalColour);
 
             spawnedDrone.transform.SetPositionAndRotation(new Vector3(0,0,0), Quaternion.identity);
             //drone.SetTeam(playerTeam); // get current team from Turnmanager

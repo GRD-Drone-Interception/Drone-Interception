@@ -19,6 +19,7 @@ namespace DroneLoadout.Decorators
         public Sprite PrefabSprite;
         public string PrefabDataPath = "Attachments/";
         public List<DroneBehaviour> DroneBehaviours;
+        public Color DecalColour;
         public float Cost => cost;
         public float Range => range;
         public float TopSpeed => speed;

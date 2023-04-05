@@ -19,7 +19,8 @@ namespace SavingSystem
                 mountedAttachmentPointIndex = drone.GetAttachmentPoints().FindAll(ap => ap.HasAttachment).Select(ap => drone.GetAttachmentPoints().IndexOf(ap)).ToArray(),
                 attachmentDataPaths = drone.MountedAttachmentPointsDictionary().Values.Select(attachment => attachment.Data.PrefabDataPath).ToArray(),
                 numAttachments = drone.NumOfMountedAttachments,
-                attachmentTypes = drone.MountedAttachmentPointsDictionary().Values.Select(attachment => attachment.Data.AttachmentType).ToArray()
+                attachmentTypes = drone.MountedAttachmentPointsDictionary().Values.Select(attachment => attachment.Data.AttachmentType).ToArray(),
+                decalColour = drone.GetPaintJob()
             };
 
             // Convert the drone data to JSON format

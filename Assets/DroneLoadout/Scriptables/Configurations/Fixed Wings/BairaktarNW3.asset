@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BairaktarNW3
   m_EditorClassIdentifier: 
   DroneName: BAIRAKTAR NW1
-  DronePrefab: {fileID: 8809748575978406926, guid: 04291ac52b815c34eb59e790605a8de3, type: 3}
+  DronePrefab: {fileID: 8809748575978406926, guid: dbe6832ba5fdf9240843327c599ade94, type: 3}
   DroneDescription: 
   DroneType: 1
   PrefabDataPath: Drones/FixedWings/BAIRAKTAR_NW1

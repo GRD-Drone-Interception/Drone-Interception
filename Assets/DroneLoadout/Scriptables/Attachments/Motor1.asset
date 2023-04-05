@@ -15,10 +15,11 @@ MonoBehaviour:
   AttachmentName: Motor 1
   Description: 
   AttachmentType: 2
-  DronePrefab: {fileID: 6253644712073533745, guid: 4bfc55849f76e8a418973690ea5d4a91, type: 3}
+  DronePrefab: {fileID: 6253644712073533745, guid: 726de171aee94314fb7c909da8ad381d, type: 3}
   PrefabSprite: {fileID: 0}
   PrefabDataPath: Attachments/Motor1
   DroneBehaviours: []
+  DecalColour: {r: 0, g: 0, b: 0, a: 0}
   cost: 1
   range: 2
   speed: 3

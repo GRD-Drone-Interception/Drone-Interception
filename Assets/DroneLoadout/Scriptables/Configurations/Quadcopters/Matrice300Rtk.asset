@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Matrice300Rtk
   m_EditorClassIdentifier: 
   DroneName: Matrice 300 RTK
-  DronePrefab: {fileID: 3938721802332374394, guid: 9e12e00271371c645b747c56fe4847ce, type: 3}
+  DronePrefab: {fileID: 3938721802332374394, guid: 67e946ee32a52ab4ea832888dd2ed89a, type: 3}
   DroneDescription: 
   DroneType: 0
   PrefabDataPath: Drones/Quadcopters/Matrice300Rtk

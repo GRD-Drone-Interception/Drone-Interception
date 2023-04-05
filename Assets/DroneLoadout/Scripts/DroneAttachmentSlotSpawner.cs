@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using DroneLoadout.DroneWorkbench;
@@ -65,6 +64,9 @@ namespace DroneLoadout.Scripts
                         break;
                     case DroneAttachmentType.Weapon:
                         _droneAttachmentTypePrefabDict.Add(DroneAttachmentType.Weapon, prefab);
+                        break;
+                    case DroneAttachmentType.Decal:
+                        _droneAttachmentTypePrefabDict.Add(DroneAttachmentType.Decal, prefab);
                         break;
                 }
             }

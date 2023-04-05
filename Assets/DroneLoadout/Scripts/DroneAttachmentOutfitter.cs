@@ -33,10 +33,10 @@ namespace DroneLoadout.Scripts
         {
             _highlightColourBlock = new ColorBlock
             {
-                normalColor = new Color(0, 1, 0.6f, 0.75f),
+                normalColor = new Color(0, 1, 0.6f, 0.25f),
                 highlightedColor = _button.colors.highlightedColor,
                 pressedColor = _button.colors.pressedColor,
-                selectedColor = new Color(0, 1, 0.6f, 0.75f),
+                selectedColor = new Color(0, 1, 0.6f, 0.25f),
                 disabledColor = _button.colors.disabledColor,
                 colorMultiplier = 1,
                 fadeDuration = 0
@@ -81,9 +81,17 @@ namespace DroneLoadout.Scripts
                 return;
             }
 
-            var droneAttachment = Instantiate(droneAttachmentData.DronePrefab).GetComponent<DroneAttachment>();
-            droneAttachmentSlot.GetDrone().Decorate(droneAttachment, attachmentPoint);
-            droneAttachment.Pulsate(true);
+            if (droneAttachmentData.DronePrefab != null)
+            {
+                var droneAttachment = Instantiate(droneAttachmentData.DronePrefab).GetComponent<DroneAttachment>();
+                droneAttachmentSlot.GetDrone().Decorate(droneAttachment, attachmentPoint); // Don't like this
+                droneAttachment.Pulsate(true);
+            }
+            else
+            {
+                droneAttachmentSlot.GetDrone().Paint(droneAttachmentData.DecalColour);
+            }
+            
             Highlight();
             //OnAttachmentSelected?.Invoke(this);
         }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MARSS
   m_EditorClassIdentifier: 
   DroneName: MARSS
-  DronePrefab: {fileID: 457988399069600944, guid: 99ff49f87382e524e91497b7189105f1, type: 3}
+  DronePrefab: {fileID: 457988399069600944, guid: 0c0f466a73b995844b5d6916bf9c648a, type: 3}
   DroneDescription: 
   DroneType: 2
   PrefabDataPath: Drones/Interceptors/Marss

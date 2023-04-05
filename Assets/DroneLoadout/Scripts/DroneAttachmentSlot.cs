@@ -1,5 +1,4 @@
 ﻿using System;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,7 +19,6 @@ namespace DroneLoadout.Scripts
         private Drone _drone;
         private Button _button;
         private Image _image;
-        private TMP_Text _text;
         private ColorBlock _highlightColourBlock;
         private ColorBlock _unhighlightColourBlock;
 
@@ -30,7 +28,6 @@ namespace DroneLoadout.Scripts
         {
             _button = GetComponent<Button>();
             _image = GetComponent<Image>();
-            _text = GetComponentInChildren<TMP_Text>();
         }
         private void Start()
         {
@@ -38,10 +35,10 @@ namespace DroneLoadout.Scripts
             
             _highlightColourBlock = new ColorBlock
             {
-                normalColor = new Color(0, 1, 0.6f, 0.75f),
+                normalColor = new Color(0, 1, 0.6f, 0.25f),
                 highlightedColor = _button.colors.highlightedColor,
                 pressedColor = _button.colors.pressedColor,
-                selectedColor = new Color(0, 1, 0.6f, 0.75f),
+                selectedColor = new Color(0, 1, 0.6f, 0.25f),
                 disabledColor = _button.colors.disabledColor,
                 colorMultiplier = 1,
                 fadeDuration = 0
@@ -112,16 +109,8 @@ namespace DroneLoadout.Scripts
         public void BindToAttachmentPoint(AttachmentPoint point) => _attachmentPoint = point;
         public AttachmentPoint GetAttachmentPoint() => _attachmentPoint;
         
-        private void Highlight()
-        {
-            _button.colors = _highlightColourBlock;
-            _text.color = Color.white;
-        }
+        private void Highlight() => _button.colors = _highlightColourBlock;
 
-        private void Unhighlight()
-        {
-            _button.colors = _unhighlightColourBlock;
-            _text.color = Color.white;
-        }
+        private void Unhighlight() => _button.colors = _unhighlightColourBlock;
     }
 }

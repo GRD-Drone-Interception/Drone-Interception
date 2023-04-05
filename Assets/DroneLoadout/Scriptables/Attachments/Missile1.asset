@@ -15,11 +15,12 @@ MonoBehaviour:
   AttachmentName: Missile 1
   Description: 
   AttachmentType: 8
-  DronePrefab: {fileID: 6440074945211368233, guid: 4fa02c5dc5f201544ad65e0cb234c3d0, type: 3}
+  DronePrefab: {fileID: 6440074945211368233, guid: c72d64e089292c64997aba98465f6920, type: 3}
   PrefabSprite: {fileID: 21300000, guid: 63bf9a7a45e1cb44289c0a7a7c762eb9, type: 3}
   PrefabDataPath: Attachments/Missile1
   DroneBehaviours:
   - {fileID: 11400000, guid: a6f65163dc5a51b4eb07b9ce505485ce, type: 2}
+  DecalColour: {r: 0, g: 0, b: 0, a: 0}
   cost: 6
   range: 7
   speed: 8

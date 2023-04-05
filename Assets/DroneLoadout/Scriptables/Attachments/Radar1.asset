@@ -15,10 +15,11 @@ MonoBehaviour:
   AttachmentName: Radar 1
   Description: 
   AttachmentType: 5
-  DronePrefab: {fileID: 5995092674283698512, guid: 902733fc231c3f1499d505832fd65856, type: 3}
+  DronePrefab: {fileID: 5995092674283698512, guid: 6f56e4cee336ae845857e748580fae8d, type: 3}
   PrefabSprite: {fileID: 0}
   PrefabDataPath: Attachments/Radar1
   DroneBehaviours: []
+  DecalColour: {r: 0, g: 0, b: 0, a: 0}
   cost: 250
   range: 6
   speed: 7

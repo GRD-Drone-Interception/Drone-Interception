@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DjiMavic3
   m_EditorClassIdentifier: 
   DroneName: Dji Mavic 3
-  DronePrefab: {fileID: 4059031464683983483, guid: 943c7193d8d860e4b8cc3f12a770c8bb, type: 3}
+  DronePrefab: {fileID: 4059031464683983483, guid: 34a6bc2183135204db50cba9e7b1cd97, type: 3}
   DroneDescription: 
   DroneType: 0
   PrefabDataPath: Drones/Quadcopters/DjiMavic3
