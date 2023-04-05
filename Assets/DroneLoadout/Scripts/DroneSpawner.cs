@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 namespace DroneLoadout.Scripts
 {
-    public class NewDroneSpawner : MonoBehaviour
+    public class DroneSpawner : MonoBehaviour
     {
         public event Action<GameObject> OnDroneSpawned;
 

@@ -21,10 +21,8 @@ namespace DroneLoadout.DroneWorkbench
         [SerializeField] private GameObject whiteboard; // TODO: Move this 
         [SerializeField] private GameObject droneDataInfoBox; // TODO: Move this 
         [SerializeField] private Transform droneSpawnPosition;
-        [SerializeField] private Button addToFleetButton;
+        [SerializeField] private Button saveDeleteButton;
         [SerializeField] private Button editDroneButton;
-        [SerializeField] private Button saveDroneButton;
-        [SerializeField] private Button loadDroneButton;
         [SerializeField] private Button resetDroneConfigButton;
         private readonly List<DroneModelSpawner> _droneModelSpawners = new();
         private Drone _droneOnBench;
@@ -33,14 +31,14 @@ namespace DroneLoadout.DroneWorkbench
 
         private void OnEnable()
         {
-            addToFleetButton.onClick.AddListener(AddDroneToFleet);
+            saveDeleteButton.onClick.AddListener(AddDroneToFleet);
             resetDroneConfigButton.onClick.AddListener(ResetCurrentDroneConfig);
             _droneModelSpawners.ForEach(ctx => ctx.OnDroneModelSelected += BuildDrone);
         }
 
         private void OnDisable()
         {
-            addToFleetButton.onClick.RemoveListener(AddDroneToFleet);
+            saveDeleteButton.onClick.RemoveListener(AddDroneToFleet);
             resetDroneConfigButton.onClick.RemoveListener(ResetCurrentDroneConfig);
             _droneModelSpawners.ForEach(ctx => ctx.OnDroneModelSelected -= BuildDrone);
         }
@@ -52,10 +50,8 @@ namespace DroneLoadout.DroneWorkbench
             // TODO: Call this on an event
             if (WorkshopModeController.currentWorkshopMode == WorkshopModeController.WorkshopMode.Display)
             {
-                addToFleetButton.gameObject.SetActive(_droneOnBench != null);
+                saveDeleteButton.gameObject.SetActive(_droneOnBench != null);
                 editDroneButton.gameObject.SetActive(_droneOnBench != null);
-                saveDroneButton.gameObject.SetActive(_droneOnBench != null);
-                loadDroneButton.gameObject.SetActive(_droneOnBench != null);
             }
             
             // Temporary
