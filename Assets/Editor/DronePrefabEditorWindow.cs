@@ -33,7 +33,7 @@ namespace Editor
 
             EditorGUILayout.Space();
         
-            Texture2D texture = AssetPreview.GetAssetPreview(droneClassData.dronePrefab);
+            Texture2D texture = AssetPreview.GetAssetPreview(droneClassData.DronePrefab);
             GUILayout.Label("", GUILayout.Height(128), GUILayout.Width(128));
             GUI.DrawTexture(GUILayoutUtility.GetLastRect(), texture);
 
@@ -67,9 +67,9 @@ namespace Editor
         
             EditorGUILayout.BeginVertical();
             GUILayout.Label("Current Stats", EditorStyles.boldLabel);
-            EditorGUILayout.LabelField($"Name: {droneClassData.droneName}");
-            EditorGUILayout.LabelField($"Type: {droneClassData.droneType}");
-            EditorGUILayout.LabelField($"Description: {droneClassData.droneDescription}");
+            EditorGUILayout.LabelField($"Name: {droneClassData.DroneName}");
+            EditorGUILayout.LabelField($"Type: {droneClassData.DroneType}");
+            EditorGUILayout.LabelField($"Description: {droneClassData.DroneDescription}");
             EditorGUILayout.LabelField($"Speed: {droneClassData.TopSpeed}");
             EditorGUILayout.LabelField($"Acceleration: {droneClassData.Acceleration}");
             EditorGUILayout.LabelField($"Range: {droneClassData.Range}");

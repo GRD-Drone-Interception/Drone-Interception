@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36e937aa35ae4681bb2516d4feee691f, type: 3}
+  m_Name: DroneNet1
+  m_EditorClassIdentifier: 
+  AttachmentName: Drone Net 1
+  Description: 
+  AttachmentType: 7
+  DronePrefab: {fileID: 6071254045215579465, guid: f56f9b252e12dfc4f85cbf584e279d72, type: 3}
+  PrefabSprite: {fileID: 0}
+  PrefabDataPath: Attachments/DroneNet1
+  DroneBehaviours: []
+  cost: 6
+  range: 7
+  speed: 8
+  acceleration: 9
+  weight: 10

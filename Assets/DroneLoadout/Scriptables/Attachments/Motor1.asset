@@ -12,14 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36e937aa35ae4681bb2516d4feee691f, type: 3}
   m_Name: Motor1
   m_EditorClassIdentifier: 
-  attachmentName: Motor 1
-  description: 
-  type: 2
-  prefab: {fileID: 6253644712073533745, guid: 4bfc55849f76e8a418973690ea5d4a91, type: 3}
-  prefabSprite: {fileID: 0}
+  AttachmentName: Motor 1
+  Description: 
+  AttachmentType: 2
+  DronePrefab: {fileID: 6253644712073533745, guid: 4bfc55849f76e8a418973690ea5d4a91, type: 3}
+  PrefabSprite: {fileID: 0}
+  PrefabDataPath: Attachments/Motor1
+  DroneBehaviours: []
   cost: 1
   range: 2
   speed: 3
   acceleration: 4
   weight: 0
-  droneBehaviours: []

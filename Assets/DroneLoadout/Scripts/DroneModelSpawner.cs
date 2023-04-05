@@ -28,7 +28,7 @@ namespace DroneLoadout.Scripts
         {
             if (droneConfigData == null) { return;}
             _text = GetComponentInChildren<TMP_Text>();
-            _text.text = droneConfigData.droneName;
+            _text.text = droneConfigData.DroneName;
         }
 
         private void OnEnable() => _modelButton.onClick.AddListener(SpawnDroneModel);
@@ -37,7 +37,7 @@ namespace DroneLoadout.Scripts
         private void SpawnDroneModel()
         {
             droneTypeSelector.HideModelSubMenu();
-            OnDroneModelSelected?.Invoke(droneConfigData.dronePrefab);
+            OnDroneModelSelected?.Invoke(droneConfigData.DronePrefab);
         }
     }
 }

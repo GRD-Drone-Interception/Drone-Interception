@@ -1,12 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using DroneLoadout.Scripts;
-using Testing;
-using UnityEditor;
+using SavingSystem;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace DroneLoadout.DroneWorkbench
@@ -127,35 +123,11 @@ namespace DroneLoadout.DroneWorkbench
             AddToBench(drone);
         }
 
-        private void AddDroneToFleet() // Separate save method?
+        private void AddDroneToFleet() 
         {
-            // BUG: Text
-            // TODO: Clean this, not ideal
-            /*foreach (var point in _droneOnBench.GetAttachmentPoints())
-            {
-                var droneAttachmentData = point.GetDroneAttachment().Data;
-                var droneBehaviours = droneAttachmentData.DroneBehaviours;
-                
-                if (droneBehaviours.Count > 0)
-                {
-                    if (droneAttachmentData.Type == DroneAttachmentType.Weapon)
-                    {
-                        // if attachment type == weapon
-                        //     add ONE shooting behaviour
-                        // if attachment type == radar
-                        //     add ONE radar behaviour
-                        
-                        //_droneOnBench.AddBehaviour();
-                    }
-                }
-            }*/
-            
             _droneOnBench.Rb.constraints = RigidbodyConstraints.None;
             SetChildLayersIteratively(_droneOnBench.transform, "Default");
-            string droneName = "TestDrone";
-            string path = $"Assets/Resources/{droneName}.prefab";
-            _droneOnBench.transform.SetParent(null);
-            PrefabUtility.SaveAsPrefabAsset(_droneOnBench.gameObject, path); // Overwrites if prefab already exists
+            DroneSaveSystem.Save(_droneOnBench);
             DeleteCurrentDrone();
         }
 

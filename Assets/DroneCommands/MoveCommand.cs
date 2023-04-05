@@ -1,18 +1,29 @@
-using System.Collections;
-using System.Collections.Generic;
+using DroneLoadout.Scripts;
 using UnityEngine;
 
-public class MoveCommand : MonoBehaviour
+namespace DroneCommands
 {
-    // Start is called before the first frame update
-    void Start()
+    public class MoveCommand : ICommand
     {
+        private Drone _drone;
+        private Vector3 _destination;
+        private Vector3 _previousDestination;
         
-    }
+        public MoveCommand(Drone drone, Vector3 destination)
+        {
+            _drone = drone;
+            _destination = destination;
+        }
+        
+        public void Execute()
+        {
+            _previousDestination = _drone.transform.position;
+            _drone.MoveToTarget(_destination);
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public void Undo()
+        {
+            _drone.MoveToTarget(_previousDestination);
+        }
     }
 }

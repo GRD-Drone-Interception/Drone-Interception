@@ -1,18 +1,28 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CommandInvoker : MonoBehaviour
+namespace DroneCommands
 {
-    // Start is called before the first frame update
-    void Start()
+    public class CommandInvoker : MonoBehaviour
     {
-        
-    }
+        private Stack<ICommand> _commandStack = new();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public void ExecuteCommand(ICommand command)
+        {
+            command.Execute();
+            _commandStack.Push(command);
+        }
+
+        public void UndoCommand()
+        {
+            if (_commandStack.Count == 0)
+            {
+                Debug.Log("No commands to undo.");
+                return;
+            }
+
+            ICommand command = _commandStack.Pop();
+            command.Undo();
+        }
     }
 }

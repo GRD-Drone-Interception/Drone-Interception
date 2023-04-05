@@ -11,22 +11,21 @@ namespace DroneLoadout.Decorators
     [CreateAssetMenu(fileName = "NewDroneConfig", menuName = "Drone/Config", order = 1)]
     public class DroneConfigData : ScriptableObject, IDrone
     {
-        public DroneType droneType;
+        public string DroneName;
+        public GameObject DronePrefab;
+        public string DroneDescription;
+        public DroneType DroneType;
+        public string PrefabDataPath;
+        public float Cost => cost;
+        public float Range => range;
+        public float TopSpeed => topSpeed;
+        public float Acceleration => acceleration;
+        public float Weight => weight;
         
         [SerializeField] private float cost;
         [SerializeField] private float range;
         [SerializeField] private float topSpeed;
         [SerializeField] private float acceleration;
         [SerializeField] private float weight;
-
-        public string droneName;
-        public GameObject dronePrefab;
-        public string droneDescription;
-
-        public float Cost => cost;
-        public float Range => range;
-        public float TopSpeed => topSpeed;
-        public float Acceleration => acceleration;
-        public float Weight => weight;
     }
 }

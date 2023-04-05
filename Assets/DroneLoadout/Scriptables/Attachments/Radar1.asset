@@ -12,14 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36e937aa35ae4681bb2516d4feee691f, type: 3}
   m_Name: Radar1
   m_EditorClassIdentifier: 
-  attachmentName: Radar 1
-  description: 
-  type: 5
-  prefab: {fileID: 5995092674283698512, guid: 902733fc231c3f1499d505832fd65856, type: 3}
-  prefabSprite: {fileID: 0}
+  AttachmentName: Radar 1
+  Description: 
+  AttachmentType: 5
+  DronePrefab: {fileID: 5995092674283698512, guid: 902733fc231c3f1499d505832fd65856, type: 3}
+  PrefabSprite: {fileID: 0}
+  PrefabDataPath: Attachments/Radar1
+  DroneBehaviours: []
   cost: 250
   range: 6
   speed: 7
   acceleration: 8
   weight: 9
-  droneBehaviours: []

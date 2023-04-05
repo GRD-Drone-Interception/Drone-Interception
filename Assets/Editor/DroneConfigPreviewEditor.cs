@@ -18,12 +18,12 @@ namespace Editor
         {
             base.OnInspectorGUI();
       
-            if (_droneConfigData.dronePrefab == null)
+            if (_droneConfigData.DronePrefab == null)
                 return;
         
             GUILayout.Space(10);
         
-            Texture2D texture = AssetPreview.GetAssetPreview(_droneConfigData.dronePrefab);
+            Texture2D texture = AssetPreview.GetAssetPreview(_droneConfigData.DronePrefab);
             GUILayout.Label("", GUILayout.Height(128), GUILayout.Width(128));
             GUI.DrawTexture(GUILayoutUtility.GetLastRect(), texture);
         }

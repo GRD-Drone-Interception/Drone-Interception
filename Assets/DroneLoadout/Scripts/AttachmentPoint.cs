@@ -20,11 +20,12 @@ namespace DroneLoadout.Scripts
             _meshRenderer = GetComponent<MeshRenderer>();
 
             // If this attachment point object has a child, add it's drone attachment and decorate the drone
-            if (transform.childCount > 0)
+            // BUG: Without this, preset drone attachments won't work. With this, unwanted extra drone behaviours will be added on spawn 
+            /*if (transform.childCount > 0)
             {
                 var childDroneAttachment = transform.GetChild(0).GetComponent<DroneAttachment>();
                 GetComponentInParent<Drone>().Decorate(childDroneAttachment, this);
-            }
+            }*/
         }
 
         private void Start() => _meshRenderer.enabled = false;

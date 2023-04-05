@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b427aa6d53b84ac4fa31d644c063e0ee, type: 3}
   m_Name: BlackHornetNano
   m_EditorClassIdentifier: 
-  droneType: 0
+  DroneName: Black Hornet Nano
+  DronePrefab: {fileID: 5454665289796912532, guid: 2b9bdfbe10b4e5e4f823e2bcd6a95ec7, type: 3}
+  DroneDescription: 
+  DroneType: 0
+  PrefabDataPath: Drones/Quadcopters/BlackHornetNano
   cost: 400
   range: 30
   topSpeed: 0
   acceleration: 0
   weight: 5
-  droneName: Black Hornet Nano
-  dronePrefab: {fileID: 5454665289796912532, guid: 2b9bdfbe10b4e5e4f823e2bcd6a95ec7, type: 3}
-  droneDescription: 

@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b427aa6d53b84ac4fa31d644c063e0ee, type: 3}
   m_Name: Shahed136
   m_EditorClassIdentifier: 
-  droneType: 1
+  DroneName: Shahed 136
+  DronePrefab: {fileID: 1057059332579059662, guid: cdc9ce3a8db5ccd499814706e664c445, type: 3}
+  DroneDescription: 
+  DroneType: 1
+  PrefabDataPath: Drones/FixedWings/Shahed136
   cost: 300
   range: 200
   topSpeed: 0
   acceleration: 0
   weight: 150
-  droneName: Shahed 136
-  dronePrefab: {fileID: 1057059332579059662, guid: cdc9ce3a8db5ccd499814706e664c445, type: 3}
-  droneDescription: 

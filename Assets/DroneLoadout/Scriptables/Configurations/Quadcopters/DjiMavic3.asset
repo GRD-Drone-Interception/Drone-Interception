@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b427aa6d53b84ac4fa31d644c063e0ee, type: 3}
   m_Name: DjiMavic3
   m_EditorClassIdentifier: 
-  droneType: 0
+  DroneName: Dji Mavic 3
+  DronePrefab: {fileID: 4059031464683983483, guid: 943c7193d8d860e4b8cc3f12a770c8bb, type: 3}
+  DroneDescription: 
+  DroneType: 0
+  PrefabDataPath: Drones/Quadcopters/DjiMavic3
   cost: 500
   range: 60
-  speed: 35
+  topSpeed: 0
   acceleration: 0
   weight: 75
-  droneName: Dji Mavic 3
-  dronePrefab: {fileID: 4059031464683983483, guid: 943c7193d8d860e4b8cc3f12a770c8bb, type: 3}
-  droneDescription: 
