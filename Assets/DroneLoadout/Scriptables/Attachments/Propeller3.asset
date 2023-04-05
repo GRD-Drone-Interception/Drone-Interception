@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36e937aa35ae4681bb2516d4feee691f, type: 3}
   m_Name: Propeller3
   m_EditorClassIdentifier: 
-  attachmentName: Propeller 3
-  description: 
-  type: 3
-  prefab: {fileID: 8098444469546128507, guid: d1598fd7a69b9d74e896f6cbfe89310c, type: 3}
-  prefabSprite: {fileID: 21300000, guid: 6e527a684c629494881ca1cb7374b4c2, type: 3}
-  prefabDataPath: Attachments/Propeller3
+  AttachmentName: Propeller 3
+  Description: 
+  AttachmentType: 3
+  DronePrefab: {fileID: 8098444469546128507, guid: d1598fd7a69b9d74e896f6cbfe89310c, type: 3}
+  PrefabSprite: {fileID: 21300000, guid: 6e527a684c629494881ca1cb7374b4c2, type: 3}
+  PrefabDataPath: Attachments/Propeller3
+  DroneBehaviours: []
   cost: 5
   range: 4
   speed: 3
   acceleration: 2
   weight: 1
-  droneBehaviours: []

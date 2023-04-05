@@ -16,7 +16,7 @@ MonoBehaviour:
   DronePrefab: {fileID: 8809748575978406926, guid: 04291ac52b815c34eb59e790605a8de3, type: 3}
   DroneDescription: 
   DroneType: 1
-  DrefabDataPath: Drones/FixedWings/BAIRAKTAR_NW1
+  PrefabDataPath: Drones/FixedWings/BAIRAKTAR_NW1
   cost: 100
   range: 120
   topSpeed: 0

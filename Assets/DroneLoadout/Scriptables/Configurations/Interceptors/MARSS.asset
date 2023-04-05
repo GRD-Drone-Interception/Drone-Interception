@@ -16,7 +16,7 @@ MonoBehaviour:
   DronePrefab: {fileID: 457988399069600944, guid: 99ff49f87382e524e91497b7189105f1, type: 3}
   DroneDescription: 
   DroneType: 2
-  DrefabDataPath: Drones/Interceptors/Marss
+  PrefabDataPath: Drones/Interceptors/Marss
   cost: 800
   range: 500
   topSpeed: 0

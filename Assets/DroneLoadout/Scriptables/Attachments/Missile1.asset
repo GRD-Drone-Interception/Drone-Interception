@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 36e937aa35ae4681bb2516d4feee691f, type: 3}
-  m_Name: Missile
+  m_Name: Missile1
   m_EditorClassIdentifier: 
-  attachmentName: Missile 1
-  description: 
-  type: 8
-  prefab: {fileID: 6440074945211368233, guid: 4fa02c5dc5f201544ad65e0cb234c3d0, type: 3}
-  prefabSprite: {fileID: 21300000, guid: 63bf9a7a45e1cb44289c0a7a7c762eb9, type: 3}
-  prefabDataPath: Attachments/Missile1
+  AttachmentName: Missile 1
+  Description: 
+  AttachmentType: 8
+  DronePrefab: {fileID: 6440074945211368233, guid: 4fa02c5dc5f201544ad65e0cb234c3d0, type: 3}
+  PrefabSprite: {fileID: 21300000, guid: 63bf9a7a45e1cb44289c0a7a7c762eb9, type: 3}
+  PrefabDataPath: Attachments/Missile1
+  DroneBehaviours:
+  - {fileID: 11400000, guid: a6f65163dc5a51b4eb07b9ce505485ce, type: 2}
   cost: 6
   range: 7
   speed: 8
   acceleration: 9
   weight: 10
-  droneBehaviours:
-  - {fileID: 11400000, guid: a6f65163dc5a51b4eb07b9ce505485ce, type: 2}

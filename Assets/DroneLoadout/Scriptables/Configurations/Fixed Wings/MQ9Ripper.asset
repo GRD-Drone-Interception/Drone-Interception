@@ -16,7 +16,7 @@ MonoBehaviour:
   DronePrefab: {fileID: 2290178057615028574, guid: 205ecf07f474e8741a8f3d55dafa1479, type: 3}
   DroneDescription: 
   DroneType: 1
-  DrefabDataPath: Drones/FixedWings/Mq9Ripper
+  PrefabDataPath: Drones/FixedWings/Mq9Ripper
   cost: 200
   range: 300
   topSpeed: 300

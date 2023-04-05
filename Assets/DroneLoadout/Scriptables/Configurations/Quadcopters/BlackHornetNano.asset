@@ -16,7 +16,7 @@ MonoBehaviour:
   DronePrefab: {fileID: 5454665289796912532, guid: 2b9bdfbe10b4e5e4f823e2bcd6a95ec7, type: 3}
   DroneDescription: 
   DroneType: 0
-  DrefabDataPath: Drones/Quadcopters/BlackHornetNano
+  PrefabDataPath: Drones/Quadcopters/BlackHornetNano
   cost: 400
   range: 30
   topSpeed: 0

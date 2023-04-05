@@ -17,6 +17,8 @@ namespace Editor
         public override void OnInspectorGUI()
         {
             base.OnInspectorGUI();
+            
+            GUILayout.Space(10);
 
             GUILayout.BeginHorizontal();
             if (_droneAttachmentData.DronePrefab != null)

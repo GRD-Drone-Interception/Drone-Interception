@@ -16,7 +16,7 @@ MonoBehaviour:
   DronePrefab: {fileID: 1057059332579059662, guid: cdc9ce3a8db5ccd499814706e664c445, type: 3}
   DroneDescription: 
   DroneType: 1
-  DrefabDataPath: Drones/FixedWings/Shahed136
+  PrefabDataPath: Drones/FixedWings/Shahed136
   cost: 300
   range: 200
   topSpeed: 0

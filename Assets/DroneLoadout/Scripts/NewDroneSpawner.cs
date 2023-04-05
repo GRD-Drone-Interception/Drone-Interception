@@ -21,12 +21,12 @@ namespace DroneLoadout.Scripts
         private void SpawnDrone()
         {
             // Load default drone prefab from resources file
-            GameObject dronePrefab = Resources.Load<GameObject>(droneConfigData.DrefabDataPath);
+            GameObject dronePrefab = Resources.Load<GameObject>(droneConfigData.PrefabDataPath);
             GameObject spawnedDrone = Instantiate(dronePrefab);
             var drone = spawnedDrone.GetComponent<Drone>();
        
             // Load corresponding drone data file
-            DroneData droneData = DroneSaveSystem.Load();
+            DroneData droneData = DroneSaveSystem.Load(droneConfigData.DroneName);
         
             // Instantiate attachment prefabs and position them at their attachment point positions specified in the droneData file 
             for (var i = 0; i < droneData.numAttachments; i++)

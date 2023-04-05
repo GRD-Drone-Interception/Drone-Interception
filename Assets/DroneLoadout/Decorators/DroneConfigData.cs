@@ -1,7 +1,6 @@
 using DroneLoadout.Factory;
 using DroneLoadout.Scripts;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace DroneLoadout.Decorators
 {
@@ -12,11 +11,11 @@ namespace DroneLoadout.Decorators
     [CreateAssetMenu(fileName = "NewDroneConfig", menuName = "Drone/Config", order = 1)]
     public class DroneConfigData : ScriptableObject, IDrone
     {
-        [FormerlySerializedAs("droneName")] public string DroneName;
-        [FormerlySerializedAs("dronePrefab")] public GameObject DronePrefab;
-        [FormerlySerializedAs("droneDescription")] public string DroneDescription;
-        [FormerlySerializedAs("droneType")] public DroneType DroneType;
-        [FormerlySerializedAs("prefabDataPath")] public string DrefabDataPath;
+        public string DroneName;
+        public GameObject DronePrefab;
+        public string DroneDescription;
+        public DroneType DroneType;
+        public string PrefabDataPath;
         public float Cost => cost;
         public float Range => range;
         public float TopSpeed => topSpeed;

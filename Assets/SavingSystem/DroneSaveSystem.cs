@@ -10,20 +10,12 @@ namespace SavingSystem
         public static void Save(Drone drone)
         {
             // Create a file to save the drone data to
-            string filePath = $"{Application.persistentDataPath}/droneData.json";
+            string filePath = $"{Application.persistentDataPath}/{drone.DroneConfigData.DroneName}.json";
             Debug.Log($"Path: {filePath}");
 
             // Assemble the drone data
             DroneData droneData = new DroneData
             {
-                droneName = drone.DroneConfigData.DroneName,
-                droneDescription = drone.DroneConfigData.DroneDescription,
-                droneType = drone.DroneConfigData.DroneType,
-                cost = drone.DecorableDrone.Cost,
-                range = drone.DecorableDrone.Range,
-                topSpeed = drone.DecorableDrone.TopSpeed,
-                acceleration = drone.DecorableDrone.Acceleration,
-                weight = drone.DecorableDrone.Weight,
                 mountedAttachmentPointIndex = drone.GetAttachmentPoints().FindAll(ap => ap.HasAttachment).Select(ap => drone.GetAttachmentPoints().IndexOf(ap)).ToArray(),
                 attachmentDataPaths = drone.MountedAttachmentPointsDictionary().Values.Select(attachment => attachment.Data.PrefabDataPath).ToArray(),
                 numAttachments = drone.NumOfMountedAttachments,
@@ -37,9 +29,9 @@ namespace SavingSystem
             File.WriteAllText(filePath, json);
         }
 
-        public static DroneData Load()
+        public static DroneData Load(string dataPath)
         {
-            var filePath = $"{Application.persistentDataPath}/droneData.json";
+            var filePath = $"{Application.persistentDataPath}/{dataPath}.json";
             if (File.Exists(filePath))
             {
                 var jsonData = File.ReadAllText(filePath);

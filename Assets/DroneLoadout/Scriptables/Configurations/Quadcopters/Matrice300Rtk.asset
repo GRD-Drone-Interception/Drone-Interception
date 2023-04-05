@@ -16,7 +16,7 @@ MonoBehaviour:
   DronePrefab: {fileID: 3938721802332374394, guid: 9e12e00271371c645b747c56fe4847ce, type: 3}
   DroneDescription: 
   DroneType: 0
-  DrefabDataPath: Drones/Quadcopters/Matrice300Rtk
+  PrefabDataPath: Drones/Quadcopters/Matrice300Rtk
   cost: 600
   range: 5
   topSpeed: 0
