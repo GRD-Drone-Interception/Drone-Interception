@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace SavingSystem
 {
-    public class DroneSaveSystem
+    public abstract class DroneSaveSystem
     {
         public static void Save(Drone drone)
         {
@@ -41,6 +41,25 @@ namespace SavingSystem
 
             Debug.LogError("File not found at " + filePath);
             return null;
+        }
+
+        public static void Delete(Drone drone)
+        {
+            var filePath = $"{Application.persistentDataPath}/{drone.DroneConfigData.DroneName}.json";
+            if (File.Exists(filePath))
+            {
+                File.Delete(filePath);
+            }
+            else
+            {
+                Debug.LogError("File not found at " + filePath);
+            }
+        }
+
+        public static bool CheckFileExists(Drone drone)
+        {
+            var filePath = $"{Application.persistentDataPath}/{drone.DroneConfigData.DroneName}.json";
+            return File.Exists(filePath);
         }
     }
 }

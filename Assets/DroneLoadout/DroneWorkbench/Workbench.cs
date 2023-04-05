@@ -21,7 +21,8 @@ namespace DroneLoadout.DroneWorkbench
         [SerializeField] private GameObject whiteboard; // TODO: Move this 
         [SerializeField] private GameObject droneDataInfoBox; // TODO: Move this 
         [SerializeField] private Transform droneSpawnPosition;
-        [SerializeField] private Button saveDeleteButton;
+        [SerializeField] private Button saveButton;
+        [SerializeField] private Button deleteDataButton;
         [SerializeField] private Button editDroneButton;
         [SerializeField] private Button resetDroneConfigButton;
         private readonly List<DroneModelSpawner> _droneModelSpawners = new();
@@ -31,26 +32,32 @@ namespace DroneLoadout.DroneWorkbench
 
         private void OnEnable()
         {
-            saveDeleteButton.onClick.AddListener(AddDroneToFleet);
+            saveButton.onClick.AddListener(SaveDroneData);
+            deleteDataButton.onClick.AddListener(DeleteDroneData);
             resetDroneConfigButton.onClick.AddListener(ResetCurrentDroneConfig);
             _droneModelSpawners.ForEach(ctx => ctx.OnDroneModelSelected += BuildDrone);
         }
 
         private void OnDisable()
         {
-            saveDeleteButton.onClick.RemoveListener(AddDroneToFleet);
+            saveButton.onClick.RemoveListener(SaveDroneData);
+            deleteDataButton.onClick.RemoveListener(DeleteDroneData);
             resetDroneConfigButton.onClick.RemoveListener(ResetCurrentDroneConfig);
             _droneModelSpawners.ForEach(ctx => ctx.OnDroneModelSelected -= BuildDrone);
         }
 
-        private void Start() => resetDroneConfigButton.gameObject.SetActive(false);
+        private void Start()
+        {
+            deleteDataButton.gameObject.SetActive(false);
+            resetDroneConfigButton.gameObject.SetActive(false);
+        }
 
         private void Update()
         {
             // TODO: Call this on an event
             if (WorkshopModeController.currentWorkshopMode == WorkshopModeController.WorkshopMode.Display)
             {
-                saveDeleteButton.gameObject.SetActive(_droneOnBench != null);
+                saveButton.gameObject.SetActive(_droneOnBench != null);
                 editDroneButton.gameObject.SetActive(_droneOnBench != null);
             }
             
@@ -117,14 +124,29 @@ namespace DroneLoadout.DroneWorkbench
             droneGameObject.layer = LayerMask.NameToLayer("Focus");
             SetChildLayersIteratively(droneGameObject.transform, "Focus");
             AddToBench(drone);
+
+            if (DroneSaveSystem.CheckFileExists(_droneOnBench))
+            {
+                deleteDataButton.gameObject.SetActive(true);
+                DroneSavedAttachmentsAssembler.BuildDrone(_droneOnBench);
+            }
+            else
+            {
+                deleteDataButton.gameObject.SetActive(false);
+            }
         }
 
-        private void AddDroneToFleet() 
+        private void SaveDroneData() 
         {
-            _droneOnBench.Rb.constraints = RigidbodyConstraints.None;
-            SetChildLayersIteratively(_droneOnBench.transform, "Default");
             DroneSaveSystem.Save(_droneOnBench);
-            DeleteCurrentDrone();
+            deleteDataButton.gameObject.SetActive(true);
+        }
+
+        private void DeleteDroneData()
+        {
+            DroneSaveSystem.Delete(_droneOnBench);
+            deleteDataButton.gameObject.SetActive(false);
+            ResetCurrentDroneConfig();
         }
 
         /// <summary>
