@@ -1800,11 +1800,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 1302844710}
-  moveSpeed: 25
-  zoomSpeed: 1000
+  moveSpeed: 300
   rotateSpeed: 125
+  scrollSpeed: 1000
   orbitSpeed: 20
+  smoothTime: 0.2
   minCameraHeight: 1
+  shiftMoveSpeedMultiplier: 5
 --- !u!1 &1641182426
 GameObject:
   m_ObjectHideFlags: 0
@@ -1874,7 +1876,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 6.9000244, y: -154.34}
+  m_AnchoredPosition: {x: 6.9001465, y: -154.33997}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1994463218
