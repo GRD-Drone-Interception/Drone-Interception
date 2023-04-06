@@ -17,6 +17,23 @@ namespace DroneLoadout.Scripts
         private void OnEnable() => _spawnerButton.onClick.AddListener(SpawnDrone);
         private void OnDisable() => _spawnerButton.onClick.RemoveListener(SpawnDrone);
 
+        public void TestSpawn(string input)
+        {
+            int numOfDrones = int.Parse(input);
+
+            if (numOfDrones == 0 || numOfDrones > 20)
+            {
+                Debug.LogError("You are trying to spawn too few or too many drones at once!");
+                return;
+            }
+
+            for (int i = 0; i < int.Parse(input); i++)
+            {
+                Debug.LogError("Spawn drone");
+                SpawnDrone();
+            }
+        }
+        
         private void SpawnDrone()
         {
             // Load default drone prefab from resources file
@@ -28,7 +45,7 @@ namespace DroneLoadout.Scripts
             DroneSavedAttachmentsAssembler.BuildDrone(drone);
 
             spawnedDrone.transform.SetPositionAndRotation(new Vector3(0,0,0), Quaternion.identity);
-            //drone.SetTeam(playerTeam); // get current team from Turnmanager
+            drone.SetTeam(TurnManager.Instance.CurrentTeam); 
             DroneManager.AddDrone(drone);
             OnDroneSpawned?.Invoke(spawnedDrone);
             Debug.Log($"Drone Cost: {drone.DecorableDrone.Cost}");
