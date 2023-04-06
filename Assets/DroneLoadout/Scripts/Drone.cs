@@ -26,8 +26,8 @@ namespace DroneLoadout.Scripts
         [SerializeField] private List<DroneBehaviour> behaviours = new();
         [SerializeField] private List<MeshRenderer> meshRenderers;
         private readonly List<AttachmentPoint> _attachmentPoints = new();
-        private readonly Dictionary<AttachmentPoint, DroneAttachment> _mountedAttachmentPointsDictionary = new();
         private readonly Dictionary<DroneAttachmentType, int> _attachmentTypeCount = new();
+        private Dictionary<int, DroneAttachmentType> _attachmentPointTypeIndex = new();
         private readonly List<Color> _originalMaterialColours = new();
         private Color _paintJob;
         private PlayerTeam _playerTeam;
@@ -85,7 +85,6 @@ namespace DroneLoadout.Scripts
         /// <param name="attachmentPoint">The attachment point to which an attachment should be mounted to.</param>
         public void Decorate(DroneAttachment droneAttachment, AttachmentPoint attachmentPoint)
         {
-            _mountedAttachmentPointsDictionary.Add(attachmentPoint, droneAttachment);
             DecorableDrone = new DroneDecorator(DecorableDrone, droneAttachment.Data);
             droneAttachment.transform.SetParent(attachmentPoint.transform);
             droneAttachment.transform.SetPositionAndRotation(attachmentPoint.transform.position, attachmentPoint.transform.rotation);
@@ -103,6 +102,7 @@ namespace DroneLoadout.Scripts
                 _attachmentTypeCount[droneAttachment.Data.AttachmentType]++;
             }
 
+            _attachmentPointTypeIndex.Add(_attachmentPoints.IndexOf(attachmentPoint), droneAttachment.Data.AttachmentType);
             attachmentPoint.AddDroneAttachment(droneAttachment);
             NumOfMountedAttachments++;
             OnDroneDecorationAdded?.Invoke(this, attachmentPoint.GetDroneAttachment());
@@ -140,7 +140,7 @@ namespace DroneLoadout.Scripts
                 }
             }
 
-            _mountedAttachmentPointsDictionary.Remove(attachmentPoint);
+            _attachmentPointTypeIndex.Remove(_attachmentPoints.IndexOf(attachmentPoint));
             NumOfMountedAttachments--;
             OnDroneDecorationRemoved?.Invoke(this, attachmentPoint.GetDroneAttachment());
             attachmentPoint.RemoveDroneAttachment();
@@ -152,8 +152,8 @@ namespace DroneLoadout.Scripts
         public void ResetConfiguration()
         {
             DecorableDrone = DroneFactory.CreateDrone(droneConfigData.DroneType, droneConfigData);
-            _mountedAttachmentPointsDictionary.Clear();
             _attachmentTypeCount.Clear();
+            _attachmentPointTypeIndex.Clear();
             NumOfMountedAttachments = 0;
             ResetPaintJob();
 
@@ -204,7 +204,7 @@ namespace DroneLoadout.Scripts
         }
 
         public List<AttachmentPoint> GetAttachmentPoints() => _attachmentPoints;
-        
-        public Dictionary<AttachmentPoint, DroneAttachment> MountedAttachmentPointsDictionary() => _mountedAttachmentPointsDictionary;
+
+        public Dictionary<int, DroneAttachmentType> GetAttachmentPointTypeIndex() => _attachmentPointTypeIndex;
     }
 }

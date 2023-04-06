@@ -16,16 +16,18 @@ public abstract class DroneSavedAttachmentsAssembler
         DroneData droneData = DroneSaveSystem.Load(drone.DroneConfigData.DroneName);
         
         // Instantiate attachment prefabs and position them at their attachment point positions specified in the droneData file 
-        for (var i = 0; i < droneData.numAttachments; i++)
+        int i = 0;
+        foreach (var attachmentDictionary in droneData.attachmentDictionaries)
         {
             var path = droneData.attachmentDataPaths[i];
             
             GameObject droneAttachmentPrefab = Resources.Load<GameObject>(path);
             GameObject spawnedDroneAttachment = Object.Instantiate(droneAttachmentPrefab);
             DroneAttachment droneAttachment = spawnedDroneAttachment.GetComponent<DroneAttachment>();
-            drone.Decorate(droneAttachment, drone.GetAttachmentPoints()[droneData.mountedAttachmentPointIndex[i]]);
+            drone.Decorate(droneAttachment, drone.GetAttachmentPoints()[attachmentDictionary.attachmentPointIndex]);
+            i++;
         }
-            
+
         drone.Paint(droneData.decalColour);
     }
 }

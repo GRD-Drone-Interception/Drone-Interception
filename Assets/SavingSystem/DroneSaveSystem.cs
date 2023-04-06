@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using DroneLoadout.Scripts;
 using UnityEngine;
@@ -14,15 +15,23 @@ namespace SavingSystem
             Debug.Log($"Path: {filePath}");
 
             // Assemble the drone data
-            DroneData droneData = new DroneData
+            DroneData droneData = new DroneData();
+            droneData.numAttachments = drone.GetAttachmentPoints().Count;
+            droneData.attachmentDictionaries = new List<AttachmentDictionary>();
+            droneData.attachmentDataPaths = new List<string>();
+            droneData.decalColour = drone.GetPaintJob();
+            
+            int i = 0;
+            foreach (var mountedAttachmentIndex in drone.GetAttachmentPointTypeIndex().Keys)
             {
-                mountedAttachmentPointIndex = drone.GetAttachmentPoints().FindAll(ap => ap.HasAttachment).Select(ap => drone.GetAttachmentPoints().IndexOf(ap)).ToArray(),
-                attachmentDataPaths = drone.MountedAttachmentPointsDictionary().Values.Select(attachment => attachment.Data.PrefabDataPath).ToArray(),
-                numAttachments = drone.NumOfMountedAttachments,
-                attachmentTypes = drone.MountedAttachmentPointsDictionary().Values.Select(attachment => attachment.Data.AttachmentType).ToArray(),
-                decalColour = drone.GetPaintJob()
-            };
-
+                AttachmentDictionary attachmentDictionary = new AttachmentDictionary();
+                attachmentDictionary.attachmentPointIndex = mountedAttachmentIndex;
+                attachmentDictionary.attachmentType = drone.GetAttachmentPointTypeIndex()[mountedAttachmentIndex];
+                droneData.attachmentDictionaries.Add(attachmentDictionary);
+                droneData.attachmentDataPaths.Add(drone.GetAttachmentPoints()[mountedAttachmentIndex].GetDroneAttachment().Data.PrefabDataPath);
+                i++;
+            }
+            
             // Convert the drone data to JSON format
             string json = JsonUtility.ToJson(droneData, true);
 
