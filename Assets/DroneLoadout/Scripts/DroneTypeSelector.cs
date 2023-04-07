@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace DroneLoadout.Scripts
@@ -13,11 +14,11 @@ namespace DroneLoadout.Scripts
         public event Action<DroneTypeSelector> OnDroneTypeSelected;
         
         [SerializeField] private GameObject droneTypeModelSubMenuContainer;
-        private Button _button; 
+        private Button _typeButton;
 
-        private void OnEnable() => _button.onClick.AddListener(ShowModelSubMenu);
-        private void OnDisable() => _button.onClick.RemoveListener(ShowModelSubMenu);
-        private void Awake() => _button = GetComponent<Button>();
+        private void OnEnable() => _typeButton.onClick.AddListener(ShowModelSubMenu);
+        private void OnDisable() => _typeButton.onClick.RemoveListener(ShowModelSubMenu);
+        private void Awake() => _typeButton = GetComponent<Button>();
         private void Start() => droneTypeModelSubMenuContainer.SetActive(false);
 
         private void ShowModelSubMenu()
@@ -34,6 +35,9 @@ namespace DroneLoadout.Scripts
             }
         }
 
-        public void HideModelSubMenu() => droneTypeModelSubMenuContainer.SetActive(false);
+        public void HideModelSubMenu()
+        {
+            droneTypeModelSubMenuContainer.SetActive(false);
+        }
     }
 }

@@ -88,15 +88,7 @@ namespace DroneLoadout.Scripts
 
         public bool IsPurchased() => _purchased;
         public string GetDroneModelName() => droneConfigData.DroneName;
-        
-        private void Highlight()
-        {
-            _modelButton.colors = _highlightColourBlock;
-        }
-
-        private void Unhighlight()
-        {
-            _modelButton.colors = _unhighlightColourBlock;
-        }
+        private void Highlight() => _modelButton.colors = _highlightColourBlock;
+        private void Unhighlight() => _modelButton.colors = _unhighlightColourBlock;
     }
 }
