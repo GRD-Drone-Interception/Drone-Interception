@@ -9,6 +9,8 @@ namespace SavingSystem
     [Serializable]
     public class DroneData
     {
+        public float droneCost;
+        public DroneType droneType;
         public int numAttachments;
         public List<AttachmentDictionary> attachmentDictionaries;
         public List<string> attachmentDataPaths;

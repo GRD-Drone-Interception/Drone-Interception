@@ -7,41 +7,36 @@ namespace DroneLoadout.Budgeting
 {
     public class BudgetCalculator : MonoBehaviour
     {
-        private Player _player;
-        private Workbench _workbench;
-        
-        private void Awake()
-        {
-            _player = FindObjectOfType<Player>();
-            _workbench = FindObjectOfType<Workbench>();
-        }
+        [SerializeField] private Player player;
+        [SerializeField] private Workbench workbench;
 
         private void OnEnable()
         {
-            _workbench.OnDroneAdded += SubscribeToNewDronesDecoratedEvents;
-            _workbench.OnDroneRemoved += UnsubscribeFromCurrentDronesDecoratedEvents;
+            workbench.OnDronePurchased += SpendBudgetOnDronePurchased;
+            workbench.OnDroneSold += DepositToBudgetOnDroneSold;
         }
 
         private void OnDisable()
         {
-            _workbench.OnDroneAdded -= SubscribeToNewDronesDecoratedEvents;
-            _workbench.OnDroneRemoved -= UnsubscribeFromCurrentDronesDecoratedEvents;
+            workbench.OnDronePurchased -= SpendBudgetOnDronePurchased;
+            workbench.OnDroneSold -= DepositToBudgetOnDroneSold;
         }
 
-        private void SubscribeToNewDronesDecoratedEvents(Drone drone)
+        private void SpendBudgetOnDronePurchased(float cost)
         {
-            //Debug.Log($"Budget spent: {drone.DecorableDrone.Cost}");
-            _player.BuildBudget.Spend(drone.DecorableDrone.Cost);
-            _workbench.DroneOnBench.OnDroneDecorationAdded += (drone1, attachment) => _player.BuildBudget.Spend(attachment.Data.Cost);
-            _workbench.DroneOnBench.OnDroneDecorationRemoved += (drone1, attachment) => _player.BuildBudget.Deposit(attachment.Data.Cost); 
+            if (player.BuildBudget.CanAfford(cost))
+            {
+                player.BuildBudget.Spend(cost);
+            }
+            else
+            {
+                Debug.Log("You cannot afford this purchase!");
+            }
         }
-
-        private void UnsubscribeFromCurrentDronesDecoratedEvents(Drone drone)
+        
+        private void DepositToBudgetOnDroneSold(float amount)
         {
-            //Debug.Log($"Budget deposited {drone.DecorableDrone.Cost}");
-            _player.BuildBudget.Deposit(drone.DecorableDrone.Cost);
-            _workbench.DroneOnBench.OnDroneDecorationAdded -= (drone1, attachment) => _player.BuildBudget.Spend(attachment.Data.Cost);
-            _workbench.DroneOnBench.OnDroneDecorationRemoved -= (drone1, attachment) => _player.BuildBudget.Deposit(attachment.Data.Cost); 
+            player.BuildBudget.Deposit(amount);
         }
     }
 }

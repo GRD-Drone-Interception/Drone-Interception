@@ -6,7 +6,7 @@ public abstract class DroneSavedAttachmentsAssembler
 {
     public static void BuildDrone(Drone drone)
     {
-        if (!DroneSaveSystem.CheckFileExists(drone))
+        if (!DroneSaveSystem.CheckFileExists(drone.DroneConfigData.DroneName))
         {
             Debug.Log($"{drone} has no saved sava");
             return;

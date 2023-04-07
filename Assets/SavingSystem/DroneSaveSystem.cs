@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using DroneLoadout.Scripts;
 using UnityEngine;
 
@@ -16,6 +15,8 @@ namespace SavingSystem
 
             // Assemble the drone data
             DroneData droneData = new DroneData();
+            droneData.droneCost = drone.DecorableDrone.Cost;
+            droneData.droneType = droneData.droneType;
             droneData.numAttachments = drone.GetAttachmentPoints().Count;
             droneData.attachmentDictionaries = new List<AttachmentDictionary>();
             droneData.attachmentDataPaths = new List<string>();
@@ -65,9 +66,9 @@ namespace SavingSystem
             }
         }
 
-        public static bool CheckFileExists(Drone drone)
+        public static bool CheckFileExists(string droneName)
         {
-            var filePath = $"{Application.persistentDataPath}/{drone.DroneConfigData.DroneName}.json";
+            var filePath = $"{Application.persistentDataPath}/{droneName}.json";
             return File.Exists(filePath);
         }
     }

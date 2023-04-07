@@ -46,8 +46,8 @@ public class CameraController : MonoBehaviour
         if (Input.GetMouseButton(1))
         {
             float rotateInput = Input.GetAxis("Mouse X");
-            Quaternion yRotation = Quaternion.Euler(0f, rotateInput * rotateSpeed * Time.deltaTime, 0f);
-            mainCamera.transform.rotation = yRotation * mainCamera.transform.rotation;
+            Quaternion targetRotation = Quaternion.Euler(0f, rotateInput * rotateSpeed * Time.deltaTime, 0f) * mainCamera.transform.rotation;
+            mainCamera.transform.rotation = Quaternion.Lerp(mainCamera.transform.rotation, targetRotation, smoothTime);
         }
         
         // Orbit camera

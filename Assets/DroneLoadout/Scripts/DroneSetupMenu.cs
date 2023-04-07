@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 namespace DroneLoadout.Scripts
 {
     public enum DroneSetupMenuStates
     {
-        Lobby,
         Workshop,
         Fleet,
         TechTree,
@@ -20,6 +21,7 @@ namespace DroneLoadout.Scripts
         public static DroneSetupMenuStates State { get; private set; }
 
         [SerializeField] private List<GameObject> menuUiContainers;
+        [SerializeField] private Color activeMenuButtonColour = new(0, 0.07f, 0.54f, 1);
         private Dictionary<DroneSetupMenuStates, GameObject> _droneSetupMenuDictionary = new();
         private List<DroneSetupMenuButton> _subMenuButtons = new();
         private DroneSetupMenuButton _menuButton;
@@ -28,9 +30,10 @@ namespace DroneLoadout.Scripts
 
         private void Start()
         {
-            _menuButton = _subMenuButtons.FirstOrDefault(button => button.GetMenuState() == DroneSetupMenuStates.Lobby);
-            _menuButton.SetButtonFontColour(new Color(0, 0.07f, 0.54f, 1));
+            _menuButton = _subMenuButtons.FirstOrDefault(button => button.GetMenuState() == DroneSetupMenuStates.Workshop);
+            _menuButton.SetButtonFontColour(activeMenuButtonColour);
             _menuButton.SetButtonFontStyle(FontStyles.Bold);
+            _menuButton.SetActive(true);
 
             var menuStates = Enum.GetValues(typeof(DroneSetupMenuStates));
             for (int i = 0; i < menuStates.Length; i++)
