@@ -3942,8 +3942,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -55.299927, y: -450.5}
-  m_SizeDelta: {x: 120, y: 45}
+  m_AnchoredPosition: {x: -23.879927, y: -452.5}
+  m_SizeDelta: {x: 57, y: 45}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &205615090
 MonoBehaviour:
@@ -29414,6 +29414,7 @@ GameObject:
   - component: {fileID: 1533234970}
   - component: {fileID: 1533234972}
   - component: {fileID: 1533234973}
+  - component: {fileID: 1533234974}
   m_Layer: 0
   m_Name: Workbench
   m_TagString: Untagged
@@ -29486,6 +29487,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 100
+--- !u!114 &1533234974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1533234967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43c289e930db2b3488b81526bdc07b1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1547092758
 GameObject:
   m_ObjectHideFlags: 0
@@ -30193,8 +30206,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -55.299927, y: -450.5}
-  m_SizeDelta: {x: 120, y: 45}
+  m_AnchoredPosition: {x: -87.79993, y: -452.5}
+  m_SizeDelta: {x: 55, y: 45}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1569094419
 MonoBehaviour:

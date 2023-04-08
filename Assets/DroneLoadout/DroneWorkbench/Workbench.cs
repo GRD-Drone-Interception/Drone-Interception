@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using DroneLoadout.Scripts;
 using SavingSystem;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -133,24 +134,27 @@ namespace DroneLoadout.DroneWorkbench
 
             if (DroneSaveSystem.CheckFileExists(_droneOnBench.DroneConfigData.DroneName))
             {
-                editDroneButton.gameObject.SetActive(false);
-                buyButton.gameObject.SetActive(false);
+                buyButton.GetComponentInChildren<TMP_Text>().text = "MODIFY";
                 sellButton.gameObject.SetActive(true);
                 DroneSavedAttachmentsAssembler.BuildDrone(_droneOnBench);
             }
             else
             {
-                editDroneButton.gameObject.SetActive(true);
-                buyButton.gameObject.SetActive(true);
+                buyButton.GetComponentInChildren<TMP_Text>().text = "BUY";
                 sellButton.gameObject.SetActive(false);
             }
+            buyButton.gameObject.SetActive(true);
+            editDroneButton.gameObject.SetActive(true);
             exitEditButton.gameObject.SetActive(false);
         }
 
         private void BuyDrone()
         {
-            SaveDroneData();
-            OnDronePurchased?.Invoke(_droneOnBench.DecorableDrone.Cost);
+            if (DroneSaveSystem.CheckFileExists(_droneOnBench.DroneConfigData.DroneName))
+            {
+                DroneData savedData = DroneSaveSystem.Load(_droneOnBench.DroneConfigData.DroneName);
+                OnDroneSold?.Invoke(savedData.droneCost);
+            }
 
             // TODO: Clean up
             foreach (var modelSpawner in _droneModelSpawners)
@@ -163,6 +167,8 @@ namespace DroneLoadout.DroneWorkbench
                     }
                 }
             }
+            SaveDroneData();
+            OnDronePurchased?.Invoke(_droneOnBench.DecorableDrone.Cost);
         }
 
         private void SellDrone()
@@ -193,9 +199,8 @@ namespace DroneLoadout.DroneWorkbench
         private void SaveDroneData() 
         {
             DroneSaveSystem.Save(_droneOnBench);
-            buyButton.gameObject.SetActive(false);
+            buyButton.GetComponentInChildren<TMP_Text>().text = "MODIFY";
             sellButton.gameObject.SetActive(true);
-            editDroneButton.gameObject.SetActive(false);
             exitEditButton.gameObject.SetActive(false);
             Debug.Log("This drone's data has been saved to disk!");
         }
@@ -208,6 +213,7 @@ namespace DroneLoadout.DroneWorkbench
                 return;
             }
             DroneSaveSystem.Delete(_droneOnBench);
+            buyButton.GetComponentInChildren<TMP_Text>().text = "BUY";
             buyButton.gameObject.SetActive(true);
             sellButton.gameObject.SetActive(false);
             editDroneButton.gameObject.SetActive(true);
@@ -241,27 +247,25 @@ namespace DroneLoadout.DroneWorkbench
         {
             if (mode == WorkshopModeController.WorkshopMode.Display)
             {
+                buyButton.gameObject.SetActive(true);
                 resetDroneConfigButton.gameObject.SetActive(false);
                 exitEditButton.gameObject.SetActive(false);
                 droneDataInfoBox.SetActive(false);
 
                 if (DroneSaveSystem.CheckFileExists(_droneOnBench.DroneConfigData.DroneName))
                 {
-                    editDroneButton.gameObject.SetActive(false);
-                    buyButton.gameObject.SetActive(false);
+                    buyButton.GetComponentInChildren<TMP_Text>().text = "MODIFY";
                     sellButton.gameObject.SetActive(true);
                 }
                 else
                 {
-                    editDroneButton.gameObject.SetActive(true);
-                    buyButton.gameObject.SetActive(true);
+                    buyButton.GetComponentInChildren<TMP_Text>().text = "BUY";
                     sellButton.gameObject.SetActive(false);
                 }
             }
             else if (mode == WorkshopModeController.WorkshopMode.Edit)
             {
                 resetDroneConfigButton.gameObject.SetActive(true);
-                editDroneButton.gameObject.SetActive(false);
                 exitEditButton.gameObject.SetActive(true);
                 droneDataInfoBox.SetActive(true);
                 buyButton.gameObject.SetActive(false);
