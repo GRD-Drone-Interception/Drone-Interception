@@ -1,21 +1,23 @@
 using DroneLoadout.Scripts;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
-namespace DroneLoadout.DroneWorkbench
+namespace DroneWorkshop
 {
-    public class WorkbenchPodium : MonoBehaviour
+    public class DroneWorkbenchPodium : MonoBehaviour
     {
-        [SerializeField] private float rotationSpeed = 100.0f;
-        private Workbench _workbench;
+        [SerializeField] private float manualRotationSpeed = 100.0f;
+        [SerializeField] private float autoRotationSpeed = 25.0f;
         private DronePodiumInputActions _inputActions;
-        private bool _rotateLeftIsPressed = false;
-        private bool _rotateRightIsPressed = false;
+        private DroneWorkbench _droneWorkbench;
+        private bool _rotateLeftIsPressed;
+        private bool _rotateRightIsPressed;
 
         private void Awake()
         {
             _inputActions = new DronePodiumInputActions();
-            _workbench = GetComponent<Workbench>();
+            _droneWorkbench = GetComponent<DroneWorkbench>();
         }
 
         private void OnEnable()
@@ -38,23 +40,23 @@ namespace DroneLoadout.DroneWorkbench
 
         private void Update()
         {
-            if(_workbench.DroneOnBench == null) { return; }
+            if(_droneWorkbench.DroneOnBench == null) { return; }
 
             if (WorkshopModeController.currentWorkshopMode == WorkshopModeController.WorkshopMode.Edit)
             {
                 if (_rotateLeftIsPressed)
                 {
-                    _workbench.DroneOnBench.transform.Rotate(new Vector3(0, -rotationSpeed * Time.deltaTime, 0));
+                    _droneWorkbench.DroneOnBench.transform.Rotate(new Vector3(0, -manualRotationSpeed * Time.deltaTime, 0));
                 }
 
                 if (_rotateRightIsPressed)
                 {
-                    _workbench.DroneOnBench.transform.Rotate(new Vector3(0, rotationSpeed * Time.deltaTime, 0));
+                    _droneWorkbench.DroneOnBench.transform.Rotate(new Vector3(0, manualRotationSpeed * Time.deltaTime, 0));
                 }
             }
             else
             {
-                _workbench.DroneOnBench.transform.Rotate(new Vector3(0,25.0f * Time.deltaTime,0));
+                _droneWorkbench.DroneOnBench.transform.Rotate(new Vector3(0,autoRotationSpeed * Time.deltaTime,0));
             }
         }
 

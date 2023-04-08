@@ -1,8 +1,10 @@
 using System;
 using DroneBehaviours.Scripts;
 using DroneLoadout.Decorators;
+using Testing;
 using UnityEngine;
 using UnityEngine.UI;
+using Utility;
 
 namespace DroneLoadout.Scripts
 {
@@ -42,7 +44,10 @@ namespace DroneLoadout.Scripts
             var drone = spawnedDrone.GetComponent<Drone>();
        
             // Assemble the drone data
-            DroneSavedAttachmentsAssembler.BuildDrone(drone);
+            if (JsonFileHandler.CheckFileExists(drone.DroneConfigData.DroneName))
+            {
+                DroneLoader.BuildDrone(drone);
+            }
 
             spawnedDrone.transform.SetPositionAndRotation(new Vector3(0,0,0), Quaternion.identity);
             drone.SetTeam(TurnManager.Instance.CurrentTeam); 

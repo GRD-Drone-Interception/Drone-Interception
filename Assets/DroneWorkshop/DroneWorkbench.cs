@@ -1,18 +1,19 @@
 using System;
 using System.Collections.Generic;
 using DroneLoadout.Scripts;
-using SavingSystem;
+using Testing;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Utility;
 
-namespace DroneLoadout.DroneWorkbench
+namespace DroneWorkshop
 {
     /// <summary>
     /// Responsible for adding, removing, decorating, and resetting drone
     /// objects that have been added to the workbench. 
     /// </summary>
-    public class Workbench : MonoBehaviour
+    public class DroneWorkbench : MonoBehaviour
     {
         public event Action<Drone> OnDroneAdded; 
         public event Action<Drone> OnDroneRemoved;
@@ -20,9 +21,7 @@ namespace DroneLoadout.DroneWorkbench
         public event Action<float> OnDroneSold; 
         public event Action OnDroneOnBenchDestroyed; 
         public Drone DroneOnBench => _droneOnBench;
-
-        [SerializeField] private GameObject whiteboard; // TODO: Move this 
-        [SerializeField] private GameObject droneDataInfoBox; // TODO: Move this 
+        
         [SerializeField] private Transform droneSpawnPosition;
         [SerializeField] private Button buyButton; // TODO: Abstract buttons into own class?
         [SerializeField] private Button sellButton;
@@ -59,33 +58,19 @@ namespace DroneLoadout.DroneWorkbench
             resetDroneConfigButton.gameObject.SetActive(false);
             buyButton.gameObject.SetActive(false);
             sellButton.gameObject.SetActive(false);
-            droneDataInfoBox.gameObject.SetActive(false);
 
             foreach (var modelSpawner in _droneModelSpawners)
             {
-                if (DroneSaveSystem.CheckFileExists(modelSpawner.GetDroneModelName()))
+                if (JsonFileHandler.CheckFileExists(modelSpawner.GetDroneModelName()))
                 {
                     if (!modelSpawner.IsPurchased())
                     {
                         modelSpawner.SetPurchased(true);
                         
-                        DroneData droneData = DroneSaveSystem.Load(modelSpawner.GetDroneModelName());
+                        DroneData droneData = JsonFileHandler.Load<DroneData>(modelSpawner.GetDroneModelName());
                         OnDronePurchased?.Invoke(droneData.droneCost);
                     }
                 }
-            }
-        }
-
-        private void Update()
-        {
-            // Temporary
-            if (DroneSetupMenu.State == DroneSetupMenuStates.Workshop)
-            {
-                whiteboard.SetActive(true);
-            }
-            else
-            {
-                whiteboard.SetActive(false);
             }
         }
 
@@ -110,7 +95,7 @@ namespace DroneLoadout.DroneWorkbench
             }
         }
     
-        private void DeleteCurrentDrone()
+        private void DestroyCurrentDrone()
         {
             RemoveFromBench(_droneOnBench);
             Destroy(_droneOnBench.gameObject);
@@ -121,7 +106,7 @@ namespace DroneLoadout.DroneWorkbench
         {
             if (_droneOnBench != null)
             {
-                DeleteCurrentDrone();
+                DestroyCurrentDrone();
             }
             var droneGameObject = Instantiate(prefab);
             var drone = droneGameObject.GetComponent<Drone>();
@@ -129,14 +114,14 @@ namespace DroneLoadout.DroneWorkbench
             droneGameObject.transform.position = droneSpawnPosition.position;
             droneGameObject.transform.rotation = droneSpawnPosition.rotation;
             droneGameObject.layer = LayerMask.NameToLayer("Focus");
-            SetChildLayersIteratively(droneGameObject.transform, "Focus");
+            TransformUtility.SetChildLayersIteratively(droneGameObject.transform, "Focus");
             AddToBench(drone);
 
-            if (DroneSaveSystem.CheckFileExists(_droneOnBench.DroneConfigData.DroneName))
+            if (JsonFileHandler.CheckFileExists(_droneOnBench.DroneConfigData.DroneName))
             {
                 buyButton.GetComponentInChildren<TMP_Text>().text = "MODIFY";
                 sellButton.gameObject.SetActive(true);
-                DroneSavedAttachmentsAssembler.BuildDrone(_droneOnBench);
+                DroneLoader.BuildDrone(_droneOnBench);
             }
             else
             {
@@ -150,9 +135,9 @@ namespace DroneLoadout.DroneWorkbench
 
         private void BuyDrone()
         {
-            if (DroneSaveSystem.CheckFileExists(_droneOnBench.DroneConfigData.DroneName))
+            if (JsonFileHandler.CheckFileExists(_droneOnBench.DroneConfigData.DroneName))
             {
-                DroneData savedData = DroneSaveSystem.Load(_droneOnBench.DroneConfigData.DroneName);
+                DroneData savedData = JsonFileHandler.Load<DroneData>(_droneOnBench.DroneConfigData.DroneName);
                 OnDroneSold?.Invoke(savedData.droneCost);
             }
 
@@ -173,7 +158,7 @@ namespace DroneLoadout.DroneWorkbench
 
         private void SellDrone()
         {
-            if (DroneSaveSystem.CheckFileExists(_droneOnBench.DroneConfigData.DroneName)) 
+            if (JsonFileHandler.CheckFileExists(_droneOnBench.DroneConfigData.DroneName)) 
             {
                 OnDroneSold?.Invoke(_droneOnBench.DecorableDrone.Cost);
                 DeleteDroneData();
@@ -198,7 +183,29 @@ namespace DroneLoadout.DroneWorkbench
 
         private void SaveDroneData() 
         {
-            DroneSaveSystem.Save(_droneOnBench);
+            // Assemble the drone data
+            DroneData droneData = new DroneData();
+            droneData.droneCost = _droneOnBench.DecorableDrone.Cost;
+            droneData.droneType = droneData.droneType;
+            droneData.numAttachments = _droneOnBench.GetAttachmentPoints().Count;
+            droneData.attachmentDictionaries = new List<AttachmentDictionary>();
+            droneData.attachmentDataPaths = new List<string>();
+            droneData.decalColour = _droneOnBench.GetPaintJob();
+            
+            int i = 0;
+            foreach (var mountedAttachmentIndex in _droneOnBench.GetAttachmentPointTypeIndex().Keys)
+            {
+                AttachmentDictionary attachmentDictionary = new AttachmentDictionary();
+                attachmentDictionary.attachmentPointIndex = mountedAttachmentIndex;
+                attachmentDictionary.attachmentType = _droneOnBench.GetAttachmentPointTypeIndex()[mountedAttachmentIndex];
+                droneData.attachmentDictionaries.Add(attachmentDictionary);
+                droneData.attachmentDataPaths.Add(_droneOnBench.GetAttachmentPoints()[mountedAttachmentIndex].GetDroneAttachment().Data.PrefabDataPath);
+                i++;
+            }
+            
+            // Save and write the data to the chosen file location
+            JsonFileHandler.Save(droneData, _droneOnBench.DroneConfigData.DroneName);
+
             buyButton.GetComponentInChildren<TMP_Text>().text = "MODIFY";
             sellButton.gameObject.SetActive(true);
             exitEditButton.gameObject.SetActive(false);
@@ -207,12 +214,12 @@ namespace DroneLoadout.DroneWorkbench
 
         private void DeleteDroneData()
         {
-            if (!DroneSaveSystem.CheckFileExists(_droneOnBench.DroneConfigData.DroneName))
+            if (!JsonFileHandler.CheckFileExists(_droneOnBench.DroneConfigData.DroneName))
             {
                 Debug.Log("No saved data exists for this drone yet!");
                 return;
             }
-            DroneSaveSystem.Delete(_droneOnBench);
+            JsonFileHandler.Delete(_droneOnBench.DroneConfigData.DroneName);
             buyButton.GetComponentInChildren<TMP_Text>().text = "BUY";
             buyButton.gameObject.SetActive(true);
             sellButton.gameObject.SetActive(false);
@@ -222,27 +229,6 @@ namespace DroneLoadout.DroneWorkbench
             Debug.Log("Saved data for this drone has been deleted!");
         }
 
-        /// <summary>
-        /// Performs an iterative depth-first search traversal on a drone object hierarchy
-        /// in order to assign each of it's children with a given layer
-        /// </summary>
-        /// <param name="droneObject"></param>
-        /// <param name="layer"></param>
-        private void SetChildLayersIteratively(Transform droneObject, string layer)
-        {
-            var stack = new Stack<Transform>();
-            stack.Push(droneObject);
-            while (stack.Count > 0)
-            {
-                var current = stack.Pop();
-                current.gameObject.layer = LayerMask.NameToLayer(layer);
-                for (int i = 0; i < current.childCount; i++)
-                {
-                    stack.Push(current.GetChild(i));
-                }
-            }
-        }
-        
         private void OnWorkshopModeChanged(WorkshopModeController.WorkshopMode mode)
         {
             if (mode == WorkshopModeController.WorkshopMode.Display)
@@ -250,9 +236,8 @@ namespace DroneLoadout.DroneWorkbench
                 buyButton.gameObject.SetActive(true);
                 resetDroneConfigButton.gameObject.SetActive(false);
                 exitEditButton.gameObject.SetActive(false);
-                droneDataInfoBox.SetActive(false);
 
-                if (DroneSaveSystem.CheckFileExists(_droneOnBench.DroneConfigData.DroneName))
+                if (JsonFileHandler.CheckFileExists(_droneOnBench.DroneConfigData.DroneName))
                 {
                     buyButton.GetComponentInChildren<TMP_Text>().text = "MODIFY";
                     sellButton.gameObject.SetActive(true);
@@ -267,7 +252,6 @@ namespace DroneLoadout.DroneWorkbench
             {
                 resetDroneConfigButton.gameObject.SetActive(true);
                 exitEditButton.gameObject.SetActive(true);
-                droneDataInfoBox.SetActive(true);
                 buyButton.gameObject.SetActive(false);
                 sellButton.gameObject.SetActive(false);
             }

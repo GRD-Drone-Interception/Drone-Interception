@@ -1,25 +1,24 @@
 ﻿using Core;
-using DroneLoadout.DroneWorkbench;
-using DroneLoadout.Scripts;
+using DroneWorkshop;
 using UnityEngine;
 
-namespace DroneLoadout.Budgeting
+namespace BudgettingSystem
 {
     public class BudgetCalculator : MonoBehaviour
     {
         [SerializeField] private Player player;
-        [SerializeField] private Workbench workbench;
+        [SerializeField] private DroneWorkbench droneWorkbench;
 
         private void OnEnable()
         {
-            workbench.OnDronePurchased += SpendBudgetOnDronePurchased;
-            workbench.OnDroneSold += DepositToBudgetOnDroneSold;
+            droneWorkbench.OnDronePurchased += SpendBudgetOnDronePurchased;
+            droneWorkbench.OnDroneSold += DepositToBudgetOnDroneSold;
         }
 
         private void OnDisable()
         {
-            workbench.OnDronePurchased -= SpendBudgetOnDronePurchased;
-            workbench.OnDroneSold -= DepositToBudgetOnDroneSold;
+            droneWorkbench.OnDronePurchased -= SpendBudgetOnDronePurchased;
+            droneWorkbench.OnDroneSold -= DepositToBudgetOnDroneSold;
         }
 
         private void SpendBudgetOnDronePurchased(float cost)

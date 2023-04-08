@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using DroneLoadout.Factory;
-using DroneLoadout.Scripts;
 using UnityEngine;
+using Utility;
 
-namespace SavingSystem
+namespace DroneLoadout.Scripts
 {
     [Serializable]
-    public class DroneData
+    public class DroneData : SaveData
     {
         public float droneCost;
         public DroneType droneType;

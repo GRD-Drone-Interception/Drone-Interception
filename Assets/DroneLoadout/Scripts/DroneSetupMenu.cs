@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
-using UnityEngine.UI;
 
 namespace DroneLoadout.Scripts
 {
@@ -18,6 +16,7 @@ namespace DroneLoadout.Scripts
     
     public class DroneSetupMenu : MonoBehaviour
     {
+        public static event Action<DroneSetupMenuStates> OnStateChanged;
         public static DroneSetupMenuStates State { get; private set; }
 
         [SerializeField] private List<GameObject> menuUiContainers;
@@ -61,6 +60,7 @@ namespace DroneLoadout.Scripts
             _menuButton = newActiveMenuButton;
             State = newActiveMenuButton.GetMenuState();
             _droneSetupMenuDictionary[State].SetActive(true);
+            OnStateChanged?.Invoke(State);
         }
     }
 }

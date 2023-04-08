@@ -1,4 +1,3 @@
-using DroneLoadout.DroneWorkbench;
 using TMPro;
 using UnityEngine;
 
@@ -14,20 +13,20 @@ namespace DroneLoadout.Scripts
         [SerializeField] private TMP_Text droneSpeedText;
         [SerializeField] private TMP_Text droneAccelerationText;
         [SerializeField] private TMP_Text droneWeightText;
-        private Workbench _workbench;
+        private DroneWorkshop.DroneWorkbench _droneWorkbench;
 
-        private void Awake() => _workbench = FindObjectOfType<Workbench>();
+        private void Awake() => _droneWorkbench = FindObjectOfType<DroneWorkshop.DroneWorkbench>();
 
         private void OnEnable()
         {
-            _workbench.OnDroneAdded += SubscribeToNewDronesDecoratedEvents;
-            _workbench.OnDroneOnBenchDestroyed += ClearDroneInfoFromUI;
+            _droneWorkbench.OnDroneAdded += SubscribeToNewDronesDecoratedEvents;
+            _droneWorkbench.OnDroneOnBenchDestroyed += ClearDroneInfoFromUI;
         }
 
         private void OnDisable()
         {
-            _workbench.OnDroneAdded -= SubscribeToNewDronesDecoratedEvents;
-            _workbench.OnDroneOnBenchDestroyed -= ClearDroneInfoFromUI;
+            _droneWorkbench.OnDroneAdded -= SubscribeToNewDronesDecoratedEvents;
+            _droneWorkbench.OnDroneOnBenchDestroyed -= ClearDroneInfoFromUI;
         }
         
         private void Start() => ClearDroneInfoFromUI();
@@ -35,8 +34,8 @@ namespace DroneLoadout.Scripts
         private void SubscribeToNewDronesDecoratedEvents(Drone drone)
         {
             UpdateDroneInfoUi(drone, null);
-            _workbench.DroneOnBench.OnDroneDecorationAdded += UpdateDroneInfoUi;
-            _workbench.DroneOnBench.OnDroneDecorationRemoved += UpdateDroneInfoUi;
+            _droneWorkbench.DroneOnBench.OnDroneDecorationAdded += UpdateDroneInfoUi;
+            _droneWorkbench.DroneOnBench.OnDroneDecorationRemoved += UpdateDroneInfoUi;
         }
 
         private void UpdateDroneInfoUi(Drone drone, DroneAttachment droneAttachment)

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Core.Utility
+namespace Utility
 {
     public class NodeManager : MonoBehaviour
     {

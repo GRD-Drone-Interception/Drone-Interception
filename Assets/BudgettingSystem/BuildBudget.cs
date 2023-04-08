@@ -1,4 +1,4 @@
-﻿namespace DroneLoadout.Budgeting
+﻿namespace BudgettingSystem
 {
     public class BuildBudget
     {

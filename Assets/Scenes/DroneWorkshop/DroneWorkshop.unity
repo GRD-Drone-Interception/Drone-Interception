@@ -8578,7 +8578,7 @@ GameObject:
   - component: {fileID: 437004369}
   - component: {fileID: 437004368}
   m_Layer: 5
-  m_Name: BackboardCanvas (1)
+  m_Name: Whiteboard (Canvas 2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9540,7 +9540,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 860975736}
-  workbench: {fileID: 1533234972}
+  droneWorkbench: {fileID: 1533234972}
 --- !u!1 &504089603
 GameObject:
   m_ObjectHideFlags: 0
@@ -13072,7 +13072,7 @@ GameObject:
   - component: {fileID: 668193553}
   - component: {fileID: 668193556}
   m_Layer: 5
-  m_Name: DroneConfigInfo(Panel)
+  m_Name: MiniWhiteboard(Panel)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17625,7 +17625,7 @@ GameObject:
   - component: {fileID: 907660341}
   - component: {fileID: 907660343}
   m_Layer: 5
-  m_Name: BackboardCanvas
+  m_Name: Whiteboard (Canvas)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18362,7 +18362,7 @@ GameObject:
   - component: {fileID: 921015172}
   - component: {fileID: 921015171}
   m_Layer: 5
-  m_Name: SpeedText
+  m_Name: TopSpeedText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18408,7 +18408,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'SPEED: 150mph'
+  m_text: 'TOP SPEED: 150mph'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b9021da1bb66085448b6fd78b42d03a0, type: 2}
   m_sharedMaterial: {fileID: -8892851194161040175, guid: b9021da1bb66085448b6fd78b42d03a0, type: 2}
@@ -25249,8 +25249,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
-  m_fontSizeBase: 18
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -29414,7 +29414,6 @@ GameObject:
   - component: {fileID: 1533234970}
   - component: {fileID: 1533234972}
   - component: {fileID: 1533234973}
-  - component: {fileID: 1533234974}
   m_Layer: 0
   m_Name: Workbench
   m_TagString: Untagged
@@ -29466,8 +29465,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0f2e4d783606a448f3a2ae8cd8ae57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  whiteboard: {fileID: 907660336}
-  droneDataInfoBox: {fileID: 668193551}
   droneSpawnPosition: {fileID: 1833482727}
   buyButton: {fileID: 1569094419}
   sellButton: {fileID: 205615090}
@@ -29486,19 +29483,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b961527764af48545b4c4003c4152f96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 100
---- !u!114 &1533234974
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1533234967}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43c289e930db2b3488b81526bdc07b1e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  manualRotationSpeed: 100
+  autoRotationSpeed: 25
 --- !u!1 &1547092758
 GameObject:
   m_ObjectHideFlags: 0
@@ -30119,8 +30105,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
-  m_fontSizeBase: 18
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -43252,6 +43238,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1368214219106117980}
+  - component: {fileID: 1852966512676385767}
   m_Layer: 0
   m_Name: Whiteboard
   m_TagString: Untagged
@@ -43259,6 +43246,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1852966512676385767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1852966512676385766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 359b1f1cce3b62943a84dd753bacc21b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  whiteboardCanvas: {fileID: 907660336}
+  miniWhiteboardPanel: {fileID: 668193551}
 --- !u!23 &1857292203880786378
 MeshRenderer:
   m_ObjectHideFlags: 0
