@@ -46,7 +46,7 @@ namespace DroneLoadout.Scripts
             // Assemble the drone data
             if (JsonFileHandler.CheckFileExists(drone.DroneConfigData.DroneName))
             {
-                DroneLoader.BuildDrone(drone);
+                DroneLoader.Assemble(drone);
             }
 
             spawnedDrone.transform.SetPositionAndRotation(new Vector3(0,0,0), Quaternion.identity);

@@ -1,3 +1,4 @@
+using DroneWorkshop;
 using TMPro;
 using UnityEngine;
 
@@ -13,22 +14,11 @@ namespace DroneLoadout.Scripts
         [SerializeField] private TMP_Text droneSpeedText;
         [SerializeField] private TMP_Text droneAccelerationText;
         [SerializeField] private TMP_Text droneWeightText;
-        private DroneWorkshop.DroneWorkbench _droneWorkbench;
+        private DroneWorkbench _droneWorkbench;
 
         private void Awake() => _droneWorkbench = FindObjectOfType<DroneWorkshop.DroneWorkbench>();
-
-        private void OnEnable()
-        {
-            _droneWorkbench.OnDroneAdded += SubscribeToNewDronesDecoratedEvents;
-            _droneWorkbench.OnDroneOnBenchDestroyed += ClearDroneInfoFromUI;
-        }
-
-        private void OnDisable()
-        {
-            _droneWorkbench.OnDroneAdded -= SubscribeToNewDronesDecoratedEvents;
-            _droneWorkbench.OnDroneOnBenchDestroyed -= ClearDroneInfoFromUI;
-        }
-        
+        private void OnEnable() => _droneWorkbench.OnDroneChanged += SubscribeToNewDronesDecoratedEvents;
+        private void OnDisable() => _droneWorkbench.OnDroneChanged -= SubscribeToNewDronesDecoratedEvents;
         private void Start() => ClearDroneInfoFromUI();
 
         private void SubscribeToNewDronesDecoratedEvents(Drone drone)

@@ -9,7 +9,7 @@ namespace Testing
     /// </summary>
     public abstract class DroneLoader
     {
-        public static void BuildDrone(Drone drone)
+        public static void Assemble(Drone drone)
         {
             // Load corresponding drone data file
             DroneData droneData = JsonFileHandler.Load<DroneData>(drone.DroneConfigData.DroneName);

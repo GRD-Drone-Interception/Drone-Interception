@@ -20,13 +20,13 @@ namespace DroneLoadout.Scripts
         private void OnEnable()
         {
             WorkshopModeController.OnModeChange += SetVisibilityOfAttachmentSlots;
-            _droneWorkbench.OnDroneAdded += SpawnAttachmentSlots;
+            _droneWorkbench.OnDroneChanged += SpawnAttachmentSlots;
         }
 
         private void OnDisable()
         {
             WorkshopModeController.OnModeChange -= SetVisibilityOfAttachmentSlots;
-            _droneWorkbench.OnDroneAdded -= SpawnAttachmentSlots;
+            _droneWorkbench.OnDroneChanged -= SpawnAttachmentSlots;
         }
 
         private void Start()

@@ -1,6 +1,7 @@
 ﻿using BudgettingSystem;
 using DroneLoadout.Scripts;
 using UnityEngine;
+using Utility;
 
 namespace Core
 {
@@ -26,8 +27,11 @@ namespace Core
 
         private void Start()
         {
-            //BudgetData budgetData = SaveSystem.Load("") as BudgetData;
-            //BuildBudget.SetBudget(budgetData.budget);
+            if (JsonFileHandler.CheckFileExists("BudgetData"))
+            {
+                BudgetData budgetData = JsonFileHandler.Load<BudgetData>("BudgetData"); 
+                BuildBudget.SetBudget(budgetData.budget);
+            }
         }
     }
 }

@@ -10,11 +10,11 @@ namespace Utility
     {
         public static void Save(SaveData saveData, string dataPath)
         {
-            // Create a file to save the drone data to
+            // Create a file to save the data to
             string filePath = $"{Application.persistentDataPath}/{dataPath}.json";
             Debug.Log($"Path: {filePath}");
 
-            // Convert the drone data to JSON format
+            // Convert the data to JSON format
             string json = JsonUtility.ToJson(saveData, true);
 
             // Write the JSON data to the file

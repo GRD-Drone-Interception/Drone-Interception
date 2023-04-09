@@ -1,10 +1,11 @@
 ﻿using Core;
 using DroneWorkshop;
 using UnityEngine;
+using Utility;
 
 namespace BudgettingSystem
 {
-    public class BudgetCalculator : MonoBehaviour
+    public class WorkbenchBudgetCalculator : MonoBehaviour
     {
         [SerializeField] private Player player;
         [SerializeField] private DroneWorkbench droneWorkbench;
@@ -26,6 +27,7 @@ namespace BudgettingSystem
             if (player.BuildBudget.CanAfford(cost))
             {
                 player.BuildBudget.Spend(cost);
+                UpdateBudgetData();
             }
             else
             {
@@ -36,6 +38,17 @@ namespace BudgettingSystem
         private void DepositToBudgetOnDroneSold(float amount)
         {
             player.BuildBudget.Deposit(amount);
+            UpdateBudgetData();
+        }
+
+        private void UpdateBudgetData()
+        {
+            // Assemble the budget data
+            BudgetData budgetData = new BudgetData();
+            budgetData.budget = player.BuildBudget.BudgetRemaining;
+            
+            // Write it to file
+            JsonFileHandler.Save(budgetData, "BudgetData");
         }
     }
 }
