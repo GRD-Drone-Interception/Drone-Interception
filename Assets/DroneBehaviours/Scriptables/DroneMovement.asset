@@ -15,7 +15,7 @@ MonoBehaviour:
   thrust: 10
   hoverHeight: 1
   hoverForce: 10
-  maxSpeed: 10
-  maxForce: 20
-  slowingDistance: 15
+  maxSpeed: 25
+  maxForce: 5
+  slowingDistance: 20
   rotationSpeed: 2

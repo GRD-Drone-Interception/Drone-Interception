@@ -7,6 +7,7 @@ using DroneLoadout.Decorators;
 using DroneLoadout.Factory;
 using DroneLoadout.Strategies;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace DroneLoadout.Scripts
 {
@@ -24,7 +25,7 @@ namespace DroneLoadout.Scripts
 
         [SerializeField] private DroneConfigData droneConfigData; 
         [SerializeField] private List<DroneBehaviour> behaviours = new();
-        [SerializeField] private List<MeshRenderer> meshRenderers;
+        [FormerlySerializedAs("meshRenderers")] [SerializeField] private List<MeshRenderer> decalMeshRenderers;
         private readonly List<AttachmentPoint> _attachmentPoints = new();
         private readonly Dictionary<DroneAttachmentType, int> _attachmentTypeCount = new();
         private Dictionary<int, DroneAttachmentType> _attachmentPointTypeIndex = new();
@@ -37,7 +38,7 @@ namespace DroneLoadout.Scripts
             Rb = GetComponent<Rigidbody>();
             DecorableDrone = DroneFactory.CreateDrone(droneConfigData.DroneType, droneConfigData);
             _attachmentPoints.AddRange(GetComponentsInChildren<AttachmentPoint>());
-            meshRenderers.ForEach(ctx => _originalMaterialColours.Add(ctx.material.color));
+            decalMeshRenderers.ForEach(ctx => _originalMaterialColours.Add(ctx.material.color));
             _paintJob = _originalMaterialColours[0];
         }
 
@@ -171,7 +172,7 @@ namespace DroneLoadout.Scripts
         public void Paint(Color colour)
         {
             _paintJob = colour;
-            foreach (var meshRenderer in meshRenderers)
+            foreach (var meshRenderer in decalMeshRenderers)
             {
                 meshRenderer.material.color = colour;
             }
@@ -179,7 +180,7 @@ namespace DroneLoadout.Scripts
 
         public void ResetPaintJob()
         {
-            foreach (var meshRenderer in meshRenderers)
+            foreach (var meshRenderer in decalMeshRenderers)
             {
                 foreach (var colour in _originalMaterialColours)
                 {

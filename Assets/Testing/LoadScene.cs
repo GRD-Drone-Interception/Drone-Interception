@@ -27,7 +27,7 @@ namespace Testing
                     SceneManager.LoadScene("DroneWorkshop");
                     break;
                 case Scene.Game:
-                    SceneManager.LoadScene("DroneSpawnTest");
+                    SceneManager.LoadScene("Scenario1");
                     break;
             }
         }

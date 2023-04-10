@@ -19,12 +19,21 @@ namespace DroneBehaviours.Scripts
         {
             if (_target == null)
             {
-                _target = GameObject.Find("TargetCube").transform;
+                if (GameObject.Find("TargetCube") != null)
+                {
+                    _target = GameObject.Find("TargetCube").transform;
+                }
+                else
+                {
+                    _target = drone.transform;
+                }
             }
         }
 
         public override void FixedUpdateBehaviour(Drone drone)
         {
+            if (_target == null) { return; }
+
             // Calculate forces for thrust and hover
             float verticalVelocity = Mathf.Abs(drone.Rb.velocity.y);
             float verticalError = hoverHeight - drone.transform.position.y;
@@ -50,13 +59,6 @@ namespace DroneBehaviours.Scripts
                 Quaternion targetRotation = Quaternion.LookRotation(drone.Rb.velocity.normalized, Vector3.up);
                 drone.transform.rotation = Quaternion.Slerp(drone.transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
             }
-
-            // Calculate the rotation towards the direction of movement
-            /*if (drone.Rb.velocity.magnitude > 0.1f)
-            {
-                Quaternion targetRotation = Quaternion.LookRotation(drone.Rb.velocity.normalized, drone.transform.up);
-                drone.transform.rotation = Quaternion.Slerp(drone.transform.rotation, targetRotation, Time.deltaTime * 10f);
-            }*/
         }
     }
 }

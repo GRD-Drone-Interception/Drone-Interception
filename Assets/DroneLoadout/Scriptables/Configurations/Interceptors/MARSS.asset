@@ -17,8 +17,8 @@ MonoBehaviour:
   DroneDescription: 
   DroneType: 2
   PrefabDataPath: Drones/Interceptors/Marss
-  cost: 800
-  range: 500
-  topSpeed: 0
-  acceleration: 100
-  weight: 300
+  cost: 40000
+  range: 25
+  topSpeed: 87
+  acceleration: 0
+  weight: 10

@@ -17,8 +17,8 @@ MonoBehaviour:
   DroneDescription: 
   DroneType: 0
   PrefabDataPath: Drones/Quadcopters/DjiMavic3
-  cost: 500
-  range: 60
-  topSpeed: 0
+  cost: 1188
+  range: 10
+  topSpeed: 47
   acceleration: 0
-  weight: 75
+  weight: 2.3

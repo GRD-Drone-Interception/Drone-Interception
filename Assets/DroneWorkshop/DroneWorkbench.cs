@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Core;
 using DroneLoadout.Scripts;
 using Testing;
 using TMPro;
@@ -19,8 +20,9 @@ namespace DroneWorkshop
         public event Action<float> OnDronePurchased; 
         public event Action<float> OnDroneSold;
         public Drone DroneOnBench { get; private set; }
-
+        
         [SerializeField] private Transform droneSpawnPosition;
+        [SerializeField] private Player player;
         [SerializeField] private Button buyButton; // TODO: Abstract buttons into own class?
         [SerializeField] private Button sellButton;
         [SerializeField] private Button exitEditButton;
@@ -112,6 +114,12 @@ namespace DroneWorkshop
 
         private void BuyDrone()
         {
+            if (!player.BuildBudget.CanAfford(DroneOnBench.DecorableDrone.Cost))
+            {
+                Debug.Log("You cannot afford this purchase!");
+                return;
+            }
+            
             if (JsonFileHandler.CheckFileExists(DroneOnBench.DroneConfigData.DroneName))
             {
                 // Sell existing drone

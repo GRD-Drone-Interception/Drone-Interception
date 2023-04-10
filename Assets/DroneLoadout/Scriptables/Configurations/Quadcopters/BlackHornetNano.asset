@@ -17,8 +17,8 @@ MonoBehaviour:
   DroneDescription: 
   DroneType: 0
   PrefabDataPath: Drones/Quadcopters/BlackHornetNano
-  cost: 400
-  range: 30
-  topSpeed: 0
+  cost: 157000
+  range: 2
+  topSpeed: 13
   acceleration: 0
-  weight: 5
+  weight: 0.032

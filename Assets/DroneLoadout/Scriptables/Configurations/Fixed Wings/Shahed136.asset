@@ -17,8 +17,8 @@ MonoBehaviour:
   DroneDescription: 
   DroneType: 1
   PrefabDataPath: Drones/FixedWings/Shahed136
-  cost: 300
-  range: 200
-  topSpeed: 0
+  cost: 20000
+  range: 1250
+  topSpeed: 115
   acceleration: 0
-  weight: 150
+  weight: 200
