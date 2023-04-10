@@ -55,7 +55,7 @@ namespace Testing
                     if (canSpawnDrone)
                     {
                         // Instantiate the drone prefab at the hit point
-                        SpawnDrone(_selectedDroneSpawner.DroneConfigData, hit.point);
+                        SpawnDrone(_selectedDroneSpawner.DroneConfigData, hit.point + Vector3.up);
                     }
                 }
             }

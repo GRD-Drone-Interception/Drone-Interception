@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcbbc04f8caac4142bc945599850ad80, type: 3}
   m_Name: DroneMovement
   m_EditorClassIdentifier: 
-  droneConfigData: {fileID: 0}
-  speed: 20
-  rotationSpeed: 5
-  stoppingDistance: 20
+  thrust: 10
+  hoverHeight: 1
+  hoverForce: 10
+  maxSpeed: 10
+  maxForce: 20
+  slowingDistance: 15
+  rotationSpeed: 2

@@ -1,4 +1,3 @@
-using DroneLoadout.Decorators;
 using DroneLoadout.Scripts;
 using UnityEngine;
 
@@ -7,39 +6,57 @@ namespace DroneBehaviours.Scripts
     [CreateAssetMenu(fileName = "NewDroneMovementBehaviour", menuName = "Drone/Behaviours/Movement")]
     public class DroneMovement : DroneBehaviour
     {
-        [SerializeField] private DroneConfigData droneConfigData;
-        private Transform target;
-        public float speed = 10f; // The speed of the drone
-        public float rotationSpeed = 5f; // The rotation speed of the drone
-        public float stoppingDistance = 5f; // The distance from the target at which the drone will stop
+        [SerializeField] private float thrust = 10f;
+        [SerializeField] private float hoverHeight = 1f;
+        [SerializeField] private float hoverForce = 10f;
+        [SerializeField] private float maxSpeed = 10f;
+        [SerializeField] private float maxForce = 20f;
+        [SerializeField] private float slowingDistance = 15f;
+        [SerializeField] private float rotationSpeed = 1.0f;
+        private Transform _target;
 
         public override void UpdateBehaviour(Drone drone)
         {
-            //Debug.Log("Movement behaviour", drone);
-            if (target == null)
+            if (_target == null)
             {
-                //target = GameObject.Find("Cube").transform;
+                _target = GameObject.Find("TargetCube").transform;
             }
         }
 
         public override void FixedUpdateBehaviour(Drone drone)
-        { 
-            if (target != null)
-            {
-                // Move towards the target
-                Vector3 direction = (target.position - drone.transform.position).normalized;
-                drone.Rb.MovePosition(drone.transform.position + direction * (speed * Time.fixedDeltaTime));
+        {
+            // Calculate forces for thrust and hover
+            float verticalVelocity = Mathf.Abs(drone.Rb.velocity.y);
+            float verticalError = hoverHeight - drone.transform.position.y;
+            float hoverForceMagnitude = Mathf.Clamp(verticalError * hoverForce, 0f, 1f) * thrust;
+            Vector3 thrustForce = drone.transform.up * hoverForceMagnitude;
 
-                // Rotate towards the target
-                Quaternion targetRotation = Quaternion.LookRotation(direction);
-                drone.Rb.MoveRotation(Quaternion.Lerp(drone.transform.rotation, targetRotation, rotationSpeed * Time.fixedDeltaTime));
+            // Calculate forces for movement towards target
+            Vector3 targetDirection = (_target.position - drone.transform.position).normalized;
+            float targetDistance = Vector3.Distance(drone.transform.position, _target.position);
+            float speedFactor = Mathf.Clamp(targetDistance / maxSpeed, 0f, 1f);
+            float slowingFactor = Mathf.Clamp01(targetDistance / slowingDistance);
+            float targetSpeed = maxSpeed * slowingFactor;
+            Vector3 targetVelocity = targetDirection * targetSpeed;
+            Vector3 targetForce = (targetVelocity - drone.Rb.velocity) * maxForce;
+
+            // Combine forces and apply to Rigidbody
+            Vector3 totalForce = thrustForce + targetForce;
+            drone.Rb.AddForce(totalForce, ForceMode.Force);
             
-                // Stop if close enough to the target
-                /*if (Vector3.Distance(drone.transform.position, target.position) < stoppingDistance)
-                {
-                    drone.Rb.velocity = Vector3.zero;
-                }*/
+            // Rotate towards the target direction
+            if (drone.Rb.velocity.magnitude > 0.1f)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(drone.Rb.velocity.normalized, Vector3.up);
+                drone.transform.rotation = Quaternion.Slerp(drone.transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
             }
+
+            // Calculate the rotation towards the direction of movement
+            /*if (drone.Rb.velocity.magnitude > 0.1f)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(drone.Rb.velocity.normalized, drone.transform.up);
+                drone.transform.rotation = Quaternion.Slerp(drone.transform.rotation, targetRotation, Time.deltaTime * 10f);
+            }*/
         }
     }
 }
