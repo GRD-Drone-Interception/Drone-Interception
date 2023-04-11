@@ -1356,9 +1356,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   droneConfigData: {fileID: 11400000, guid: 7211252deed062241a878a4dddec34c3, type: 2}
-  behaviours:
+  defaultBehaviours:
   - {fileID: 11400000, guid: a141764e149dab54cb8d206967d42ac4, type: 2}
-  meshRenderers:
+  dynamicBehaviours: []
+  decalMeshRenderers:
   - {fileID: 1062432374932488837}
   - {fileID: 3414934504732052997}
   - {fileID: 3882169077592247476}

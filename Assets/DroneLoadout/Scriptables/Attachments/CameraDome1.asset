@@ -18,7 +18,8 @@ MonoBehaviour:
   DronePrefab: {fileID: 2813402458401724523, guid: 72d4853e97ad0e14e9e197ffe409293a, type: 3}
   PrefabSprite: {fileID: 21300000, guid: 26c475182d4272648a8f9b92c9fb0d68, type: 3}
   PrefabDataPath: Attachments/CameraDome1
-  DroneBehaviours: []
+  DroneBehaviours:
+  - {fileID: 11400000, guid: a400a0469648e6a46a4a654a31f1d031, type: 2}
   DecalColour: {r: 0, g: 0, b: 0, a: 0}
   cost: 6
   range: 7

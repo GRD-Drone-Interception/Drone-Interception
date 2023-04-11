@@ -69,8 +69,7 @@ namespace Testing
         private void SpawnDrone(DroneConfigData droneConfigData, Vector3 hitPoint)
         {
             // Load default drone prefab from resources file
-            GameObject dronePrefab = Resources.Load<GameObject>(droneConfigData.PrefabDataPath);
-            GameObject spawnedDrone = Instantiate(dronePrefab);
+            GameObject spawnedDrone = Instantiate(droneConfigData.DronePrefab);
             var drone = spawnedDrone.GetComponent<Drone>();
 
             // Assemble the drone data

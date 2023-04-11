@@ -23,8 +23,9 @@ namespace DroneLoadout.Scripts
         public Rigidbody Rb { get; private set; }
         public int NumOfMountedAttachments { get; private set; }
 
-        [SerializeField] private DroneConfigData droneConfigData; 
-        [SerializeField] private List<DroneBehaviour> behaviours = new();
+        [SerializeField] private DroneConfigData droneConfigData;
+        [SerializeField] private List<DroneBehaviour> defaultBehaviours = new();
+        [SerializeField] private List<DroneBehaviour> dynamicBehaviours = new();
         [FormerlySerializedAs("meshRenderers")] [SerializeField] private List<MeshRenderer> decalMeshRenderers;
         private readonly List<AttachmentPoint> _attachmentPoints = new();
         private readonly Dictionary<DroneAttachmentType, int> _attachmentTypeCount = new();
@@ -44,7 +45,11 @@ namespace DroneLoadout.Scripts
 
         private void Update()
         {
-            foreach (var behaviour in behaviours)
+            foreach (var behaviour in defaultBehaviours)
+            {
+                behaviour.UpdateBehaviour(this);
+            }
+            foreach (var behaviour in dynamicBehaviours)
             {
                 behaviour.UpdateBehaviour(this);
             }
@@ -52,7 +57,11 @@ namespace DroneLoadout.Scripts
 
         private void FixedUpdate()
         {
-            foreach (var behaviour in behaviours)
+            foreach (var behaviour in defaultBehaviours)
+            {
+                behaviour.FixedUpdateBehaviour(this);
+            }
+            foreach (var behaviour in dynamicBehaviours)
             {
                 behaviour.FixedUpdateBehaviour(this);
             }
@@ -97,7 +106,7 @@ namespace DroneLoadout.Scripts
                 if (!_attachmentTypeCount.ContainsKey(droneAttachment.Data.AttachmentType))
                 {
                     _attachmentTypeCount.Add(droneAttachment.Data.AttachmentType, 0);
-                    behaviours.Add(droneAttachment.Data.DroneBehaviours[0]);
+                    dynamicBehaviours.Add(droneAttachment.Data.DroneBehaviours[0]);
                 }
                 // Increment the count for the attachment type
                 _attachmentTypeCount[droneAttachment.Data.AttachmentType]++;
@@ -125,7 +134,7 @@ namespace DroneLoadout.Scripts
                 {
                     // If there are no more attachments of this type, remove the associated behaviour
                     _attachmentTypeCount.Remove(attachmentPoint.GetAttachmentType());
-                    behaviours.Remove(attachmentPoint.GetDroneAttachment().Data.DroneBehaviours[0]);
+                    dynamicBehaviours.Remove(attachmentPoint.GetDroneAttachment().Data.DroneBehaviours[0]);
                 }
             }
 
@@ -162,7 +171,7 @@ namespace DroneLoadout.Scripts
             {
                 if (point.GetDroneAttachment())
                 {
-                    point.GetDroneAttachment().Data.DroneBehaviours.ForEach(behaviour => behaviours.Remove(behaviour)); 
+                    point.GetDroneAttachment().Data.DroneBehaviours.ForEach(behaviour => dynamicBehaviours.Remove(behaviour)); 
                     OnDroneDecorationRemoved?.Invoke(this, point.GetDroneAttachment());
                     point.RemoveDroneAttachment();
                 }
@@ -187,6 +196,7 @@ namespace DroneLoadout.Scripts
                     meshRenderer.material.color = colour;
                 }
             }
+            _paintJob = _originalMaterialColours[0];
         }
 
         public Color GetPaintJob()

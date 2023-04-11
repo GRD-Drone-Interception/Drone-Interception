@@ -65,9 +65,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   droneConfigData: {fileID: 11400000, guid: d5d8374e8a94b1041b431ca3453c11df, type: 2}
-  behaviours:
+  defaultBehaviours:
   - {fileID: 11400000, guid: a141764e149dab54cb8d206967d42ac4, type: 2}
-  meshRenderers:
+  dynamicBehaviours: []
+  decalMeshRenderers:
   - {fileID: 5638369279266988445}
 --- !u!1 &5578647109340454320
 GameObject:

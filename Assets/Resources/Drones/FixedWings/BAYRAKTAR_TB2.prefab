@@ -228,9 +228,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   droneConfigData: {fileID: 11400000, guid: a3089a8106f8e6c47a38c9ebf4e9c0a9, type: 2}
-  behaviours:
+  defaultBehaviours:
   - {fileID: 11400000, guid: a141764e149dab54cb8d206967d42ac4, type: 2}
-  meshRenderers:
+  dynamicBehaviours: []
+  decalMeshRenderers:
   - {fileID: 7300903145485879732}
 --- !u!1001 &1808194110
 PrefabInstance:

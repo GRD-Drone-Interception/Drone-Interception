@@ -16454,7 +16454,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44dccc4415540e8803c5e76e65029db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingBuildBudget: 10000
+  startingBuildBudget: 100000000
 --- !u!1 &862460681
 GameObject:
   m_ObjectHideFlags: 0
@@ -36830,7 +36830,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: BAIRAKTAR NW1
+  m_text: BAYRAKTAR TB2
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b9021da1bb66085448b6fd78b42d03a0, type: 2}
   m_sharedMaterial: {fileID: -8892851194161040175, guid: b9021da1bb66085448b6fd78b42d03a0, type: 2}
