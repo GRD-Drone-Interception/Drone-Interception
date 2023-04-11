@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3290401711523636370}
   - component: {fileID: 3290401711523636369}
   - component: {fileID: 3290401711523636368}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Matrice300Rtk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,6 +157,7 @@ MonoBehaviour:
   dynamicBehaviours: []
   decalMeshRenderers:
   - {fileID: 3290401711523636399}
+  outlineShaderMaterial: {fileID: 2100000, guid: 45a13ad774152ea46b4eb932fbbc7c6c, type: 2}
 --- !u!1 &6053727527187228492
 GameObject:
   m_ObjectHideFlags: 0

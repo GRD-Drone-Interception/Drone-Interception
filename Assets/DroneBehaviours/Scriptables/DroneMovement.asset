@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: DroneMovement
   m_EditorClassIdentifier: 
   thrust: 10
-  hoverHeight: 1
+  hoverHeight: 14.69
   hoverForce: 10
-  maxSpeed: 25
-  maxForce: 5
+  maxSpeed: 10
+  maxForce: 20
   slowingDistance: 20
   rotationSpeed: 2

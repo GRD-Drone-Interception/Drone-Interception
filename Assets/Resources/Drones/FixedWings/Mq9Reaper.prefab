@@ -1284,7 +1284,7 @@ GameObject:
   - component: {fileID: 2290178057615028568}
   - component: {fileID: -5098799538381983854}
   - component: {fileID: 2290178057615028575}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Mq9Reaper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1365,6 +1365,7 @@ MonoBehaviour:
   - {fileID: 3882169077592247476}
   - {fileID: 6255725785221998700}
   - {fileID: 6022839460752860894}
+  outlineShaderMaterial: {fileID: 2100000, guid: 1894a6135fe025e4cba90249c0d995a2, type: 2}
 --- !u!1 &2330674425958683243
 GameObject:
   m_ObjectHideFlags: 0

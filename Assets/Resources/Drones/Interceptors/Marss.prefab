@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4073431254673780977}
   - component: {fileID: 7465076818261419470}
   - component: {fileID: 4073431254673780978}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Marss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,6 +70,7 @@ MonoBehaviour:
   dynamicBehaviours: []
   decalMeshRenderers:
   - {fileID: 5638369279266988445}
+  outlineShaderMaterial: {fileID: 2100000, guid: 45a13ad774152ea46b4eb932fbbc7c6c, type: 2}
 --- !u!1 &5578647109340454320
 GameObject:
   m_ObjectHideFlags: 0
@@ -83,7 +84,7 @@ GameObject:
   - component: {fileID: 4597476713514506647}
   - component: {fileID: 3720352651831176049}
   - component: {fileID: 6354480676265425202}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AttachmentPoint (2) (Decal)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -195,7 +196,7 @@ GameObject:
   - component: {fileID: 2579169224101968264}
   - component: {fileID: 366170962208341092}
   - component: {fileID: 3037946268654826301}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AttachmentPoint (1) (Camera)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -306,7 +307,7 @@ GameObject:
   - component: {fileID: 5204716492996563050}
   - component: {fileID: 5638369279266988445}
   - component: {fileID: 1603144975}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: node_id3
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -26,11 +26,14 @@ namespace DroneLoadout.Scripts
         [SerializeField] private DroneConfigData droneConfigData;
         [SerializeField] private List<DroneBehaviour> defaultBehaviours = new();
         [SerializeField] private List<DroneBehaviour> dynamicBehaviours = new();
+        [Space]
         [FormerlySerializedAs("meshRenderers")] [SerializeField] private List<MeshRenderer> decalMeshRenderers;
+        [SerializeField] private Material outlineShaderMaterial;
         private readonly List<AttachmentPoint> _attachmentPoints = new();
         private readonly Dictionary<DroneAttachmentType, int> _attachmentTypeCount = new();
         private Dictionary<int, DroneAttachmentType> _attachmentPointTypeIndex = new();
         private readonly List<Color> _originalMaterialColours = new();
+        private readonly List<Material> _originalMaterials = new();
         private Color _paintJob;
         private PlayerTeam _playerTeam;
 
@@ -41,6 +44,8 @@ namespace DroneLoadout.Scripts
             _attachmentPoints.AddRange(GetComponentsInChildren<AttachmentPoint>());
             decalMeshRenderers.ForEach(ctx => _originalMaterialColours.Add(ctx.material.color));
             _paintJob = _originalMaterialColours[0];
+            
+            
         }
 
         private void Update()
@@ -177,6 +182,58 @@ namespace DroneLoadout.Scripts
                 }
             }
         }
+
+        /*public void ApplyOutlineEffect()
+        {
+            SetMaterials(transform, outlineShaderMaterial);
+        }
+
+        public void RemoveOutlineEffect()
+        {
+            SetMaterials(transform, _originalMaterials[0]);
+        }
+        
+        private void SetMaterials(Transform parent, Material newMaterial)
+        {
+            foreach (Transform child in parent)
+            {
+                // Check if the child object has a Renderer component
+                Renderer renderer = child.GetComponent<Renderer>();
+                if (renderer != null)
+                {
+                    // Get all the materials on the child object and set them to the newMaterial
+                    Material[] materials = renderer.materials;
+                    for (int i = 0; i < materials.Length; i++)
+                    {
+                        materials[i] = newMaterial;
+                    }
+                    renderer.materials = materials;
+                }
+
+                // Recursively call CollectMaterials on each child object
+                SetMaterials(child, newMaterial);
+            }
+        }
+        
+        private void CollectMaterials(Transform parent)
+        {
+            foreach (Transform child in parent)
+            {
+                // Check if the child object has a Renderer component
+                Renderer renderer = child.GetComponent<Renderer>();
+                if (renderer != null)
+                {
+                    // Add all the materials on the child object to the materialsList
+                    foreach (Material material in renderer.materials)
+                    {
+                        _originalMaterials.Add(material);
+                    }
+                }
+
+                // Recursively call CollectMaterials on each child object
+                CollectMaterials(child);
+            }
+        }*/
 
         public void Paint(Color colour)
         {
