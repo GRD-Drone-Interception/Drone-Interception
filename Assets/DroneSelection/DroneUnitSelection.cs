@@ -9,24 +9,22 @@ namespace DroneSelection
     {
         [SerializeField] private Camera tacticalCamera;
         [SerializeField] private LayerMask clickableLayer;
-
         [SerializeField] private RectTransform boxVisual;
-        private Rect selectionBox;
+        private Rect _selectionBox;
+        private Vector2 _startPosition = Vector2.zero;
+        private Vector2 _endPosition = Vector2.zero;
 
-        private Vector2 startPosition = Vector2.zero;
-        private Vector2 endPosition = Vector2.zero;
-
-        void Start()
+        private void Start()
         {
             DrawVisual();
         }
 
-        void Update()
+        private void Update()
         {
             if(Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
             {
-                startPosition = Input.mousePosition;
-                selectionBox = new Rect();
+                _startPosition = Input.mousePosition;
+                _selectionBox = new Rect();
 
                 Ray ray = tacticalCamera.ScreenPointToRay(Input.mousePosition);
 
@@ -52,16 +50,17 @@ namespace DroneSelection
 
             if(Input.GetMouseButton(0))
             {
-                endPosition = Input.mousePosition;
+                _endPosition = Input.mousePosition;
                 DrawVisual();
                 DrawSelection();
+                SelectUnits();
             }
 
             if (Input.GetMouseButtonUp(0))
             {
-                SelectUnits();
-                startPosition = Vector2.zero;
-                endPosition   = Vector2.zero;
+                //SelectUnits();
+                _startPosition = Vector2.zero;
+                _endPosition   = Vector2.zero;
                 DrawVisual();
             }
         }
@@ -71,40 +70,44 @@ namespace DroneSelection
         /// </summary>
         private void SelectUnits()
         {
-            foreach (Drone unit in DroneManager.ActiveDrones)
+            foreach (Drone unit in DroneManager.Drones)
             {
-                if (selectionBox.Contains(tacticalCamera.WorldToScreenPoint(unit.gameObject.transform.position)))
+                if (_selectionBox.Contains(tacticalCamera.WorldToScreenPoint(unit.gameObject.transform.position)))
                 {
                     DroneManager.Instance.DragSelect(unit);
+                }
+                else if(!Input.GetKey(KeyCode.LeftShift))
+                {
+                    DroneManager.Instance.Deselect(unit);
                 }
             }
         }
 
         /// <summary>
-        /// Ssets the box's vertex positions
+        /// Sets the box's vertex positions
         /// </summary>
         private void DrawSelection()
         {
-            if(Input.mousePosition.x < startPosition.x)
+            if(Input.mousePosition.x < _startPosition.x)
             {
-                selectionBox.xMin = Input.mousePosition.x;
-                selectionBox.xMax = startPosition.x;
+                _selectionBox.xMin = Input.mousePosition.x;
+                _selectionBox.xMax = _startPosition.x;
             }
             else
             {
-                selectionBox.xMin = startPosition.x;
-                selectionBox.xMax = Input.mousePosition.x;
+                _selectionBox.xMin = _startPosition.x;
+                _selectionBox.xMax = Input.mousePosition.x;
             }
 
-            if (Input.mousePosition.y < startPosition.y)
+            if (Input.mousePosition.y < _startPosition.y)
             {
-                selectionBox.yMin = Input.mousePosition.y;
-                selectionBox.yMax = startPosition.y;
+                _selectionBox.yMin = Input.mousePosition.y;
+                _selectionBox.yMax = _startPosition.y;
             }
             else
             {
-                selectionBox.yMin = startPosition.y;
-                selectionBox.yMax = Input.mousePosition.y;
+                _selectionBox.yMin = _startPosition.y;
+                _selectionBox.yMax = Input.mousePosition.y;
             }
         }
 
@@ -113,8 +116,8 @@ namespace DroneSelection
         /// </summary>
         private void DrawVisual()
         {
-            Vector2 boxStart = startPosition;
-            Vector2 boxEnd   = endPosition;
+            Vector2 boxStart = _startPosition;
+            Vector2 boxEnd   = _endPosition;
 
             Vector2 boxCenter = (boxStart + boxEnd) / 2;
             boxVisual.position = boxCenter;

@@ -21,8 +21,8 @@ namespace DroneLoadout.Scripts
         {
             if (_droneWorkbench.DroneOnBench != null)
             {
-                droneTypeText.text = $"DRONE TYPE: {_droneWorkbench.DroneOnBench.DroneConfigData.DroneType}";
-                droneModelText.text = $"DRONE MODEL: {_droneWorkbench.DroneOnBench.DroneConfigData.DroneName}";
+                droneTypeText.text = $"DRONE TYPE: {_droneWorkbench.DroneOnBench.GetDroneType()}";
+                droneModelText.text = $"DRONE MODEL: {_droneWorkbench.DroneOnBench.GetName()}";
                 droneModsText.text = $"MODS: {_droneWorkbench.DroneOnBench.NumOfMountedAttachments}";
                 droneCostText.text = $"COST: {_droneWorkbench.DroneOnBench.DecorableDrone.Cost:C0}";
                 droneRangeText.text = $"RANGE: {_droneWorkbench.DroneOnBench.DecorableDrone.Range}km";

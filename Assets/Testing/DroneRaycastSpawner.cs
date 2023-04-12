@@ -73,16 +73,15 @@ namespace Testing
             var drone = spawnedDrone.GetComponent<Drone>();
 
             // Assemble the drone data
-            if (JsonFileHandler.CheckFileExists(drone.DroneConfigData.DroneName))
+            if (JsonFileHandler.CheckFileExists(drone.GetName()))
             {
-                DroneLoader.Assemble(drone);
+                DroneAttachmentsLoader.Assemble(drone);
             }
 
             spawnedDrone.transform.SetPositionAndRotation(hitPoint, Quaternion.identity);
             drone.SetTeam(TurnManager.Instance.CurrentTeam); 
             DroneManager.AddDrone(drone);
             OnDroneSpawned?.Invoke(spawnedDrone);
-            Debug.Log($"Drone Cost: {drone.DecorableDrone.Cost}");
         }
     
         /*public void TestSpawn(string input)

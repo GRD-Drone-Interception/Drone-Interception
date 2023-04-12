@@ -30,8 +30,8 @@ namespace DroneLoadout.Scripts
 
         private void UpdateDroneInfoUi(Drone drone, DroneAttachment droneAttachment)
         {
-            droneTypeText.text = $"DRONE TYPE: {drone.DroneConfigData.DroneType}";
-            droneModelText.text = $"DRONE MODEL: {drone.DroneConfigData.DroneName}";
+            droneTypeText.text = $"DRONE TYPE: {drone.GetDroneType()}";
+            droneModelText.text = $"DRONE MODEL: {drone.GetName()}";
             droneModsText.text = $"MODS: {drone.NumOfMountedAttachments}";
             droneCostText.text = $"COST: {drone.DecorableDrone.Cost:C0}";
             droneRangeText.text = $"RANGE: {drone.DecorableDrone.Range}km";

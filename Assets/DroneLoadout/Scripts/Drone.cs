@@ -19,16 +19,22 @@ namespace DroneLoadout.Scripts
         public event Action<Drone, DroneAttachment> OnDroneDecorationAdded;
         public event Action<Drone, DroneAttachment> OnDroneDecorationRemoved;
         public IDrone DecorableDrone { get; private set; }
-        public DroneConfigData DroneConfigData => droneConfigData;
         public Rigidbody Rb { get; private set; }
         public int NumOfMountedAttachments { get; private set; }
 
+        [Header("Drone Configuration")]
         [SerializeField] private DroneConfigData droneConfigData;
+        [Space(5)]
+        
+        [Header("Behaviours")]
         [SerializeField] private List<DroneBehaviour> defaultBehaviours = new();
         [SerializeField] private List<DroneBehaviour> dynamicBehaviours = new();
-        [Space]
+        [Space(5)]
+        
+        [Header("Decorations")]
         [FormerlySerializedAs("meshRenderers")] [SerializeField] private List<MeshRenderer> decalMeshRenderers;
         [SerializeField] private Material outlineShaderMaterial;
+        
         private readonly List<AttachmentPoint> _attachmentPoints = new();
         private readonly Dictionary<DroneAttachmentType, int> _attachmentTypeCount = new();
         private Dictionary<int, DroneAttachmentType> _attachmentPointTypeIndex = new();
@@ -44,8 +50,6 @@ namespace DroneLoadout.Scripts
             _attachmentPoints.AddRange(GetComponentsInChildren<AttachmentPoint>());
             decalMeshRenderers.ForEach(ctx => _originalMaterialColours.Add(ctx.material.color));
             _paintJob = _originalMaterialColours[0];
-            
-            
         }
 
         private void Update()
@@ -269,6 +273,22 @@ namespace DroneLoadout.Scripts
         public PlayerTeam GetTeam()
         {
             return _playerTeam;
+        }
+
+        /// <summary>
+        /// Returns the name of the drone model
+        /// </summary>
+        public string GetName()
+        {
+            return droneConfigData.DroneName;
+        }
+
+        /// <summary>
+        /// Returns the drone type of the drone model
+        /// </summary>
+        public DroneType GetDroneType()
+        {
+            return droneConfigData.DroneType;
         }
 
         public List<AttachmentPoint> GetAttachmentPoints() => _attachmentPoints;

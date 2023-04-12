@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using DroneLoadout;
 using DroneLoadout.Scripts;
 using UnityEngine;
 
@@ -8,6 +7,9 @@ namespace DroneBehaviours.Scripts
     public class DroneManager : MonoBehaviour
     {
         public static DroneManager Instance { get; private set; }
+        public static List<Drone> Drones { get; } = new();
+
+        private readonly List<Drone> _unitsSelected = new();
 
         private void Awake()
         {
@@ -22,25 +24,16 @@ namespace DroneBehaviours.Scripts
             }
         }
 
-        public static List<Drone> ActiveDrones => _activeActiveDrones;
-        private static List<Drone> _activeActiveDrones = new();
-
         public static void AddDrone(Drone drone)
         {
-            _activeActiveDrones.Add(drone);
+            Drones.Add(drone);
         }
 
         public static void RemoveDrone(Drone drone)
         {
-            _activeActiveDrones.Remove(drone);
+            Drones.Remove(drone);
         }
-        
-        
-        
-        
-        
-        public List<Drone> unitsSelected = new List<Drone>();
-        
+
         /// <summary>
         /// Selects unit on click
         /// </summary>
@@ -57,7 +50,7 @@ namespace DroneBehaviours.Scripts
         /// <param name="unitClicked">The droneUnit component of the hit collider</param>
         public void ShiftClickSelect(Drone unitClicked)
         {
-            if(!unitsSelected.Contains(unitClicked))
+            if(!_unitsSelected.Contains(unitClicked))
             {
                 Select(unitClicked);
             }
@@ -73,9 +66,9 @@ namespace DroneBehaviours.Scripts
         /// <param name="unitToAdd">The droneUnit component of the hit collider</param>
         public void DragSelect(Drone unitToAdd)
         {
-            if(!unitsSelected.Contains(unitToAdd))
+            if(!_unitsSelected.Contains(unitToAdd))
             {
-                unitsSelected.Add(unitToAdd);
+                _unitsSelected.Add(unitToAdd);
                 //unitToAdd.SetSelectionIcon(true);
                 unitToAdd.Paint(Color.green);
                 //unitToAdd.ApplyOutlineEffect();
@@ -87,13 +80,13 @@ namespace DroneBehaviours.Scripts
         /// </summary>
         public void DeselectAll()
         {
-            foreach (Drone unit in unitsSelected)
+            foreach (Drone unit in _unitsSelected)
             {
                 //unit.SetSelectionIcon(false);
                 unit.ResetPaintJob();
                 //unit.RemoveOutlineEffect();
             }
-            unitsSelected.Clear();
+            _unitsSelected.Clear();
         }
     
         /// <summary>
@@ -102,7 +95,7 @@ namespace DroneBehaviours.Scripts
         /// <param name="unitToAdd">The droneUnit component of the hit collider</param>
         private void Select(Drone unitToAdd)
         {
-            unitsSelected.Add(unitToAdd);
+            _unitsSelected.Add(unitToAdd);
             //unitToAdd.SetSelectionIcon(true);
             unitToAdd.Paint(Color.green);
             //unitToAdd.ApplyOutlineEffect();
@@ -112,9 +105,9 @@ namespace DroneBehaviours.Scripts
         /// Deselects an individual unit
         /// </summary>
         /// <param name="unitToRemove">The droneUnit component of the hit collider</param>
-        private void Deselect(Drone unitToRemove)
+        public void Deselect(Drone unitToRemove)
         {
-            unitsSelected.Remove(unitToRemove);
+            _unitsSelected.Remove(unitToRemove);
             //unitToRemove.SetSelectionIcon(false);
             unitToRemove.ResetPaintJob();
             //unitToRemove.RemoveOutlineEffect();
