@@ -19,14 +19,25 @@ namespace DroneLoadout.Scripts
         public event Action<Drone, DroneAttachment> OnDroneDecorationAdded;
         public event Action<Drone, DroneAttachment> OnDroneDecorationRemoved;
         public IDrone DecorableDrone { get; private set; }
-        public DroneConfigData DroneConfigData => droneConfigData;
         public Rigidbody Rb { get; private set; }
         public int NumOfMountedAttachments { get; private set; }
 
+        [Header("Drone Configuration")]
         [SerializeField] private DroneConfigData droneConfigData;
+        [Space(5)]
+        
+        [Header("Behaviours")]
         [SerializeField] private List<DroneBehaviour> defaultBehaviours = new();
         [SerializeField] private List<DroneBehaviour> dynamicBehaviours = new();
+        [Space(5)]
+        
+        [Header("Decorations")]
         [FormerlySerializedAs("meshRenderers")] [SerializeField] private List<MeshRenderer> decalMeshRenderers;
+        [SerializeField] private Material outlineMaterial;
+        private Dictionary<MeshRenderer, Material[]> _originalMaterials = new Dictionary<MeshRenderer, Material[]>();
+        private Material[] _outlinedMaterials;
+        private MeshRenderer _meshRenderer;
+
         private readonly List<AttachmentPoint> _attachmentPoints = new();
         private readonly Dictionary<DroneAttachmentType, int> _attachmentTypeCount = new();
         private Dictionary<int, DroneAttachmentType> _attachmentPointTypeIndex = new();
@@ -41,6 +52,26 @@ namespace DroneLoadout.Scripts
             _attachmentPoints.AddRange(GetComponentsInChildren<AttachmentPoint>());
             decalMeshRenderers.ForEach(ctx => _originalMaterialColours.Add(ctx.material.color));
             _paintJob = _originalMaterialColours[0];
+            
+            MeshRenderer meshRenderer = GetComponentInChildren<MeshRenderer>();
+            if (meshRenderer != null)
+            {
+                // Save the original materials for this mesh renderer if they haven't already been saved
+                if (!_originalMaterials.ContainsKey(meshRenderer))
+                {
+                    _originalMaterials[meshRenderer] = meshRenderer.materials;
+                }
+                
+                // Create an array of materials with the outline material to use on this mesh renderer
+                _outlinedMaterials = new Material[meshRenderer.materials.Length];
+                for (int i = 0; i < _outlinedMaterials.Length; i++) 
+                {
+                    _outlinedMaterials[i] = outlineMaterial;
+                }
+                
+                // Update the materials on this drone and all of its children to use the outlined materials
+                UpdateMaterialsRecursively(transform);
+            }
         }
 
         private void Update()
@@ -177,6 +208,22 @@ namespace DroneLoadout.Scripts
                 }
             }
         }
+        
+        public void Select()
+        {
+            foreach (var meshRenderer in _originalMaterials.Keys)
+            {
+                meshRenderer.materials = _outlinedMaterials;
+            }
+        }
+
+        public void Unselect()
+        {
+            foreach (var meshRenderer in _originalMaterials.Keys)
+            {
+                meshRenderer.materials = _originalMaterials[meshRenderer];
+            }
+        }
 
         public void Paint(Color colour)
         {
@@ -214,8 +261,43 @@ namespace DroneLoadout.Scripts
             return _playerTeam;
         }
 
+        /// <summary>
+        /// Returns the name of the drone model
+        /// </summary>
+        public string GetName()
+        {
+            return droneConfigData.DroneName;
+        }
+
+        /// <summary>
+        /// Returns the drone type of the drone model
+        /// </summary>
+        public DroneType GetDroneType()
+        {
+            return droneConfigData.DroneType;
+        }
+
         public List<AttachmentPoint> GetAttachmentPoints() => _attachmentPoints;
 
         public Dictionary<int, DroneAttachmentType> GetAttachmentPointTypeIndex() => _attachmentPointTypeIndex;
+        
+        private void UpdateMaterialsRecursively(Transform currentTransform)
+        {
+            var meshRenderer = currentTransform.GetComponent<MeshRenderer>();
+            if (meshRenderer != null)
+            {
+                if (!_originalMaterials.ContainsKey(meshRenderer))
+                {
+                    _originalMaterials[meshRenderer] = meshRenderer.materials;
+                }
+                meshRenderer.materials = _outlinedMaterials;
+            }
+            
+            // Recurse over children
+            foreach (Transform child in currentTransform)
+            {
+                UpdateMaterialsRecursively(child);
+            }
+        }
     }
 }
