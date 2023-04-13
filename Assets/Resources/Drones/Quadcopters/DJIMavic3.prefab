@@ -8507,7 +8507,7 @@ MonoBehaviour:
   - {fileID: 4183583682836767554}
   - {fileID: 458805090988943807}
   - {fileID: 5459406698769452191}
-  outlineShaderMaterial: {fileID: 2100000, guid: a936cfe51f948e04f96a7b0308e89d9e, type: 2}
+  outlineMaterial: {fileID: 2100000, guid: a936cfe51f948e04f96a7b0308e89d9e, type: 2}
 --- !u!1 &4069831179865889262
 GameObject:
   m_ObjectHideFlags: 0

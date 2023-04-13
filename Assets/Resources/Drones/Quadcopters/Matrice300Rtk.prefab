@@ -157,7 +157,7 @@ MonoBehaviour:
   dynamicBehaviours: []
   decalMeshRenderers:
   - {fileID: 3290401711523636399}
-  outlineShaderMaterial: {fileID: 2100000, guid: 45a13ad774152ea46b4eb932fbbc7c6c, type: 2}
+  outlineMaterial: {fileID: 2100000, guid: 400ea943ec9dccf4a831053b8a80fb4e, type: 2}
 --- !u!1 &6053727527187228492
 GameObject:
   m_ObjectHideFlags: 0

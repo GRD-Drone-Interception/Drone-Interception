@@ -33,13 +33,15 @@ namespace DroneLoadout.Scripts
         
         [Header("Decorations")]
         [FormerlySerializedAs("meshRenderers")] [SerializeField] private List<MeshRenderer> decalMeshRenderers;
-        [SerializeField] private Material outlineShaderMaterial;
-        
+        [SerializeField] private Material outlineMaterial;
+        private Dictionary<MeshRenderer, Material[]> _originalMaterials = new Dictionary<MeshRenderer, Material[]>();
+        private Material[] _outlinedMaterials;
+        private MeshRenderer _meshRenderer;
+
         private readonly List<AttachmentPoint> _attachmentPoints = new();
         private readonly Dictionary<DroneAttachmentType, int> _attachmentTypeCount = new();
         private Dictionary<int, DroneAttachmentType> _attachmentPointTypeIndex = new();
         private readonly List<Color> _originalMaterialColours = new();
-        private readonly List<Material> _originalMaterials = new();
         private Color _paintJob;
         private PlayerTeam _playerTeam;
 
@@ -50,6 +52,26 @@ namespace DroneLoadout.Scripts
             _attachmentPoints.AddRange(GetComponentsInChildren<AttachmentPoint>());
             decalMeshRenderers.ForEach(ctx => _originalMaterialColours.Add(ctx.material.color));
             _paintJob = _originalMaterialColours[0];
+            
+            MeshRenderer meshRenderer = GetComponentInChildren<MeshRenderer>();
+            if (meshRenderer != null)
+            {
+                // Save the original materials for this mesh renderer if they haven't already been saved
+                if (!_originalMaterials.ContainsKey(meshRenderer))
+                {
+                    _originalMaterials[meshRenderer] = meshRenderer.materials;
+                }
+                
+                // Create an array of materials with the outline material to use on this mesh renderer
+                _outlinedMaterials = new Material[meshRenderer.materials.Length];
+                for (int i = 0; i < _outlinedMaterials.Length; i++) 
+                {
+                    _outlinedMaterials[i] = outlineMaterial;
+                }
+                
+                // Update the materials on this drone and all of its children to use the outlined materials
+                UpdateMaterialsRecursively(transform);
+            }
         }
 
         private void Update()
@@ -186,58 +208,22 @@ namespace DroneLoadout.Scripts
                 }
             }
         }
-
-        /*public void ApplyOutlineEffect()
-        {
-            SetMaterials(transform, outlineShaderMaterial);
-        }
-
-        public void RemoveOutlineEffect()
-        {
-            SetMaterials(transform, _originalMaterials[0]);
-        }
         
-        private void SetMaterials(Transform parent, Material newMaterial)
+        public void Select()
         {
-            foreach (Transform child in parent)
+            foreach (var meshRenderer in _originalMaterials.Keys)
             {
-                // Check if the child object has a Renderer component
-                Renderer renderer = child.GetComponent<Renderer>();
-                if (renderer != null)
-                {
-                    // Get all the materials on the child object and set them to the newMaterial
-                    Material[] materials = renderer.materials;
-                    for (int i = 0; i < materials.Length; i++)
-                    {
-                        materials[i] = newMaterial;
-                    }
-                    renderer.materials = materials;
-                }
-
-                // Recursively call CollectMaterials on each child object
-                SetMaterials(child, newMaterial);
+                meshRenderer.materials = _outlinedMaterials;
             }
         }
-        
-        private void CollectMaterials(Transform parent)
-        {
-            foreach (Transform child in parent)
-            {
-                // Check if the child object has a Renderer component
-                Renderer renderer = child.GetComponent<Renderer>();
-                if (renderer != null)
-                {
-                    // Add all the materials on the child object to the materialsList
-                    foreach (Material material in renderer.materials)
-                    {
-                        _originalMaterials.Add(material);
-                    }
-                }
 
-                // Recursively call CollectMaterials on each child object
-                CollectMaterials(child);
+        public void Unselect()
+        {
+            foreach (var meshRenderer in _originalMaterials.Keys)
+            {
+                meshRenderer.materials = _originalMaterials[meshRenderer];
             }
-        }*/
+        }
 
         public void Paint(Color colour)
         {
@@ -294,5 +280,24 @@ namespace DroneLoadout.Scripts
         public List<AttachmentPoint> GetAttachmentPoints() => _attachmentPoints;
 
         public Dictionary<int, DroneAttachmentType> GetAttachmentPointTypeIndex() => _attachmentPointTypeIndex;
+        
+        private void UpdateMaterialsRecursively(Transform currentTransform)
+        {
+            var meshRenderer = currentTransform.GetComponent<MeshRenderer>();
+            if (meshRenderer != null)
+            {
+                if (!_originalMaterials.ContainsKey(meshRenderer))
+                {
+                    _originalMaterials[meshRenderer] = meshRenderer.materials;
+                }
+                meshRenderer.materials = _outlinedMaterials;
+            }
+            
+            // Recurse over children
+            foreach (Transform child in currentTransform)
+            {
+                UpdateMaterialsRecursively(child);
+            }
+        }
     }
 }

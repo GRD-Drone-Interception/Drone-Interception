@@ -69,9 +69,7 @@ namespace DroneBehaviours.Scripts
             if(!_unitsSelected.Contains(unitToAdd))
             {
                 _unitsSelected.Add(unitToAdd);
-                //unitToAdd.SetSelectionIcon(true);
-                unitToAdd.Paint(Color.green);
-                //unitToAdd.ApplyOutlineEffect();
+                unitToAdd.Select();
             }
         }
     
@@ -82,9 +80,7 @@ namespace DroneBehaviours.Scripts
         {
             foreach (Drone unit in _unitsSelected)
             {
-                //unit.SetSelectionIcon(false);
-                unit.ResetPaintJob();
-                //unit.RemoveOutlineEffect();
+                unit.Unselect();
             }
             _unitsSelected.Clear();
         }
@@ -96,9 +92,7 @@ namespace DroneBehaviours.Scripts
         private void Select(Drone unitToAdd)
         {
             _unitsSelected.Add(unitToAdd);
-            //unitToAdd.SetSelectionIcon(true);
-            unitToAdd.Paint(Color.green);
-            //unitToAdd.ApplyOutlineEffect();
+            unitToAdd.Select();
         }
     
         /// <summary>
@@ -108,9 +102,7 @@ namespace DroneBehaviours.Scripts
         public void Deselect(Drone unitToRemove)
         {
             _unitsSelected.Remove(unitToRemove);
-            //unitToRemove.SetSelectionIcon(false);
-            unitToRemove.ResetPaintJob();
-            //unitToRemove.RemoveOutlineEffect();
+            unitToRemove.Unselect();
         }
     }
 }
