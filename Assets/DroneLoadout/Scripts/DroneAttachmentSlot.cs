@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using UnityEngine.UI;
+using Utility;
 
 namespace DroneLoadout.Scripts
 {
@@ -81,6 +82,16 @@ namespace DroneLoadout.Scripts
                 {
                     _attachmentPoint.GetDroneAttachment().Pulsate(true);
                 }
+                
+                if (AttachmentType == DroneAttachmentType.Decal)
+                {
+                    _drone.RemoveBlueprintShader();
+                }
+                else
+                {
+                    _drone.ApplyBlueprintShader();
+                }
+                
                 OnAttachmentSlotSelected?.Invoke(this);
             }
             else

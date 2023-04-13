@@ -288,6 +288,7 @@ MonoBehaviour:
   - {fileID: 5993576355726302450}
   - {fileID: 3312341789176486417}
   outlineMaterial: {fileID: 2100000, guid: 780b847f2ccc8424890bc0381dcdb6ee, type: 2}
+  blueprintMaterial: {fileID: 2100000, guid: d15740cca65f3064bbf49ab07e015c05, type: 2}
 --- !u!1 &5985107246547888454
 GameObject:
   m_ObjectHideFlags: 0

@@ -100,12 +100,14 @@ namespace DroneWorkshop
             {
                 buyButton.GetComponentInChildren<TMP_Text>().text = "MODIFY";
                 sellButton.gameObject.SetActive(true);
+                DroneOnBench.RemoveBlueprintShader();
                 DroneAttachmentsLoader.Assemble(DroneOnBench);
             }
             else
             {
                 buyButton.GetComponentInChildren<TMP_Text>().text = "BUY";
                 sellButton.gameObject.SetActive(false);
+                DroneOnBench.ApplyBlueprintShader();
             }
             buyButton.gameObject.SetActive(true);
             editDroneButton.gameObject.SetActive(true);
@@ -139,6 +141,7 @@ namespace DroneWorkshop
                 }
             }
             SaveDroneData();
+            DroneOnBench.RemoveBlueprintShader();
             OnDronePurchased?.Invoke(DroneOnBench.DecorableDrone.Cost);
         }
 
@@ -148,7 +151,8 @@ namespace DroneWorkshop
             {
                 OnDroneSold?.Invoke(DroneOnBench.DecorableDrone.Cost);
                 DeleteDroneData();
-                
+                DroneOnBench.ApplyBlueprintShader();
+
                 // TODO: Clean up
                 foreach (var modelSpawner in _droneModelSpawners)
                 {
@@ -170,27 +174,10 @@ namespace DroneWorkshop
         private void SaveDroneData() 
         {
             // Assemble the drone data
-            DroneData droneData = new DroneData();
-            droneData.droneCost = DroneOnBench.DecorableDrone.Cost;
-            droneData.droneType = droneData.droneType;
-            droneData.numAttachments = DroneOnBench.GetAttachmentPoints().Count;
-            droneData.attachmentDictionaries = new List<AttachmentDictionary>();
-            droneData.attachmentDataPaths = new List<string>();
-            droneData.decalColour = DroneOnBench.GetPaintJob();
-            
-            int i = 0;
-            foreach (var mountedAttachmentIndex in DroneOnBench.GetAttachmentPointTypeIndex().Keys)
-            {
-                AttachmentDictionary attachmentDictionary = new AttachmentDictionary();
-                attachmentDictionary.attachmentPointIndex = mountedAttachmentIndex;
-                attachmentDictionary.attachmentType = DroneOnBench.GetAttachmentPointTypeIndex()[mountedAttachmentIndex];
-                droneData.attachmentDictionaries.Add(attachmentDictionary);
-                droneData.attachmentDataPaths.Add(DroneOnBench.GetAttachmentPoints()[mountedAttachmentIndex].GetDroneAttachment().Data.PrefabDataPath);
-                i++;
-            }
-            
+            DroneData droneData = new DroneData(DroneOnBench);
+
             // Save and write the data to the chosen file location
-            JsonFileHandler.Save(droneData, DroneOnBench.GetName());
+            JsonFileHandler.Save(droneData, droneData.droneName);
 
             buyButton.GetComponentInChildren<TMP_Text>().text = "MODIFY";
             sellButton.gameObject.SetActive(true);
@@ -227,11 +214,13 @@ namespace DroneWorkshop
                 {
                     buyButton.GetComponentInChildren<TMP_Text>().text = "MODIFY";
                     sellButton.gameObject.SetActive(true);
+                    DroneOnBench.RemoveBlueprintShader();
                 }
                 else
                 {
                     buyButton.GetComponentInChildren<TMP_Text>().text = "BUY";
                     sellButton.gameObject.SetActive(false);
+                    DroneOnBench.ApplyBlueprintShader();
                 }
             }
             else if (mode == WorkshopModeController.WorkshopMode.Edit)
@@ -240,6 +229,7 @@ namespace DroneWorkshop
                 exitEditButton.gameObject.SetActive(true);
                 buyButton.gameObject.SetActive(false);
                 sellButton.gameObject.SetActive(false);
+                DroneOnBench.ApplyBlueprintShader();
             }
         }
     }

@@ -3,7 +3,7 @@ using DroneLoadout.Scripts;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace DroneSelection
+namespace DroneSelection.Scripts
 {
     public class DroneUnitSelection : MonoBehaviour
     {

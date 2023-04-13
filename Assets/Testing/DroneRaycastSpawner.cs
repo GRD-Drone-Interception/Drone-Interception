@@ -85,20 +85,20 @@ namespace Testing
         }
     
         /*public void TestSpawn(string input)
-    {
-        int numOfDrones = int.Parse(input);
-
-        if (numOfDrones == 0 || numOfDrones > 20)
         {
-            Debug.LogError("You are trying to spawn too few or too many drones at once!");
-            return;
-        }
+            int numOfDrones = int.Parse(input);
 
-        for (int i = 0; i < int.Parse(input); i++)
-        {
-            Debug.LogError("Spawn drone");
-            //SpawnDrone();
-        }
-    }*/
+            if (numOfDrones == 0 || numOfDrones > 20)
+            {
+                Debug.LogError("You are trying to spawn too few or too many drones at once!");
+                return;
+            }
+
+            for (int i = 0; i < int.Parse(input); i++)
+            {
+                Debug.LogError("Spawn drone");
+                //SpawnDrone();
+            }
+        }*/
     }
 }

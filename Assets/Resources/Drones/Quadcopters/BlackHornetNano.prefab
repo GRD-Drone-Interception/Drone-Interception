@@ -140,6 +140,7 @@ MonoBehaviour:
   decalMeshRenderers:
   - {fileID: 5889031758413049469}
   outlineMaterial: {fileID: 2100000, guid: e32929006bc00964988b8fdf4a80f2a0, type: 2}
+  blueprintMaterial: {fileID: 2100000, guid: d15740cca65f3064bbf49ab07e015c05, type: 2}
 --- !u!1 &8555479184565073625
 GameObject:
   m_ObjectHideFlags: 0

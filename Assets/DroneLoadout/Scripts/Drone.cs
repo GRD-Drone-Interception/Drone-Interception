@@ -34,8 +34,10 @@ namespace DroneLoadout.Scripts
         [Header("Decorations")]
         [FormerlySerializedAs("meshRenderers")] [SerializeField] private List<MeshRenderer> decalMeshRenderers;
         [SerializeField] private Material outlineMaterial;
+        [SerializeField] private Material blueprintMaterial;
         private Dictionary<MeshRenderer, Material[]> _originalMaterials = new Dictionary<MeshRenderer, Material[]>();
         private Material[] _outlinedMaterials;
+        private Material[] _blueprintMaterials;
         private MeshRenderer _meshRenderer;
 
         private readonly List<AttachmentPoint> _attachmentPoints = new();
@@ -68,9 +70,16 @@ namespace DroneLoadout.Scripts
                 {
                     _outlinedMaterials[i] = outlineMaterial;
                 }
+
+                // Create an array of materials with the blueprint material to use on this mesh renderer
+                _blueprintMaterials = new Material[meshRenderer.materials.Length];
+                for (int i = 0; i < _blueprintMaterials.Length; i++)
+                {
+                    _blueprintMaterials[i] = blueprintMaterial;
+                }
                 
-                // Update the materials on this drone and all of its children to use the outlined materials
-                UpdateMaterialsRecursively(transform);
+                // Grab all materials on the drone and it's children and add it to a dictionary
+                GetMaterialsRecursively(transform);
             }
         }
 
@@ -225,6 +234,22 @@ namespace DroneLoadout.Scripts
             }
         }
 
+        public void ApplyBlueprintShader()
+        {
+            foreach (var meshRenderer in _originalMaterials.Keys)
+            {
+                meshRenderer.materials = _blueprintMaterials;
+            }
+        }
+
+        public void RemoveBlueprintShader()
+        {
+            foreach (var meshRenderer in _originalMaterials.Keys)
+            {
+                meshRenderer.materials = _originalMaterials[meshRenderer];
+            }
+        }
+
         public void Paint(Color colour)
         {
             _paintJob = colour;
@@ -281,7 +306,7 @@ namespace DroneLoadout.Scripts
 
         public Dictionary<int, DroneAttachmentType> GetAttachmentPointTypeIndex() => _attachmentPointTypeIndex;
         
-        private void UpdateMaterialsRecursively(Transform currentTransform)
+        private void GetMaterialsRecursively(Transform currentTransform)
         {
             var meshRenderer = currentTransform.GetComponent<MeshRenderer>();
             if (meshRenderer != null)
@@ -290,13 +315,12 @@ namespace DroneLoadout.Scripts
                 {
                     _originalMaterials[meshRenderer] = meshRenderer.materials;
                 }
-                meshRenderer.materials = _outlinedMaterials;
             }
             
             // Recurse over children
             foreach (Transform child in currentTransform)
             {
-                UpdateMaterialsRecursively(child);
+                GetMaterialsRecursively(child);
             }
         }
     }

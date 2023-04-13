@@ -5,7 +5,7 @@ using Utility;
 namespace Testing
 {
     /// <summary>
-    /// Loads the drone data from a JSON file and instantiates the corresponding drone prefab with saved attachments and decal color.
+    /// Loads the drone data for a given drone from file, and instantiates any attachments it has. 
     /// </summary>
     public abstract class DroneAttachmentsLoader
     {

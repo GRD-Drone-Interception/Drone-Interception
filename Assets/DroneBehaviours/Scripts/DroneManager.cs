@@ -41,7 +41,10 @@ namespace DroneBehaviours.Scripts
         public void ClickSelect(Drone unitClicked)
         {
             DeselectAll();
-            Select(unitClicked);
+            if (Drones.Contains(unitClicked))
+            {
+                Select(unitClicked);
+            }
         }
     
         /// <summary>
@@ -50,6 +53,11 @@ namespace DroneBehaviours.Scripts
         /// <param name="unitClicked">The droneUnit component of the hit collider</param>
         public void ShiftClickSelect(Drone unitClicked)
         {
+            if (!Drones.Contains(unitClicked))
+            {
+                return;
+            }
+
             if(!_unitsSelected.Contains(unitClicked))
             {
                 Select(unitClicked);
