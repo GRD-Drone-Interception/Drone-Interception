@@ -1,3 +1,4 @@
+using DroneWorkshop.Scripts;
 using TMPro;
 using UnityEngine;
 
@@ -13,9 +14,9 @@ namespace DroneLoadout.Scripts
         [SerializeField] private TMP_Text droneSpeedText;
         [SerializeField] private TMP_Text droneAccelerationText;
         [SerializeField] private TMP_Text droneWeightText;
-        private DroneWorkshop.DroneWorkbench _droneWorkbench;
+        private DroneWorkbench _droneWorkbench;
 
-        private void Awake() => _droneWorkbench = FindObjectOfType<DroneWorkshop.DroneWorkbench>();
+        private void Awake() => _droneWorkbench = FindObjectOfType<DroneWorkbench>();
 
         private void Update()
         {

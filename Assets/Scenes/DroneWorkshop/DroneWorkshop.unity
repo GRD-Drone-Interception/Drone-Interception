@@ -29415,6 +29415,7 @@ GameObject:
   - component: {fileID: 1533234971}
   - component: {fileID: 1533234970}
   - component: {fileID: 1533234972}
+  - component: {fileID: 1533234974}
   - component: {fileID: 1533234973}
   m_Layer: 0
   m_Name: Workbench
@@ -29469,11 +29470,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   droneSpawnPosition: {fileID: 1833482727}
   player: {fileID: 860975736}
-  buyButton: {fileID: 1569094419}
-  sellButton: {fileID: 205615090}
-  exitEditButton: {fileID: 101000059}
-  editDroneButton: {fileID: 1704232973}
-  resetDroneConfigButton: {fileID: 209568998}
 --- !u!114 &1533234973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29488,6 +29484,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manualRotationSpeed: 100
   autoRotationSpeed: 25
+--- !u!114 &1533234974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1533234967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43c289e930db2b3488b81526bdc07b1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  workbench: {fileID: 1533234972}
+  buyButton: {fileID: 1569094419}
+  sellButton: {fileID: 205615090}
+  editDroneButton: {fileID: 1704232973}
+  exitEditButton: {fileID: 101000059}
+  resetDroneConfigButton: {fileID: 209568998}
 --- !u!1 &1547092758
 GameObject:
   m_ObjectHideFlags: 0

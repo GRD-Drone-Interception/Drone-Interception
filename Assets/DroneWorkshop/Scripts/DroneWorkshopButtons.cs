@@ -1,42 +1,54 @@
+using System.Collections.Generic;
+using DroneLoadout.Scripts;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
+using Utility;
 
-namespace DroneWorkshop
+namespace DroneWorkshop.Scripts
 {
     /// <summary>
     /// Responsible for displaying the user interface for the drone workbench.
     /// </summary>
-    public class DroneWorkshopButtonManager : MonoBehaviour
+    public class DroneWorkshopButtons : MonoBehaviour
     {
-        /*[SerializeField] private Button buyButton; 
+        [SerializeField] private DroneWorkbench workbench;
+        [SerializeField] private Button buyButton; 
         [SerializeField] private Button sellButton;
-        [SerializeField] private Button exitEditButton;
         [SerializeField] private Button editDroneButton;
+        [SerializeField] private Button exitEditButton;
         [SerializeField] private Button resetDroneConfigButton;
         private readonly List<DroneModelSpawner> _droneModelSpawners = new();
-        private DroneWorkbench _workbench;
+        private TMP_Text _buyButtonText;
 
         private void Awake()
         {
-            _workbench = GetComponent<DroneWorkbench>();
             _droneModelSpawners.AddRange(FindObjectsOfType<DroneModelSpawner>());
+            _buyButtonText = buyButton.GetComponentInChildren<TMP_Text>();
         }
 
         private void OnEnable()
         {
-            buyButton.onClick.AddListener(BuyDrone);
-            sellButton.onClick.AddListener(SellDrone);
-            resetDroneConfigButton.onClick.AddListener(ResetCurrentDroneConfig);
-            _droneModelSpawners.ForEach(ctx => ctx.OnDroneModelSelected += BuildDrone);
+            buyButton.onClick.AddListener(OnBuyButtonPressed); 
+            sellButton.onClick.AddListener(OnSellButtonPressed);
+            editDroneButton.onClick.AddListener(UpdateVisibilityOfEditButtons);
+            exitEditButton.onClick.AddListener(UpdateVisibilityOfEditButtons);
+            resetDroneConfigButton.onClick.AddListener(workbench.ResetCurrentDrone);
+            _droneModelSpawners.ForEach(ctx => ctx.OnDroneModelSelected += OnDroneModelButtonsPressed);
+            WorkshopModeController.OnModeChange += OnWorkshopModeChanged;
         }
 
         private void OnDisable()
         {
-            buyButton.onClick.RemoveListener(BuyDrone);
-            sellButton.onClick.RemoveListener(SellDrone);
-            resetDroneConfigButton.onClick.RemoveListener(ResetCurrentDroneConfig);
-            _droneModelSpawners.ForEach(ctx => ctx.OnDroneModelSelected -= BuildDrone);
+            buyButton.onClick.RemoveListener(OnBuyButtonPressed);
+            sellButton.onClick.RemoveListener(OnSellButtonPressed);
+            editDroneButton.onClick.RemoveListener(UpdateVisibilityOfEditButtons);
+            exitEditButton.onClick.RemoveListener(UpdateVisibilityOfEditButtons);
+            resetDroneConfigButton.onClick.RemoveListener(workbench.ResetCurrentDrone);
+            _droneModelSpawners.ForEach(ctx => ctx.OnDroneModelSelected -= OnDroneModelButtonsPressed);
+            WorkshopModeController.OnModeChange -= OnWorkshopModeChanged;
         }
-
+        
         private void Start()
         {
             editDroneButton.gameObject.SetActive(false);
@@ -47,29 +59,26 @@ namespace DroneWorkshop
             
             foreach (var modelSpawner in _droneModelSpawners)
             {
-                if (DroneSaveSystem.CheckFileExists(modelSpawner.GetDroneModelName()))
+                if (JsonFileHandler.CheckFileExists(modelSpawner.GetDroneModelName()))
                 {
                     if (!modelSpawner.IsPurchased())
                     {
                         modelSpawner.SetPurchased(true);
-                        
-                        DroneData droneData = DroneSaveSystem.Load(modelSpawner.GetDroneModelName());
-                        _workbench.PurchaseDrone(droneData.droneCost);
                     }
                 }
             }
         }
-        
-        private void BuyDrone()
+
+        private void OnBuyButtonPressed()
         {
-            buyButton.GetComponentInChildren<TMP_Text>().text = "MODIFY";
+            workbench.BuyDrone();
+            _buyButtonText.text = "MODIFY";
             sellButton.gameObject.SetActive(true);
             exitEditButton.gameObject.SetActive(false);
             
-            // TODO: Clean up
             foreach (var modelSpawner in _droneModelSpawners)
             {
-                if (_workbench.DroneOnBench.DroneConfigData.DroneName == modelSpawner.GetDroneModelName())
+                if (workbench.DroneOnBench.GetName() == modelSpawner.GetDroneModelName())
                 {
                     if (!modelSpawner.IsPurchased())
                     {
@@ -77,21 +86,22 @@ namespace DroneWorkshop
                     }
                 }
             }
-            _workbench.BuyDrone();
         }
 
-        private void SellDrone()
+        private void OnSellButtonPressed()
         {
-            buyButton.GetComponentInChildren<TMP_Text>().text = "BUY";
-            buyButton.gameObject.SetActive(true);
+            workbench.SellDrone();
             sellButton.gameObject.SetActive(false);
-            editDroneButton.gameObject.SetActive(true);
-            exitEditButton.gameObject.SetActive(false);
+            _buyButtonText.text = "BUY";
+
+            if (!JsonFileHandler.CheckFileExists(workbench.DroneOnBench.GetName()))
+            {
+                exitEditButton.gameObject.SetActive(false);
+            }
             
-            // TODO: Clean up
             foreach (var modelSpawner in _droneModelSpawners)
             {
-                if (_workbench.DroneOnBench.DroneConfigData.DroneName == modelSpawner.GetDroneModelName())
+                if (workbench.DroneOnBench.GetName() == modelSpawner.GetDroneModelName())
                 {
                     if (modelSpawner.IsPurchased())
                     {
@@ -99,31 +109,31 @@ namespace DroneWorkshop
                     }
                 }
             }
-            _workbench.SellDrone();
         }
         
-        private void BuildDrone(GameObject prefab)
+        private void OnDroneModelButtonsPressed(GameObject prefab)
         {
-            if (DroneSaveSystem.CheckFileExists(_workbench.DroneOnBench.DroneConfigData.DroneName))
+            workbench.BuildDrone(prefab);
+            
+            if (JsonFileHandler.CheckFileExists(workbench.DroneOnBench.GetName()))
             {
-                buyButton.GetComponentInChildren<TMP_Text>().text = "MODIFY";
+                _buyButtonText.text = "MODIFY";
                 sellButton.gameObject.SetActive(true);
             }
             else
             {
-                buyButton.GetComponentInChildren<TMP_Text>().text = "BUY";
+                _buyButtonText.text = "BUY";
                 sellButton.gameObject.SetActive(false);
             }
             buyButton.gameObject.SetActive(true);
             editDroneButton.gameObject.SetActive(true);
             exitEditButton.gameObject.SetActive(false);
-            
-            _workbench.BuildDrone(prefab);
         }
         
-        private void ResetCurrentDroneConfig()
+        private void UpdateVisibilityOfEditButtons()
         {
-            
+            editDroneButton.gameObject.SetActive(WorkshopModeController.currentWorkshopMode == WorkshopModeController.WorkshopMode.Display);
+            exitEditButton.gameObject.SetActive(WorkshopModeController.currentWorkshopMode == WorkshopModeController.WorkshopMode.Edit);
         }
         
         private void OnWorkshopModeChanged(WorkshopModeController.WorkshopMode mode)
@@ -134,14 +144,14 @@ namespace DroneWorkshop
                 resetDroneConfigButton.gameObject.SetActive(false);
                 exitEditButton.gameObject.SetActive(false);
 
-                if (DroneSaveSystem.CheckFileExists(_workbench.DroneOnBench.DroneConfigData.DroneName))
+                if (JsonFileHandler.CheckFileExists(workbench.DroneOnBench.GetName()))
                 {
-                    buyButton.GetComponentInChildren<TMP_Text>().text = "MODIFY";
+                    _buyButtonText.text = "MODIFY";
                     sellButton.gameObject.SetActive(true);
                 }
                 else
                 {
-                    buyButton.GetComponentInChildren<TMP_Text>().text = "BUY";
+                    _buyButtonText.text = "BUY";
                     sellButton.gameObject.SetActive(false);
                 }
             }
@@ -152,6 +162,6 @@ namespace DroneWorkshop
                 buyButton.gameObject.SetActive(false);
                 sellButton.gameObject.SetActive(false);
             }
-        }*/
+        }
     }
 }

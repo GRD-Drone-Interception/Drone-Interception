@@ -8,6 +8,7 @@ using DroneLoadout.Factory;
 using DroneLoadout.Strategies;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Utility;
 
 namespace DroneLoadout.Scripts
 {
@@ -66,9 +67,19 @@ namespace DroneLoadout.Scripts
                 
                 // Create an array of materials with the outline material to use on this mesh renderer
                 _outlinedMaterials = new Material[meshRenderer.materials.Length];
-                for (int i = 0; i < _outlinedMaterials.Length; i++) 
+                for (int i = 0; i < _outlinedMaterials.Length; i++)
                 {
-                    _outlinedMaterials[i] = outlineMaterial;
+                    _outlinedMaterials[i] = new Material(outlineMaterial);
+                }
+                
+                // If saved data for the drone exists, update the materials with the saved drone colour data
+                if (JsonFileHandler.CheckFileExists(droneConfigData.DroneName))
+                {
+                    var savedDroneColour = JsonFileHandler.Load<DroneData>(droneConfigData.DroneName).decalColour;
+                    for (int i = 0; i < _outlinedMaterials.Length; i++) 
+                    {
+                        _outlinedMaterials[i].color = savedDroneColour;
+                    }
                 }
 
                 // Create an array of materials with the blueprint material to use on this mesh renderer

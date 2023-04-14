@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using DroneWorkshop.Scripts;
 using UnityEngine;
 
 namespace DroneLoadout.Scripts
@@ -13,9 +14,9 @@ namespace DroneLoadout.Scripts
         [SerializeField] private List<GameObject> droneAttachmentSlotTypePrefabs;
         private Dictionary<DroneAttachmentType, GameObject> _droneAttachmentTypePrefabDict;
         private readonly List<DroneAttachmentSlot> _droneAttachmentSlots = new();
-        private DroneWorkshop.DroneWorkbench _droneWorkbench;
+        private DroneWorkbench _droneWorkbench;
 
-        private void Awake() => _droneWorkbench = FindObjectOfType<DroneWorkshop.DroneWorkbench>();
+        private void Awake() => _droneWorkbench = FindObjectOfType<DroneWorkbench>();
 
         private void OnEnable()
         {
