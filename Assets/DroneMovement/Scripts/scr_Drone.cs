@@ -8,7 +8,6 @@ public class scr_Drone : MonoBehaviour
     public float arrivalDistance = 1f;
     public float separationDistance = 2f; // New variable for flocking behavior
     public Transform target;
-
     private Rigidbody rb;
     private Collider[] nearbyColliders; // New array for detecting nearby objects
     private scr_Drone[] nearbyDrones; // New array for storing nearby drone scripts
@@ -16,6 +15,7 @@ public class scr_Drone : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        transform.rotation = Quaternion.Euler(0f, 0f, 0f);
     }
 
     private void FixedUpdate()
@@ -89,7 +89,7 @@ public class scr_Drone : MonoBehaviour
 
             // Rotate towards flock direction
             float angle = Mathf.Atan2(flockDirection.y, flockDirection.x) * Mathf.Rad2Deg - 90f;
-            Quaternion targetRotation = Quaternion.Euler(new Vector3(0, 0, angle));
+            Quaternion targetRotation = Quaternion.Euler(new Vector3(-90f, 0f, angle));
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
     }
