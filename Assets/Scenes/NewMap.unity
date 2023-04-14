@@ -1038,12 +1038,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60c979077be58df46aec8882f98309d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 20
   rotationSpeed: 2
   maxVelocityChange: 10
-  arrivalDistance: 10
+  arrivalDistance: 0
   separationDistance: 10
-  target: {fileID: 0}
+  target: {fileID: 391969358}
 --- !u!114 &1704455519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1368,7 +1368,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1912012044}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7141b401654adaa4fb34c4afac9b367d, type: 3}
   m_Name: 
@@ -1388,7 +1388,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1912012044}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d901120bc18062444bab7175a3b26382, type: 3}
   m_Name: 
