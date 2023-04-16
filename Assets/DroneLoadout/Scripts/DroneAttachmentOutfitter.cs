@@ -89,7 +89,7 @@ namespace DroneLoadout.Scripts
             }
             else
             {
-                droneAttachmentSlot.GetDrone().Paint(droneAttachmentData.DecalColour);
+                droneAttachmentSlot.GetDrone().PaintDecals(droneAttachmentData.DecalColour);
             }
             
             Highlight();

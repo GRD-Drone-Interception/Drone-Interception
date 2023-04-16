@@ -22,6 +22,7 @@ namespace DroneLoadout.Scripts
         public IDrone DecorableDrone { get; private set; }
         public Rigidbody Rb { get; private set; }
         public int NumOfMountedAttachments { get; private set; }
+        public Color BlueprintColour => blueprintMaterial.color; // TODO: Clean up
 
         [Header("Drone Configuration")]
         [SerializeField] private DroneConfigData droneConfigData;
@@ -40,6 +41,7 @@ namespace DroneLoadout.Scripts
         private Material[] _outlinedMaterials;
         private Material[] _blueprintMaterials;
         private MeshRenderer _meshRenderer;
+        private Color _currentBlueprintColour;
 
         private readonly List<AttachmentPoint> _attachmentPoints = new();
         private readonly Dictionary<DroneAttachmentType, int> _attachmentTypeCount = new();
@@ -252,6 +254,22 @@ namespace DroneLoadout.Scripts
                 meshRenderer.materials = _blueprintMaterials;
             }
         }
+        
+        public void ApplyBlueprintShader(Color colour)
+        {
+            if (IsNewBlueprintColourApplied(colour))
+            {
+                _currentBlueprintColour = colour;
+                foreach (var meshRenderer in _originalMaterials.Keys)
+                {
+                    meshRenderer.materials = _blueprintMaterials;
+                    foreach (var material in meshRenderer.materials)
+                    {
+                        material.color = colour;
+                    }
+                }
+            }
+        }
 
         public void RemoveBlueprintShader()
         {
@@ -261,7 +279,7 @@ namespace DroneLoadout.Scripts
             }
         }
 
-        public void Paint(Color colour)
+        public void PaintDecals(Color colour)
         {
             _paintJob = colour;
             foreach (var meshRenderer in decalMeshRenderers)
@@ -316,6 +334,11 @@ namespace DroneLoadout.Scripts
         public List<AttachmentPoint> GetAttachmentPoints() => _attachmentPoints;
 
         public Dictionary<int, DroneAttachmentType> GetAttachmentPointTypeIndex() => _attachmentPointTypeIndex;
+
+        private bool IsNewBlueprintColourApplied(Color colour)
+        {
+            return _currentBlueprintColour != colour;
+        }
         
         private void GetMaterialsRecursively(Transform currentTransform)
         {

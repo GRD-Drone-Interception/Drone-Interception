@@ -27,7 +27,7 @@ namespace Testing
                 i++;
             }
 
-            drone.Paint(droneData.decalColour);
+            drone.PaintDecals(droneData.decalColour);
         }
     }
 }

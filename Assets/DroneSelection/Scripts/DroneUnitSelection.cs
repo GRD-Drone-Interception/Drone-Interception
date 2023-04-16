@@ -1,7 +1,6 @@
 using DroneBehaviours.Scripts;
 using DroneLoadout.Scripts;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 namespace DroneSelection.Scripts
 {
@@ -21,7 +20,12 @@ namespace DroneSelection.Scripts
 
         private void Update()
         {
-            if(Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
+            if (DroneDragAndDropSpawner.IsObjectInHand())
+            {
+                return;
+            }
+            
+            if(Input.GetMouseButtonDown(0))
             {
                 _startPosition = Input.mousePosition;
                 _selectionBox = new Rect();

@@ -154,7 +154,7 @@ GameObject:
   - component: {fileID: 8555479184565073629}
   - component: {fileID: 8555479184565073630}
   - component: {fileID: 8555479184565073631}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AttachmentPoint (2) (Propeller)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -266,7 +266,7 @@ GameObject:
   - component: {fileID: 8555479184745946219}
   - component: {fileID: 8555479184745946212}
   - component: {fileID: 8555479184745946213}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AttachmentPoint (1) (Camera)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -378,7 +378,7 @@ GameObject:
   - component: {fileID: 8555479184962562969}
   - component: {fileID: 8555479184962562970}
   - component: {fileID: 8555479184962562971}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AttachmentPoint (3) (Decal)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
