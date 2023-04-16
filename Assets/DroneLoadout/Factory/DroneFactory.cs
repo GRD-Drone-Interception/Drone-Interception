@@ -26,7 +26,7 @@ namespace DroneLoadout.Factory
                     drone = new FixedWingDrone(droneConfigData);
                     break;
                 case DroneType.Interceptor:
-                    drone = new InterceptorDrone(droneConfigData);
+                    //drone = new InterceptorDrone(droneConfigData);
                     break;
             }
             

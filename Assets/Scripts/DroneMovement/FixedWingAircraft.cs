@@ -1,3 +1,4 @@
+using DroneLoadout.Scripts;
 using UnityEngine;
 
 public class FixedWingAircraft : MonoBehaviour
@@ -20,13 +21,25 @@ public class FixedWingAircraft : MonoBehaviour
 
     private Rigidbody rb;
     private TargetController targetController;
-    private GameObject currentTarget;
+    public GameObject currentTarget;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         targetController = FindObjectOfType<TargetController>();
         currentTarget = targetController.CurrentTarget;
+    }
+
+    public void RotateTowardsTarget(Vector3 targetPosition)
+    {
+        // Get the direction to the target
+        Vector3 targetDirection = (targetPosition - transform.position).normalized;
+
+        // Calculate the target rotation
+        Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
+
+        // Smoothly rotate towards the target rotation
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
     }
 
     private void FixedUpdate()
@@ -47,17 +60,17 @@ public class FixedWingAircraft : MonoBehaviour
         }
         else
         {
+            // Rotate towards the target
+            RotateTowardsTarget(currentTarget.transform.position);
+
+            // Add force towards the target
             Vector3 velocity = rb.velocity;
             Vector3 desiredVelocity = targetDirection * speed;
             Vector3 steering = desiredVelocity - velocity;
             steering = Vector3.ClampMagnitude(steering, maxVelocityChange);
             rb.AddForce(steering, ForceMode.VelocityChange);
-
-            // Rotate towards the current target
-            Quaternion TarRotation = Quaternion.LookRotation(-targetDirection, Vector3.up);
-            Quaternion newRotation = Quaternion.RotateTowards(rb.rotation, TarRotation, rotationSpeed);
-            rb.MoveRotation(newRotation);
         }
+
 
 
         // Control the aircraft's movement
@@ -113,11 +126,20 @@ public class FixedWingAircraft : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
     }
-
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        // Apply a collision force to the aircraft
-        Vector3 collisionForceVector = collision.impulse * collisionForce;
-        rb.AddForce(collisionForceVector, ForceMode.Impulse);
+        Debug.Log("Trigger entered");
+        if (other.CompareTag("Object"))
+        {
+            // If the object has collided with the target
+            Destroy(TargetController.Instance.CurrentTarget); // Destroy the current target
+            TargetController.Instance.currentTargetIndex++; // Increment the target index
+            if (TargetController.Instance.currentTargetIndex >= TargetController.Instance.targets.Count)
+            { // If we've reached the end of the targets list
+                TargetController.Instance.currentTargetIndex = 0; // Loop back to the start
+            }
+            TargetController.Instance.SetCurrentTarget(); // Set the new current target
+            //target = TargetController.Instance.CurrentTarget.transform;
+        }
     }
-}
+    }
