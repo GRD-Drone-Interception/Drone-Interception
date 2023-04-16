@@ -46,7 +46,7 @@ namespace DroneSelection
             }
             
             _drone.SetTeam(TurnManager.Instance.CurrentTeam); 
-            DroneManager.AddDrone(_drone);
+            DroneManager.Instance.AddDrone(_drone);
             OnDroneSpawned?.Invoke();
             
             _drone.Rb.constraints = RigidbodyConstraints.None;

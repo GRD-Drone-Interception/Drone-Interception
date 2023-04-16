@@ -7,7 +7,7 @@ namespace DroneBehaviours.Scripts
     public class DroneManager : MonoBehaviour
     {
         public static DroneManager Instance { get; private set; }
-        public static List<Drone> Drones { get; } = new();
+        public List<Drone> Drones { get; } = new();
 
         private readonly List<Drone> _unitsSelected = new();
 
@@ -24,12 +24,12 @@ namespace DroneBehaviours.Scripts
             }
         }
 
-        public static void AddDrone(Drone drone)
+        public void AddDrone(Drone drone)
         {
             Drones.Add(drone);
         }
 
-        public static void RemoveDrone(Drone drone)
+        public void RemoveDrone(Drone drone)
         {
             Drones.Remove(drone);
         }

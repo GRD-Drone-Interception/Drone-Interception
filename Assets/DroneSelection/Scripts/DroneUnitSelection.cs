@@ -1,3 +1,4 @@
+using System;
 using DroneBehaviours.Scripts;
 using DroneLoadout.Scripts;
 using UnityEngine;
@@ -16,6 +17,11 @@ namespace DroneSelection.Scripts
         private void Start()
         {
             DrawVisual();
+        }
+
+        private void OnDestroy()
+        {
+            
         }
 
         private void Update()
@@ -74,7 +80,7 @@ namespace DroneSelection.Scripts
         /// </summary>
         private void SelectUnits()
         {
-            foreach (Drone unit in DroneManager.Drones)
+            foreach (Drone unit in DroneManager.Instance.Drones)
             {
                 if (_selectionBox.Contains(tacticalCamera.WorldToScreenPoint(unit.gameObject.transform.position)))
                 {
