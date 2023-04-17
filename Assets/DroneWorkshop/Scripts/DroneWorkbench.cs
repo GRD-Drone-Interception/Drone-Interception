@@ -85,7 +85,6 @@ namespace DroneWorkshop.Scripts
             if (JsonFileHandler.CheckFileExists(DroneOnBench.GetName()))
             {
                 DroneOnBench.RemoveBlueprintShader();
-                DroneAttachmentsLoader.Assemble(DroneOnBench);
             }
             else
             {

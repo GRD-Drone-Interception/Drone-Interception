@@ -6,6 +6,7 @@ using DroneBehaviours.Scripts;
 using DroneLoadout.Decorators;
 using DroneLoadout.Factory;
 using DroneLoadout.Strategies;
+using Testing;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Utility;
@@ -26,6 +27,8 @@ namespace DroneLoadout.Scripts
 
         [Header("Drone Configuration")]
         [SerializeField] private DroneConfigData droneConfigData;
+        [SerializeField] private GameObject destructiblePrefab;
+        [SerializeField] private PlayerTeam playerTeam = PlayerTeam.Offensive;
         [Space(5)]
         
         [Header("Behaviours")]
@@ -48,7 +51,6 @@ namespace DroneLoadout.Scripts
         private Dictionary<int, DroneAttachmentType> _attachmentPointTypeIndex = new();
         private readonly List<Color> _originalMaterialColours = new();
         private Color _paintJob;
-        private PlayerTeam _playerTeam;
 
         private void Awake()
         {
@@ -58,6 +60,10 @@ namespace DroneLoadout.Scripts
             decalMeshRenderers.ForEach(ctx => _originalMaterialColours.Add(ctx.material.color));
             _paintJob = _originalMaterialColours[0];
             
+            GameObject tmp = Instantiate(destructiblePrefab);
+            tmp.SetActive(false);
+            destructiblePrefab = tmp;
+
             MeshRenderer meshRenderer = GetComponentInChildren<MeshRenderer>();
             if (meshRenderer != null)
             {
@@ -93,6 +99,25 @@ namespace DroneLoadout.Scripts
                 
                 // Grab all materials on the drone and it's children and add it to a dictionary
                 TransformUtility.GetMaterialsRecursively(transform, _originalMaterials);
+            }
+            
+            // Assemble drone data if any exists for it
+            if (JsonFileHandler.CheckFileExists(droneConfigData.DroneName))
+            {
+                DroneAttachmentsLoader.Assemble(this);
+            }
+        }
+        
+        private void OnCollisionEnter(Collision collision) // drone class?
+        {
+            Drone hitDrone = collision.transform.GetComponent<Drone>();
+            if (hitDrone != null)
+            {
+                // If the hit drone is a different team to this one, 
+                if (hitDrone.GetTeam() != this.GetTeam())
+                {
+                    hitDrone.Die();
+                }
             }
         }
 
@@ -242,6 +267,21 @@ namespace DroneLoadout.Scripts
                 }
             }
         }
+
+        public void Die()
+        {
+            GameObject destroyedDrone = destructiblePrefab;
+            destroyedDrone.transform.position = transform.position;
+            destroyedDrone.transform.rotation = transform.rotation;
+            destroyedDrone.SetActive(true);
+            var destructible = destroyedDrone.GetComponent<Destructible>();
+            foreach (var rb in destructible.GetRigidbodies())
+            {
+                rb.AddExplosionForce(2.5f, transform.position, 2.5f, 1f, ForceMode.Impulse);
+            }
+            Destroy(destroyedDrone, 5.0f);
+            Destroy(gameObject);
+        }
         
         public void Select()
         {
@@ -319,12 +359,12 @@ namespace DroneLoadout.Scripts
 
         public void SetTeam(PlayerTeam team)
         {
-            _playerTeam = team;
+            playerTeam = team;
         }
 
         public PlayerTeam GetTeam()
         {
-            return _playerTeam;
+            return playerTeam;
         }
 
         /// <summary>

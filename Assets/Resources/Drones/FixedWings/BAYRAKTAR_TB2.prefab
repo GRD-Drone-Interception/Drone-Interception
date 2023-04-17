@@ -248,7 +248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thrust: 10
-  hoverHeight: 14.69
+  hoverHeight: 1.5
   hoverForce: 10
   maxSpeed: 10
   maxForce: 20

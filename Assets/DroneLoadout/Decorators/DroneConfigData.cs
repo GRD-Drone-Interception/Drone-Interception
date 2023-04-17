@@ -13,6 +13,7 @@ namespace DroneLoadout.Decorators
     {
         public string DroneName;
         public GameObject DronePrefab;
+        public GameObject DestructiblePrefab;
         public string DroneDescription;
         public DroneType DroneType;
         public string PrefabDataPath;

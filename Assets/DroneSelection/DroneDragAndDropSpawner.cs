@@ -38,13 +38,6 @@ namespace DroneSelection
             }
             
             _drone.RemoveBlueprintShader();
-
-            // Assemble the drone data
-            if (JsonFileHandler.CheckFileExists(_drone.GetName()))
-            {
-                DroneAttachmentsLoader.Assemble(_drone);
-            }
-            
             _drone.SetTeam(TurnManager.Instance.CurrentTeam); 
             DroneManager.Instance.AddDrone(_drone);
             OnDroneSpawned?.Invoke();

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DroneName: Shahed 136
   DronePrefab: {fileID: 1057059332579059662, guid: 4ce764519b062ef48a37f3b64ec401be, type: 3}
+  DestructiblePrefab: {fileID: 4844385870135969938, guid: 1a96d6c7b03d4014c94625a25ec4d847, type: 3}
   DroneDescription: 
   DroneType: 1
   PrefabDataPath: Drones/FixedWings/Shahed136

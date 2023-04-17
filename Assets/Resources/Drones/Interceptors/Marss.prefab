@@ -35,7 +35,7 @@ Transform:
   - {fileID: 5139330492632706107}
   - {fileID: 1067717084291812733}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &7465076818261419470
 Rigidbody:
@@ -66,6 +66,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   droneConfigData: {fileID: 11400000, guid: d5d8374e8a94b1041b431ca3453c11df, type: 2}
+  destructiblePrefab: {fileID: 2266997931579794316, guid: c8167b38c11ce44478d6c556b73e3162, type: 3}
+  playerTeam: 1
   defaultBehaviours: []
   dynamicBehaviours: []
   decalMeshRenderers:
@@ -85,9 +87,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thrust: 10
-  hoverHeight: 14.69
+  hoverHeight: 1.5
   hoverForce: 10
-  maxSpeed: 10
+  maxSpeed: 50
   maxForce: 20
   slowingDistance: 20
   rotationSpeed: 2
