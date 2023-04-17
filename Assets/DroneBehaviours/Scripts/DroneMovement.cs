@@ -13,22 +13,14 @@ namespace DroneBehaviours.Scripts
         [SerializeField] private float maxForce = 20f;
         [SerializeField] private float slowingDistance = 15f;
         [SerializeField] private float rotationSpeed = 1.0f;
-        private Transform _target;
+        private Vector3 _targetPosition;
 
-        public override void UpdateBehaviour(Drone drone)
+        public void SetTarget(Vector3 targetPos)
         {
-            /*if (_target == null)
-            {
-                if (GameObject.Find("TargetCube") != null)
-                {
-                    _target = GameObject.Find("TargetCube").transform;
-                }
-                else
-                {
-                    _target = drone.transform;
-                }
-            }*/
+            _targetPosition = targetPos;
         }
+
+        public override void UpdateBehaviour(Drone drone) {}
 
         public override void FixedUpdateBehaviour(Drone drone)
         {
@@ -37,33 +29,26 @@ namespace DroneBehaviours.Scripts
             float verticalError = hoverHeight - drone.transform.position.y;
             float hoverForceMagnitude = Mathf.Clamp(verticalError * hoverForce, 0f, 1f) * thrust;
             Vector3 thrustForce = drone.transform.up * hoverForceMagnitude;
-
-            /*if (_target != null)
-            {
-                // Calculate forces for movement towards target
-                Vector3 targetDirection = (_target.position - drone.transform.position).normalized;
-                float targetDistance = Vector3.Distance(drone.transform.position, _target.position);
-                float speedFactor = Mathf.Clamp(targetDistance / maxSpeed, 0f, 1f);
-                float slowingFactor = Mathf.Clamp01(targetDistance / slowingDistance);
-                float targetSpeed = maxSpeed * slowingFactor;
-                Vector3 targetVelocity = targetDirection * targetSpeed;
-                Vector3 targetForce = (targetVelocity - drone.Rb.velocity) * maxForce;
-                Vector3 totalForce = thrustForce + targetForce;
-                
-                // Combine forces and apply to Rigidbody
-                drone.Rb.AddForce(totalForce, ForceMode.Force);
-            }*/
             
-                // Combine forces and apply to Rigidbody
-                drone.Rb.AddForce(thrustForce, ForceMode.Force);
+            // Calculate forces for movement towards target
+            Vector3 targetDirection = (_targetPosition - drone.transform.position).normalized;
+            float targetDistance = Vector3.Distance(drone.transform.position, _targetPosition);
+            float speedFactor = Mathf.Clamp(targetDistance / maxSpeed, 0f, 1f);
+            float slowingFactor = Mathf.Clamp01(targetDistance / slowingDistance);
+            float targetSpeed = maxSpeed * slowingFactor;
+            Vector3 targetVelocity = targetDirection * targetSpeed;
+            Vector3 targetForce = (targetVelocity - drone.Rb.velocity) * maxForce;
+            Vector3 totalForce = thrustForce + targetForce;
             
+            // Combine forces and apply to Rigidbody
+            drone.Rb.AddForce(totalForce, ForceMode.Force);
 
             // Rotate towards the target direction
-            /*if (drone.Rb.velocity.magnitude > 0.1f)
+            if (drone.Rb.velocity.magnitude > 0.1f)
             {
                 Quaternion targetRotation = Quaternion.LookRotation(drone.Rb.velocity.normalized, Vector3.up);
                 drone.transform.rotation = Quaternion.Slerp(drone.transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
-            }*/
+            }
         }
     }
 }

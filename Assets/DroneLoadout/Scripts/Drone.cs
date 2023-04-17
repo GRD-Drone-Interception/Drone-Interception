@@ -37,7 +37,7 @@ namespace DroneLoadout.Scripts
         [FormerlySerializedAs("meshRenderers")] [SerializeField] private List<MeshRenderer> decalMeshRenderers;
         [SerializeField] private Material outlineMaterial;
         [SerializeField] private Material blueprintMaterial;
-        private Dictionary<MeshRenderer, Material[]> _originalMaterials = new Dictionary<MeshRenderer, Material[]>();
+        private Dictionary<MeshRenderer, Material[]> _originalMaterials = new();
         private Material[] _outlinedMaterials;
         private Material[] _blueprintMaterials;
         private MeshRenderer _meshRenderer;
@@ -92,11 +92,11 @@ namespace DroneLoadout.Scripts
                 }
                 
                 // Grab all materials on the drone and it's children and add it to a dictionary
-                GetMaterialsRecursively(transform);
+                TransformUtility.GetMaterialsRecursively(transform, _originalMaterials);
             }
         }
 
-        private void Update()
+        /*private void Update()
         {
             foreach (var behaviour in defaultBehaviours)
             {
@@ -106,9 +106,9 @@ namespace DroneLoadout.Scripts
             {
                 behaviour.UpdateBehaviour(this);
             }
-        }
+        }*/
 
-        private void FixedUpdate()
+        /*private void FixedUpdate()
         {
             foreach (var behaviour in defaultBehaviours)
             {
@@ -118,11 +118,23 @@ namespace DroneLoadout.Scripts
             {
                 behaviour.FixedUpdateBehaviour(this);
             }
-        }
+        }*/
 
-        public void MoveToTarget(Vector3 targetDestination)
+        public void Move(Vector3 targetDestination)
         {
-            
+            var droneMovement = GetComponent<DroneMovement2>();
+            if (droneMovement != null)
+            {
+                droneMovement.SetTarget(targetDestination);
+            }
+
+            /*foreach (var behaviour in defaultBehaviours)
+            {
+                if (behaviour is DroneMovement droneMovement)
+                {
+                    droneMovement.SetTarget(targetDestination);
+                }
+            }*/
         }
 
         public void AttackTarget(Drone drone)
@@ -338,24 +350,6 @@ namespace DroneLoadout.Scripts
         private bool IsNewBlueprintColourApplied(Color colour)
         {
             return _currentBlueprintColour != colour;
-        }
-        
-        private void GetMaterialsRecursively(Transform currentTransform)
-        {
-            var meshRenderer = currentTransform.GetComponent<MeshRenderer>();
-            if (meshRenderer != null)
-            {
-                if (!_originalMaterials.ContainsKey(meshRenderer))
-                {
-                    _originalMaterials[meshRenderer] = meshRenderer.materials;
-                }
-            }
-            
-            // Recurse over children
-            foreach (Transform child in currentTransform)
-            {
-                GetMaterialsRecursively(child);
-            }
         }
     }
 }

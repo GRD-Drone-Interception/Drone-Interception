@@ -18,12 +18,12 @@ namespace DroneCommands
         public void Execute()
         {
             _previousDestination = _drone.transform.position;
-            _drone.MoveToTarget(_destination);
+            _drone.Move(_destination);
         }
 
         public void Undo()
         {
-            _drone.MoveToTarget(_previousDestination);
+            _drone.Move(_previousDestination);
         }
     }
 }
