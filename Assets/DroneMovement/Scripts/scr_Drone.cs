@@ -26,6 +26,7 @@ public class scr_Drone : MonoBehaviour
             Vector3 targetDirection = target.position - transform.position;
             targetDirection.Normalize();
 
+
             float distanceToTarget = Vector3.Distance(transform.position, target.position);
 
             if (distanceToTarget > arrivalDistance)
@@ -41,6 +42,10 @@ public class scr_Drone : MonoBehaviour
                 Quaternion targetRotation = Quaternion.LookRotation(Vector3.forward, targetDirection);
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
             }
+        }
+        else
+        {
+            target = TargetController.Instance.CurrentTarget.transform;
         }
 
         // Flocking behavior
