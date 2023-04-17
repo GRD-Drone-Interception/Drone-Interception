@@ -153,6 +153,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   droneConfigData: {fileID: 11400000, guid: ac51acb4124cebb4192fd32d3329daa1, type: 2}
+  destructiblePrefab: {fileID: 4680419932903502725, guid: 655e2474f95a4414d88b9d621c7c764a, type: 3}
+  playerTeam: 0
   defaultBehaviours: []
   dynamicBehaviours: []
   decalMeshRenderers:
