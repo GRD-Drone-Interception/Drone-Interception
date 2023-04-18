@@ -1,0 +1,238 @@
+newmtl acmat_0
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0.2 0.2 0.2
+Ns 128
+Tr 0
+map_Kd 2022-10-03_235332.jpg
+newmtl acmat_1
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0.2 0.2 0.2
+Ns 128
+Tr 0
+map_Kd 2022-10-08_203920.jpg
+newmtl acmat_2
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0.2 0.2 0.2
+Ns 128
+Tr 0
+map_Kd 2022-10-10_134238.jpg
+newmtl acmat_3
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0.2 0.2 0.2
+Ns 128
+Tr 0
+map_Kd 630558a78cd0ab977bf8706c05e96d38.jpg
+newmtl acmat_4
+Kd 0.6 0.6 0.6
+Ka 0.2 0.2 0.2
+Ks 0.2 0.2 0.2
+Ns 128
+Tr 0
+map_Kd blade.jpg
+newmtl acmat_5
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0.2 0.2 0.2
+Ns 128
+Tr 0
+map_Kd blade.jpg
+newmtl acmat_6
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0.2 0.2 0.2
+Ns 128
+Tr 0
+map_Kd 2022-11-01_161602.jpg
+newmtl acmat_7
+Kd 0.789854 0.813333 0.694044
+Ka 0.2 0.2 0.2
+Ks 0.2 0.2 0.2
+Ns 128
+Tr 0
+map_Kd 2022-11-01_161602.jpg
+newmtl acmat_8
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0.2 0.2 0.2
+Ns 128
+Tr 0
+map_Kd 416781_1200x675_Cover_Zoom02.jpg
+newmtl acmat_9
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0.2 0.2 0.2
+Ns 128
+Tr 0
+map_Kd Tex2.jpg
+newmtl acmat_10
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0.2 0.2 0.2
+Ns 128
+Tr 0
+map_Kd spritzer-tinte-streifen-textur-hintergrund_1409-1383.jpg
+newmtl acmat_11
+Kd 0.64 0.64 0.64
+Ka 0.2 0.2 0.2
+Ks 0.2 0.2 0.2
+Ns 128
+Tr 6.42853e-39
+map_Kd Container011.jpg
+newmtl acmat_12
+Kd 0.64 0.64 0.64
+Ka 0.2 0.2 0.2
+Ks 0.2 0.2 0.2
+Ns 128
+Tr 6.42853e-39
+map_Kd Container04.jpg
+newmtl acmat_13
+Kd 0.64 0.64 0.64
+Ka 0.2 0.2 0.2
+Ks 0.2 0.2 0.2
+Ns 128
+Tr 6.42853e-39
+map_Kd Container05.jpg
+newmtl acmat_14
+Kd 0.64 0.64 0.64
+Ka 0.2 0.2 0.2
+Ks 0.2 0.2 0.2
+Ns 128
+Tr 6.42853e-39
+map_Kd Container09.jpg
+newmtl acmat_15
+Kd 0.64 0.64 0.64
+Ka 0.2 0.2 0.2
+Ks 0.2 0.2 0.2
+Ns 128
+Tr 6.42853e-39
+map_Kd Container08.jpg
+newmtl acmat_16
+Kd 0.64 0.64 0.64
+Ka 0.2 0.2 0.2
+Ks 0.2 0.2 0.2
+Ns 128
+Tr 6.42853e-39
+map_Kd Container010.jpg
+newmtl acmat_17
+Kd 0.64 0.64 0.64
+Ka 0.2 0.2 0.2
+Ks 0.2 0.2 0.2
+Ns 128
+Tr 6.42853e-39
+map_Kd Container07.jpg
+newmtl acmat_18
+Kd 0.64 0.64 0.64
+Ka 0.2 0.2 0.2
+Ks 0.2 0.2 0.2
+Ns 128
+Tr 6.42853e-39
+map_Kd Container06.jpg
+newmtl acmat_19
+Kd 0.64 0.64 0.64
+Ka 0.2 0.2 0.2
+Ks 0.2 0.2 0.2
+Ns 128
+Tr 6.42853e-39
+map_Kd Container01.jpg
+newmtl acmat_20
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0.2 0.2 0.2
+Ns 128
+Tr 0
+map_Kd glas_512.jpg
+newmtl acmat_21
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0.2 0.2 0.2
+Ns 128
+Tr 0
+map_Kd 360_F_180888381_rdtPrvoRyUt7QcsWctphVkc0C40dJdJ0.jpg
+newmtl acmat_22
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0.2 0.2 0.2
+Ns 128
+Tr 0
+map_Kd abstract-red-blurred-background-with-dots-pattern-texture-vector.jpg
+newmtl acmat_23
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0.2 0.2 0.2
+Ns 128
+Tr 0
+map_Kd 416781_1200x675_Cover_Zoom.jpg
+newmtl acmat_24
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0.2 0.2 0.2
+Ns 128
+Tr 0
+map_Kd Tex3.jpg
+newmtl acmat_25
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0.2 0.2 0.2
+Ns 128
+Tr 0
+map_Kd Depositphotos_134165694_s-2015.jpg
+newmtl acmat_26
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0.2 0.2 0.2
+Ns 128
+Tr 0
+map_Kd GALVANZD.jpg
+newmtl acmat_27
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0.2 0.2 0.2
+Ns 128
+Tr 0
+map_Kd images (3).jpg
+newmtl acmat_28
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0.2 0.2 0.2
+Ns 128
+Tr 0
+map_Kd f2cbfce52c1b510d688d6070f927c1e2--metal-texture-rust.jpg
+newmtl acmat_29
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0.2 0.2 0.2
+Ns 128
+Tr 0
+map_Kd 360_F_72531292_XFTVz3YD7LLp6jw8ufZh9AiJj348dV71.jpg
+newmtl acmat_30
+Kd 0 0 0
+Ka 0.2 0.2 0.2
+Ks 0.2 0.2 0.2
+Ns 128
+Tr 0.231579
+map_Kd glass1a.bmp
+newmtl acmat_31
+Kd 0 0 0
+Ka 0.2 0.2 0.2
+Ks 0.2 0.2 0.2
+Ns 128
+Tr 0.205263
+map_Kd glass1a.bmp
+newmtl acmat_32
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0.2 0.2 0.2
+Ns 128
+Tr 0
+map_Kd 416781_1200x675_Cover_Zoom02Abc.jpg
+newmtl acmat_33
+Kd 1 1 1
+Ka 0.2 0.2 0.2
+Ks 0.2 0.2 0.2
+Ns 128
+Tr 0
+map_Kd 2022-07-24_144941b.jpg

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b427aa6d53b84ac4fa31d644c063e0ee, type: 3}
+  m_Name: Matrice300Rtk
+  m_EditorClassIdentifier: 
+  DroneName: Matrice 300 RTK
+  DronePrefab: {fileID: 3938721802332374394, guid: 67e946ee32a52ab4ea832888dd2ed89a, type: 3}
+  DroneDescription: 
+  DroneType: 0
+  PrefabDataPath: Drones/Quadcopters/Matrice300Rtk
+  cost: 600
+  range: 5
+  topSpeed: 0
+  acceleration: 0
+  weight: 100
