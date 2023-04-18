@@ -212,6 +212,7 @@ GameObject:
   - component: {fileID: 1057059332579059648}
   - component: {fileID: 1057059332579059663}
   - component: {fileID: 722391432}
+  - component: {fileID: 3639316981341210686}
   m_Layer: 7
   m_Name: Shahed136
   m_TagString: Untagged
@@ -310,6 +311,34 @@ MonoBehaviour:
   maxForce: 20
   slowingDistance: 20
   rotationSpeed: 2
+--- !u!114 &3639316981341210686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1057059332579059662}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d901120bc18062444bab7175a3b26382, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 50
+  rotationSpeed: 2
+  maxVelocityChange: 10
+  arrivalDistance: 1
+  rollSpeed: 5
+  pitchSpeed: 5
+  yawSpeed: 5
+  maxRollAngle: 45
+  maxPitchAngle: 30
+  maxYawAngle: 45
+  liftForce: 10
+  maxAltitude: 500
+  minAltitude: 10
+  altitudeChangeSpeed: 5
+  collisionForce: 100
+  currentTarget: {fileID: 0}
 --- !u!1 &5985107246547888454
 GameObject:
   m_ObjectHideFlags: 0

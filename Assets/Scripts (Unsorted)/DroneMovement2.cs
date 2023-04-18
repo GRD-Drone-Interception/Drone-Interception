@@ -3,6 +3,7 @@ using Core;
 using DroneBehaviours.Scripts;
 using DroneLoadout.Scripts;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DroneMovement2 : MonoBehaviour
 {
@@ -21,6 +22,11 @@ public class DroneMovement2 : MonoBehaviour
 
     private void Update()
     {
+        if (DroneManager.Instance == null)
+        {
+            return;
+        }
+        
         // If this drone is a defensive drone, search for attacking drones in range (if no target already set)
         if (_drone.GetTeam() == PlayerTeam.Defensive)
         {
