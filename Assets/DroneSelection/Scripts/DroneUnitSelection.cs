@@ -1,4 +1,3 @@
-using System;
 using DroneBehaviours.Scripts;
 using DroneLoadout.Scripts;
 using UnityEngine;
@@ -14,15 +13,7 @@ namespace DroneSelection.Scripts
         private Vector2 _startPosition = Vector2.zero;
         private Vector2 _endPosition = Vector2.zero;
 
-        private void Start()
-        {
-            DrawVisual();
-        }
-
-        private void OnDestroy()
-        {
-            
-        }
+        private void Start() => DrawVisual();
 
         private void Update()
         {
@@ -31,13 +22,12 @@ namespace DroneSelection.Scripts
                 return;
             }
             
-            if(Input.GetMouseButtonDown(0))
+            if(Input.GetMouseButtonDown(0)) // mouse button pressed
             {
                 _startPosition = Input.mousePosition;
                 _selectionBox = new Rect();
 
                 Ray ray = tacticalCamera.ScreenPointToRay(Input.mousePosition);
-
                 if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, clickableLayer))
                 {
                     if(Input.GetKey(KeyCode.LeftShift))
@@ -53,12 +43,12 @@ namespace DroneSelection.Scripts
                 {
                     if (!Input.GetKey(KeyCode.LeftShift))
                     {
-                        DroneManager.Instance.DeselectAll();
+                        //DroneManager.Instance.DeselectAll();
                     }
                 }
             }
 
-            if(Input.GetMouseButton(0))
+            if(Input.GetMouseButton(0)) // whilst mouse button held down
             {
                 _endPosition = Input.mousePosition;
                 DrawVisual();
@@ -66,12 +56,16 @@ namespace DroneSelection.Scripts
                 SelectUnits();
             }
 
-            if (Input.GetMouseButtonUp(0))
+            if (Input.GetMouseButtonUp(0)) // mouse button released
             {
-                //SelectUnits();
                 _startPosition = Vector2.zero;
                 _endPosition   = Vector2.zero;
                 DrawVisual();
+            }
+            
+            if (Input.GetMouseButtonDown(1)) // right mouse button pressed
+            {
+                DroneManager.Instance.DeselectAll();
             }
         }
 
@@ -88,7 +82,7 @@ namespace DroneSelection.Scripts
                 }
                 else if(!Input.GetKey(KeyCode.LeftShift))
                 {
-                    DroneManager.Instance.Deselect(unit);
+                    //DroneManager.Instance.Deselect(unit);
                 }
             }
         }

@@ -211,6 +211,7 @@ GameObject:
   - component: {fileID: 1057059332579059649}
   - component: {fileID: 1057059332579059648}
   - component: {fileID: 1057059332579059663}
+  - component: {fileID: 722391432}
   m_Layer: 7
   m_Name: Shahed136
   m_TagString: Untagged
@@ -237,7 +238,7 @@ Transform:
   - {fileID: 874456879049658513}
   - {fileID: 1922517066454593042}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1057059332579059649
 BoxCollider:
@@ -281,14 +282,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   droneConfigData: {fileID: 11400000, guid: f0d24a127551ead41817b60888357c96, type: 2}
-  defaultBehaviours:
-  - {fileID: 11400000, guid: a141764e149dab54cb8d206967d42ac4, type: 2}
+  destructiblePrefab: {fileID: 4844385870135969938, guid: 1a96d6c7b03d4014c94625a25ec4d847, type: 3}
+  playerTeam: 0
+  defaultBehaviours: []
   dynamicBehaviours: []
   decalMeshRenderers:
   - {fileID: 5993576355726302450}
   - {fileID: 3312341789176486417}
   outlineMaterial: {fileID: 2100000, guid: 780b847f2ccc8424890bc0381dcdb6ee, type: 2}
   blueprintMaterial: {fileID: 2100000, guid: d15740cca65f3064bbf49ab07e015c05, type: 2}
+--- !u!114 &722391432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1057059332579059662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae3b2255e73fe7442ae310e9595d4851, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thrust: 10
+  hoverHeight: 1.5
+  hoverForce: 10
+  maxSpeed: 10
+  maxForce: 20
+  slowingDistance: 20
+  rotationSpeed: 2
 --- !u!1 &5985107246547888454
 GameObject:
   m_ObjectHideFlags: 0

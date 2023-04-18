@@ -8,8 +8,7 @@ namespace DroneBehaviours.Scripts
     {
         public static DroneManager Instance { get; private set; }
         public List<Drone> Drones { get; } = new();
-
-        private readonly List<Drone> _unitsSelected = new();
+        public List<Drone> SelectedDrones { get; } = new();
 
         private void Awake()
         {
@@ -34,13 +33,21 @@ namespace DroneBehaviours.Scripts
             Drones.Remove(drone);
         }
 
+        public void Move(Vector3 targetDestination)
+        {
+            foreach (var drone in SelectedDrones)
+            {
+                drone.Move(targetDestination);
+            }
+        }
+
         /// <summary>
         /// Selects unit on click
         /// </summary>
         /// <param name="unitClicked">The droneUnit component of the hit collider</param>
         public void ClickSelect(Drone unitClicked)
         {
-            DeselectAll();
+            //DeselectAll();
             if (Drones.Contains(unitClicked))
             {
                 Select(unitClicked);
@@ -58,7 +65,7 @@ namespace DroneBehaviours.Scripts
                 return;
             }
 
-            if(!_unitsSelected.Contains(unitClicked))
+            if(!SelectedDrones.Contains(unitClicked))
             {
                 Select(unitClicked);
             }
@@ -74,9 +81,9 @@ namespace DroneBehaviours.Scripts
         /// <param name="unitToAdd">The droneUnit component of the hit collider</param>
         public void DragSelect(Drone unitToAdd)
         {
-            if(!_unitsSelected.Contains(unitToAdd))
+            if(!SelectedDrones.Contains(unitToAdd))
             {
-                _unitsSelected.Add(unitToAdd);
+                SelectedDrones.Add(unitToAdd);
                 unitToAdd.Select();
             }
         }
@@ -86,11 +93,11 @@ namespace DroneBehaviours.Scripts
         /// </summary>
         public void DeselectAll()
         {
-            foreach (Drone unit in _unitsSelected)
+            foreach (Drone unit in SelectedDrones)
             {
                 unit.Unselect();
             }
-            _unitsSelected.Clear();
+            SelectedDrones.Clear();
         }
     
         /// <summary>
@@ -99,7 +106,7 @@ namespace DroneBehaviours.Scripts
         /// <param name="unitToAdd">The droneUnit component of the hit collider</param>
         private void Select(Drone unitToAdd)
         {
-            _unitsSelected.Add(unitToAdd);
+            SelectedDrones.Add(unitToAdd);
             unitToAdd.Select();
         }
     
@@ -109,7 +116,7 @@ namespace DroneBehaviours.Scripts
         /// <param name="unitToRemove">The droneUnit component of the hit collider</param>
         public void Deselect(Drone unitToRemove)
         {
-            _unitsSelected.Remove(unitToRemove);
+            SelectedDrones.Remove(unitToRemove);
             unitToRemove.Unselect();
         }
     }

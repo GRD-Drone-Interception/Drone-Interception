@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5384888291761557421}
   - component: {fileID: 5384888291761557422}
   - component: {fileID: 5384888291761557423}
+  - component: {fileID: 9180003944940161764}
   m_Layer: 7
   m_Name: BlackHornetNano
   m_TagString: Untagged
@@ -134,13 +135,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   droneConfigData: {fileID: 11400000, guid: 7c6cf5e779347824d8000f254eccf2c8, type: 2}
-  defaultBehaviours:
-  - {fileID: 11400000, guid: a141764e149dab54cb8d206967d42ac4, type: 2}
+  destructiblePrefab: {fileID: 2031668396284610471, guid: 4f32cf3764f06dc459a753343161946e, type: 3}
+  playerTeam: 0
+  defaultBehaviours: []
   dynamicBehaviours: []
   decalMeshRenderers:
   - {fileID: 5889031758413049469}
   outlineMaterial: {fileID: 2100000, guid: e32929006bc00964988b8fdf4a80f2a0, type: 2}
   blueprintMaterial: {fileID: 2100000, guid: d15740cca65f3064bbf49ab07e015c05, type: 2}
+--- !u!114 &9180003944940161764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5384888291761557416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae3b2255e73fe7442ae310e9595d4851, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thrust: 10
+  hoverHeight: 1.5
+  hoverForce: 10
+  maxSpeed: 10
+  maxForce: 20
+  slowingDistance: 20
+  rotationSpeed: 2
 --- !u!1 &8555479184565073625
 GameObject:
   m_ObjectHideFlags: 0

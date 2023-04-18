@@ -6,6 +6,7 @@ using DroneBehaviours.Scripts;
 using DroneLoadout.Decorators;
 using DroneLoadout.Factory;
 using DroneLoadout.Strategies;
+using Testing;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Utility;
@@ -26,6 +27,8 @@ namespace DroneLoadout.Scripts
 
         [Header("Drone Configuration")]
         [SerializeField] private DroneConfigData droneConfigData;
+        [SerializeField] private GameObject destructiblePrefab;
+        [SerializeField] private PlayerTeam playerTeam = PlayerTeam.Offensive;
         [Space(5)]
         
         [Header("Behaviours")]
@@ -37,7 +40,7 @@ namespace DroneLoadout.Scripts
         [FormerlySerializedAs("meshRenderers")] [SerializeField] private List<MeshRenderer> decalMeshRenderers;
         [SerializeField] private Material outlineMaterial;
         [SerializeField] private Material blueprintMaterial;
-        private Dictionary<MeshRenderer, Material[]> _originalMaterials = new Dictionary<MeshRenderer, Material[]>();
+        private Dictionary<MeshRenderer, Material[]> _originalMaterials = new();
         private Material[] _outlinedMaterials;
         private Material[] _blueprintMaterials;
         private MeshRenderer _meshRenderer;
@@ -48,7 +51,6 @@ namespace DroneLoadout.Scripts
         private Dictionary<int, DroneAttachmentType> _attachmentPointTypeIndex = new();
         private readonly List<Color> _originalMaterialColours = new();
         private Color _paintJob;
-        private PlayerTeam _playerTeam;
 
         private void Awake()
         {
@@ -58,6 +60,10 @@ namespace DroneLoadout.Scripts
             decalMeshRenderers.ForEach(ctx => _originalMaterialColours.Add(ctx.material.color));
             _paintJob = _originalMaterialColours[0];
             
+            GameObject tmp = Instantiate(destructiblePrefab);
+            tmp.SetActive(false);
+            destructiblePrefab = tmp;
+
             MeshRenderer meshRenderer = GetComponentInChildren<MeshRenderer>();
             if (meshRenderer != null)
             {
@@ -92,37 +98,68 @@ namespace DroneLoadout.Scripts
                 }
                 
                 // Grab all materials on the drone and it's children and add it to a dictionary
-                GetMaterialsRecursively(transform);
+                TransformUtility.GetMaterialsRecursively(transform, _originalMaterials);
             }
-        }
-
-        private void Update()
-        {
-            foreach (var behaviour in defaultBehaviours)
-            {
-                behaviour.UpdateBehaviour(this);
-            }
-            foreach (var behaviour in dynamicBehaviours)
-            {
-                behaviour.UpdateBehaviour(this);
-            }
-        }
-
-        private void FixedUpdate()
-        {
-            foreach (var behaviour in defaultBehaviours)
-            {
-                behaviour.FixedUpdateBehaviour(this);
-            }
-            foreach (var behaviour in dynamicBehaviours)
-            {
-                behaviour.FixedUpdateBehaviour(this);
-            }
-        }
-
-        public void MoveToTarget(Vector3 targetDestination)
-        {
             
+            // Assemble drone data if any exists for it
+            if (JsonFileHandler.CheckFileExists(droneConfigData.DroneName))
+            {
+                DroneAttachmentsLoader.Assemble(this);
+            }
+        }
+        
+        private void OnCollisionEnter(Collision collision) // drone class?
+        {
+            Drone hitDrone = collision.transform.GetComponent<Drone>();
+            if (hitDrone != null)
+            {
+                // If the hit drone is a different team to this one, 
+                if (hitDrone.GetTeam() != this.GetTeam())
+                {
+                    hitDrone.Die();
+                }
+            }
+        }
+
+        /*private void Update()
+        {
+            foreach (var behaviour in defaultBehaviours)
+            {
+                behaviour.UpdateBehaviour(this);
+            }
+            foreach (var behaviour in dynamicBehaviours)
+            {
+                behaviour.UpdateBehaviour(this);
+            }
+        }*/
+
+        /*private void FixedUpdate()
+        {
+            foreach (var behaviour in defaultBehaviours)
+            {
+                behaviour.FixedUpdateBehaviour(this);
+            }
+            foreach (var behaviour in dynamicBehaviours)
+            {
+                behaviour.FixedUpdateBehaviour(this);
+            }
+        }*/
+
+        public void Move(Vector3 targetDestination)
+        {
+            var droneMovement = GetComponent<DroneMovement2>();
+            if (droneMovement != null)
+            {
+                droneMovement.SetTarget(targetDestination);
+            }
+
+            /*foreach (var behaviour in defaultBehaviours)
+            {
+                if (behaviour is DroneMovement droneMovement)
+                {
+                    droneMovement.SetTarget(targetDestination);
+                }
+            }*/
         }
 
         public void AttackTarget(Drone drone)
@@ -230,6 +267,21 @@ namespace DroneLoadout.Scripts
                 }
             }
         }
+
+        public void Die()
+        {
+            GameObject destroyedDrone = destructiblePrefab;
+            destroyedDrone.transform.position = transform.position;
+            destroyedDrone.transform.rotation = transform.rotation;
+            destroyedDrone.SetActive(true);
+            var destructible = destroyedDrone.GetComponent<Destructible>();
+            foreach (var rb in destructible.GetRigidbodies())
+            {
+                rb.AddExplosionForce(2.5f, transform.position, 2.5f, 1f, ForceMode.Impulse);
+            }
+            Destroy(destroyedDrone, 5.0f);
+            Destroy(gameObject);
+        }
         
         public void Select()
         {
@@ -307,12 +359,12 @@ namespace DroneLoadout.Scripts
 
         public void SetTeam(PlayerTeam team)
         {
-            _playerTeam = team;
+            playerTeam = team;
         }
 
         public PlayerTeam GetTeam()
         {
-            return _playerTeam;
+            return playerTeam;
         }
 
         /// <summary>
@@ -338,24 +390,6 @@ namespace DroneLoadout.Scripts
         private bool IsNewBlueprintColourApplied(Color colour)
         {
             return _currentBlueprintColour != colour;
-        }
-        
-        private void GetMaterialsRecursively(Transform currentTransform)
-        {
-            var meshRenderer = currentTransform.GetComponent<MeshRenderer>();
-            if (meshRenderer != null)
-            {
-                if (!_originalMaterials.ContainsKey(meshRenderer))
-                {
-                    _originalMaterials[meshRenderer] = meshRenderer.materials;
-                }
-            }
-            
-            // Recurse over children
-            foreach (Transform child in currentTransform)
-            {
-                GetMaterialsRecursively(child);
-            }
         }
     }
 }

@@ -23,5 +23,29 @@ namespace Utility
                 }
             }
         }
+        
+        /// <summary>
+        /// Recursively gets the materials used by all MeshRenderers in the given Transform and its children,
+        /// and adds them to the provided dictionary of original materials.
+        /// </summary>
+        /// <param name="currentTransform">The Transform to search for MeshRenderers.</param>
+        /// <param name="originalMaterials">The dictionary of original materials to add the MeshRenderer materials to.</param>
+        public static void GetMaterialsRecursively(Transform currentTransform, Dictionary<MeshRenderer, Material[]> originalMaterials)
+        {
+            var meshRenderer = currentTransform.GetComponent<MeshRenderer>();
+            if (meshRenderer != null)
+            {
+                if (!originalMaterials.ContainsKey(meshRenderer))
+                {
+                    originalMaterials[meshRenderer] = meshRenderer.materials;
+                }
+            }
+
+            // Recurse over children
+            foreach (Transform child in currentTransform)
+            {
+                GetMaterialsRecursively(child, originalMaterials);
+            }
+        }
     }
 }

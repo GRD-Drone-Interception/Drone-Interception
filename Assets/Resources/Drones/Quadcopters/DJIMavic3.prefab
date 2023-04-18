@@ -8423,6 +8423,7 @@ GameObject:
   - component: {fileID: 6219301212829292288}
   - component: {fileID: 3227543618669108504}
   - component: {fileID: 6219301212829292287}
+  - component: {fileID: -3329094733908844243}
   m_Layer: 7
   m_Name: DJIMavic3
   m_TagString: Untagged
@@ -8490,8 +8491,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   droneConfigData: {fileID: 11400000, guid: 92e02c701f61a454c889222154f25ab2, type: 2}
-  defaultBehaviours:
-  - {fileID: 11400000, guid: a141764e149dab54cb8d206967d42ac4, type: 2}
+  destructiblePrefab: {fileID: 5629527485545459350, guid: a91f2d6116648c54c98cb12526619068, type: 3}
+  playerTeam: 0
+  defaultBehaviours: []
   dynamicBehaviours: []
   decalMeshRenderers:
   - {fileID: 6897853914475066184}
@@ -8509,6 +8511,25 @@ MonoBehaviour:
   - {fileID: 5459406698769452191}
   outlineMaterial: {fileID: 2100000, guid: a936cfe51f948e04f96a7b0308e89d9e, type: 2}
   blueprintMaterial: {fileID: 2100000, guid: d15740cca65f3064bbf49ab07e015c05, type: 2}
+--- !u!114 &-3329094733908844243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4059031464683983483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae3b2255e73fe7442ae310e9595d4851, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thrust: 10
+  hoverHeight: 1.5
+  hoverForce: 10
+  maxSpeed: 20
+  maxForce: 20
+  slowingDistance: 20
+  rotationSpeed: 2
 --- !u!1 &4069831179865889262
 GameObject:
   m_ObjectHideFlags: 0
