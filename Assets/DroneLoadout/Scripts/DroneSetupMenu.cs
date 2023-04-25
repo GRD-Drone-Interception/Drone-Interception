@@ -9,7 +9,7 @@ namespace DroneLoadout.Scripts
     public enum DroneSetupMenuStates
     {
         Workshop,
-        Fleet,
+        Scenarios,
         TechTree,
         Stats
     }

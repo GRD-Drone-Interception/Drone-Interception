@@ -7,17 +7,17 @@ public class LevelSelection : MonoBehaviour
 {
     public Dropdown levelDropdown;
 
-    private List<string> levelNames = new List<string> { "Castle Park (Bristol)", "Fleet Air Arm" };
+    private readonly List<string> _levelNames = new() { "Castle Park (Bristol)", "Fleet Air Arm" };
 
     void Start()
     {
         levelDropdown.ClearOptions();
-        levelDropdown.AddOptions(levelNames);
+        levelDropdown.AddOptions(_levelNames);
     }
 
     public void LoadLevel()
     {
-        string selectedLevel = levelNames[levelDropdown.value];
+        string selectedLevel = _levelNames[levelDropdown.value];
         SceneManager.LoadScene(selectedLevel);
     }
 }
