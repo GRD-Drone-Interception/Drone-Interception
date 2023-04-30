@@ -11,6 +11,6 @@ public class CameraFollow : MonoBehaviour
             return;
         }
 
-        transform.position = new Vector3(target.position.x, target.position.y + 200f, target.position.z);
+        transform.position = new Vector3(target.position.x, target.position.y + 175, target.position.z);
     }
 }
