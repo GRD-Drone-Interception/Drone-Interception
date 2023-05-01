@@ -36,12 +36,6 @@ public class Explosion : MonoBehaviour
                 }
             }
 
-            // Play the particle effect
-            if (particleEffect != null)
-            {
-                particleEffect.Play();
-            }
-
             // Call the Die() function on the object with the Explosion script attached
             Drone droneOnThisObject = GetComponent<Drone>();
             if (droneOnThisObject != null)
@@ -49,6 +43,11 @@ public class Explosion : MonoBehaviour
                 droneOnThisObject.Die();
             }
 
+            // Play the particle effect
+            if (particleEffect != null)
+            {
+                particleEffect.Play();
+            }
         }
     }
 
