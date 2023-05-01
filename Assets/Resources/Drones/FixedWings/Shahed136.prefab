@@ -209,6 +209,7 @@ GameObject:
   m_Component:
   - component: {fileID: 423546655087967604}
   - component: {fileID: 1057059332579059649}
+  - component: {fileID: 8965998734418729774}
   - component: {fileID: 1057059332579059648}
   - component: {fileID: 1057059332579059663}
   - component: {fileID: 722391432}
@@ -239,7 +240,7 @@ Transform:
   - {fileID: 874456879049658513}
   - {fileID: 1922517066454593042}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1057059332579059649
 BoxCollider:
@@ -254,6 +255,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.06, y: 0.34, z: 2.02}
   m_Center: {x: 0, y: 0, z: -0.09}
+--- !u!114 &8965998734418729774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1057059332579059662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47899293296ff9e41b5d1d40c85a4469, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClips:
+  - {fileID: 8300000, guid: 73cbe0284eb9aea419e3f6c254f46116, type: 3}
+  - {fileID: 8300000, guid: 2cab00634b50e5247bdbc1680a35e44c, type: 3}
+  - {fileID: 8300000, guid: 8f12b4c5a9223b84eaebd690e6f9dcef, type: 3}
 --- !u!54 &1057059332579059648
 Rigidbody:
   m_ObjectHideFlags: 0
