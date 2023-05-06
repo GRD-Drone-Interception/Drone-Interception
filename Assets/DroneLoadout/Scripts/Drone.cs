@@ -280,9 +280,10 @@ namespace DroneLoadout.Scripts
                 rb.AddExplosionForce(2.5f, transform.position, 2.5f, 1f, ForceMode.Impulse);
             }
             Destroy(destroyedDrone, 5.0f);
-            Destroy(gameObject);
+            gameObject.SetActive(false); // Disable the game object instead of destroying it
         }
-        
+
+
         public void Select()
         {
             foreach (var meshRenderer in _originalMaterials.Keys)
