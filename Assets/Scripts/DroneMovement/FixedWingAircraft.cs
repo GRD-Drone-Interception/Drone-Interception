@@ -1,10 +1,9 @@
-using DroneLoadout.Scripts;
 using UnityEngine;
 
 public class FixedWingAircraft : MonoBehaviour
 {
     public float speed = 50f;
-    public float rotationSpeed = 2f;
+    public float rotationSpeed = 20f;
     public float maxVelocityChange = 10f;
     public float arrivalDistance = 1f;
     public float rollSpeed = 5f;
@@ -23,7 +22,7 @@ public class FixedWingAircraft : MonoBehaviour
     private TargetController targetController;
     public GameObject currentTarget;
 
-    private void Start()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         targetController = FindObjectOfType<TargetController>();
