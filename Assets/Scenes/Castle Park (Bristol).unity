@@ -226,6 +226,34 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 965851850, guid: 4ce764519b062ef48a37f3b64ec401be, type: 3}
+      propertyPath: radius
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 965851850, guid: 4ce764519b062ef48a37f3b64ec401be, type: 3}
+      propertyPath: particleEffect
+      value: 
+      objectReference: {fileID: 198000012777718758, guid: acf39d9f4addf294d93fa56fa373961b, type: 3}
+    - target: {fileID: 965851855, guid: 4ce764519b062ef48a37f3b64ec401be, type: 3}
+      propertyPath: Loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 965851855, guid: 4ce764519b062ef48a37f3b64ec401be, type: 3}
+      propertyPath: Priority
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 965851855, guid: 4ce764519b062ef48a37f3b64ec401be, type: 3}
+      propertyPath: DopplerLevel
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 965851855, guid: 4ce764519b062ef48a37f3b64ec401be, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 965851855, guid: 4ce764519b062ef48a37f3b64ec401be, type: 3}
+      propertyPath: spreadCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 423546655087967604, guid: 4ce764519b062ef48a37f3b64ec401be, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -511,6 +539,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c0f466a73b995844b5d6916bf9c648a, type: 3}
+--- !u!1 &146683981 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 457988399069600944, guid: 0c0f466a73b995844b5d6916bf9c648a, type: 3}
+  m_PrefabInstance: {fileID: 146683980}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &158393341
 GameObject:
   m_ObjectHideFlags: 0
@@ -694,6 +727,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1657065794}
   m_SourcePrefab: {fileID: 100100000, guid: 0c0f466a73b995844b5d6916bf9c648a, type: 3}
+--- !u!1 &248925093 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 457988399069600944, guid: 0c0f466a73b995844b5d6916bf9c648a, type: 3}
+  m_PrefabInstance: {fileID: 248925092}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &391969354 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2352790186496365564, guid: e5da9a42e71616342ba684f97fbb86f3, type: 3}
@@ -749,6 +787,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4073431254673780977, guid: 0c0f466a73b995844b5d6916bf9c648a, type: 3}
   m_PrefabInstance: {fileID: 248925092}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &567736403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 248925093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fa7be6b68cae5b4a807682e16c42ca2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 10
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 128
+  particleEffect: {fileID: 198000010585806678, guid: 96730f8640590934eacb6f860058e7f9, type: 3}
+  explosionForce: 2.5
+  upwardsModifier: 1
 --- !u!1001 &568837822
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -935,6 +992,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4073431254673780977, guid: 0c0f466a73b995844b5d6916bf9c648a, type: 3}
   m_PrefabInstance: {fileID: 146683980}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &782045431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 146683981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fa7be6b68cae5b4a807682e16c42ca2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 10
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 128
+  particleEffect: {fileID: 198000010585806678, guid: 96730f8640590934eacb6f860058e7f9, type: 3}
+  explosionForce: 2.5
+  upwardsModifier: 1
 --- !u!4 &783706931 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4073431254673780977, guid: 0c0f466a73b995844b5d6916bf9c648a, type: 3}
@@ -1107,6 +1183,30 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1962240358}
   m_SourcePrefab: {fileID: 100100000, guid: 0c0f466a73b995844b5d6916bf9c648a, type: 3}
+--- !u!1 &820282926 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 457988399069600944, guid: 0c0f466a73b995844b5d6916bf9c648a, type: 3}
+  m_PrefabInstance: {fileID: 820282925}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &820282927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 820282926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fa7be6b68cae5b4a807682e16c42ca2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 10
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 128
+  particleEffect: {fileID: 198000010585806678, guid: 96730f8640590934eacb6f860058e7f9, type: 3}
+  explosionForce: 2.5
+  upwardsModifier: 1
 --- !u!4 &965851844 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 423546655087967604, guid: 4ce764519b062ef48a37f3b64ec401be, type: 3}
@@ -1171,6 +1271,30 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 34a6bc2183135204db50cba9e7b1cd97, type: 3}
+--- !u!1 &1003554157 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4059031464683983483, guid: 34a6bc2183135204db50cba9e7b1cd97, type: 3}
+  m_PrefabInstance: {fileID: 1003554156}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1003554158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1003554157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fa7be6b68cae5b4a807682e16c42ca2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 5
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  particleEffect: {fileID: 0}
+  explosionForce: 2.5
+  upwardsModifier: 1
 --- !u!1001 &1063631950
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1312,6 +1436,34 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 722391432, guid: 4ce764519b062ef48a37f3b64ec401be, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 965851850, guid: 4ce764519b062ef48a37f3b64ec401be, type: 3}
+      propertyPath: radius
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 965851850, guid: 4ce764519b062ef48a37f3b64ec401be, type: 3}
+      propertyPath: particleEffect
+      value: 
+      objectReference: {fileID: 198000012777718758, guid: acf39d9f4addf294d93fa56fa373961b, type: 3}
+    - target: {fileID: 965851855, guid: 4ce764519b062ef48a37f3b64ec401be, type: 3}
+      propertyPath: Loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 965851855, guid: 4ce764519b062ef48a37f3b64ec401be, type: 3}
+      propertyPath: Priority
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 965851855, guid: 4ce764519b062ef48a37f3b64ec401be, type: 3}
+      propertyPath: DopplerLevel
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 965851855, guid: 4ce764519b062ef48a37f3b64ec401be, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 965851855, guid: 4ce764519b062ef48a37f3b64ec401be, type: 3}
+      propertyPath: spreadCustomCurve.m_Curve.Array.data[0].value
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 423546655087967604, guid: 4ce764519b062ef48a37f3b64ec401be, type: 3}
@@ -1479,6 +1631,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1561273580}
   m_SourcePrefab: {fileID: 100100000, guid: 0c0f466a73b995844b5d6916bf9c648a, type: 3}
+--- !u!1 &1182942753 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 457988399069600944, guid: 0c0f466a73b995844b5d6916bf9c648a, type: 3}
+  m_PrefabInstance: {fileID: 1182942752}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1291767033
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1487,6 +1644,34 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 1754248309}
     m_Modifications:
+    - target: {fileID: 965851850, guid: 4ce764519b062ef48a37f3b64ec401be, type: 3}
+      propertyPath: radius
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 965851850, guid: 4ce764519b062ef48a37f3b64ec401be, type: 3}
+      propertyPath: particleEffect
+      value: 
+      objectReference: {fileID: 198000012777718758, guid: acf39d9f4addf294d93fa56fa373961b, type: 3}
+    - target: {fileID: 965851855, guid: 4ce764519b062ef48a37f3b64ec401be, type: 3}
+      propertyPath: Loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 965851855, guid: 4ce764519b062ef48a37f3b64ec401be, type: 3}
+      propertyPath: Priority
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 965851855, guid: 4ce764519b062ef48a37f3b64ec401be, type: 3}
+      propertyPath: DopplerLevel
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 965851855, guid: 4ce764519b062ef48a37f3b64ec401be, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 965851855, guid: 4ce764519b062ef48a37f3b64ec401be, type: 3}
+      propertyPath: spreadCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 423546655087967604, guid: 4ce764519b062ef48a37f3b64ec401be, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -2085,6 +2270,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 568837823}
   m_SourcePrefab: {fileID: 100100000, guid: 0c0f466a73b995844b5d6916bf9c648a, type: 3}
+--- !u!1 &1714240538 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 457988399069600944, guid: 0c0f466a73b995844b5d6916bf9c648a, type: 3}
+  m_PrefabInstance: {fileID: 1714240537}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1741511149
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2164,6 +2354,30 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 2122720843}
   m_SourcePrefab: {fileID: 100100000, guid: 0c0f466a73b995844b5d6916bf9c648a, type: 3}
+--- !u!1 &1741511150 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 457988399069600944, guid: 0c0f466a73b995844b5d6916bf9c648a, type: 3}
+  m_PrefabInstance: {fileID: 1741511149}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1741511151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1741511150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fa7be6b68cae5b4a807682e16c42ca2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 10
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 128
+  particleEffect: {fileID: 198000010585806678, guid: 96730f8640590934eacb6f860058e7f9, type: 3}
+  explosionForce: 2.5
+  upwardsModifier: 1
 --- !u!1 &1754248308
 GameObject:
   m_ObjectHideFlags: 0
@@ -2282,11 +2496,54 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1096876337}
   m_SourcePrefab: {fileID: 100100000, guid: 0c0f466a73b995844b5d6916bf9c648a, type: 3}
+--- !u!1 &1773995529 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 457988399069600944, guid: 0c0f466a73b995844b5d6916bf9c648a, type: 3}
+  m_PrefabInstance: {fileID: 1773995528}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1773995530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1773995529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fa7be6b68cae5b4a807682e16c42ca2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 10
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 128
+  particleEffect: {fileID: 198000010585806678, guid: 96730f8640590934eacb6f860058e7f9, type: 3}
+  explosionForce: 2.5
+  upwardsModifier: 1
 --- !u!4 &1812851211 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4073431254673780977, guid: 0c0f466a73b995844b5d6916bf9c648a, type: 3}
   m_PrefabInstance: {fileID: 1182942752}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1812851212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1182942753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fa7be6b68cae5b4a807682e16c42ca2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 10
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 128
+  particleEffect: {fileID: 198000010585806678, guid: 96730f8640590934eacb6f860058e7f9, type: 3}
+  explosionForce: 2.5
+  upwardsModifier: 1
 --- !u!1001 &1813796153
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2366,6 +2623,30 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 99325462}
   m_SourcePrefab: {fileID: 100100000, guid: 0c0f466a73b995844b5d6916bf9c648a, type: 3}
+--- !u!1 &1813796154 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 457988399069600944, guid: 0c0f466a73b995844b5d6916bf9c648a, type: 3}
+  m_PrefabInstance: {fileID: 1813796153}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1813796155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813796154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fa7be6b68cae5b4a807682e16c42ca2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 10
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 128
+  particleEffect: {fileID: 198000010585806678, guid: 96730f8640590934eacb6f860058e7f9, type: 3}
+  explosionForce: 2.5
+  upwardsModifier: 1
 --- !u!1001 &1819534041
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2376,6 +2657,34 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 722391432, guid: 4ce764519b062ef48a37f3b64ec401be, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 965851850, guid: 4ce764519b062ef48a37f3b64ec401be, type: 3}
+      propertyPath: radius
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 965851850, guid: 4ce764519b062ef48a37f3b64ec401be, type: 3}
+      propertyPath: particleEffect
+      value: 
+      objectReference: {fileID: 198000012777718758, guid: acf39d9f4addf294d93fa56fa373961b, type: 3}
+    - target: {fileID: 965851855, guid: 4ce764519b062ef48a37f3b64ec401be, type: 3}
+      propertyPath: Loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 965851855, guid: 4ce764519b062ef48a37f3b64ec401be, type: 3}
+      propertyPath: Priority
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 965851855, guid: 4ce764519b062ef48a37f3b64ec401be, type: 3}
+      propertyPath: DopplerLevel
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 965851855, guid: 4ce764519b062ef48a37f3b64ec401be, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 965851855, guid: 4ce764519b062ef48a37f3b64ec401be, type: 3}
+      propertyPath: spreadCustomCurve.m_Curve.Array.data[0].value
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 423546655087967604, guid: 4ce764519b062ef48a37f3b64ec401be, type: 3}
@@ -2541,6 +2850,34 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 722391432, guid: 4ce764519b062ef48a37f3b64ec401be, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 965851850, guid: 4ce764519b062ef48a37f3b64ec401be, type: 3}
+      propertyPath: radius
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 965851850, guid: 4ce764519b062ef48a37f3b64ec401be, type: 3}
+      propertyPath: particleEffect
+      value: 
+      objectReference: {fileID: 198000012777718758, guid: acf39d9f4addf294d93fa56fa373961b, type: 3}
+    - target: {fileID: 965851855, guid: 4ce764519b062ef48a37f3b64ec401be, type: 3}
+      propertyPath: Loop
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 965851855, guid: 4ce764519b062ef48a37f3b64ec401be, type: 3}
+      propertyPath: Priority
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 965851855, guid: 4ce764519b062ef48a37f3b64ec401be, type: 3}
+      propertyPath: DopplerLevel
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 965851855, guid: 4ce764519b062ef48a37f3b64ec401be, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 965851855, guid: 4ce764519b062ef48a37f3b64ec401be, type: 3}
+      propertyPath: spreadCustomCurve.m_Curve.Array.data[0].value
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 423546655087967604, guid: 4ce764519b062ef48a37f3b64ec401be, type: 3}
@@ -2772,6 +3109,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4073431254673780977, guid: 0c0f466a73b995844b5d6916bf9c648a, type: 3}
   m_PrefabInstance: {fileID: 1714240537}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2014696110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1714240538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fa7be6b68cae5b4a807682e16c42ca2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 10
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 128
+  particleEffect: {fileID: 198000010585806678, guid: 96730f8640590934eacb6f860058e7f9, type: 3}
+  explosionForce: 2.5
+  upwardsModifier: 1
 --- !u!1001 &2122720842
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2906,7 +3262,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2130229616}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0527595059d712c40a1744ffbfd45a8c, type: 3}
   m_Name: 
