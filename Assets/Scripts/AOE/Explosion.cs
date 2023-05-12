@@ -1,5 +1,6 @@
 using DroneLoadout.Scripts;
 using System.Linq;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class Explosion : MonoBehaviour
@@ -10,10 +11,10 @@ public class Explosion : MonoBehaviour
     public float explosionForce = 2.5f; // The force of the explosion
     public float upwardsModifier = 1f; // The upwards modifier of the explosion
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
         // Check if the collided object is on the specified layer(s) and has either the "Defender" tag or the "Goal" name
-        if (layerMask == (1 << other.gameObject.layer) && (other.CompareTag("Defender") || other.gameObject.name == "Goal"))
+        if (/*layerMask == (1 << other.gameObject.layer) && */other.gameObject.CompareTag("Defender")) /*|| other.gameObject.name == "Goal")*/
         {
             // Get all rigidbodies within the area of effect
             Rigidbody[] rigidbodies = Physics.OverlapSphere(transform.position, radius, layerMask, QueryTriggerInteraction.Ignore)
@@ -26,27 +27,29 @@ public class Explosion : MonoBehaviour
             {
                 if (rb != null)
                 {
+                    rb.AddExplosionForce(explosionForce, transform.position, radius, upwardsModifier, ForceMode.Impulse);
+                    
                     Drone drone = rb.GetComponent<Drone>();
                     if (drone != null)
                     {
                         drone.Die();
                     }
-
-                    rb.AddExplosionForce(explosionForce, transform.position, radius, upwardsModifier, ForceMode.Impulse);
                 }
             }
+
+            Instantiate(particleEffect, transform.position, Quaternion.identity);
+            
+            // Play the particle effect
+            /*if (particleEffect != null)
+            {
+                particleEffect.Play();
+            }*/
 
             // Call the Die() function on the object with the Explosion script attached
             Drone droneOnThisObject = GetComponent<Drone>();
             if (droneOnThisObject != null)
             {
                 droneOnThisObject.Die();
-            }
-
-            // Play the particle effect
-            if (particleEffect != null)
-            {
-                particleEffect.Play();
             }
         }
     }
