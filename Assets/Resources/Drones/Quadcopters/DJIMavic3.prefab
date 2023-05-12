@@ -8449,7 +8449,7 @@ Transform:
   - {fileID: 1475547378}
   - {fileID: 110608414}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &6219301212829292288
 BoxCollider:
@@ -8544,11 +8544,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60c979077be58df46aec8882f98309d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 20
   rotationSpeed: 5
   maxVelocityChange: 10
   arrivalDistance: 1
-  separationDistance: 1
   target: {fileID: 0}
 --- !u!114 &711836331
 MonoBehaviour:
@@ -8562,13 +8561,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7141b401654adaa4fb34c4afac9b367d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
-  rotationSpeed: 0
-  neighbourDistance: 0
-  separationDistance: 0
-  separationWeight: 0
-  alignmentWeight: 0
-  cohesionWeight: 0
+  speed: 3
+  rotationSpeed: 3
+  neighbourDistance: 7
+  separationDistance: 7
+  separationWeight: 7
+  alignmentWeight: 7
+  cohesionWeight: 7
   currentFormation: 0
 --- !u!1 &4069831179865889262
 GameObject:
