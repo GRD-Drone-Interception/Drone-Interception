@@ -68,6 +68,7 @@ public class FixedWingAircraft : MonoBehaviour
             Vector3 steering = desiredVelocity - velocity;
             steering = Vector3.ClampMagnitude(steering, maxVelocityChange);
             rb.AddForce(steering, ForceMode.VelocityChange);
+
         }
 
 

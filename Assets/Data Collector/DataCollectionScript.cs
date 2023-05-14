@@ -63,6 +63,12 @@ public class DataCollectionScript : MonoBehaviour
         if (attackerCountCurrent == 0)
         {
             Debug.Log("Defenders win!");
+            // Set the speed of all Defender tagged objects to 0 and fix their positions
+            foreach (GameObject defender in defenders)
+            {
+                defender.GetComponent<Rigidbody>().velocity = Vector3.zero;
+                defender.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+            }
             // Display a message to the player using a UI element or other method
         }
         else if (defenderCountCurrent == 0)
