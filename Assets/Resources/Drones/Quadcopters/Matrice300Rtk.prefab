@@ -194,13 +194,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7141b401654adaa4fb34c4afac9b367d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
-  rotationSpeed: 0
-  neighbourDistance: 0
-  separationDistance: 0
-  separationWeight: 0
-  alignmentWeight: 0
-  cohesionWeight: 0
+  speed: 6
+  rotationSpeed: 6
+  neighbourDistance: 20
+  separationDistance: 20
+  separationWeight: 20
+  alignmentWeight: 20
+  cohesionWeight: 20
   currentFormation: 0
 --- !u!114 &1181721495
 MonoBehaviour:
@@ -218,7 +218,6 @@ MonoBehaviour:
   rotationSpeed: 5
   maxVelocityChange: 10
   arrivalDistance: 1
-  separationDistance: 1
   target: {fileID: 0}
 --- !u!1 &6053727527187228492
 GameObject:

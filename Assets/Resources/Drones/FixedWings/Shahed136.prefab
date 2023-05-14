@@ -245,7 +245,7 @@ Transform:
   - {fileID: 1502162751}
   - {fileID: 571980135751335846}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1057059332579059649
 BoxCollider:
@@ -358,13 +358,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  rotationSpeed: 0
-  neighbourDistance: 20
-  separationDistance: 20
-  separationWeight: 20
-  alignmentWeight: 20
-  cohesionWeight: 20
-  currentFormation: 1
+  rotationSpeed: 3
+  neighbourDistance: 40
+  separationDistance: 40
+  separationWeight: 40
+  alignmentWeight: 40
+  cohesionWeight: 40
+  currentFormation: 0
 --- !u!114 &965851850
 MonoBehaviour:
   m_ObjectHideFlags: 0

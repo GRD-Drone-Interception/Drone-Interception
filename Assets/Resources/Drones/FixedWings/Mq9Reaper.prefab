@@ -1288,7 +1288,6 @@ GameObject:
   - component: {fileID: 2813238234903521930}
   - component: {fileID: -3141651195714037725}
   - component: {fileID: 4257846859634768624}
-  - component: {fileID: -8700600800600715430}
   - component: {fileID: -8001661775399297286}
   m_Layer: 7
   m_Name: Mq9Reaper
@@ -1427,8 +1426,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d901120bc18062444bab7175a3b26382, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 50
-  rotationSpeed: 20
+  speed: 55
+  rotationSpeed: 7
   maxVelocityChange: 10
   arrivalDistance: 1
   rollSpeed: 5
@@ -1456,14 +1455,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioClips: []
---- !u!81 &-8700600800600715430
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2290178057615028574}
-  m_Enabled: 1
 --- !u!114 &-8001661775399297286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1479,7 +1470,7 @@ MonoBehaviour:
   radius: 5
   layerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2147483647
   particleEffect: {fileID: 0}
   explosionForce: 2.5
   upwardsModifier: 1

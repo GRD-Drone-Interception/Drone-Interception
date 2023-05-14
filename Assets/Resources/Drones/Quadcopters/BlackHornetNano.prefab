@@ -40,7 +40,7 @@ Transform:
   - {fileID: 8555479184565073624}
   - {fileID: 8555479184962562964}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
 --- !u!33 &8529532264221301431
 MeshFilter:
@@ -176,13 +176,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7141b401654adaa4fb34c4afac9b367d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
-  rotationSpeed: 0
-  neighbourDistance: 0
-  separationDistance: 0
-  separationWeight: 0
-  alignmentWeight: 0
-  cohesionWeight: 0
+  speed: 10
+  rotationSpeed: 6
+  neighbourDistance: 16
+  separationDistance: 16
+  separationWeight: 16
+  alignmentWeight: 16
+  cohesionWeight: 16
   currentFormation: 0
 --- !u!114 &496800895
 MonoBehaviour:
@@ -196,11 +196,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60c979077be58df46aec8882f98309d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 16
   rotationSpeed: 5
   maxVelocityChange: 10
   arrivalDistance: 1
-  separationDistance: 1
   target: {fileID: 0}
 --- !u!1 &8555479184565073625
 GameObject:

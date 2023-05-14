@@ -162,7 +162,6 @@ GameObject:
   - component: {fileID: 6907117351488333440}
   - component: {fileID: -4440060663377508087}
   - component: {fileID: 3844866442730883239}
-  - component: {fileID: 2207422638246892885}
   - component: {fileID: -3047009057371109280}
   m_Layer: 7
   m_Name: BAYRAKTAR_TB2
@@ -275,13 +274,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7141b401654adaa4fb34c4afac9b367d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 7
   rotationSpeed: 5
-  neighbourDistance: 3
-  separationDistance: 2
-  separationWeight: 1
-  alignmentWeight: 1
-  cohesionWeight: 1
+  neighbourDistance: 30
+  separationDistance: 30
+  separationWeight: 30
+  alignmentWeight: 30
+  cohesionWeight: 30
   currentFormation: 0
 --- !u!114 &-4440060663377508087
 MonoBehaviour:
@@ -295,9 +294,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d901120bc18062444bab7175a3b26382, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 50
-  rotationSpeed: 20
-  maxVelocityChange: 10
+  speed: 42
+  rotationSpeed: 22
+  maxVelocityChange: 8
   arrivalDistance: 1
   rollSpeed: 5
   pitchSpeed: 5
@@ -324,14 +323,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioClips: []
---- !u!81 &2207422638246892885
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8809748575978406926}
-  m_Enabled: 1
 --- !u!114 &-3047009057371109280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -347,7 +338,7 @@ MonoBehaviour:
   radius: 5
   layerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2147483647
   particleEffect: {fileID: 0}
   explosionForce: 2.5
   upwardsModifier: 1

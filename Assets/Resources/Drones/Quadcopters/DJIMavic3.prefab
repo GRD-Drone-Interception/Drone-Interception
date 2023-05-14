@@ -8449,7 +8449,7 @@ Transform:
   - {fileID: 1475547378}
   - {fileID: 110608414}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &6219301212829292288
 BoxCollider:
@@ -8544,7 +8544,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60c979077be58df46aec8882f98309d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
+  speed: 25
   rotationSpeed: 5
   maxVelocityChange: 10
   arrivalDistance: 1
