@@ -38,7 +38,7 @@ public class Explosion : MonoBehaviour
             }
 
             Instantiate(particleEffect, transform.position, Quaternion.identity);
-            
+
             // Play the particle effect
             /*if (particleEffect != null)
             {
