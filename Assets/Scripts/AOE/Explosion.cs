@@ -1,3 +1,4 @@
+using System.Collections;
 using DroneLoadout.Scripts;
 using System.Linq;
 using Unity.Mathematics;
@@ -7,7 +8,7 @@ public class Explosion : MonoBehaviour
 {
     public float radius = 5f; // The radius of the area of effect
     public LayerMask layerMask; // The layer(s) that the area of effect should affect
-    public ParticleSystem particleEffect; // The particle effect to play when the area of effect triggers
+    public GameObject explosionPrefab;
     public float explosionForce = 2.5f; // The force of the explosion
     public float upwardsModifier = 1f; // The upwards modifier of the explosion
 
@@ -37,13 +38,7 @@ public class Explosion : MonoBehaviour
                 }
             }
 
-            Instantiate(particleEffect, transform.position, Quaternion.identity);
-
-            // Play the particle effect
-            /*if (particleEffect != null)
-            {
-                particleEffect.Play();
-            }*/
+            Instantiate(explosionPrefab, transform.position, Quaternion.identity);
 
             // Call the Die() function on the object with the Explosion script attached
             Drone droneOnThisObject = GetComponent<Drone>();
