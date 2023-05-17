@@ -8,6 +8,7 @@ using DroneLoadout.Factory;
 using DroneLoadout.Strategies;
 using Testing;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using Utility;
 
@@ -54,6 +55,11 @@ namespace DroneLoadout.Scripts
 
         private void Awake()
         {
+            if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("DroneWorkshop"))
+            {
+                Destroy(GetComponent<Boid>());
+            }
+
             Rb = GetComponent<Rigidbody>();
             DecorableDrone = DroneFactory.CreateDrone(droneConfigData.DroneType, droneConfigData);
             _attachmentPoints.AddRange(GetComponentsInChildren<AttachmentPoint>());
