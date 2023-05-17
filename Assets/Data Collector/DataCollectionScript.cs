@@ -57,6 +57,10 @@ public class DataCollectionScript : MonoBehaviour
             Color textColor = countText.color;
             textColor.a = 0f;
             countText.color = textColor;
+            foreach (var defender in defenders)
+            {
+                defender.GetComponent<InterceptionDrone>().Target = null;
+            }
         }
 
         // Check if the attackers or defenders have won, and display a message to the player if so

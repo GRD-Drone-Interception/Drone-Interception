@@ -2,6 +2,12 @@ using UnityEngine;
 
 public class InterceptionDrone : MonoBehaviour
 {
+    public Transform Target
+    { 
+        get => target;
+        set => target = value;
+    }
+    
     [SerializeField] private float range = 10f;
     [SerializeField] private Transform target;
     [SerializeField] private float speed = 5f;
