@@ -15,7 +15,9 @@ public class DataPopup : MonoBehaviour
     private int defenderLosses;
 
     public Text countText; // Reference to the UI text element
-    public Text messageText; // Reference to the UI text element to display messages
+    public Text messageText; // Reference to the UI text element
+
+    private bool isVisible;
 
     void Start()
     {
@@ -31,15 +33,16 @@ public class DataPopup : MonoBehaviour
         attackerLosses = 0;
         defenderLosses = 0;
 
-        // Set the initial opacity of the UI text element to 0
+        // Set the initial opacity of the UI text elements to 0
         Color textColor = countText.color;
         textColor.a = 0f;
         countText.color = textColor;
 
-        // Set the initial opacity of the message text element to 0
         textColor = messageText.color;
         textColor.a = 0f;
         messageText.color = textColor;
+
+        isVisible = false;
     }
 
     void Update()
@@ -57,26 +60,31 @@ public class DataPopup : MonoBehaviour
         // Check if either count has reached 0, and turn on the opacity of the UI text elements if so
         if (attackerCountCurrent == 0 || defenderCountCurrent == 0)
         {
-            Color textColor = countText.color;
-            textColor.a = 1f;
-            countText.color = textColor;
-
-            textColor = messageText.color;
-            textColor.a = 1f;
-            messageText.color = textColor;
-
-            // Determine which team has won and display a message to the player
-            if (attackerCountCurrent == 0)
+            if (!isVisible)
             {
-                messageText.text = "Defenders Win!";
-            }
-            else
-            {
-                messageText.text = "Attackers Win!";
+                Color textColor = countText.color;
+                textColor.a = 1f;
+                countText.color = textColor;
+
+                textColor = messageText.color;
+                textColor.a = 1f;
+                messageText.color = textColor;
+
+                // Determine which team has won and display a message to the player
+                if (attackerCountCurrent == 0)
+                {
+                    messageText.text = "Defenders Win!";
+                }
+                else
+                {
+                    messageText.text = "Attackers Win!";
+                }
+
+                isVisible = true;
             }
         }
 
-        // Update the UI text element
+        // Update the UI text elements
         UpdateCountText();
     }
 

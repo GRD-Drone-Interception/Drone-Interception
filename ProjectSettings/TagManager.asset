@@ -21,8 +21,8 @@ TagManager:
   - Drones
   - Targets
   - Spawnable
-  - 
-  - 
+  - DffSpawnable
+  - AttSpawnable
   - 
   - 
   - 
