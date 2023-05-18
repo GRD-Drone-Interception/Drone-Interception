@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7189957159395472984}
   - component: {fileID: 7189957159395472985}
   - component: {fileID: 7189957159395472986}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: WaypointArrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 7189957159651248825}
   - component: {fileID: 7189957159651248826}
   - component: {fileID: 7189957159651248827}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: WaypointRing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -130,7 +130,7 @@ Transform:
   m_Children:
   - {fileID: 7189957159395472987}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!33 &7189957159651248826
 MeshFilter:
