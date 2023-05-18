@@ -1,64 +1,67 @@
 using UnityEngine;
 
-public class scr_Drone : MonoBehaviour
+namespace DroneMovement.Scripts
 {
-    public float speed = 5f;
-    public float rotationSpeed = 2f;
-    public float maxVelocityChange = 10f;
-    public float arrivalDistance = 1f;
-    public Transform target;
-    private Rigidbody rb;
-
-    private void Start()
+    public class scr_Drone : MonoBehaviour
     {
-        rb = GetComponent<Rigidbody>();
-        transform.rotation = Quaternion.identity;
-    }
+        public float speed = 5f;
+        public float rotationSpeed = 2f;
+        public float maxVelocityChange = 10f;
+        public float arrivalDistance = 1f;
+        public Transform target;
+        private Rigidbody rb;
 
-    private void FixedUpdate()
-    {
-        if (target != null)
+        private void Start()
         {
-            // Move towards the target
-            Vector3 targetDirection = target.position - transform.position;
-            targetDirection.Normalize();
+            rb = GetComponent<Rigidbody>();
+            transform.rotation = Quaternion.identity;
+        }
 
-            float distanceToTarget = Vector3.Distance(transform.position, target.position);
-
-            if (distanceToTarget > arrivalDistance)
+        private void FixedUpdate()
+        {
+            if (target != null)
             {
-                Vector3 velocity = rb.velocity;
-                Vector3 desiredVelocity = targetDirection * speed;
-                Vector3 steering = desiredVelocity - velocity;
-                steering = Vector3.ClampMagnitude(steering, maxVelocityChange);
-                rb.AddForce(steering, ForceMode.VelocityChange);
+                // Move towards the target
+                Vector3 targetDirection = target.position - transform.position;
+                targetDirection.Normalize();
 
-                // Rotate towards the target
-                float angle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg - 90f;
-                Quaternion targetRotation = Quaternion.LookRotation(Vector3.forward, Vector3.up);
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+                float distanceToTarget = Vector3.Distance(transform.position, target.position);
+
+                if (distanceToTarget > arrivalDistance)
+                {
+                    Vector3 velocity = rb.velocity;
+                    Vector3 desiredVelocity = targetDirection * speed;
+                    Vector3 steering = desiredVelocity - velocity;
+                    steering = Vector3.ClampMagnitude(steering, maxVelocityChange);
+                    rb.AddForce(steering, ForceMode.VelocityChange);
+
+                    // Rotate towards the target
+                    float angle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg - 90f;
+                    Quaternion targetRotation = Quaternion.LookRotation(Vector3.forward, Vector3.up);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+                }
+            }
+            else
+            {
+                target = TargetController.Instance.CurrentTarget.transform;
             }
         }
-        else
-        {
-            target = TargetController.Instance.CurrentTarget.transform;
-        }
-    }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log("Trigger entered");
-        if (other.CompareTag("Object"))
+        private void OnTriggerEnter(Collider other)
         {
-            // If the object has collided with the target
-            Destroy(TargetController.Instance.CurrentTarget); // Destroy the current target
-            TargetController.Instance.currentTargetIndex++; // Increment the target index
-            if (TargetController.Instance.currentTargetIndex >= TargetController.Instance.targets.Count)
-            { // If we've reached the end of the targets list
-                TargetController.Instance.currentTargetIndex = 0; // Loop back to the start
+            Debug.Log("Trigger entered");
+            if (other.CompareTag("Object"))
+            {
+                // If the object has collided with the target
+                Destroy(TargetController.Instance.CurrentTarget); // Destroy the current target
+                TargetController.Instance.currentTargetIndex++; // Increment the target index
+                if (TargetController.Instance.currentTargetIndex >= TargetController.Instance.targets.Count)
+                { // If we've reached the end of the targets list
+                    TargetController.Instance.currentTargetIndex = 0; // Loop back to the start
+                }
+                TargetController.Instance.SetCurrentTarget(); // Set the new current target
+                target = TargetController.Instance.CurrentTarget.transform;
             }
-            TargetController.Instance.SetCurrentTarget(); // Set the new current target
-            target = TargetController.Instance.CurrentTarget.transform;
         }
     }
 }

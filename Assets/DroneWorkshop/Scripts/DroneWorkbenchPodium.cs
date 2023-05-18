@@ -1,10 +1,8 @@
 using DroneLoadout.Scripts;
-using DroneWorkshop.Scripts;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 
-namespace DroneWorkshop
+namespace DroneWorkshop.Scripts
 {
     public class DroneWorkbenchPodium : MonoBehaviour
     {

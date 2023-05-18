@@ -1,7 +1,6 @@
-﻿using DroneLoadout.Scripts;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace DroneLoadout
+namespace DroneLoadout.Scripts
 {
     public class WhiteboardUi : MonoBehaviour
     {
