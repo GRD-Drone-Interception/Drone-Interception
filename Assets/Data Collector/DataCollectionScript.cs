@@ -1,5 +1,8 @@
+using System;
+using Testing;
 using UnityEngine;
 using UnityEngine.UI;
+using Utility;
 
 namespace Data_Collector
 {
@@ -90,6 +93,26 @@ namespace Data_Collector
             // Update the UI text element with the current counts and losses
             countText.text = "Attackers: " + attackerCountCurrent + " (Start: " + attackerCountStart + " Losses: " + attackerLosses + ")"
                              + "\nDefenders: " + defenderCountCurrent + " (Start: " + defenderCountStart + " Losses: " + defenderLosses + ")";
+        }
+
+        private void OnDestroy()
+        {
+            PostMatchAnalyticsData data = new PostMatchAnalyticsData
+            {
+                interceptionSuccessRate = 0,
+                interceptionAccuracy = 0,
+                averageInterceptionTime = 0,
+                droneSurvivalRate = 0,
+                averageDistanceTravelled = 0,
+                numOfUniqueStrategiesUsed = 0,
+                matchLengthSeconds = 0,
+                numDronesDeployed = 0,
+                numDronesDestroyed = 0,
+                numObjectivesCompleted = 0,
+                attackersLost = attackerLosses,
+                defendersLost = defenderLosses
+            };
+            JsonFileHandler.Save(data, "PostAnalyticData");
         }
     }
 }
