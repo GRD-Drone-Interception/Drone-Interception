@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -5,6 +6,8 @@ namespace DroneSelection.Scripts
 {
     public class WaypointSpawner : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
     {
+        public event Action<GameObject> OnWaypointPlaced;
+        
         [SerializeField] private GameObject waypointPrefab;
         [SerializeField] private Camera tacticalCamera;
         private GameObject _objectInHand;
@@ -23,6 +26,10 @@ namespace DroneSelection.Scripts
                 return;
             }
 
+            var waypointBobber = _objectInHand.GetComponentInChildren<WaypointBobbing>();
+            waypointBobber.SetStartPosition(_objectInHand.transform.position + Vector3.up*2);
+            waypointBobber.Play();
+            OnWaypointPlaced?.Invoke(_objectInHand.gameObject);
             _objectInHand = null;
         }
 
