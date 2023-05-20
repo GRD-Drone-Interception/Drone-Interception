@@ -15,7 +15,7 @@ namespace DroneSelection
     public class DroneDragAndDropSpawner : MonoBehaviour, IPointerUpHandler, IPointerDownHandler
     {
         public event Action OnDroneSpawned;
-        
+
         [SerializeField] private DroneConfigData droneConfigData;
         [SerializeField] private Camera tacticalCamera;
         private static Drone _drone;
@@ -28,7 +28,7 @@ namespace DroneSelection
             _drone.Rb.constraints = RigidbodyConstraints.FreezeAll;
             _drone.Rb.detectCollisions = false;
         }
-        
+
         public void OnPointerUp(PointerEventData eventData)
         {
             if (!_inSpawnableArea)
@@ -36,12 +36,12 @@ namespace DroneSelection
                 Destroy(_drone.gameObject);
                 return;
             }
-            
+
             _drone.RemoveBlueprintShader();
-            _drone.SetTeam(TurnManager.Instance.CurrentTeam); 
+            _drone.SetTeam(TurnManager.Instance.CurrentTeam);
             DroneManager.Instance.AddDrone(_drone);
             OnDroneSpawned?.Invoke();
-            
+
             _drone.Rb.constraints = RigidbodyConstraints.None;
             _drone.Rb.detectCollisions = true;
             _drone = null;
@@ -53,13 +53,13 @@ namespace DroneSelection
             {
                 if (Input.GetKey(KeyCode.R))
                 {
-                    _drone.transform.Rotate(new Vector3(0,-20.0f * Time.deltaTime,0));
+                    _drone.transform.Rotate(new Vector3(0, -20.0f * Time.deltaTime, 0));
                 }
                 else if (Input.GetKey(KeyCode.T))
                 {
-                    _drone.transform.Rotate(new Vector3(0,20.0f * Time.deltaTime,0));
+                    _drone.transform.Rotate(new Vector3(0, 20.0f * Time.deltaTime, 0));
                 }
-                
+
                 // Ignore the Unit layer
                 if (Physics.Raycast(tacticalCamera.ScreenPointToRay(Input.mousePosition), out RaycastHit hitInfo, Mathf.Infinity, ~LayerMask.GetMask("Unit")))
                 {
@@ -79,9 +79,9 @@ namespace DroneSelection
                 else // if no colliders detected, lock z position of selected drone in hand
                 {
                     _drone.ApplyBlueprintShader(Color.red);
-                    var v3 = Input.mousePosition; 
-                    v3.z = 8.0f; 
-                    v3 = tacticalCamera.ScreenToWorldPoint(v3); 
+                    var v3 = Input.mousePosition;
+                    v3.z = 8.0f;
+                    v3 = tacticalCamera.ScreenToWorldPoint(v3);
                     _drone.transform.position = v3;
                 }
             }
