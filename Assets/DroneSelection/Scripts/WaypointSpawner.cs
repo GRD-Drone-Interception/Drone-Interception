@@ -52,7 +52,8 @@ namespace DroneSelection.Scripts
                     var rotation = Quaternion.Euler(90, _objectInHand.transform.rotation.y, _objectInHand.transform.rotation.z);
                     _objectInHand.transform.position = hitInfo.point;
                     _objectInHand.transform.rotation = rotation;
-                    _inSpawnableArea = hitInfo.transform.gameObject.layer == LayerMask.NameToLayer("Spawnable");
+                    _inSpawnableArea = hitInfo.transform.gameObject.layer == LayerMask.NameToLayer("AttSpawnable") ||
+                                       hitInfo.transform.gameObject.layer == LayerMask.NameToLayer("DffSpawnable");
                 }
                 else // if no colliders detected, lock z position of selected object in hand
                 {

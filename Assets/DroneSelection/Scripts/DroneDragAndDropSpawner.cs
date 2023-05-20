@@ -1,4 +1,5 @@
 using System;
+using Core;
 using DroneBehaviours.Scripts;
 using DroneLoadout.Decorators;
 using DroneLoadout.Scripts;
@@ -63,7 +64,35 @@ namespace DroneSelection.Scripts
                 {
                     _drone.transform.position = hitInfo.point + Vector3.up;
 
-                    if (hitInfo.transform.gameObject.layer == LayerMask.NameToLayer("Spawnable"))
+
+                    if (_drone.GetTeam() == PlayerTeam.Offensive)
+                    {
+                        if (hitInfo.transform.gameObject.layer == LayerMask.NameToLayer("AttSpawnable"))
+                        {
+                            _drone.ApplyBlueprintShader(_drone.BlueprintColour);
+                            _inSpawnableArea = true;
+                        }
+                        else
+                        {
+                            _drone.ApplyBlueprintShader(Color.red);
+                            _inSpawnableArea = false;
+                        }
+                    }
+                    else if (_drone.GetTeam() == PlayerTeam.Defensive)
+                    {
+                        if (hitInfo.transform.gameObject.layer == LayerMask.NameToLayer("DffSpawnable"))
+                        {
+                            _drone.ApplyBlueprintShader(_drone.BlueprintColour);
+                            _inSpawnableArea = true;
+                        }
+                        else
+                        {
+                            _drone.ApplyBlueprintShader(Color.red);
+                            _inSpawnableArea = false;
+                        }
+                    }
+                    
+                    /*if (hitInfo.transform.gameObject.layer == LayerMask.NameToLayer("Spawnable"))
                     {
                         _drone.ApplyBlueprintShader(_drone.BlueprintColour);
                         _inSpawnableArea = true;
@@ -72,7 +101,7 @@ namespace DroneSelection.Scripts
                     {
                         _drone.ApplyBlueprintShader(Color.red);
                         _inSpawnableArea = false;
-                    }
+                    }*/
                 }
                 else // if no colliders detected, lock z position of selected drone in hand
                 {

@@ -22,8 +22,8 @@ TagManager:
   - Targets
   - Spawnable
   - Waypoint
-  - 
-  - 
+  - AttSpawnable
+  - DffSpawnable
   - 
   - 
   - 
