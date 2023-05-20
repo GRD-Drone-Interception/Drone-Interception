@@ -1,51 +1,66 @@
+using System.Collections;
+using System.Collections.Generic;
+using Testing;
 using UnityEngine;
 using UnityEngine.UI;
+using Utility;
 
-namespace Data_Collector
+public class DataCollectionScript : MonoBehaviour
 {
-    public class DataCollectionScript : MonoBehaviour
+    private int attackerCountStart;
+    private int defenderCountStart;
+
+    private int attackerCountCurrent;
+    private int defenderCountCurrent;
+
+    private int attackerLosses;
+    private int defenderLosses;
+
+    public Text countText; // Reference to the UI text element
+
+    private BattleButton battleButton; // Reference to the BattleButton script
+
+    private bool isCounting; // Flag to indicate whether counting has started
+
+    void Start()
     {
-        private int attackerCountStart;
-        private int defenderCountStart;
+        // Find the BattleButton script in the scene and get a reference to it
+        battleButton = GameObject.FindObjectOfType<BattleButton>();
 
-        private int attackerCountCurrent;
-        private int defenderCountCurrent;
+        // Set the initial opacity of the UI text element to 1
+        Color textColor = countText.color;
+        textColor.a = 1f;
+        countText.color = textColor;
 
-        private int attackerLosses;
-        private int defenderLosses;
+        // Initialize the remaining counts and losses to the starting counts
+        attackerCountStart = 0;
+        defenderCountStart = 0;
 
-        public Text countText; // Reference to the UI text element
+        // Update the UI text element
+        UpdateCountText();
+    }
 
-        void Start()
+    void Update()
+    {
+        // Check if the battle has started
+        if (battleButton != null && battleButton.battle)
         {
-            // Count the number of attackers and defenders at the beginning of the scene
-            GameObject[] attackers = GameObject.FindGameObjectsWithTag("Attacker");
-            GameObject[] defenders = GameObject.FindGameObjectsWithTag("Defender");
-            attackerCountStart = attackers.Length;
-            defenderCountStart = defenders.Length;
+            if (!isCounting)
+            {
+                // Count the number of attackers and defenders at the beginning of the scene
+                GameObject[] startAttackers = GameObject.FindGameObjectsWithTag("Attacker");
+                GameObject[] startDefenders = GameObject.FindGameObjectsWithTag("Defender");
+                attackerCountStart = startAttackers.Length;
+                defenderCountStart = startDefenders.Length;
 
-            // Initialize the remaining counts and losses to the starting counts
-            attackerCountCurrent = attackerCountStart;
-            defenderCountCurrent = defenderCountStart;
-            attackerLosses = 0;
-            defenderLosses = 0;
+                isCounting = true; // Start counting
+            }
 
-            // Set the initial opacity of the UI text element to 1
-            Color textColor = countText.color;
-            textColor.a = 1f;
-            countText.color = textColor;
-
-            // Update the UI text element
-            UpdateCountText();
-        }
-
-        void Update()
-        {
             // Count the number of attackers and defenders in the scene
-            GameObject[] attackers = GameObject.FindGameObjectsWithTag("Attacker");
-            GameObject[] defenders = GameObject.FindGameObjectsWithTag("Defender");
-            attackerCountCurrent = attackers.Length;
-            defenderCountCurrent = defenders.Length;
+            GameObject[] currentAttackers = GameObject.FindGameObjectsWithTag("Attacker");
+            GameObject[] currentDefenders = GameObject.FindGameObjectsWithTag("Defender");
+            attackerCountCurrent = currentAttackers.Length;
+            defenderCountCurrent = currentDefenders.Length;
 
             // Update the losses based on the difference between starting and current counts
             attackerLosses = attackerCountStart - attackerCountCurrent;
@@ -57,7 +72,7 @@ namespace Data_Collector
                 Color textColor = countText.color;
                 textColor.a = 0f;
                 countText.color = textColor;
-                foreach (var defender in defenders)
+                foreach (var defender in currentDefenders)
                 {
                     defender.GetComponent<InterceptionDrone>().Target = null;
                 }
@@ -68,7 +83,7 @@ namespace Data_Collector
             {
                 Debug.Log("Defenders win!");
                 // Set the speed of all Defender tagged objects to 0 and fix their positions
-                foreach (GameObject defender in defenders)
+                foreach (GameObject defender in currentDefenders)
                 {
                     defender.GetComponent<Rigidbody>().velocity = Vector3.zero;
                     defender.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
@@ -80,16 +95,37 @@ namespace Data_Collector
                 Debug.Log("Attackers win!");
                 // Display a message to the player using a UI element or other method
             }
-
-            // Update the UI text element
-            UpdateCountText();
         }
 
-        void UpdateCountText()
+        // Update the UI text element
+        UpdateCountText();
+    }
+
+
+    void UpdateCountText()
+    {
+        // Update the UI text element with the current counts and losses
+        countText.text = "Attackers: " + attackerCountCurrent + " (Start: " + attackerCountStart + " Losses: " + attackerLosses + ")"
+            + "\nDefenders: " + defenderCountCurrent + " (Start: " + defenderCountStart + " Losses: " + defenderLosses + ")";
+    }
+    
+    private void OnDestroy()
+    {
+        PostMatchAnalyticsData data = new PostMatchAnalyticsData
         {
-            // Update the UI text element with the current counts and losses
-            countText.text = "Attackers: " + attackerCountCurrent + " (Start: " + attackerCountStart + " Losses: " + attackerLosses + ")"
-                             + "\nDefenders: " + defenderCountCurrent + " (Start: " + defenderCountStart + " Losses: " + defenderLosses + ")";
-        }
+            interceptionSuccessRate = 0,
+            interceptionAccuracy = 0,
+            averageInterceptionTime = 0,
+            droneSurvivalRate = 0,
+            averageDistanceTravelled = 0,
+            numOfUniqueStrategiesUsed = 0,
+            matchLengthSeconds = 0,
+            numDronesDeployed = 0,
+            numDronesDestroyed = 0,
+            numObjectivesCompleted = 0,
+            attackersLost = attackerLosses,
+            defendersLost = defenderLosses
+        };
+        JsonFileHandler.Save(data, "PostAnalyticData");
     }
 }

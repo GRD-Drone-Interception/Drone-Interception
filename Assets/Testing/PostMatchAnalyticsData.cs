@@ -16,6 +16,7 @@ namespace Testing
         public int numDronesDeployed;
         public int numDronesDestroyed;
         public int numObjectivesCompleted;
-        // favourite strategy deployed?
+        public int attackersLost;
+        public int defendersLost;
     }
 }

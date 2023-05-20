@@ -54,11 +54,12 @@ namespace DroneMovement.Scripts
             {
                 // If the object has collided with the target
                 Destroy(TargetController.Instance.CurrentTarget); // Destroy the current target
-                TargetController.Instance.currentTargetIndex++; // Increment the target index
+                /*TargetController.Instance.currentTargetIndex++; // Increment the target index
                 if (TargetController.Instance.currentTargetIndex >= TargetController.Instance.targets.Count)
                 { // If we've reached the end of the targets list
                     TargetController.Instance.currentTargetIndex = 0; // Loop back to the start
-                }
+                }*/
+                TargetController.Instance.DequeueWaypointTarget();
                 TargetController.Instance.SetCurrentTarget(); // Set the new current target
                 target = TargetController.Instance.CurrentTarget.transform;
             }

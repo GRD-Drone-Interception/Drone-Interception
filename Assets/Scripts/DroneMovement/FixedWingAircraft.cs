@@ -1,3 +1,4 @@
+using DroneMovement;
 using UnityEngine;
 
 public class FixedWingAircraft : MonoBehaviour
@@ -19,14 +20,12 @@ public class FixedWingAircraft : MonoBehaviour
     public float collisionForce = 100f;
 
     private Rigidbody rb;
-    private TargetController targetController;
     public GameObject currentTarget;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        targetController = FindObjectOfType<TargetController>();
-        currentTarget = targetController.CurrentTarget;
+        //currentTarget = _targetController.CurrentTarget;
     }
 
     public void RotateTowardsTarget(Vector3 targetPosition)
@@ -43,7 +42,11 @@ public class FixedWingAircraft : MonoBehaviour
 
     private void FixedUpdate()
     {
-        currentTarget = targetController.CurrentTarget;
+        if (TargetController.Instance.CurrentTarget == null)
+        {
+            return;
+        }
+        currentTarget = TargetController.Instance.CurrentTarget;
 
         // Move towards the current target
         Vector3 targetDirection = currentTarget.transform.position - transform.position;
@@ -54,8 +57,9 @@ public class FixedWingAircraft : MonoBehaviour
         if (distanceToTarget <= arrivalDistance)
         {
             // Set the next target
-            targetController.SetCurrentTarget();
-            currentTarget = targetController.CurrentTarget;
+            TargetController.Instance.DequeueWaypointTarget();
+            TargetController.Instance.SetCurrentTarget();
+            currentTarget = TargetController.Instance.CurrentTarget;
         }
         else
         {
@@ -128,18 +132,18 @@ public class FixedWingAircraft : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Trigger entered");
         if (other.CompareTag("Object"))
         {
             // If the object has collided with the target
             Destroy(TargetController.Instance.CurrentTarget); // Destroy the current target
-            TargetController.Instance.currentTargetIndex++; // Increment the target index
-            if (TargetController.Instance.currentTargetIndex >= TargetController.Instance.targets.Count)
+            //TargetController.Instance.currentTargetIndex++; // Increment the target index
+            /*if (TargetController.Instance.currentTargetIndex >= TargetController.Instance.targets.Count)
             { // If we've reached the end of the targets list
                 TargetController.Instance.currentTargetIndex = 0; // Loop back to the start
-            }
+            }*/
+            TargetController.Instance.DequeueWaypointTarget();
             TargetController.Instance.SetCurrentTarget(); // Set the new current target
             //target = TargetController.Instance.CurrentTarget.transform;
         }
     }
-    }
+}
