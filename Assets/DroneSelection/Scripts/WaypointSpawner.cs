@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -13,14 +14,22 @@ namespace DroneSelection.Scripts
         private GameObject _objectInHand;
         private bool _inSpawnableArea;
         private Vector3 _offset;
+        private Vector3 _hitPointPosition;
+        private List<MeshRenderer> _objectMeshRenderers = new();
+        private Color _defaultObjectColour;
 
         public void OnPointerDown(PointerEventData eventData)
         {
             _objectInHand = Instantiate(waypointPrefab, Input.mousePosition, Quaternion.identity);
+            _objectMeshRenderers.AddRange(_objectInHand.GetComponentsInChildren<MeshRenderer>());
+            _defaultObjectColour = _objectMeshRenderers[0].material.color;
         }
         
         public void OnPointerUp(PointerEventData eventData)
         {
+            _objectMeshRenderers.Clear();
+            _offset = Vector3.zero;
+
             if (!_inSpawnableArea)
             {
                 Destroy(_objectInHand);
@@ -31,7 +40,6 @@ namespace DroneSelection.Scripts
             waypointBobber.SetStartPosition(_objectInHand.transform.position + Vector3.up*2);
             waypointBobber.Play();
             OnWaypointPlaced?.Invoke(_objectInHand.gameObject);
-            _offset = Vector3.zero;
             _objectInHand = null;
         }
 
@@ -39,12 +47,12 @@ namespace DroneSelection.Scripts
         {
             if (_objectInHand != null)
             {
-                // disable camera elevation input
-                Debug.Log($"Object in hand: {_objectInHand}", _objectInHand);
-                
                 if (Input.GetKey(KeyCode.R))
                 {
-                    _offset += new Vector3(0, -20.0f * Time.deltaTime, 0);
+                    if (_objectInHand.transform.position.y > _hitPointPosition.y)
+                    {
+                        _offset += new Vector3(0, -20.0f * Time.deltaTime, 0);
+                    }
                 }
                 else if (Input.GetKey(KeyCode.T))
                 {
@@ -55,10 +63,21 @@ namespace DroneSelection.Scripts
                 if (Physics.Raycast(tacticalCamera.ScreenPointToRay(Input.mousePosition), out RaycastHit hitInfo, Mathf.Infinity, ~LayerMask.GetMask("Waypoint")))
                 {
                     var rotation = Quaternion.Euler(90, _objectInHand.transform.rotation.y, _objectInHand.transform.rotation.z);
+                    _hitPointPosition = hitInfo.point;
                     _objectInHand.transform.position = hitInfo.point + _offset;
                     _objectInHand.transform.rotation = rotation;
-                    _inSpawnableArea = hitInfo.transform.gameObject.layer == LayerMask.NameToLayer("AttSpawnable") ||
-                                       hitInfo.transform.gameObject.layer == LayerMask.NameToLayer("DffSpawnable");
+
+                    if (hitInfo.transform.gameObject.layer == LayerMask.NameToLayer("AttSpawnable") ||
+                        hitInfo.transform.gameObject.layer == LayerMask.NameToLayer("DffSpawnable"))
+                    {
+                        _objectMeshRenderers.ForEach(meshRenderer => meshRenderer.material.color = _defaultObjectColour);
+                        _inSpawnableArea = true;
+                    }
+                    else
+                    {
+                        _objectMeshRenderers.ForEach(meshRenderer => meshRenderer.material.color = Color.red * 10f);
+                        _inSpawnableArea = false;
+                    }
                 }
                 else // if no colliders detected, lock z position of selected object in hand
                 {

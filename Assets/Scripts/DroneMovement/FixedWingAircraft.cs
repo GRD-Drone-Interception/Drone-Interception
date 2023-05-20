@@ -48,7 +48,7 @@ public class FixedWingAircraft : MonoBehaviour
             return;
         }
 
-        if (!BattleButton.Instance.Battle)
+        if (!BattleButton.Instance.HasBattleStarted)
         {
             return;
         }

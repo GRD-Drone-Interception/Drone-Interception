@@ -48,7 +48,7 @@ namespace DroneSelection.Scripts
             _isBobbing = true;
         }
 
-        public void Pause()
+        private void Pause()
         {
             _isBobbing = false;
         }

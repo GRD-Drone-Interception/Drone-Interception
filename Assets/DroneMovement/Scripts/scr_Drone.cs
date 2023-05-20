@@ -19,7 +19,7 @@ namespace DroneMovement.Scripts
 
         private void FixedUpdate()
         {
-            if (!BattleButton.Instance.Battle)
+            if (!BattleButton.Instance.HasBattleStarted)
             {
                 return;
             }

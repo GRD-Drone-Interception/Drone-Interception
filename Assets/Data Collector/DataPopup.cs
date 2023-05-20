@@ -39,7 +39,7 @@ public class DataPopup : MonoBehaviour
     void Update()
     {
         // Check if the battle has started
-        if (battleButton != null && battleButton.Battle)
+        if (battleButton != null && battleButton.HasBattleStarted)
         {
             // Count the number of attackers and defenders in the scene
             GameObject[] attackers = GameObject.FindGameObjectsWithTag("Attacker");

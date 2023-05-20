@@ -5,13 +5,11 @@ public class BattleButton : MonoBehaviour
 {
     public static BattleButton Instance;
     
-    public bool Battle = false;
-    private Button _button;
+    public bool HasBattleStarted = false;
+    [SerializeField] private Button button;
 
     private void Awake()
     {
-        _button = GetComponent<Button>();
-
         if (Instance == null)
         {
             Instance = this;
@@ -24,17 +22,17 @@ public class BattleButton : MonoBehaviour
 
     private void OnEnable()
     {
-        _button.onClick.AddListener(ChangeBattleState);
+        button.onClick.AddListener(ChangeBattleState);
     }
 
     private void OnDisable()
     {
-        _button.onClick.RemoveListener(ChangeBattleState);
+        button.onClick.RemoveListener(ChangeBattleState);
     }
 
     private void ChangeBattleState()
     {
-        Battle = true;
+        HasBattleStarted = true;
         // Add your battle logic here
         TimerController timerController = FindObjectOfType<TimerController>();
         if (timerController != null)
@@ -42,5 +40,6 @@ public class BattleButton : MonoBehaviour
             timerController.isRunning = true;
         }
         FindObjectOfType<CameraFollow>().FindAndAddAllAttackerDrones();
+        button.gameObject.SetActive(false);
     }
 }

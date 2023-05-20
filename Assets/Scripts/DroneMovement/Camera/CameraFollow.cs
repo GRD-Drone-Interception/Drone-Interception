@@ -57,7 +57,10 @@ public class CameraFollow : MonoBehaviour
             currentTargetIndex = 0;
         }
 
-        _currentTarget = attackerObjects[currentTargetIndex].transform;
+        if (attackerObjects.Length > 0)
+        {
+            _currentTarget = attackerObjects[currentTargetIndex].transform;
+        }
     }
 
     bool IsVisible(GameObject target)

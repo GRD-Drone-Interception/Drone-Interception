@@ -3,8 +3,7 @@ using UnityEngine.UI;
 
 public class ButtonActivation : MonoBehaviour
 {
-    public Button button; // Reference to the button
-
+    [SerializeField] private Button button; 
     private bool canClick = false; // Flag to track whether the button can be clicked
 
     private void Start()

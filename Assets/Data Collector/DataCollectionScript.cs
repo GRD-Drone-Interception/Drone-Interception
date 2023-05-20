@@ -43,7 +43,7 @@ public class DataCollectionScript : MonoBehaviour
     void Update()
     {
         // Check if the battle has started
-        if (battleButton != null && battleButton.Battle)
+        if (battleButton != null && battleButton.HasBattleStarted)
         {
             if (!isCounting)
             {

@@ -31,16 +31,6 @@ namespace DroneMovement
         private void OnEnable() => waypointSpawner.OnWaypointPlaced += QueueWaypointTarget;
         private void OnDisable() => waypointSpawner.OnWaypointPlaced -= QueueWaypointTarget;
 
-        public void Start()
-        {
-            //SetCurrentTarget(); // Set the initial target
-        }
-
-        private void Update()
-        {
-            Debug.Log($"Current Target: {_currentTarget}");
-        }
-
         public void SetCurrentTarget()
         {
             if (_waypointTargets.Count <= 0)
@@ -90,9 +80,6 @@ namespace DroneMovement
 
         private void QueueWaypointTarget(GameObject nextTarget)
         {
-            Debug.Log("Queue");
-            
-            
             _waypointTargets.Enqueue(nextTarget);
 
             if (_waypointTargets.Count == 1)
