@@ -46,7 +46,6 @@ public class FixedWingAircraft : MonoBehaviour
         {
             return;
         }
-        
         currentTarget = TargetController.Instance.CurrentTarget;
 
         // Move towards the current target
