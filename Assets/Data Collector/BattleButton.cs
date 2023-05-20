@@ -1,21 +1,40 @@
-using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class BattleButton : MonoBehaviour
 {
-    public bool battle = false;
+    public static BattleButton Instance;
+    
+    public bool Battle = false;
+    private Button _button;
 
-    private void Start()
+    private void Awake()
     {
-        Button button = GetComponent<Button>();
-        button.onClick.AddListener(ChangeBattleState);
+        _button = GetComponent<Button>();
+
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Debug.LogError($"There should only be one of {this} at any one time");
+        }
     }
 
-    public void ChangeBattleState()
+    private void OnEnable()
     {
-        battle = true;
-        Debug.Log("Battle started!");
+        _button.onClick.AddListener(ChangeBattleState);
+    }
+
+    private void OnDisable()
+    {
+        _button.onClick.RemoveListener(ChangeBattleState);
+    }
+
+    private void ChangeBattleState()
+    {
+        Battle = true;
         // Add your battle logic here
         TimerController timerController = FindObjectOfType<TimerController>();
         if (timerController != null)

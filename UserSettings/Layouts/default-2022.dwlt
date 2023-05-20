@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 2560
     height: 1357
   m_ShowMode: 4
-  m_Title: Console
+  m_Title: Game
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -189,8 +189,8 @@ MonoBehaviour:
     y: 0
     width: 1319
     height: 831
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 12}
   m_Panes:
   - {fileID: 13}
@@ -269,8 +269,8 @@ MonoBehaviour:
     y: 0
     width: 731
     height: 1307
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 17}
@@ -652,9 +652,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0.13803264, y: 0.07902185, z: -0.010745052, w: 0.98721176}
   m_Size:
-    m_Target: 456.56467
+    m_Target: 594.566
     speed: 2
-    m_Value: 456.56467
+    m_Value: 594.566
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -712,18 +712,18 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 62b9ffff50bfffff92bfffffd8d9ffff14dfffffe8dffffff8dfffff12faffff068d0100048f010004930100e0930100
+      m_ExpandedIDs: c0f7ffff36f8ffff18f9ffff40f9ffff90f9ffffbef9ffffc2f9ffffd4f9ffffe2faffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: WorkshopMenu(Container)
-        m_OriginalName: WorkshopMenu(Container)
+        m_Name: Text (Legacy)
+        m_OriginalName: Text (Legacy)
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: 102148
+        m_UserData: -2226
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
         m_OriginalEventType: 0
@@ -775,24 +775,24 @@ MonoBehaviour:
     m_SceneHandles: 
     m_ShowAllHits: 0
     m_SkipHidden: 0
-    m_SearchArea: 1
+    m_SearchArea: 0
     m_Folders:
-    - Assets/Scenes/DroneWorkshop
+    - Assets/Data Collector
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/Scenes/DroneWorkshop
+  - Assets/Data Collector
   m_LastFoldersGridSize: 96
   m_LastProjectPath: D:\MyProjects\Unity_Projects\Drone-Interception
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 1}
-    m_SelectedIDs: 72040100
-    m_LastClickedID: 66674
-    m_ExpandedIDs: 000000003004010064040100
+    m_SelectedIDs: 08400100
+    m_LastClickedID: 81928
+    m_ExpandedIDs: 000000004c3f010010400100
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -820,7 +820,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000030040100
+    m_ExpandedIDs: 000000004c3f0100
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -845,9 +845,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 
-    m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_SelectedInstanceIDs: 86160000
+    m_LastClickedInstanceID: 5766
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c62300000c7200000e3b010074480100
     m_RenameOverlay:
       m_UserAcceptedRename: 0

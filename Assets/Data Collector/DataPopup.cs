@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,7 +22,7 @@ public class DataPopup : MonoBehaviour
     void Start()
     {
         // Find the BattleButton script in the scene and get a reference to it
-        battleButton = GameObject.FindObjectOfType<BattleButton>();
+        battleButton = FindObjectOfType<BattleButton>();
 
         // Set the initial opacity of the UI text elements to 0
         Color textColor = countText.color;
@@ -41,7 +39,7 @@ public class DataPopup : MonoBehaviour
     void Update()
     {
         // Check if the battle has started
-        if (battleButton != null && battleButton.battle)
+        if (battleButton != null && battleButton.Battle)
         {
             // Count the number of attackers and defenders in the scene
             GameObject[] attackers = GameObject.FindGameObjectsWithTag("Attacker");

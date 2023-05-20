@@ -19,6 +19,11 @@ namespace DroneMovement.Scripts
 
         private void FixedUpdate()
         {
+            if (!BattleButton.Instance.Battle)
+            {
+                return;
+            }
+            
             if (target != null)
             {
                 // Move towards the target

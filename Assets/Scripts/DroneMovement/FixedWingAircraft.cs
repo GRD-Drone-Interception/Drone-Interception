@@ -1,5 +1,6 @@
 using DroneMovement;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FixedWingAircraft : MonoBehaviour
 {
@@ -28,7 +29,7 @@ public class FixedWingAircraft : MonoBehaviour
         //currentTarget = _targetController.CurrentTarget;
     }
 
-    public void RotateTowardsTarget(Vector3 targetPosition)
+    private void RotateTowardsTarget(Vector3 targetPosition)
     {
         // Get the direction to the target
         Vector3 targetDirection = (targetPosition - transform.position).normalized;
@@ -46,6 +47,12 @@ public class FixedWingAircraft : MonoBehaviour
         {
             return;
         }
+
+        if (!BattleButton.Instance.Battle)
+        {
+            return;
+        }
+        
         currentTarget = TargetController.Instance.CurrentTarget;
 
         // Move towards the current target

@@ -25,7 +25,7 @@ public class DataCollectionScript : MonoBehaviour
     void Start()
     {
         // Find the BattleButton script in the scene and get a reference to it
-        battleButton = GameObject.FindObjectOfType<BattleButton>();
+        battleButton = FindObjectOfType<BattleButton>();
 
         // Set the initial opacity of the UI text element to 1
         Color textColor = countText.color;
@@ -43,7 +43,7 @@ public class DataCollectionScript : MonoBehaviour
     void Update()
     {
         // Check if the battle has started
-        if (battleButton != null && battleButton.battle)
+        if (battleButton != null && battleButton.Battle)
         {
             if (!isCounting)
             {
