@@ -5,7 +5,7 @@ public class TimerController : MonoBehaviour
 {
     public Text timerText;
 
-    private bool isRunning = true;
+    public bool isRunning = false;
     private float currentTime;
 
     private void Start()

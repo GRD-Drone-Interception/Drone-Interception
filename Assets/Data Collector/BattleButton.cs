@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class BattleButton : MonoBehaviour
 {
-    private bool battle = false;
+    public bool battle = false;
 
     private void Start()
     {
@@ -17,5 +17,11 @@ public class BattleButton : MonoBehaviour
         battle = true;
         Debug.Log("Battle started!");
         // Add your battle logic here
+        TimerController timerController = FindObjectOfType<TimerController>();
+        if (timerController != null)
+        {
+            timerController.isRunning = true;
+        }
+
     }
 }
