@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using Testing;
 using UnityEngine;
 using UnityEngine.UI;
@@ -81,7 +79,6 @@ public class DataCollectionScript : MonoBehaviour
             // Check if the attackers or defenders have won, and display a message to the player if so
             if (attackerCountCurrent == 0)
             {
-                Debug.Log("Defenders win!");
                 // Set the speed of all Defender tagged objects to 0 and fix their positions
                 foreach (GameObject defender in currentDefenders)
                 {
@@ -92,15 +89,13 @@ public class DataCollectionScript : MonoBehaviour
             }
             else if (defenderCountCurrent == 0)
             {
-                Debug.Log("Attackers win!");
                 // Display a message to the player using a UI element or other method
             }
+            
+            // Update the UI text element
+            UpdateCountText();
         }
-
-        // Update the UI text element
-        UpdateCountText();
     }
-
 
     void UpdateCountText()
     {

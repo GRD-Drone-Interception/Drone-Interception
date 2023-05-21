@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 782045425}
   - component: {fileID: 782045424}
   - component: {fileID: 1689696886}
+  - component: {fileID: 598523903775117403}
   m_Layer: 7
   m_Name: Marss
   m_TagString: Defender
@@ -147,6 +148,25 @@ MonoBehaviour:
   alignmentWeight: 1
   cohesionWeight: 1
   currentFormation: 0
+--- !u!114 &598523903775117403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 457988399069600944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fa7be6b68cae5b4a807682e16c42ca2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 10
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 128
+  particleEffect: {fileID: 198000010585806678, guid: 96730f8640590934eacb6f860058e7f9, type: 3}
+  explosionForce: 2.5
+  upwardsModifier: 1
 --- !u!1 &5578647109340454320
 GameObject:
   m_ObjectHideFlags: 0
