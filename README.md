@@ -4,7 +4,7 @@
 A single player drone simulation game where the player customises drones and creates their own drone scenarios, which can then be run and observed with the ability to change the formation of your drones in flight. 
 We are striking a fine balance between gamification and simulation, and the systems must be able to represent complex real-world data in a way which is digestible for a wider audience rather than just experts in the field. 
 
-(Insert demo vid here)
+Show off demo video URL: https://uweacuk-my.sharepoint.com/:v:/r/personal/alexander3_hillman_live_uwe_ac_uk/Documents/CGD/Drone%20Interception/Documentation/Drone%20Defence.mov?csf=1&web=1&e=BIIcTM
 
 ## How To Play
 - 1 ) Customise your drones in the drone workshop. The interceptors will be the drones utilised by the defending side, and the others will used by the attacking side. Augments will affect various drone parameters such as speed, acceleration, and weight, as well as what behaviours the drones will have. 
