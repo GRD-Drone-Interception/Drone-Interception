@@ -16,11 +16,8 @@ public class AudioTrigger : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Defender"))
         {
-            Debug.Log($"audiosource: {_audioSource}");
             _audioSource.Play();
-            Debug.Log($"audiosource playing bool: {_audioSource.isPlaying}");
             //_audioSource.PlayOneShot(audioClips[randomIndex]);
-            Debug.Log("Collision detected");
         }
     }
 }

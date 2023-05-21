@@ -98,7 +98,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   amplitude: 0.85
   speed: 2
-  alternativeMesh: {fileID: 34689743046402145, guid: 21bea76d485e39e47bed4c8be6419cfc, type: 3}
 --- !u!1 &7189957159651248828
 GameObject:
   m_ObjectHideFlags: 0
@@ -110,7 +109,7 @@ GameObject:
   - component: {fileID: 7189957159651248825}
   - component: {fileID: 7189957159651248826}
   - component: {fileID: 7189957159651248827}
-  - component: {fileID: 3777673475428636780}
+  - component: {fileID: 1246687686}
   m_Layer: 13
   m_Name: WaypointRing
   m_TagString: Object
@@ -184,8 +183,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &3777673475428636780
-CapsuleCollider:
+--- !u!65 &1246687686
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -194,7 +193,6 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.13868709
-  m_Height: 0.27737427
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 2
+  m_Size: {x: 0.27737418, y: 0.27737427, z: 0.659042}
+  m_Center: {x: 0, y: -2.9352398e-15, z: -0.30952132}

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,8 +20,34 @@ namespace DroneMovement.Scripts.Boids
         public enum FormationType { V, Box, Diamond, Cluster };
         public FormationType currentFormation = FormationType.V;
 
+        private Rigidbody _rb;
+
+        private void Awake()
+        {
+            _rb = GetComponent<Rigidbody>();
+        }
+
         private void Update()
         {
+            if (!BattleButton.Instance.HasBattleStarted)
+            {
+                // Calculate forces for thrust and hover
+                var hoverHeight = 1.20f;
+                var hoverForce = 10.0f;
+                var thrust = 7.0f;
+                RaycastHit hit;
+                float hoverError = hoverHeight;
+                if (Physics.Raycast(transform.position, -transform.up, out hit, Mathf.Infinity))
+                {
+                    hoverError -= hit.distance;
+                }
+                float hoverForceMagnitude = Mathf.Clamp(hoverError * hoverForce, 0f, 1f) * thrust;
+                Vector3 thrustForce = transform.up * hoverForceMagnitude;
+                _rb.AddForce(thrustForce, ForceMode.Force);
+                
+                return;
+            }
+
             // Get neighbours
             Collider[] neighbours = Physics.OverlapSphere(transform.position, neighbourDistance);
 
