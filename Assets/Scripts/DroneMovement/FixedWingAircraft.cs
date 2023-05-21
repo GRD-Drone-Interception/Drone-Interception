@@ -1,10 +1,11 @@
-using DroneLoadout.Scripts;
+using DroneMovement;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FixedWingAircraft : MonoBehaviour
 {
     public float speed = 50f;
-    public float rotationSpeed = 2f;
+    public float rotationSpeed = 20f;
     public float maxVelocityChange = 10f;
     public float arrivalDistance = 1f;
     public float rollSpeed = 5f;
@@ -20,17 +21,15 @@ public class FixedWingAircraft : MonoBehaviour
     public float collisionForce = 100f;
 
     private Rigidbody rb;
-    private TargetController targetController;
     public GameObject currentTarget;
 
-    private void Start()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        targetController = FindObjectOfType<TargetController>();
-        currentTarget = targetController.CurrentTarget;
+        //currentTarget = _targetController.CurrentTarget;
     }
 
-    public void RotateTowardsTarget(Vector3 targetPosition)
+    private void RotateTowardsTarget(Vector3 targetPosition)
     {
         // Get the direction to the target
         Vector3 targetDirection = (targetPosition - transform.position).normalized;
@@ -44,24 +43,36 @@ public class FixedWingAircraft : MonoBehaviour
 
     private void FixedUpdate()
     {
-        currentTarget = targetController.CurrentTarget;
+        if (TargetController.Instance.CurrentTarget == null)
+        {
+            return;
+        }
+
+        if (!BattleButton.Instance.HasBattleStarted)
+        {
+            return;
+        }
+        
+        currentTarget = TargetController.Instance.CurrentTarget;
+        var currentTargetOffset = currentTarget.transform.position + Vector3.up*2;
 
         // Move towards the current target
-        Vector3 targetDirection = currentTarget.transform.position - transform.position;
+        Vector3 targetDirection = currentTargetOffset - transform.position;
         targetDirection.Normalize();
 
-        float distanceToTarget = Vector3.Distance(transform.position, currentTarget.transform.position);
+        float distanceToTarget = Vector3.Distance(transform.position, currentTargetOffset);
 
         if (distanceToTarget <= arrivalDistance)
         {
             // Set the next target
-            targetController.SetCurrentTarget();
-            currentTarget = targetController.CurrentTarget;
+            TargetController.Instance.DequeueWaypointTarget();
+            TargetController.Instance.SetCurrentTarget();
+            currentTarget = TargetController.Instance.CurrentTarget;
         }
         else
         {
             // Rotate towards the target
-            RotateTowardsTarget(currentTarget.transform.position);
+            RotateTowardsTarget(currentTargetOffset);
 
             // Add force towards the target
             Vector3 velocity = rb.velocity;
@@ -70,8 +81,6 @@ public class FixedWingAircraft : MonoBehaviour
             steering = Vector3.ClampMagnitude(steering, maxVelocityChange);
             rb.AddForce(steering, ForceMode.VelocityChange);
         }
-
-
 
         // Control the aircraft's movement
         float roll = Input.GetAxis("Horizontal") * rollSpeed;
@@ -128,18 +137,11 @@ public class FixedWingAircraft : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Trigger entered");
         if (other.CompareTag("Object"))
         {
-            // If the object has collided with the target
-            Destroy(TargetController.Instance.CurrentTarget); // Destroy the current target
-            TargetController.Instance.currentTargetIndex++; // Increment the target index
-            if (TargetController.Instance.currentTargetIndex >= TargetController.Instance.targets.Count)
-            { // If we've reached the end of the targets list
-                TargetController.Instance.currentTargetIndex = 0; // Loop back to the start
-            }
-            TargetController.Instance.SetCurrentTarget(); // Set the new current target
-            //target = TargetController.Instance.CurrentTarget.transform;
+            Destroy(TargetController.Instance.CurrentTarget);
+            TargetController.Instance.DequeueWaypointTarget();
+            TargetController.Instance.SetCurrentTarget();
         }
     }
-    }
+}

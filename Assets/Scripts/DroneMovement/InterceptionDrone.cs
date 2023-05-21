@@ -2,9 +2,19 @@ using UnityEngine;
 
 public class InterceptionDrone : MonoBehaviour
 {
+    public Transform Target
+    { 
+        get => target;
+        set => target = value;
+    }
+    
     [SerializeField] private float range = 10f;
     [SerializeField] private Transform target;
     [SerializeField] private float speed = 5f;
+    [SerializeField] private float turnSpeed = 5f;
+    [SerializeField] private float acceleration = 10f;
+
+    private Vector3 currentVelocity = Vector3.zero;
 
     private void Start()
     {
@@ -34,8 +44,16 @@ public class InterceptionDrone : MonoBehaviour
             // Check if the target is within range
             if (direction.magnitude < range)
             {
-                // Move towards the target
-                transform.Translate(direction.normalized * speed * Time.deltaTime, Space.World);
+                // Calculate the rotation to face the target
+                Quaternion targetRotation = Quaternion.LookRotation(direction);
+
+                // Smoothly rotate towards the target using turn speed and acceleration
+                transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
+                currentVelocity = Vector3.Lerp(currentVelocity, direction.normalized * speed, acceleration * Time.deltaTime);
+
+                // Move towards the target with the current velocity
+                transform.Translate(currentVelocity * Time.deltaTime, Space.World);
+
                 Debug.Log("Moving towards attacker!");
             }
             else

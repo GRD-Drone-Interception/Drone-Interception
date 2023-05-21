@@ -6,8 +6,10 @@ using DroneBehaviours.Scripts;
 using DroneLoadout.Decorators;
 using DroneLoadout.Factory;
 using DroneLoadout.Strategies;
+using DroneMovement.Scripts.Boids;
 using Testing;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using Utility;
 
@@ -54,6 +56,11 @@ namespace DroneLoadout.Scripts
 
         private void Awake()
         {
+            if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("DroneWorkshop"))
+            {
+                Destroy(GetComponent<Boid>());
+            }
+
             Rb = GetComponent<Rigidbody>();
             DecorableDrone = DroneFactory.CreateDrone(droneConfigData.DroneType, droneConfigData);
             _attachmentPoints.AddRange(GetComponentsInChildren<AttachmentPoint>());
@@ -280,9 +287,10 @@ namespace DroneLoadout.Scripts
                 rb.AddExplosionForce(2.5f, transform.position, 2.5f, 1f, ForceMode.Impulse);
             }
             Destroy(destroyedDrone, 5.0f);
-            Destroy(gameObject);
+            gameObject.SetActive(false); // Disable the game object instead of destroying it
         }
-        
+
+
         public void Select()
         {
             foreach (var meshRenderer in _originalMaterials.Keys)

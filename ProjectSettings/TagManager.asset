@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Object
+  - Attacker
+  - Defender
   layers:
   - Default
   - TransparentFX
@@ -19,9 +21,9 @@ TagManager:
   - Drones
   - Targets
   - Spawnable
-  - 
-  - 
-  - 
+  - Waypoint
+  - AttSpawnable
+  - DffSpawnable
   - 
   - 
   - 

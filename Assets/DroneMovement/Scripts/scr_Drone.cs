@@ -1,118 +1,73 @@
 using UnityEngine;
 
-public class scr_Drone : MonoBehaviour
+namespace DroneMovement.Scripts
 {
-    public float speed = 5f;
-    public float rotationSpeed = 2f;
-    public float maxVelocityChange = 10f;
-    public float arrivalDistance = 1f;
-    public float separationDistance = 2f; // New variable for flocking behavior
-    public Transform target;
-    private Rigidbody rb;
-    private Collider[] nearbyColliders; // New array for detecting nearby objects
-    private scr_Drone[] nearbyDrones; // New array for storing nearby drone scripts
-
-    private void Start()
+    public class scr_Drone : MonoBehaviour
     {
-        rb = GetComponent<Rigidbody>();
-        transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-    }
+        public float speed = 5f;
+        public float rotationSpeed = 2f;
+        public float maxVelocityChange = 10f;
+        public float arrivalDistance = 1f;
+        public Transform target;
+        private Rigidbody rb;
 
-    private void FixedUpdate()
-    {
-        if (target != null)
+        private void Start()
         {
-            // Move towards the target
-            Vector3 targetDirection = target.position - transform.position;
-            targetDirection.Normalize();
+            rb = GetComponent<Rigidbody>();
+            transform.rotation = Quaternion.identity;
+        }
 
-
-            float distanceToTarget = Vector3.Distance(transform.position, target.position);
-
-            if (distanceToTarget > arrivalDistance)
+        private void FixedUpdate()
+        {
+            if (!BattleButton.Instance.HasBattleStarted)
             {
-                Vector3 velocity = rb.velocity;
-                Vector3 desiredVelocity = targetDirection * speed;
-                Vector3 steering = desiredVelocity - velocity;
-                steering = Vector3.ClampMagnitude(steering, maxVelocityChange);
-                rb.AddForce(steering, ForceMode.VelocityChange);
-
-                // Rotate towards the target
-                float angle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg - 90f;
-                Quaternion targetRotation = Quaternion.LookRotation(Vector3.forward, targetDirection);
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+                return;
             }
-        }
-        else
-        {
-            target = TargetController.Instance.CurrentTarget.transform;
-        }
-
-        // Flocking behavior
-        nearbyColliders = Physics.OverlapSphere(transform.position, separationDistance); // Detect nearby colliders
-        nearbyDrones = new scr_Drone[nearbyColliders.Length]; // Initialize nearby drone scripts array
-
-        for (int i = 0; i < nearbyColliders.Length; i++)
-        {
-            if (nearbyColliders[i].gameObject != gameObject) // If not self
+            
+            if (target != null)
             {
-                nearbyDrones[i] = nearbyColliders[i].gameObject.GetComponent<scr_Drone>(); // Get nearby drone script
-            }
-        }
+                // Move towards the target
+                Vector3 targetDirection = target.position - transform.position;
+                targetDirection.Normalize();
 
-        Vector3 flockDirection = Vector3.zero;
-        int flockCount = 0;
+                float distanceToTarget = Vector3.Distance(transform.position, target.position);
 
-        foreach (scr_Drone nearbyDrone in nearbyDrones)
-        {
-            if (nearbyDrone != null)
-            {
-                float distanceToNearbyDrone = Vector3.Distance(transform.position, nearbyDrone.transform.position);
-
-                if (distanceToNearbyDrone < separationDistance)
+                if (distanceToTarget > arrivalDistance)
                 {
-                    Vector3 separationDirection = transform.position - nearbyDrone.transform.position;
-                    flockDirection += separationDirection.normalized;
-                    flockCount++;
+                    Vector3 velocity = rb.velocity;
+                    Vector3 desiredVelocity = targetDirection * speed;
+                    Vector3 steering = desiredVelocity - velocity;
+                    steering = Vector3.ClampMagnitude(steering, maxVelocityChange);
+                    rb.AddForce(steering, ForceMode.VelocityChange);
+
+                    // Rotate towards the target
+                    float angle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg - 90f;
+                    Quaternion targetRotation = Quaternion.LookRotation(Vector3.forward, Vector3.up);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
                 }
             }
-        }
-
-        if (flockCount > 0)
-        {
-            flockDirection /= flockCount;
-        }
-
-        // Move with flock direction
-        if (flockDirection != Vector3.zero)
-        {
-            Vector3 velocity = rb.velocity;
-            Vector3 desiredVelocity = flockDirection.normalized * speed;
-            Vector3 steering = desiredVelocity - velocity;
-            steering = Vector3.ClampMagnitude(steering, maxVelocityChange);
-            rb.AddForce(steering, ForceMode.VelocityChange);
-
-            // Rotate towards flock direction
-            float angle = Mathf.Atan2(flockDirection.y, flockDirection.x) * Mathf.Rad2Deg - 90f;
-            Quaternion targetRotation = Quaternion.Euler(new Vector3(-90f, 0f, angle));
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-        }
-    }
-    
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log("Trigger entered");
-        if (other.CompareTag("Object"))
-        { 
-            // If the object has collided with the target
-            Destroy(TargetController.Instance.CurrentTarget); // Destroy the current target
-            TargetController.Instance.currentTargetIndex++; // Increment the target index
-            if (TargetController.Instance.currentTargetIndex >= TargetController.Instance.targets.Count)
-            { // If we've reached the end of the targets list
-                TargetController.Instance.currentTargetIndex = 0; // Loop back to the start
+            else
+            {
+                target = TargetController.Instance.CurrentTarget.transform;
             }
-            TargetController.Instance.SetCurrentTarget(); // Set the new current target
-            target = TargetController.Instance.CurrentTarget.transform;
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            Debug.Log("Trigger entered");
+            if (other.CompareTag("Object"))
+            {
+                // If the object has collided with the target
+                Destroy(TargetController.Instance.CurrentTarget); // Destroy the current target
+                /*TargetController.Instance.currentTargetIndex++; // Increment the target index
+                if (TargetController.Instance.currentTargetIndex >= TargetController.Instance.targets.Count)
+                { // If we've reached the end of the targets list
+                    TargetController.Instance.currentTargetIndex = 0; // Loop back to the start
+                }*/
+                TargetController.Instance.DequeueWaypointTarget();
+                TargetController.Instance.SetCurrentTarget(); // Set the new current target
+                target = TargetController.Instance.CurrentTarget.transform;
+            }
         }
     }
 }

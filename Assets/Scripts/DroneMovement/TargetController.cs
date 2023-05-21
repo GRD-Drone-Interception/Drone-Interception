@@ -1,34 +1,96 @@
 using System;
-using UnityEngine;
 using System.Collections.Generic;
+using DroneMovement.Scripts;
+using DroneMovement.Scripts.Boids;
+using DroneSelection.Scripts;
+using UnityEngine;
 
-public class TargetController : MonoBehaviour
+namespace DroneMovement
 {
-    public static TargetController Instance;
-
-    public List<GameObject> targets; // A list of all the target objects
-    public int currentTargetIndex = 0; // The current target index
-    public GameObject CurrentTarget; // The current target object
-
-    private void Awake()
+    public class TargetController : MonoBehaviour
     {
-        if (Instance == null)
+        public static TargetController Instance;
+        public GameObject CurrentTarget => _currentTarget;
+
+        [SerializeField] private WaypointSpawner waypointSpawner;
+        private Queue<GameObject> _waypointTargets = new();
+        private GameObject _currentTarget;
+
+        private void Awake()
         {
-            Instance = this; 
+            if (Instance == null)
+            {
+                Instance = this;
+            }
+            else
+            {
+                Debug.LogError($"There should be only one of {this} in the scene!");
+            }
         }
-        else
+
+        private void OnEnable() => waypointSpawner.OnWaypointPlaced += QueueWaypointTarget;
+        private void OnDisable() => waypointSpawner.OnWaypointPlaced -= QueueWaypointTarget;
+
+        public void SetCurrentTarget()
         {
-            Debug.LogError($"There should be only one of {this} in the scene!");
+            if (_waypointTargets.Count <= 0)
+            {
+                return;
+            }
+            _currentTarget = _waypointTargets.Peek(); // Get the current target object
+
+            if (_currentTarget == null) // Check if the current target is null
+            {
+                // Get all objects with the "Defender" tag and destroy them
+                GameObject[] defenders = GameObject.FindGameObjectsWithTag("Defender");
+                foreach (GameObject defender in defenders)
+                {
+                    Destroy(defender);
+                }
+
+                // Get all objects with the "Attacker" tag and set their velocity to zero
+                GameObject[] attackers = GameObject.FindGameObjectsWithTag("Attacker");
+                foreach (GameObject attacker in attackers)
+                {
+                    Boid boidScript = attacker.GetComponent<Boid>();
+                    if (boidScript != null)
+                    {
+                        boidScript.enabled = false;
+                    }
+                    FixedWingAircraft fixedWingScript = attacker.GetComponent<FixedWingAircraft>();
+                    if (fixedWingScript != null)
+                    {
+                        fixedWingScript.enabled = false;
+                    }
+                    scr_Drone droneScript = attacker.GetComponent<scr_Drone>();
+                    if (droneScript != null)
+                    {
+                        droneScript.enabled = false;
+                    }
+
+                    Rigidbody attackerRb = attacker.GetComponent<Rigidbody>();
+                    if (attackerRb != null)
+                    {
+                        attackerRb.velocity = Vector3.zero;
+                        attackerRb.useGravity = false;
+                    }
+                }
+            }
         }
-    }
 
-    public void Start()
-    {
-        SetCurrentTarget(); // Set the initial target
-    }
+        private void QueueWaypointTarget(GameObject nextTarget)
+        {
+            _waypointTargets.Enqueue(nextTarget);
 
-    public void SetCurrentTarget()
-    {
-        CurrentTarget = targets[currentTargetIndex]; // Get the current target object
+            if (_waypointTargets.Count == 1)
+            {
+                _currentTarget = _waypointTargets.Peek();
+            }
+        }
+        
+        public void DequeueWaypointTarget()
+        {
+            _waypointTargets.Dequeue();
+        }
     }
 }
