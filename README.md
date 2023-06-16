@@ -24,3 +24,18 @@ Show off demo video URL: https://uweacuk-my.sharepoint.com/:v:/r/personal/alexan
 
 ## Version and Dependencies 
 - Made with Unity 2022.1.16f1
+
+## Author Attributions 
+- "Cargo Ship 09 variant b" (https://skfb.ly/oCZzQ) by gogiart is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+- "Old Work Bench" (https://skfb.ly/6ROW6) by Oliver Triplett is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+- "DJI Mavic 3" (https://skfb.ly/o8rsR) by llirikslon is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+- "Quadcopter DJI Matrice 300 RTK" (https://skfb.ly/6Y6Hz) by 19vitali99 is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+- "Shahed-136" (https://skfb.ly/oAxtK) by Idmental is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+- "Bayraktar TB2 Military Ukrainian Navi" (https://skfb.ly/o9G6z) by Idmental is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+- "BAIRAKTAR_REMODEL" (https://skfb.ly/o9ILx) by Idmental is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+- "Drone" (https://skfb.ly/6tVSU) by akiko_yoshino is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+- "MQ9 Ripper military drone" (https://skfb.ly/oBAH8) by Giperione is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+- "Military Drone" (https://skfb.ly/KBzO) by osiris2000 is licensed under Creative Commons Attribution-NonCommercial (http://creativecommons.org/licenses/by-nc/4.0/).
+- "Low Poly Whiteboard" (https://skfb.ly/orOsB) by tankop1 is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+- "Smooth Marker" (https://www.fontspace.com/smooth-marker-font-f24660) by Chequered Ink is licensed under Freeware, Non-Commercial.
+- "Air Base 3D Model" (https://youtu.be/x43kTk27w8U) by RUNER FREE FIRE.
